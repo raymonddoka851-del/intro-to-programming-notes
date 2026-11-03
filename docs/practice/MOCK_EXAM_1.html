@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mock Examination 1 — STA 121 / CSC 112 · CSC 112 Revision</title>
+<meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
+<link rel="stylesheet" href="../assets/notes.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">C</span>
+    <span class="brand-text"><strong>CSC 112</strong><span>Revision Notes</span></span>
+  </a>
+  <details class="nav-details" open>
+    <summary>Contents</summary>
+    <div class="nav-group"><div class="nav-head"></div><a href="../START_HERE.html">Start here (pack index)</a><a href="../YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="../CHEAT_SHEET.html">Cheat sheet</a><a href="../PROGRESS_TRACKER.html">Progress tracker</a><a href="../SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="../notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="../notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="../notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="../notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="../notes/05_control_statements.html">05 · Control statements</a><a href="../notes/06_loops.html">06 · Loops</a><a href="../notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="../notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="../notes/09_pointers.html">09 · Pointers</a><a href="../notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="../notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="../practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="../practice/QUESTION_BANK.html">Question bank (96)</a><a href="../practice/ANSWER_KEY.html">Answer key</a><a href="../practice/LAB_TASKS.html">Lab tasks (25)</a><a href="../practice/MOCK_EXAM_1.html" class="active">Mock exam 1</a><a href="../practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="../practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="../code/README.html">Program list (22 examples)</a></div>
+  </details>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <span class="crumb">Practice <b>&rsaquo;</b> MOCK_EXAM_1</span>
+    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+  </div>
+  <article class="content">
+<h1 id="mock-examination-1-sta-121-csc-112">Mock Examination 1 — STA 121 / CSC 112</h1>
+<p><strong>Introduction to Programming</strong> <strong>Time allowed: 2 hours</strong> <strong>Total: 70 marks</strong></p>
+<blockquote><p><strong>Instructions</strong> 1. Answer <strong>all</strong> questions. 2. Section A: circle the letter of the best answer. 3. Sections B–D: write your answers in the answer booklet. 4. All programs must be written in <strong>C</strong>. 5. Marks are shown in brackets. Budget about <strong>1.7 minutes per mark</strong>. 6. No notes, no calculator, no compiler.</p></blockquote>
+<hr>
+<h2 id="section-a-multiple-choice-15-marks">Section A — Multiple choice (15 marks)</h2>
+<p><em>Circle the best answer. 1 mark each.</em></p>
+<p><strong>1.</strong> Which tool translates an entire high-level program into object code before it runs? A. Assembler  B. Interpreter  C. Compiler  D. Loader</p>
+<p><strong>2.</strong> Which of the following is <strong>not</strong> a C keyword? A. <code>static</code>  B. <code>main</code>  C. <code>sizeof</code>  D. <code>continue</code></p>
+<p><strong>3.</strong> On a typical 32-bit system, <code>sizeof(int)</code> is: A. 1  B. 2  C. 4  D. 8</p>
+<p><strong>4.</strong> What is the value of <code>17 % 5</code>? A. 2  B. 3  C. 3.4  D. 4</p>
+<p><strong>5.</strong> What does <code>printf(&quot;%d&quot;, 7 / 2);</code> print? A. 3  B. 3.5  C. 4  D. 3.0</p>
+<p><strong>6.</strong> Which identifier is valid in C? A. <code>2total</code>  B. <code>total-marks</code>  C. <code>_total</code>  D. <code>float</code></p>
+<p><strong>7.</strong> Which loop always executes its body at least once? A. <code>for</code>  B. <code>while</code>  C. <code>do-while</code>  D. none</p>
+<p><strong>8.</strong> The first element of <code>int a[10]</code> is accessed as: A. <code>a[1]</code>  B. <code>a[0]</code>  C. <code>a[10]</code>  D. <code>a[-1]</code></p>
+<p><strong>9.</strong> <code>strlen(&quot;Hi&quot;)</code> returns: A. 1  B. 2  C. 3  D. 4</p>
+<p><strong>10.</strong> <code>int *p;</code> declares: A. a pointer to an integer  B. an integer named <code>p</code>  C. a pointer to a pointer  D. an array</p>
+<p><strong>11.</strong> If <code>s</code> is a pointer to a structure, its member <code>name</code> is accessed as: A. <code>s.name</code>  B. <code>s-&gt;name</code>  C. <code>*s.name</code>  D. <code>&amp;s.name</code></p>
+<p><strong>12.</strong> Which file mode adds data to the end of an existing file without erasing it? A. <code>&quot;r&quot;</code>  B. <code>&quot;w&quot;</code>  C. <code>&quot;a&quot;</code>  D. <code>&quot;r+&quot;</code></p>
+<p><strong>13.</strong> The ASCII code of <code>'A'</code> is: A. 61  B. 65  C. 90  D. 97</p>
+<p><strong>14.</strong> What is the value of <code>!0</code>? A. 0  B. 1  C. −1  D. undefined</p>
+<p><strong>15.</strong> Which format specifier prints a <code>float</code>? A. <code>%d</code>  B. <code>%c</code>  C. <code>%f</code>  D. <code>%s</code></p>
+<hr>
+<h2 id="section-b-short-answers-15-marks">Section B — Short answers (15 marks)</h2>
+<p><em>Answer briefly. 3 marks each.</em></p>
+<p><strong>16.</strong> Define an <strong>algorithm</strong> and state <strong>three</strong> of its properties.</p>
+<p><strong>17.</strong> Give <strong>three</strong> differences between a compiler and an interpreter.</p>
+<p><strong>18.</strong> Explain <strong>syntax</strong>, <strong>runtime</strong> and <strong>logical</strong> errors. Give one example of each.</p>
+<p><strong>19.</strong> Differentiate between <strong>call by value</strong> and <strong>call by reference</strong>. Give one advantage of each.</p>
+<p><strong>20.</strong> Differentiate between a <strong>structure</strong> and a <strong>union</strong>. State one practical use of a union.</p>
+<hr>
+<h2 id="section-c-trace-and-debug-20-marks">Section C — Trace and debug (20 marks)</h2>
+<p><strong>21.</strong> What is the exact output? Show your working. <strong>(5 marks)</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> i, sum = <span class="tok-num">0</span>;
+
+    <span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= <span class="tok-num">6</span>; i++)
+    {
+        <span class="tok-kw">if</span> (i % <span class="tok-num">2</span> == <span class="tok-num">0</span>)
+            <span class="tok-kw">continue</span>;
+        sum += i;
+    }
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d %d\n&quot;</span>, i, sum);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>22.</strong> What is the exact output? Draw a small table of <code>i</code>, <code>p + i</code> and <code>total</code>. <strong>(5 marks)</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> a[<span class="tok-num">6</span>] = {<span class="tok-num">4</span>, <span class="tok-num">8</span>, <span class="tok-num">15</span>, <span class="tok-num">16</span>, <span class="tok-num">23</span>, <span class="tok-num">42</span>};
+    <span class="tok-kw">int</span> *p = a;
+    <span class="tok-kw">int</span> i, total = <span class="tok-num">0</span>;
+
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">6</span>; i += <span class="tok-num">2</span>)
+        total += *(p + i);
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d %d %d\n&quot;</span>, *p, *(p + <span class="tok-num">4</span>), total);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>23.</strong> What is the exact output? Explain the role of <code>static</code>. <strong>(5 marks)</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">fact</span>(<span class="tok-kw">int</span> n)
+{
+    <span class="tok-kw">if</span> (n &lt;= <span class="tok-num">1</span>)
+        <span class="tok-kw">return</span> <span class="tok-num">1</span>;
+    <span class="tok-kw">return</span> n * <span class="tok-fn">fact</span>(n - <span class="tok-num">1</span>);
+}
+
+<span class="tok-kw">void</span> <span class="tok-fn">bump</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">static</span> <span class="tok-kw">int</span> x = <span class="tok-num">0</span>;
+    x += <span class="tok-num">2</span>;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, x);
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> i;
+
+    <span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= <span class="tok-num">4</span>; i++)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, <span class="tok-fn">fact</span>(i));
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n&quot;</span>);
+
+    <span class="tok-fn">bump</span>();
+    <span class="tok-fn">bump</span>();
+    <span class="tok-fn">bump</span>();
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n&quot;</span>);
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>24.</strong> The program below contains <strong>five</strong> errors. Identify each error, state its type, and write the corrected program. <strong>(5 marks)</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> n, i, sum;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter n: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, n);
+
+    <span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= n; i++);
+    {
+        sum += i;
+    }
+
+    <span class="tok-kw">if</span> (sum = <span class="tok-num">0</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Zero\n&quot;</span>)
+    <span class="tok-kw">else</span>
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Sum = %d\n&quot;</span>, sum);
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<hr>
+<h2 id="section-d-write-complete-programs-20-marks">Section D — Write complete programs (20 marks)</h2>
+<p><strong>25.</strong> Write a complete C program that reads a positive integer <code>n</code> and prints <strong>all prime numbers from 2 to n</strong>, with <strong>five primes per line</strong>, followed by the total count. Use a function <code>int is_prime(int n)</code>. <strong>(10 marks)</strong></p>
+<p>Example:</p>
+<pre class="code" data-lang="text"><code>Enter n: 30
+ 2  3  5  7 11
+13 17 19 23 29
+Count = 10</code></pre>
+<p><strong>26.</strong> Write a complete C program that:</p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p>Example:</p>
+<pre class="code" data-lang="text"><code>Enter 10 integers: 4 9 1 7 3 8 2 6 5 0
+Sorted: 9 8 7 6 5 4 3 2 1 0
+Target: 6
+Found at index 3</code></pre>
+<hr>
+<p><strong>END OF PAPER</strong></p>
+<p><em>Check: have you answered every question? Are your <code>scanf</code> calls using <code>&amp;</code>? Are your loops bounded correctly?</em></p>
+
+  </article>
+<nav class="pager"><a class="prev" href="../practice/LAB_TASKS.html"><span class="dir">&larr; Previous</span><span class="name">Lab tasks (25)</span></a><a class="next" href="../practice/MOCK_EXAM_1_MARKING_SCHEME.html"><span class="dir">Next &rarr;</span><span class="name">Mock exam 1 — marking</span></a></nav>
+  <footer class="foot">
+    CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
+  </footer>
+</main>
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  <a href="#section-a-multiple-choice-15-marks">Section A — Multiple choice (15 marks)</a><a href="#section-b-short-answers-15-marks">Section B — Short answers (15 marks)</a><a href="#section-c-trace-and-debug-20-marks">Section C — Trace and debug (20 marks)</a><a href="#section-d-write-complete-programs-20-marks">Section D — Write complete programs (20 marks)</a>
+</aside>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('csc112-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '\u2600' : '\u263D';
+    try { localStorage.setItem('csc112-theme', next); } catch (e) {}
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // highlight the current section in the right-hand table of contents
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (links.length) {
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    window.addEventListener('scroll', function () {
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i] && heads[i].getBoundingClientRect().top < 120) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }, { passive: true });
+  }
+
+  // on phones, start with the contents menu collapsed
+  var det = document.querySelector('.nav-details');
+  if (det && window.innerWidth < 1000) det.removeAttribute('open');
+})();
+</script>
+</body>
+</html>

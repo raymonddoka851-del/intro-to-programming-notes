@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Note 02 — C Basics, Program Structure &amp; Compilation · CSC 112 Revision</title>
+<meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
+<link rel="stylesheet" href="../assets/notes.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">C</span>
+    <span class="brand-text"><strong>CSC 112</strong><span>Revision Notes</span></span>
+  </a>
+  <details class="nav-details" open>
+    <summary>Contents</summary>
+    <div class="nav-group"><div class="nav-head"></div><a href="../START_HERE.html">Start here (pack index)</a><a href="../YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="../CHEAT_SHEET.html">Cheat sheet</a><a href="../PROGRESS_TRACKER.html">Progress tracker</a><a href="../SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="../notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="../notes/02_c_basics_and_compilation.html" class="active">02 · C basics &amp; compilation</a><a href="../notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="../notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="../notes/05_control_statements.html">05 · Control statements</a><a href="../notes/06_loops.html">06 · Loops</a><a href="../notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="../notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="../notes/09_pointers.html">09 · Pointers</a><a href="../notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="../notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="../practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="../practice/QUESTION_BANK.html">Question bank (96)</a><a href="../practice/ANSWER_KEY.html">Answer key</a><a href="../practice/LAB_TASKS.html">Lab tasks (25)</a><a href="../practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="../practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="../practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="../code/README.html">Program list (22 examples)</a></div>
+  </details>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <span class="crumb">Notes <b>&rsaquo;</b> 02_c_basics_and_compilation</span>
+    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+  </div>
+  <article class="content">
+<h1 id="note-02-c-basics-program-structure-compilation">Note 02 — C Basics, Program Structure &amp; Compilation</h1>
+<blockquote><p><strong>Covers outline Week 2</strong> (compilation; C programming format and structure).</p></blockquote>
+<hr>
+<h2 id="1-what-is-c">1. What is C?</h2>
+<ul>
+<li><strong>C</strong> is a general-purpose, procedural, compiled, high-level language.</li>
+<li>Developed by <strong>Dennis M. Ritchie</strong> at <strong>Bell Laboratories</strong> in <strong>1972</strong>.</li>
+<li>It grew out of the earlier <strong>B</strong> language and was used to rewrite the <strong>UNIX</strong> operating system.</li>
+<li>Standardised as <strong>ANSI C (C89)</strong>, then C99, C11, C17, C23.</li>
+<li>It is called a <strong>&quot;mid-level&quot; language</strong> because it combines high-level readability with low-level access to memory (pointers).</li>
+</ul>
+<p><strong>Why learn C?</strong></p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Reason</th><th style="text-align:left">Explanation</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Compact, fast and powerful</td><td style="text-align:left">Small language, efficient compiled code</td></tr>
+<tr><td style="text-align:left">Portable</td><td style="text-align:left">Same source compiles on many machines</td></tr>
+<tr><td style="text-align:left">Standard</td><td style="text-align:left">Widely accepted; foundation of modern computing</td></tr>
+<tr><td style="text-align:left">Modular</td><td style="text-align:left">Supports functions and separate compilation</td></tr>
+<tr><td style="text-align:left">Close to hardware</td><td style="text-align:left">Pointers, bitwise operators, memory control</td></tr>
+<tr><td style="text-align:left">Foundation</td><td style="text-align:left">C++ , Java, C#, Python's internals and OS kernels borrow from C</td></tr>
+<tr><td style="text-align:left">Native language of UNIX/Linux</td><td style="text-align:left">Most operating systems are written in C</td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="2-the-structure-of-a-c-program">2. The structure of a C program</h2>
+<h3 id="21-canonical-first-program">2.1 Canonical first program</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;          /* preprocessor directive: include standard I/O */</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)              <span class="tok-com">/* program starts here; returns an int */</span>
+{
+    <span class="tok-com">/* My first program */</span>
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Hello World!\n&quot;</span>);
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;               <span class="tok-com">/* tell the OS the program ended successfully */</span>
+}</code></pre>
+<p><strong>Output</strong></p>
+<pre class="code"><code>Hello World!</code></pre>
+<h3 id="22-the-six-parts-of-a-c-program">2.2 The six parts of a C program</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Part</th><th style="text-align:left">Example</th><th style="text-align:left">Purpose</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><strong>Preprocessor directives</strong></td><td style="text-align:left"><code>#include &lt;stdio.h&gt;</code>, <code>#define PI 3.14</code></td><td style="text-align:left">Processed before compilation; no semicolon</td></tr>
+<tr><td style="text-align:left"><strong>Global declarations</strong></td><td style="text-align:left"><code>int count = 0;</code></td><td style="text-align:left">Variables/functions visible to the whole program</td></tr>
+<tr><td style="text-align:left"><strong><code>main()</code> function</strong></td><td style="text-align:left"><code>int main(void)</code></td><td style="text-align:left">Entry point; every C program has exactly one</td></tr>
+<tr><td style="text-align:left"><strong>Declarations</strong></td><td style="text-align:left"><code>int age; float price;</code></td><td style="text-align:left">Reserve memory and state types</td></tr>
+<tr><td style="text-align:left"><strong>Statements</strong></td><td style="text-align:left"><code>age = 20; printf(...);</code></td><td style="text-align:left">The actual instructions; each ends with <code>;</code></td></tr>
+<tr><td style="text-align:left"><strong>Return statement</strong></td><td style="text-align:left"><code>return 0;</code></td><td style="text-align:left">Ends <code>main</code> and returns a status to the OS</td></tr>
+</tbody></table></div>
+<h3 id="23-rules-of-c-you-must-never-break">2.3 Rules of C you must never break</h3>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<h3 id="24-main-signatures">2.4 <code>main</code> signatures</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>) { ... }                       <span class="tok-com">/* no command-line arguments */</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">int</span> argc, <span class="tok-kw">char</span> *argv[]) { ... }     <span class="tok-com">/* with command-line arguments */</span></code></pre>
+<p><code>void main()</code> is common in old notes but is <strong>not standard</strong>. Use <code>int main</code> and <code>return 0;</code>.</p>
+<hr>
+<h2 id="3-header-files">3. Header files</h2>
+<p>A <strong>header file</strong> contains declarations of functions, macros and types. It is included with the preprocessor.</p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;    /* printf, scanf, getchar, putchar, FILE, fopen... */</span>
+<span class="tok-pre">#include &lt;stdlib.h&gt;   /* malloc, free, exit, atoi, rand, system... */</span>
+<span class="tok-pre">#include &lt;math.h&gt;     /* sqrt, pow, sin, cos, fabs... */</span>
+<span class="tok-pre">#include &lt;string.h&gt;   /* strlen, strcpy, strcat, strcmp... */</span>
+<span class="tok-pre">#include &lt;ctype.h&gt;    /* isalpha, isdigit, toupper, tolower... */</span>
+<span class="tok-pre">#include &lt;conio.h&gt;    /* getch() — non-standard, Windows only */</span></code></pre>
+<p><strong>Angle brackets vs double quotes</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;    /* search the compiler's standard include directories */</span>
+<span class="tok-pre">#include &quot;mylib.h&quot;    /* search the current project directory first */</span></code></pre>
+<p><strong>Important:</strong> <code>#include</code> is <strong>not</strong> a statement, so it has <strong>no semicolon</strong>.</p>
+<hr>
+<h2 id="4-comments">4. Comments</h2>
+<p>Comments are ignored by the compiler; they document the code.</p>
+<pre class="code" data-lang="c"><code><span class="tok-com">/* This is a block comment.
+   It can span several lines. */</span>
+
+<span class="tok-com">// This is a single-line comment (C99 and later)</span>
+
+<span class="tok-kw">int</span> x = <span class="tok-num">5</span>;   <span class="tok-com">/* comment after code */</span></code></pre>
+<p><strong>Rules</strong></p>
+<ul>
+<li>Block comments <code>/* ... */</code> <strong>cannot be nested</strong>.</li>
+<li><code>/* outer /* inner */ still outer */</code> is wrong: the first <code>*/</code> closes the comment, and <code>still outer */</code> causes an error.</li>
+<li>Use comments to explain <strong>why</strong>, not to repeat <strong>what</strong> the code obviously does.</li>
+</ul>
+<hr>
+<h2 id="5-identifiers-keywords-and-names">5. Identifiers, keywords and names</h2>
+<h3 id="51-rules-for-identifiers-names">5.1 Rules for identifiers (names)</h3>
+<p>An identifier is a name for a variable, function, array, struct, etc.</p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p><strong>Valid:</strong> <code>sum</code>, <code>_count</code>, <code>student1</code>, <code>total_marks</code>, <code>x2</code> <strong>Invalid:</strong> <code>2sum</code> (starts with digit), <code>total marks</code> (space), <code>total-marks</code> (hyphen), <code>float</code> (keyword), <code>student@1</code> (symbol)</p>
+<h3 id="52-keywords">5.2 Keywords</h3>
+<p>Keywords are reserved words with special meaning to the compiler. You cannot use them as names.</p>
+<p>Common ones:</p>
+<pre class="code"><code>auto     break    case     char     const    continue  default   do
+double   else     enum     extern   float    for       goto      if
+int      long     register return   short    signed    sizeof    static
+struct   switch   typedef  union    unsigned void      volatile  while</code></pre>
+<p>C89 has 32 keywords; C99 adds <code>inline</code>, <code>restrict</code>, <code>_Bool</code>, <code>_Complex</code>, <code>_Imaginary</code>.</p>
+<h3 id="53-naming-conventions">5.3 Naming conventions</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Item</th><th style="text-align:left">Convention</th><th style="text-align:left">Example</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Variables</td><td style="text-align:left">lowercase, underscores</td><td style="text-align:left"><code>total_marks</code></td></tr>
+<tr><td style="text-align:left">Constants</td><td style="text-align:left">UPPERCASE</td><td style="text-align:left"><code>MAX_SIZE</code>, <code>PI</code></td></tr>
+<tr><td style="text-align:left">Functions</td><td style="text-align:left">lowercase, verbs</td><td style="text-align:left"><code>calculate_average()</code></td></tr>
+<tr><td style="text-align:left">Structs</td><td style="text-align:left">Capitalised or <code>_t</code> suffix</td><td style="text-align:left"><code>Student</code>, <code>student_t</code></td></tr>
+<tr><td style="text-align:left">Pointers</td><td style="text-align:left">prefix <code>p</code></td><td style="text-align:left"><code>pCount</code></td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="6-symbolic-constants">6. Symbolic constants</h2>
+<h3 id="61-define-preprocessor">6.1 <code>#define</code> (preprocessor)</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#define PI 3.14159</span>
+<span class="tok-pre">#define MAX 100</span>
+<span class="tok-pre">#define NEWLINE '\n'</span>
+<span class="tok-pre">#define NAME &quot;Alice&quot;</span></code></pre>
+<ul>
+<li>No semicolon at the end.</li>
+<li>The preprocessor performs <strong>text substitution</strong> before compilation.</li>
+<li>Traditionally written in UPPERCASE.</li>
+<li>You cannot assign a new value to it.</li>
+</ul>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#define TAXRATE 0.10</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>) {
+    <span class="tok-kw">float</span> balance = <span class="tok-num">72.10</span>;
+    <span class="tok-kw">float</span> tax = balance * TAXRATE;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;The tax on %.2f is %.2f\n&quot;</span>, balance, tax);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Output:</strong> <code>The tax on 72.10 is 7.21</code></p>
+<p>If the tax rate changes, you edit <strong>one line</strong>.</p>
+<h3 id="62-const-compiler-enforced">6.2 <code>const</code> (compiler-enforced)</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">const</span> <span class="tok-kw">double</span> PI = <span class="tok-num">3.14159</span>;
+<span class="tok-kw">const</span> <span class="tok-kw">int</span> MAX = <span class="tok-num">100</span>;</code></pre>
+<ul>
+<li>Has a type, so the compiler checks it.</li>
+<li>Cannot be changed after initialisation.</li>
+<li>Preferred in modern C.</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left"><code>#define</code></th><th style="text-align:left"><code>const</code></th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Preprocessor text replacement</td><td style="text-align:left">Real variable with a type</td></tr>
+<tr><td style="text-align:left">No type checking</td><td style="text-align:left">Type-checked</td></tr>
+<tr><td style="text-align:left">No semicolon</td><td style="text-align:left">Needs semicolon</td></tr>
+<tr><td style="text-align:left">No memory allocated (usually)</td><td style="text-align:left">Memory allocated</td></tr>
+<tr><td style="text-align:left">Cannot be debugged easily</td><td style="text-align:left">Visible to the debugger</td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="7-from-source-code-to-running-program">7. From source code to running program</h2>
+<h3 id="71-the-four-steps">7.1 The four steps</h3>
+<pre class="code"><code>hello.c
+   │  preprocessor  (#include, #define)
+   ▼
+hello.i  (expanded source)
+   │  compiler  (syntax check, translate)
+   ▼
+hello.s  (assembly)
+   │  assembler
+   ▼
+hello.o  (object code)
+   │  linker  (+ library code, e.g. printf)
+   ▼
+hello.exe  (executable)
+   │  loader  (loads into RAM)
+   ▼
+Running program</code></pre>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Step</th><th style="text-align:left">Tool</th><th style="text-align:left">Input</th><th style="text-align:left">Output</th><th style="text-align:left">Errors detected</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">1. Preprocessing</td><td style="text-align:left">Preprocessor</td><td style="text-align:left"><code>.c</code></td><td style="text-align:left"><code>.i</code></td><td style="text-align:left">Missing header file, bad macro</td></tr>
+<tr><td style="text-align:left">2. Compilation</td><td style="text-align:left">Compiler</td><td style="text-align:left"><code>.i</code></td><td style="text-align:left"><code>.s</code></td><td style="text-align:left"><strong>Syntax errors</strong>, type errors</td></tr>
+<tr><td style="text-align:left">3. Assembly</td><td style="text-align:left">Assembler</td><td style="text-align:left"><code>.s</code></td><td style="text-align:left"><code>.o</code></td><td style="text-align:left">Assembly-level errors (rare)</td></tr>
+<tr><td style="text-align:left">4. Linking</td><td style="text-align:left">Linker</td><td style="text-align:left"><code>.o</code> + libraries</td><td style="text-align:left"><code>.exe</code></td><td style="text-align:left"><strong>Undefined reference</strong> (missing function)</td></tr>
+<tr><td style="text-align:left">5. Loading</td><td style="text-align:left">Loader/OS</td><td style="text-align:left"><code>.exe</code></td><td style="text-align:left">Running process</td><td style="text-align:left">File not found, permission</td></tr>
+<tr><td style="text-align:left">6. Execution</td><td style="text-align:left">CPU</td><td style="text-align:left">—</td><td style="text-align:left">Output</td><td style="text-align:left"><strong>Runtime errors</strong></td></tr>
+</tbody></table></div>
+<h3 id="72-compiling-with-gcc">7.2 Compiling with GCC</h3>
+<pre class="code" data-lang="bash"><code>gcc hello.c -o hello          # compile and link
+gcc -Wall -Wextra hello.c -o hello   # with warnings
+gcc -E hello.c -o hello.i     # preprocess only
+gcc -S hello.c -o hello.s     # compile to assembly
+gcc -c hello.c -o hello.o     # compile/assemble only
+gcc hello.o -o hello          # link
+./hello                       # run (Linux/macOS)
+hello.exe                     # run (Windows)</code></pre>
+<h3 id="73-important-vocabulary">7.3 Important vocabulary</h3>
+<ul>
+<li><strong>Source file</strong> — the <code>.c</code> file you write.</li>
+<li><strong>Object file</strong> — compiled machine code, not yet runnable because library functions are missing.</li>
+<li><strong>Library</strong> — pre-written functions (e.g., <code>printf</code> in the C standard library).</li>
+<li><strong>Linker</strong> — attaches library code to your object code.</li>
+<li><strong>Loader</strong> — moves the executable from disk into RAM.</li>
+<li><strong>Executable</strong> — the final runnable file.</li>
+</ul>
+<blockquote><p><strong>Why &quot;undefined reference to <code>printf</code>&quot; happens:</strong> you forgot <code>#include &lt;stdio.h&gt;</code> <strong>or</strong> you did not link the library. The compiler knew the name but the linker could not find the code.</p></blockquote>
+<hr>
+<h2 id="8-input-and-output-first-look">8. Input and output — first look</h2>
+<h3 id="81-printf">8.1 <code>printf</code></h3>
+<pre class="code" data-lang="c"><code><span class="tok-fn">printf</span>(<span class="tok-str">&quot;control string&quot;</span>, argument1, argument2, ...);</code></pre>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> age = <span class="tok-num">20</span>;
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;Age = %d\n&quot;</span>, age);</code></pre>
+<ul>
+<li><code>%d</code> is a <strong>format specifier</strong> — it says &quot;print an integer here&quot;.</li>
+<li><code>\n</code> is a <strong>newline</strong> escape sequence.</li>
+<li>The number of format specifiers should match the number of arguments.</li>
+</ul>
+<h3 id="82-scanf">8.2 <code>scanf</code></h3>
+<pre class="code" data-lang="c"><code><span class="tok-fn">scanf</span>(<span class="tok-str">&quot;control string&quot;</span>, &amp;variable1, &amp;variable2, ...);</code></pre>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> age;
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter your age: &quot;</span>);
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;age);</code></pre>
+<ul>
+<li>The <strong><code>&amp;</code> (address-of operator)</strong> tells <code>scanf</code> where to store the value.</li>
+<li><strong>Exception:</strong> when reading a string into a <code>char</code> array, the array name is already an address, so no <code>&amp;</code>:</li>
+</ul>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> name[<span class="tok-num">20</span>];
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%19s&quot;</span>, name);     <span class="tok-com">/* no &amp; */</span></code></pre>
+<h3 id="83-first-complete-programs">8.3 First complete programs</h3>
+<p><strong>Add two integers</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> a, b, sum;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter two integers: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d %d&quot;</span>, &amp;a, &amp;b);
+
+    sum = a + b;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Sum = %d\n&quot;</span>, sum);
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Area of a circle</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-pre">#define PI 3.14159</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">float</span> radius, area;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter radius: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%f&quot;</span>, &amp;radius);
+
+    area = PI * radius * radius;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Area = %.2f\n&quot;</span>, area);
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Average of three numbers</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">float</span> a, b, c, average;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter three numbers: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%f %f %f&quot;</span>, &amp;a, &amp;b, &amp;c);
+
+    average = (a + b + c) / <span class="tok-num">3.0</span>;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Average = %.2f\n&quot;</span>, average);
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<blockquote><p><code>(a + b + c) / 3</code> would still work here because <code>a</code>, <code>b</code>, <code>c</code> are floats. If they were <code>int</code>, <code>/ 3</code> would truncate. See Note 03/04.</p></blockquote>
+<hr>
+<h2 id="9-common-beginner-errors-and-their-type">9. Common beginner errors (and their type)</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Code</th><th style="text-align:left">Error</th><th style="text-align:left">Type</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>printf(&quot;Hello&quot;)</code></td><td style="text-align:left">Missing semicolon</td><td style="text-align:left">Syntax</td></tr>
+<tr><td style="text-align:left"><code>printf(&quot;Hello);</code></td><td style="text-align:left">Missing closing quote</td><td style="text-align:left">Syntax</td></tr>
+<tr><td style="text-align:left"><code>Printf(&quot;Hello&quot;);</code></td><td style="text-align:left">Wrong case</td><td style="text-align:left">Syntax (undefined function)</td></tr>
+<tr><td style="text-align:left"><code>int main() { ... </code></td><td style="text-align:left">Missing <code>}</code></td><td style="text-align:left">Syntax</td></tr>
+<tr><td style="text-align:left"><code>scanf(&quot;%d&quot;, x);</code></td><td style="text-align:left">Missing <code>&amp;</code></td><td style="text-align:left">Runtime (crash or no input)</td></tr>
+<tr><td style="text-align:left"><code>int x; printf(&quot;%d&quot;, x);</code></td><td style="text-align:left">Uninitialised variable</td><td style="text-align:left">Logical/runtime (garbage)</td></tr>
+<tr><td style="text-align:left"><code>x = 5</code> used in <code>if (x = 5)</code></td><td style="text-align:left">Assignment instead of comparison</td><td style="text-align:left">Logical</td></tr>
+<tr><td style="text-align:left"><code>printf(&quot;%d&quot;, 3.5);</code></td><td style="text-align:left">Wrong format specifier</td><td style="text-align:left">Undefined behaviour</td></tr>
+<tr><td style="text-align:left"><code>#include &lt;stdio.h&gt;;</code></td><td style="text-align:left">Semicolon after include</td><td style="text-align:left">Syntax</td></tr>
+<tr><td style="text-align:left"><code>void main()</code></td><td style="text-align:left">Non-standard</td><td style="text-align:left">Warning/portability</td></tr>
+<tr><td style="text-align:left"><code>int 2x = 5;</code></td><td style="text-align:left">Identifier starts with digit</td><td style="text-align:left">Syntax</td></tr>
+<tr><td style="text-align:left"><code>float = 3.14;</code></td><td style="text-align:left">Missing variable name</td><td style="text-align:left">Syntax</td></tr>
+<tr><td style="text-align:left"><code>if (x &gt; 5);</code></td><td style="text-align:left">Semicolon ends the <code>if</code></td><td style="text-align:left">Logical (body never runs as intended)</td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="10-worked-exam-question">10. Worked exam question</h2>
+<p><strong>Write a C program that reads two numbers and prints their sum, difference, product and quotient.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">float</span> a, b;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter two numbers: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%f %f&quot;</span>, &amp;a, &amp;b);
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Sum        = %.2f\n&quot;</span>, a + b);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Difference = %.2f\n&quot;</span>, a - b);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Product    = %.2f\n&quot;</span>, a * b);
+
+    <span class="tok-kw">if</span> (b != <span class="tok-num">0</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Quotient   = %.2f\n&quot;</span>, a / b);
+    <span class="tok-kw">else</span>
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Quotient   : division by zero is not allowed\n&quot;</span>);
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Why <code>float</code>?</strong> Because division of integers truncates: <code>5 / 2</code> gives <code>2</code>, but <code>5.0 / 2</code> gives <code>2.5</code>.</p>
+<p><strong>Why check <code>b != 0</code>?</strong> Division by zero is a runtime error. Always guard it.</p>
+<hr>
+<h2 id="11-rapid-revision">11. Rapid revision</h2>
+<ul>
+<li>C: Dennis Ritchie, 1972, Bell Labs, used for UNIX.</li>
+<li>Structure: preprocessor directives → global declarations → <code>main()</code> → declarations → statements → <code>return 0;</code>.</li>
+<li><code>#include &lt;stdio.h&gt;</code> for <code>printf</code>/<code>scanf</code>; <strong>no semicolon</strong>.</li>
+<li><code>main</code> is the entry point; C is case-sensitive; statements end with <code>;</code>.</li>
+<li>Identifiers: letter/underscore first, then letters/digits/underscores; not a keyword.</li>
+<li><code>#define</code> = preprocessor substitution; <code>const</code> = typed read-only variable.</li>
+<li>Pipeline: <strong>preprocessor → compiler → assembler → linker → loader → run</strong>.</li>
+<li><code>.c → .i → .s → .o → .exe</code>.</li>
+<li>Syntax errors = compiler; undefined reference = linker; runtime errors = execution; logical errors = testing.</li>
+<li><code>scanf</code> needs <code>&amp;</code> (except arrays/strings).</li>
+</ul>
+<hr>
+<h2 id="12-self-test-answers-below">12. Self-test (answers below)</h2>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li> ``<code>c #include &lt;stdio.h&gt; void main() { int x printf(&quot;Enter x: &quot;); scanf(&quot;%f&quot;, x); printf(&quot;%d\n&quot;, x); } </code>``</li>
+<li> ``<code>c int a = 7, b = 2; printf(&quot;%d %.2f\n&quot;, a / b, (float)a / b); </code>``</li>
+</ol>
+<h3 id="answers">Answers</h3>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<hr>
+<p><strong>Next:</strong> <code>03_data_types_and_number_systems.md</code></p>
+
+  </article>
+<nav class="pager"><a class="prev" href="../notes/01_programming_fundamentals.html"><span class="dir">&larr; Previous</span><span class="name">01 · Programming fundamentals</span></a><a class="next" href="../notes/03_data_types_and_number_systems.html"><span class="dir">Next &rarr;</span><span class="name">03 · Data types &amp; number systems</span></a></nav>
+  <footer class="foot">
+    CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
+  </footer>
+</main>
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  <a href="#1-what-is-c">1. What is C?</a><a href="#2-the-structure-of-a-c-program">2. The structure of a C program</a><a href="#21-canonical-first-program" class="toc-h3">2.1 Canonical first program</a><a href="#22-the-six-parts-of-a-c-program" class="toc-h3">2.2 The six parts of a C program</a><a href="#23-rules-of-c-you-must-never-break" class="toc-h3">2.3 Rules of C you must never break</a><a href="#24-main-signatures" class="toc-h3">2.4 main signatures</a><a href="#3-header-files">3. Header files</a><a href="#4-comments">4. Comments</a><a href="#5-identifiers-keywords-and-names">5. Identifiers, keywords and names</a><a href="#51-rules-for-identifiers-names" class="toc-h3">5.1 Rules for identifiers (names)</a><a href="#52-keywords" class="toc-h3">5.2 Keywords</a><a href="#53-naming-conventions" class="toc-h3">5.3 Naming conventions</a><a href="#6-symbolic-constants">6. Symbolic constants</a><a href="#61-define-preprocessor" class="toc-h3">6.1 #define (preprocessor)</a><a href="#62-const-compiler-enforced" class="toc-h3">6.2 const (compiler-enforced)</a><a href="#7-from-source-code-to-running-program">7. From source code to running program</a><a href="#71-the-four-steps" class="toc-h3">7.1 The four steps</a><a href="#72-compiling-with-gcc" class="toc-h3">7.2 Compiling with GCC</a><a href="#73-important-vocabulary" class="toc-h3">7.3 Important vocabulary</a><a href="#8-input-and-output-first-look">8. Input and output — first look</a><a href="#81-printf" class="toc-h3">8.1 printf</a><a href="#82-scanf" class="toc-h3">8.2 scanf</a><a href="#83-first-complete-programs" class="toc-h3">8.3 First complete programs</a><a href="#9-common-beginner-errors-and-their-type">9. Common beginner errors (and their type)</a><a href="#10-worked-exam-question">10. Worked exam question</a><a href="#11-rapid-revision">11. Rapid revision</a><a href="#12-self-test-answers-below">12. Self-test (answers below)</a><a href="#answers" class="toc-h3">Answers</a>
+</aside>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('csc112-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '\u2600' : '\u263D';
+    try { localStorage.setItem('csc112-theme', next); } catch (e) {}
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // highlight the current section in the right-hand table of contents
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (links.length) {
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    window.addEventListener('scroll', function () {
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i] && heads[i].getBoundingClientRect().top < 120) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }, { passive: true });
+  }
+
+  // on phones, start with the contents menu collapsed
+  var det = document.querySelector('.nav-details');
+  if (det && window.innerWidth < 1000) det.removeAttribute('open');
+})();
+</script>
+</body>
+</html>

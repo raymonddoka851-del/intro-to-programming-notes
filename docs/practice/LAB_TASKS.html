@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab Tasks — 25 Programs to Write Yourself · CSC 112 Revision</title>
+<meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
+<link rel="stylesheet" href="../assets/notes.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">C</span>
+    <span class="brand-text"><strong>CSC 112</strong><span>Revision Notes</span></span>
+  </a>
+  <details class="nav-details" open>
+    <summary>Contents</summary>
+    <div class="nav-group"><div class="nav-head"></div><a href="../START_HERE.html">Start here (pack index)</a><a href="../YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="../CHEAT_SHEET.html">Cheat sheet</a><a href="../PROGRESS_TRACKER.html">Progress tracker</a><a href="../SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="../notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="../notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="../notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="../notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="../notes/05_control_statements.html">05 · Control statements</a><a href="../notes/06_loops.html">06 · Loops</a><a href="../notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="../notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="../notes/09_pointers.html">09 · Pointers</a><a href="../notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="../notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="../practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="../practice/QUESTION_BANK.html">Question bank (96)</a><a href="../practice/ANSWER_KEY.html">Answer key</a><a href="../practice/LAB_TASKS.html" class="active">Lab tasks (25)</a><a href="../practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="../practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="../practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="../code/README.html">Program list (22 examples)</a></div>
+  </details>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <span class="crumb">Practice <b>&rsaquo;</b> LAB_TASKS</span>
+    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+  </div>
+  <article class="content">
+<h1 id="lab-tasks-25-programs-to-write-yourself">Lab Tasks — 25 Programs to Write Yourself</h1>
+<blockquote><p><strong>Rules</strong></p><p>- Write each program in C from scratch. Do not copy the notes. - Compile with warnings on: <code>gcc -Wall -Wextra task.c -o task</code>. - Test with the sample input <strong>and</strong> with boundary/invalid input. - Keep every program in its own file: <code>task01.c</code>, <code>task02.c</code>, … - Mark yourself with the rubric at the end.</p><p><strong>Difficulty:</strong> Tasks 1–5 beginner · 6–10 loops · 11–15 functions/arrays · 16–20 strings/pointers/structs · 21–25 integrated.</p></blockquote>
+<hr>
+<h2 id="level-1-getting-started">Level 1 — Getting started</h2>
+<h3 id="task-1-profile-card-10-marks">Task 1 — Profile card (10 marks)</h3>
+<p><strong>Goal:</strong> practise <code>printf</code>, escape sequences and layout.</p>
+<p>Write a program that prints a card exactly like this (replace the details with your own):</p>
+<pre class="code" data-lang="text"><code>+----------------------------+
+| Name : Ada Lovelace        |
+| Course: STA 121            |
+| Level : 100                |
+| Quote: &quot;First, solve it.&quot;  |
++----------------------------+</code></pre>
+<p><strong>Requirements:</strong> use <code>\n</code>, <code>\t</code> and <code>\&quot;</code>; the border must line up. <strong>Hint:</strong> count the characters inside the border; use a fixed width for every line.</p>
+<hr>
+<h3 id="task-2-rectangle-calculator-10-marks">Task 2 — Rectangle calculator (10 marks)</h3>
+<p><strong>Goal:</strong> input, arithmetic, formatted output.</p>
+<p>Read the length and width of a rectangle (decimals allowed). Print:</p>
+<pre class="code" data-lang="text"><code>Enter length and width: 7.5 3
+Area      = 22.50
+Perimeter = 21.00</code></pre>
+<p><strong>Requirements:</strong> use <code>double</code>; print 2 decimal places; label the output. <strong>Hint:</strong> area = length × width; perimeter = 2 × (length + width).</p>
+<hr>
+<h3 id="task-3-temperature-converter-10-marks">Task 3 — Temperature converter (10 marks)</h3>
+<p><strong>Goal:</strong> formulas and float precision.</p>
+<p>Read a Celsius temperature and print Fahrenheit and Kelvin:</p>
+<pre class="code" data-lang="text"><code>Celsius: 37
+Fahrenheit: 98.60
+Kelvin: 310.15</code></pre>
+<p><strong>Requirements:</strong> F = C × 9/5 + 32; K = C + 273.15. Use <code>9.0/5.0</code>, not <code>9/5</code>. <strong>Hint:</strong> test with 0, 100 and −40 (where F = C).</p>
+<hr>
+<h3 id="task-4-even-odd-and-sign-10-marks">Task 4 — Even, odd and sign (10 marks)</h3>
+<p><strong>Goal:</strong> <code>if-else</code> and <code>%</code>.</p>
+<p>Read an integer and print whether it is even or odd, positive, negative or zero:</p>
+<pre class="code" data-lang="text"><code>Enter an integer: -7
+-7 is odd
+-7 is negative</code></pre>
+<p><strong>Requirements:</strong> handle zero correctly; do not print &quot;positive&quot; for zero. <strong>Hint:</strong> <code>n % 2 == 0</code>; check sign separately.</p>
+<hr>
+<h3 id="task-5-grade-classifier-10-marks">Task 5 — Grade classifier (10 marks)</h3>
+<p><strong>Goal:</strong> <code>else-if</code> ladder and validation.</p>
+<p>Read a score from 0 to 100 and print the grade (A 70+, B 60–69, C 50–59, D 45–49, E 40–44, F below 40). Reject scores outside 0–100.</p>
+<pre class="code" data-lang="text"><code>Enter score: 67
+Grade: B</code></pre>
+<p><strong>Requirements:</strong> validate input; print an error for −1 or 120. <strong>Hint:</strong> test the highest boundary first.</p>
+<hr>
+<h2 id="level-2-decisions-and-loops">Level 2 — Decisions and loops</h2>
+<h3 id="task-6-simple-calculator-10-marks">Task 6 — Simple calculator (10 marks)</h3>
+<p><strong>Goal:</strong> <code>switch</code> and division-by-zero handling.</p>
+<p>Read an expression <code>number operator number</code> and print the result:</p>
+<pre class="code" data-lang="text"><code>Enter expression: 12.5 * 4
+Result = 50.00</code></pre>
+<p><strong>Requirements:</strong> support <code>+ - * /</code>; reject an unknown operator; handle division by zero. <strong>Hint:</strong> read with <code>scanf(&quot;%lf %c %lf&quot;, &amp;a, &amp;op, &amp;b)</code>.</p>
+<hr>
+<h3 id="task-7-sum-and-average-10-marks">Task 7 — Sum and average (10 marks)</h3>
+<p><strong>Goal:</strong> <code>for</code> loop and accumulation.</p>
+<p>Read <code>n</code>, then print the sum and average of 1 to <code>n</code>:</p>
+<pre class="code" data-lang="text"><code>n = 10
+Sum = 55
+Average = 5.50</code></pre>
+<p><strong>Requirements:</strong> reject <code>n &lt; 1</code>; use a loop (do not use the formula). <strong>Hint:</strong> cast the sum to <code>double</code> before dividing.</p>
+<hr>
+<h3 id="task-8-multiplication-table-10-marks">Task 8 — Multiplication table (10 marks)</h3>
+<p><strong>Goal:</strong> nested loops and alignment.</p>
+<p>Read <code>n</code> and print its table from 1 to 12 in aligned columns:</p>
+<pre class="code" data-lang="text"><code> 7 x  1 =   7
+ 7 x  2 =  14
+ ...
+ 7 x 12 =  84</code></pre>
+<p><strong>Requirements:</strong> right-align the numbers using <code>%2d</code> and <code>%3d</code>. <strong>Hint:</strong> one loop is enough for a single table; use two loops to print tables 1–12 side by side (bonus).</p>
+<hr>
+<h3 id="task-9-reverse-and-palindrome-10-marks">Task 9 — Reverse and palindrome (10 marks)</h3>
+<p><strong>Goal:</strong> digit extraction with <code>%</code> and <code>/</code>.</p>
+<p>Read a positive integer. Print its reverse and whether it is a palindrome:</p>
+<pre class="code" data-lang="text"><code>Enter a number: 12321
+Reverse: 12321
+12321 is a palindrome</code></pre>
+<p><strong>Requirements:</strong> reject negative input; 120 → reverse 21. <strong>Hint:</strong> <code>digit = n % 10; reversed = reversed * 10 + digit; n /= 10;</code></p>
+<hr>
+<h3 id="task-10-primes-in-a-range-10-marks">Task 10 — Primes in a range (10 marks)</h3>
+<p><strong>Goal:</strong> nested loops, flags and <code>break</code>.</p>
+<p>Read two integers <code>low</code> and <code>high</code> and print all primes between them, 10 per line:</p>
+<pre class="code" data-lang="text"><code>Range: 10 30
+11 13 17 19 23 29
+Count = 6</code></pre>
+<p><strong>Requirements:</strong> handle <code>low &lt; 2</code>; count the primes; print &quot;None&quot; if there are none. <strong>Hint:</strong> write <code>is_prime(n)</code> and call it inside a loop.</p>
+<hr>
+<h2 id="level-3-functions-and-arrays">Level 3 — Functions and arrays</h2>
+<h3 id="task-11-star-pyramid-10-marks">Task 11 — Star pyramid (10 marks)</h3>
+<p><strong>Goal:</strong> nested loops and pattern logic.</p>
+<p>Read the number of rows and print a centred pyramid:</p>
+<pre class="code" data-lang="text"><code>Rows: 4
+   *
+  ***
+ *****
+*******</code></pre>
+<p><strong>Requirements:</strong> row <code>i</code> has <code>rows - i</code> spaces and <code>2*i - 1</code> stars. <strong>Hint:</strong> three inner loops (spaces, stars, newline) or two with clever widths.</p>
+<hr>
+<h3 id="task-12-function-toolkit-10-marks">Task 12 — Function toolkit (10 marks)</h3>
+<p><strong>Goal:</strong> prototypes, parameters and return values.</p>
+<p>Write and test these functions:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> <span class="tok-fn">max3</span>(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b, <span class="tok-kw">int</span> c);
+<span class="tok-kw">long</span> <span class="tok-kw">long</span> <span class="tok-fn">factorial</span>(<span class="tok-kw">int</span> n);
+<span class="tok-kw">double</span> <span class="tok-fn">power</span>(<span class="tok-kw">double</span> base, <span class="tok-kw">int</span> exp);
+<span class="tok-kw">int</span> <span class="tok-fn">is_even</span>(<span class="tok-kw">int</span> n);</code></pre>
+<p><strong>Requirements:</strong> each function must have a prototype and a comment; <code>main</code> must call each one with at least two test cases. <strong>Hint:</strong> factorial(0) = 1; power(base, 0) = 1; power(base, −n) = 1 / power(base, n).</p>
+<hr>
+<h3 id="task-13-recursive-warm-up-10-marks">Task 13 — Recursive warm-up (10 marks)</h3>
+<p><strong>Goal:</strong> base cases and recursive calls.</p>
+<p>Write recursive functions for:</p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p><strong>Requirements:</strong> each function must have a base case; print a trace for <code>sum_digits(1234)</code> in a comment. <strong>Hint:</strong> <code>gcd(a,b) = gcd(b, a % b)</code> with <code>gcd(a,0) = a</code>.</p>
+<hr>
+<h3 id="task-14-array-statistics-10-marks">Task 14 — Array statistics (10 marks)</h3>
+<p><strong>Goal:</strong> 1D arrays and functions.</p>
+<p>Read <code>n</code> integers (max 100). Print sum, average, maximum, minimum and the array in reverse.</p>
+<pre class="code" data-lang="text"><code>How many? 5
+Enter: 12 7 30 5 18
+Sum = 72
+Average = 14.40
+Max = 30
+Min = 5
+Reversed: 18 5 30 7 12</code></pre>
+<p><strong>Requirements:</strong> use separate functions <code>sum</code>, <code>average</code>, <code>max</code>, <code>min</code>, <code>print_reverse</code>; pass the array <strong>and</strong> its length. <strong>Hint:</strong> do not use <code>sizeof</code> inside a function to find the length.</p>
+<hr>
+<h3 id="task-15-search-comparison-10-marks">Task 15 — Search comparison (10 marks)</h3>
+<p><strong>Goal:</strong> linear and binary search.</p>
+<p>Read a sorted array of <code>n</code> integers and a target. Search with <strong>both</strong> algorithms and print the index and number of comparisons:</p>
+<pre class="code" data-lang="text"><code>Array: 2 5 8 12 16 23 38 56
+Target: 23
+Linear: found at index 5 after 6 comparisons
+Binary: found at index 5 after 3 comparisons</code></pre>
+<p><strong>Requirements:</strong> report &quot;not found&quot; correctly; binary search must keep <code>low</code>, <code>high</code>, <code>mid</code>. <strong>Hint:</strong> count a comparison each time you test <code>a[mid]</code> or <code>a[i]</code>.</p>
+<hr>
+<h3 id="task-16-sort-and-median-10-marks">Task 16 — Sort and median (10 marks)</h3>
+<p><strong>Goal:</strong> bubble sort, swapping and median.</p>
+<p>Read <code>n</code> integers, sort them with bubble sort, then print the sorted array, the median and the number of swaps.</p>
+<pre class="code" data-lang="text"><code>How many? 6
+Enter: 5 1 4 2 8 3
+Sorted: 1 2 3 4 5 8
+Median: 3.50
+Swaps: 9</code></pre>
+<p><strong>Requirements:</strong> for even <code>n</code>, the median is the average of the two middle values; for odd <code>n</code>, it is the middle value. <strong>Hint:</strong> <code>median = (a[n/2 - 1] + a[n/2]) / 2.0</code> for even <code>n</code>.</p>
+<hr>
+<h2 id="level-4-strings-matrices-pointers-structs">Level 4 — Strings, matrices, pointers, structs</h2>
+<h3 id="task-17-string-toolbox-10-marks">Task 17 — String toolbox (10 marks)</h3>
+<p><strong>Goal:</strong> string traversal without relying only on library functions.</p>
+<p>Read a line of text (spaces allowed) and print:</p>
+<pre class="code" data-lang="text"><code>Text: Hello World
+Length: 11
+Reversed: dlroW olleH
+Vowels: 3
+Words: 2
+Palindrome: No
+Uppercase: HELLO WORLD</code></pre>
+<p><strong>Requirements:</strong> write your own <code>my_strlen</code>, <code>reverse</code> and <code>count_words</code>; use <code>fgets</code>; strip the newline. <strong>Hint:</strong> for the palindrome, ignore spaces and compare case-insensitively.</p>
+<hr>
+<h3 id="task-18-matrix-menu-10-marks">Task 18 — Matrix menu (10 marks)</h3>
+<p><strong>Goal:</strong> 2D arrays and functions.</p>
+<p>Read two 2 × 2 matrices and display:</p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<pre class="code" data-lang="text"><code>A:
+1 2
+3 4
+B:
+5 6
+7 8
+A + B:
+ 6  8
+10 12
+Transpose of A:
+1 3
+2 4
+A x B:
+19 22
+43 50</code></pre>
+<p><strong>Requirements:</strong> use functions for printing; print each matrix as a table. <strong>Hint:</strong> product: <code>c[i][j] += a[i][k] * b[k][j];</code> with three loops.</p>
+<hr>
+<h3 id="task-19-pointer-practice-10-marks">Task 19 — Pointer practice (10 marks)</h3>
+<p><strong>Goal:</strong> <code>&amp;</code>, <code>*</code>, pointer arithmetic and pass by reference.</p>
+<p>Write a program that:</p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<pre class="code" data-lang="text"><code>Before: x = 10, y = 20
+After : x = 20, y = 10
+Array : 10 20 30 40 50
+Sum   : 150</code></pre>
+<p><strong>Requirements:</strong> no array indexing in the traversal; use <code>*(p + i)</code> or <code>*p++</code>. <strong>Hint:</strong> after the loop, reset <code>p = a</code> before computing the sum.</p>
+<hr>
+<h3 id="task-20-student-records-10-marks">Task 20 — Student records (10 marks)</h3>
+<p><strong>Goal:</strong> <code>struct</code>, array of structs and functions.</p>
+<p>Define a <code>Student</code> structure (name, age, score). Read <code>n</code> students and print a table plus the class average and the best student.</p>
+<pre class="code" data-lang="text"><code>How many? 3
+Name age score: Alice 20 85
+Name age score: Bob 21 62
+Name age score: Carol 22 90
+
+NAME             AGE  SCORE
+Alice             20  85.00
+Bob               21  62.00
+Carol             22  90.00
+Class average: 79.00
+Best: Carol (90.00)</code></pre>
+<p><strong>Requirements:</strong> use <code>typedef</code>; pass the array to functions; use <code>-&gt;</code> in at least one function. <strong>Hint:</strong> return the <strong>index</strong> of the best student, not just the score.</p>
+<hr>
+<h2 id="level-5-integrated-tasks">Level 5 — Integrated tasks</h2>
+<h3 id="task-21-file-backed-records-10-marks">Task 21 — File-backed records (10 marks)</h3>
+<p><strong>Goal:</strong> text files with structures.</p>
+<p>Extend Task 20:</p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p><strong>Requirements:</strong> check every <code>fopen</code> for <code>NULL</code>; use <code>&quot;w&quot;</code> then <code>&quot;r&quot;</code>; print the number of records read. <strong>Hint:</strong> write one record per line: <code>fprintf(fp, &quot;%s %d %.2f\n&quot;, ...)</code>.</p>
+<hr>
+<h3 id="task-22-results-report-10-marks">Task 22 — Results report (10 marks)</h3>
+<p><strong>Goal:</strong> formatted reports.</p>
+<p>Read records containing a name and three test scores. Compute total, average and grade. Print a report with a title, underlined headers, aligned columns, a class average and the best student.</p>
+<pre class="code" data-lang="text"><code>            STA 121 RESULTS
+----------------------------------------
+NAME          T1    T2    T3   TOTAL   AVG  GRADE
+Alice         78    85    90     253 84.33      A
+Bob           55    62    48     165 55.00      C
+...
+----------------------------------------
+Class average: 68.83
+Best student : Charlie (275)</code></pre>
+<p><strong>Requirements:</strong> use <code>%-12s</code>, <code>%5d</code>, <code>%8.2f</code>; draw the separator with a loop or a string; use a <code>grade_of</code> function. <strong>Hint:</strong> decide column widths <strong>before</strong> writing the header so everything lines up.</p>
+<hr>
+<h3 id="task-23-bank-account-menu-10-marks">Task 23 — Bank account menu (10 marks)</h3>
+<p><strong>Goal:</strong> menu loop, validation and state.</p>
+<p>Implement a menu-driven program with an initial balance of 0:</p>
+<pre class="code" data-lang="text"><code>1. Deposit
+2. Withdraw
+3. Balance
+4. Exit
+Choice: 2
+Amount: 500
+Insufficient funds. Balance = 0.00</code></pre>
+<p><strong>Requirements:</strong> loop until Exit; reject negative amounts; reject withdrawals larger than the balance; print the balance after every successful operation. <strong>Hint:</strong> use <code>do-while</code> with <code>switch</code>; <code>break</code> inside <code>switch</code> only exits the switch — use a flag or <code>return</code> to exit the program.</p>
+<hr>
+<h3 id="task-24-inventory-manager-10-marks">Task 24 — Inventory manager (10 marks)</h3>
+<p><strong>Goal:</strong> struct array with search and totals.</p>
+<p>Define an <code>Item</code> (name, quantity, unit price). Read up to 50 items, then:</p>
+<ul>
+<li>print all items and the total value of the inventory;</li>
+<li>search for an item by name;</li>
+<li>find the item with the highest total value (<code>quantity × price</code>).</li>
+</ul>
+<p><strong>Requirements:</strong> use functions; handle an empty inventory; format money to 2 decimal places. <strong>Hint:</strong> total value = Σ <code>quantity * price</code>; keep the best index.</p>
+<hr>
+<h3 id="task-25-mini-project-quiz-results-10-marks">Task 25 — Mini project: quiz results (10 marks)</h3>
+<p><strong>Goal:</strong> combine everything.</p>
+<p>Build a program that:</p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p><strong>Requirements:</strong> validate answers; use at least three functions; use a structure for one attempt; print a formatted report; free of global variables (except constants). <strong>Hint:</strong> <code>char questions[5][100]</code>, <code>char options[5][4][50]</code>, <code>char key[5] = {'A','C','B','D','A'};</code>.</p>
+<hr>
+<h2 id="marking-rubric-use-for-every-task">Marking rubric (use for every task)</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Criterion</th><th style="text-align:left">Marks</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Program compiles without errors or warnings</td><td style="text-align:left">2</td></tr>
+<tr><td style="text-align:left">Correct input and output for the sample</td><td style="text-align:left">2</td></tr>
+<tr><td style="text-align:left">Correct logic, including boundary cases</td><td style="text-align:left">3</td></tr>
+<tr><td style="text-align:left">Readable: names, indentation, comments</td><td style="text-align:left">1</td></tr>
+<tr><td style="text-align:left">Validation / error handling</td><td style="text-align:left">1</td></tr>
+<tr><td style="text-align:left"><code>return 0;</code> and clean structure</td><td style="text-align:left">1</td></tr>
+<tr><td style="text-align:left"><strong>Total</strong></td><td style="text-align:left"><strong>10</strong></td></tr>
+</tbody></table></div>
+<h3 id="self-check-questions-after-each-task">Self-check questions after each task</h3>
+<ul>
+<li><span class="cb">&#9744;</span> Does it work for the smallest valid input (0, 1, empty)?</li>
+<li><span class="cb">&#9744;</span> Does it work for the largest valid input?</li>
+<li><span class="cb">&#9744;</span> Does it reject invalid input without crashing?</li>
+<li><span class="cb">&#9744;</span> Did you test a negative number where one is not allowed?</li>
+<li><span class="cb">&#9744;</span> Is every <code>scanf</code> checked or at least every <code>&amp;</code> present?</li>
+<li><span class="cb">&#9744;</span> Are all loop bounds correct (<code>&lt;</code>, not <code>&lt;=</code>)?</li>
+<li><span class="cb">&#9744;</span> Did you free any dynamic memory?</li>
+<li><span class="cb">&#9744;</span> Did you close every file?</li>
+</ul>
+<h3 id="progress-log">Progress log</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Task</th><th style="text-align:left">Date</th><th style="text-align:left">Marks /10</th><th style="text-align:left">What went wrong</th><th style="text-align:left">Redo date</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">1</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">2</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">3</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">4</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">5</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">6</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">7</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">8</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">9</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">10</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">11</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">12</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">13</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">14</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">15</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">16</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">17</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">18</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">19</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">20</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">21</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">22</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">23</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">24</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">25</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+</tbody></table></div>
+
+  </article>
+<nav class="pager"><a class="prev" href="../practice/ANSWER_KEY.html"><span class="dir">&larr; Previous</span><span class="name">Answer key</span></a><a class="next" href="../practice/MOCK_EXAM_1.html"><span class="dir">Next &rarr;</span><span class="name">Mock exam 1</span></a></nav>
+  <footer class="foot">
+    CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
+  </footer>
+</main>
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  <a href="#level-1-getting-started">Level 1 — Getting started</a><a href="#task-1-profile-card-10-marks" class="toc-h3">Task 1 — Profile card (10 marks)</a><a href="#task-2-rectangle-calculator-10-marks" class="toc-h3">Task 2 — Rectangle calculator (10 marks)</a><a href="#task-3-temperature-converter-10-marks" class="toc-h3">Task 3 — Temperature converter (10 marks)</a><a href="#task-4-even-odd-and-sign-10-marks" class="toc-h3">Task 4 — Even, odd and sign (10 marks)</a><a href="#task-5-grade-classifier-10-marks" class="toc-h3">Task 5 — Grade classifier (10 marks)</a><a href="#level-2-decisions-and-loops">Level 2 — Decisions and loops</a><a href="#task-6-simple-calculator-10-marks" class="toc-h3">Task 6 — Simple calculator (10 marks)</a><a href="#task-7-sum-and-average-10-marks" class="toc-h3">Task 7 — Sum and average (10 marks)</a><a href="#task-8-multiplication-table-10-marks" class="toc-h3">Task 8 — Multiplication table (10 marks)</a><a href="#task-9-reverse-and-palindrome-10-marks" class="toc-h3">Task 9 — Reverse and palindrome (10 marks)</a><a href="#task-10-primes-in-a-range-10-marks" class="toc-h3">Task 10 — Primes in a range (10 marks)</a><a href="#level-3-functions-and-arrays">Level 3 — Functions and arrays</a><a href="#task-11-star-pyramid-10-marks" class="toc-h3">Task 11 — Star pyramid (10 marks)</a><a href="#task-12-function-toolkit-10-marks" class="toc-h3">Task 12 — Function toolkit (10 marks)</a><a href="#task-13-recursive-warm-up-10-marks" class="toc-h3">Task 13 — Recursive warm-up (10 marks)</a><a href="#task-14-array-statistics-10-marks" class="toc-h3">Task 14 — Array statistics (10 marks)</a><a href="#task-15-search-comparison-10-marks" class="toc-h3">Task 15 — Search comparison (10 marks)</a><a href="#task-16-sort-and-median-10-marks" class="toc-h3">Task 16 — Sort and median (10 marks)</a><a href="#level-4-strings-matrices-pointers-structs">Level 4 — Strings, matrices, pointers, structs</a><a href="#task-17-string-toolbox-10-marks" class="toc-h3">Task 17 — String toolbox (10 marks)</a><a href="#task-18-matrix-menu-10-marks" class="toc-h3">Task 18 — Matrix menu (10 marks)</a><a href="#task-19-pointer-practice-10-marks" class="toc-h3">Task 19 — Pointer practice (10 marks)</a><a href="#task-20-student-records-10-marks" class="toc-h3">Task 20 — Student records (10 marks)</a><a href="#level-5-integrated-tasks">Level 5 — Integrated tasks</a><a href="#task-21-file-backed-records-10-marks" class="toc-h3">Task 21 — File-backed records (10 marks)</a><a href="#task-22-results-report-10-marks" class="toc-h3">Task 22 — Results report (10 marks)</a><a href="#task-23-bank-account-menu-10-marks" class="toc-h3">Task 23 — Bank account menu (10 marks)</a><a href="#task-24-inventory-manager-10-marks" class="toc-h3">Task 24 — Inventory manager (10 marks)</a><a href="#task-25-mini-project-quiz-results-10-marks" class="toc-h3">Task 25 — Mini project: quiz results (10 marks)</a><a href="#marking-rubric-use-for-every-task">Marking rubric (use for every task)</a><a href="#self-check-questions-after-each-task" class="toc-h3">Self-check questions after each task</a><a href="#progress-log" class="toc-h3">Progress log</a>
+</aside>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('csc112-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '\u2600' : '\u263D';
+    try { localStorage.setItem('csc112-theme', next); } catch (e) {}
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // highlight the current section in the right-hand table of contents
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (links.length) {
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    window.addEventListener('scroll', function () {
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i] && heads[i].getBoundingClientRect().top < 120) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }, { passive: true });
+  }
+
+  // on phones, start with the contents menu collapsed
+  var det = document.querySelector('.nav-details');
+  if (det && window.innerWidth < 1000) det.removeAttribute('open');
+})();
+</script>
+</body>
+</html>

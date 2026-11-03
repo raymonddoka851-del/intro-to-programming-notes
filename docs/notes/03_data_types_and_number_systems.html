@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Note 03 — Data Types, Number Systems &amp; Information Storage · CSC 112 Revision</title>
+<meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
+<link rel="stylesheet" href="../assets/notes.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">C</span>
+    <span class="brand-text"><strong>CSC 112</strong><span>Revision Notes</span></span>
+  </a>
+  <details class="nav-details" open>
+    <summary>Contents</summary>
+    <div class="nav-group"><div class="nav-head"></div><a href="../START_HERE.html">Start here (pack index)</a><a href="../YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="../CHEAT_SHEET.html">Cheat sheet</a><a href="../PROGRESS_TRACKER.html">Progress tracker</a><a href="../SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="../notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="../notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="../notes/03_data_types_and_number_systems.html" class="active">03 · Data types &amp; number systems</a><a href="../notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="../notes/05_control_statements.html">05 · Control statements</a><a href="../notes/06_loops.html">06 · Loops</a><a href="../notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="../notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="../notes/09_pointers.html">09 · Pointers</a><a href="../notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="../notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="../practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="../practice/QUESTION_BANK.html">Question bank (96)</a><a href="../practice/ANSWER_KEY.html">Answer key</a><a href="../practice/LAB_TASKS.html">Lab tasks (25)</a><a href="../practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="../practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="../practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="../code/README.html">Program list (22 examples)</a></div>
+  </details>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <span class="crumb">Notes <b>&rsaquo;</b> 03_data_types_and_number_systems</span>
+    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+  </div>
+  <article class="content">
+<h1 id="note-03-data-types-number-systems-information-storage">Note 03 — Data Types, Number Systems &amp; Information Storage</h1>
+<blockquote><p><strong>Covers outline Weeks 3–4</strong> (data types) plus the number-systems and storage part of the course description.</p></blockquote>
+<hr>
+<h2 id="1-how-computers-store-information">1. How computers store information</h2>
+<h3 id="11-units">1.1 Units</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Unit</th><th style="text-align:left">Size</th><th style="text-align:left">Notes</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><strong>Bit</strong></td><td style="text-align:left">1 binary digit (0 or 1)</td><td style="text-align:left">Smallest unit</td></tr>
+<tr><td style="text-align:left"><strong>Nibble</strong></td><td style="text-align:left">4 bits</td><td style="text-align:left">One hexadecimal digit</td></tr>
+<tr><td style="text-align:left"><strong>Byte</strong></td><td style="text-align:left">8 bits</td><td style="text-align:left">Smallest addressable unit; stores one character</td></tr>
+<tr><td style="text-align:left"><strong>Word</strong></td><td style="text-align:left">CPU-dependent (16, 32 or 64 bits)</td><td style="text-align:left">The natural unit the CPU processes at once</td></tr>
+<tr><td style="text-align:left"><strong>Kilobyte (KB)</strong></td><td style="text-align:left">1024 bytes = 2¹⁰</td><td style="text-align:left">In strict computing terms</td></tr>
+<tr><td style="text-align:left"><strong>Megabyte (MB)</strong></td><td style="text-align:left">1024 KB = 2²⁰ bytes</td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left"><strong>Gigabyte (GB)</strong></td><td style="text-align:left">1024 MB = 2³⁰ bytes</td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left"><strong>Terabyte (TB)</strong></td><td style="text-align:left">1024 GB = 2⁴⁰ bytes</td><td style="text-align:left"></td></tr>
+</tbody></table></div>
+<blockquote><p><strong>Exam note:</strong> drive manufacturers often use 1 KB = 1000 bytes, which is why a &quot;500 GB&quot; disk shows less in Windows. In this course, use <strong>1024</strong>.</p></blockquote>
+<h3 id="12-why-binary">1.2 Why binary?</h3>
+<p>A computer's circuits have two stable states: <strong>on/off</strong>, <strong>high/low voltage</strong>, <strong>1/0</strong>. Binary maps directly onto this. Everything — numbers, text, images, sound — is ultimately stored as bits.</p>
+<hr>
+<h2 id="2-number-systems">2. Number systems</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">System</th><th style="text-align:left">Base</th><th style="text-align:left">Digits</th><th style="text-align:left">C prefix</th><th style="text-align:left">Example</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Binary</td><td style="text-align:left">2</td><td style="text-align:left">0, 1</td><td style="text-align:left"><code>0b</code> (C23/GCC extension)</td><td style="text-align:left"><code>0b1011</code></td></tr>
+<tr><td style="text-align:left">Octal</td><td style="text-align:left">8</td><td style="text-align:left">0–7</td><td style="text-align:left"><code>0</code> (leading zero)</td><td style="text-align:left"><code>013</code> = 11 decimal</td></tr>
+<tr><td style="text-align:left">Decimal</td><td style="text-align:left">10</td><td style="text-align:left">0–9</td><td style="text-align:left">none</td><td style="text-align:left"><code>13</code></td></tr>
+<tr><td style="text-align:left">Hexadecimal</td><td style="text-align:left">16</td><td style="text-align:left">0–9, A–F</td><td style="text-align:left"><code>0x</code> or <code>0X</code></td><td style="text-align:left"><code>0xD</code> = 13 decimal</td></tr>
+</tbody></table></div>
+<p><strong>Why octal and hex?</strong> They are compact shorthand for binary: 1 octal digit = 3 bits; 1 hex digit = 4 bits.</p>
+<h3 id="21-positional-notation">2.1 Positional notation</h3>
+<p>In base <em>b</em>, the value of a digit string is:</p>
+<pre class="code"><code>dₙ × bⁿ + ... + d₂ × b² + d₁ × b¹ + d₀ × b⁰</code></pre>
+<p><strong>Example:</strong> <code>1011₂ = 1×8 + 0×4 + 1×2 + 1×1 = 11₁₀</code></p>
+<h3 id="22-binary-decimal">2.2 Binary → decimal</h3>
+<p>Multiply each bit by its place value (powers of 2 from the right), then add.</p>
+<pre class="code"><code>1 0 1 1 0 1
+│ │ │ │ │ └── 1 × 2⁰ = 1
+│ │ │ │ └──── 0 × 2¹ = 0
+│ │ │ └────── 1 × 2² = 4
+│ │ └──────── 1 × 2³ = 8
+│ └────────── 0 × 2⁴ = 0
+└──────────── 1 × 2⁵ = 32
+Total = 45</code></pre>
+<p><strong>With a fractional part:</strong> <code>1011.101₂</code></p>
+<pre class="code"><code>1×8 + 0×4 + 1×2 + 1×1 + 1×0.5 + 0×0.25 + 1×0.125
+= 8 + 0 + 2 + 1 + 0.5 + 0 + 0.125
+= 11.625₁₀</code></pre>
+<h3 id="23-decimal-binary-repeated-division-by-2">2.3 Decimal → binary (repeated division by 2)</h3>
+<p>Divide by 2 repeatedly; record the remainders; read <strong>bottom to top</strong>.</p>
+<p><strong>Example: 45</strong></p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Division</th><th style="text-align:left">Quotient</th><th style="text-align:left">Remainder</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">45 ÷ 2</td><td style="text-align:left">22</td><td style="text-align:left"><strong>1</strong></td></tr>
+<tr><td style="text-align:left">22 ÷ 2</td><td style="text-align:left">11</td><td style="text-align:left"><strong>0</strong></td></tr>
+<tr><td style="text-align:left">11 ÷ 2</td><td style="text-align:left">5</td><td style="text-align:left"><strong>1</strong></td></tr>
+<tr><td style="text-align:left">5 ÷ 2</td><td style="text-align:left">2</td><td style="text-align:left"><strong>1</strong></td></tr>
+<tr><td style="text-align:left">2 ÷ 2</td><td style="text-align:left">1</td><td style="text-align:left"><strong>0</strong></td></tr>
+<tr><td style="text-align:left">1 ÷ 2</td><td style="text-align:left">0</td><td style="text-align:left"><strong>1</strong></td></tr>
+</tbody></table></div>
+<p>Read upwards: <strong>101101₂</strong>.</p>
+<p><strong>Fractional part: repeated multiplication by 2</strong></p>
+<p>0.625 × 2 = <strong>1</strong>.25 → digit 1 0.25 × 2 = <strong>0</strong>.50 → digit 0 0.50 × 2 = <strong>1</strong>.00 → digit 1 → <code>0.101₂</code></p>
+<p>So <code>45.625 = 101101.101₂</code>.</p>
+<h3 id="24-binary-octal-group-3-bits">2.4 Binary ↔ octal (group 3 bits)</h3>
+<p>From the decimal point outward, group bits in threes:</p>
+<pre class="code"><code>101101₂ → 101 101 → 5 5 → 55₈</code></pre>
+<p>Reverse: each octal digit becomes 3 bits. <code>734₈ → 111 011 100 → 111011100₂</code>.</p>
+<h3 id="25-binary-hexadecimal-group-4-bits">2.5 Binary ↔ hexadecimal (group 4 bits)</h3>
+<pre class="code"><code>101101₂ → 0010 1101 → 2 D → 2D₁₆</code></pre>
+<p>Reverse: each hex digit becomes 4 bits. <code>0x2F → 0010 1111 → 00101111₂</code>.</p>
+<h3 id="26-decimal-hexadecimal">2.6 Decimal ↔ hexadecimal</h3>
+<p>Repeated division by 16, or convert via binary.</p>
+<p><strong>Example: 305</strong></p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Division</th><th style="text-align:left">Quotient</th><th style="text-align:left">Remainder</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">305 ÷ 16</td><td style="text-align:left">19</td><td style="text-align:left"><strong>1</strong></td></tr>
+<tr><td style="text-align:left">19 ÷ 16</td><td style="text-align:left">1</td><td style="text-align:left"><strong>3</strong></td></tr>
+<tr><td style="text-align:left">1 ÷ 16</td><td style="text-align:left">0</td><td style="text-align:left"><strong>1</strong></td></tr>
+</tbody></table></div>
+<p>Read upwards: <strong>0x131</strong> = 1×256 + 3×16 + 1 = 305. ✓</p>
+<p><strong>Hex digits:</strong> 0–9 then A=10, B=11, C=12, D=13, E=14, F=15.</p>
+<h3 id="27-quick-conversion-table-memorise-015">2.7 Quick conversion table (memorise 0–15)</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Decimal</th><th style="text-align:left">Binary</th><th style="text-align:left">Octal</th><th style="text-align:left">Hex</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">0</td><td style="text-align:left">0000</td><td style="text-align:left">0</td><td style="text-align:left">0</td></tr>
+<tr><td style="text-align:left">1</td><td style="text-align:left">0001</td><td style="text-align:left">1</td><td style="text-align:left">1</td></tr>
+<tr><td style="text-align:left">2</td><td style="text-align:left">0010</td><td style="text-align:left">2</td><td style="text-align:left">2</td></tr>
+<tr><td style="text-align:left">3</td><td style="text-align:left">0011</td><td style="text-align:left">3</td><td style="text-align:left">3</td></tr>
+<tr><td style="text-align:left">4</td><td style="text-align:left">0100</td><td style="text-align:left">4</td><td style="text-align:left">4</td></tr>
+<tr><td style="text-align:left">5</td><td style="text-align:left">0101</td><td style="text-align:left">5</td><td style="text-align:left">5</td></tr>
+<tr><td style="text-align:left">6</td><td style="text-align:left">0110</td><td style="text-align:left">6</td><td style="text-align:left">6</td></tr>
+<tr><td style="text-align:left">7</td><td style="text-align:left">0111</td><td style="text-align:left">7</td><td style="text-align:left">7</td></tr>
+<tr><td style="text-align:left">8</td><td style="text-align:left">1000</td><td style="text-align:left">10</td><td style="text-align:left">8</td></tr>
+<tr><td style="text-align:left">9</td><td style="text-align:left">1001</td><td style="text-align:left">11</td><td style="text-align:left">9</td></tr>
+<tr><td style="text-align:left">10</td><td style="text-align:left">1010</td><td style="text-align:left">12</td><td style="text-align:left">A</td></tr>
+<tr><td style="text-align:left">11</td><td style="text-align:left">1011</td><td style="text-align:left">13</td><td style="text-align:left">B</td></tr>
+<tr><td style="text-align:left">12</td><td style="text-align:left">1100</td><td style="text-align:left">14</td><td style="text-align:left">C</td></tr>
+<tr><td style="text-align:left">13</td><td style="text-align:left">1101</td><td style="text-align:left">15</td><td style="text-align:left">D</td></tr>
+<tr><td style="text-align:left">14</td><td style="text-align:left">1110</td><td style="text-align:left">16</td><td style="text-align:left">E</td></tr>
+<tr><td style="text-align:left">15</td><td style="text-align:left">1111</td><td style="text-align:left">17</td><td style="text-align:left">F</td></tr>
+</tbody></table></div>
+<h3 id="28-binary-arithmetic">2.8 Binary arithmetic</h3>
+<p><strong>Addition rules</strong></p>
+<pre class="code"><code>0+0=0   0+1=1   1+0=1   1+1=10 (write 0, carry 1)   1+1+1=11 (write 1, carry 1)</code></pre>
+<p><strong>Example:</strong> <code>1011 + 0110</code></p>
+<pre class="code"><code>  1 0 1 1
++ 0 1 1 0
+──────────
+1 0 0 0 1   = 17</code></pre>
+<p><strong>Subtraction</strong> is done by adding the two's complement of the subtrahend.</p>
+<hr>
+<h2 id="3-signed-integer-representation">3. Signed integer representation</h2>
+<p>Three methods are used to represent negative numbers in binary.</p>
+<h3 id="31-sign-and-magnitude">3.1 Sign-and-magnitude</h3>
+<p>The leftmost bit is the sign (0 = positive, 1 = negative); the rest is the magnitude.</p>
+<p><code>-5</code> in 8 bits = <code>1000 0101</code></p>
+<p>Problems: two zeros (<code>+0 = 00000000</code>, <code>-0 = 10000000</code>), and arithmetic is awkward.</p>
+<h3 id="32-ones-complement">3.2 One's complement</h3>
+<p>Positive numbers are normal; negative numbers are formed by <strong>inverting every bit</strong>.</p>
+<p><code>+5 = 0000 0101</code> → <code>-5 = 1111 1010</code></p>
+<p>Problems: still two zeros, and addition needs an end-around carry.</p>
+<h3 id="33-twos-complement-the-standard">3.3 Two's complement (the standard)</h3>
+<p>Negative number = <strong>invert all bits, then add 1</strong>.</p>
+<p><strong>Example: −5 in 8 bits</strong></p>
+<pre class="code"><code>+5       0000 0101
+invert   1111 1010
++1       1111 1011   ← this is −5 (0xFB)</code></pre>
+<p><strong>Check:</strong> <code>1111 1011</code> as unsigned = 251. <code>251 − 256 = −5</code>. ✓</p>
+<p><strong>Why two's complement?</strong> It has only one zero, and addition/subtraction use the same hardware.</p>
+<p><strong>Negating a two's-complement number:</strong> invert all bits and add 1 (same operation).</p>
+<h3 id="34-ranges-memorise">3.4 Ranges (memorise)</h3>
+<p>For <strong>n</strong> bits:</p>
+<ul>
+<li>Unsigned range: <code>0</code> to <code>2ⁿ − 1</code></li>
+<li>Signed two's-complement range: <code>−2ⁿ⁻¹</code> to <code>2ⁿ⁻¹ − 1</code></li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Bits</th><th style="text-align:left">Unsigned range</th><th style="text-align:left">Signed range</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">4</td><td style="text-align:left">0 to 15</td><td style="text-align:left">−8 to 7</td></tr>
+<tr><td style="text-align:left">8</td><td style="text-align:left">0 to 255</td><td style="text-align:left">−128 to 127</td></tr>
+<tr><td style="text-align:left">16</td><td style="text-align:left">0 to 65,535</td><td style="text-align:left">−32,768 to 32,767</td></tr>
+<tr><td style="text-align:left">32</td><td style="text-align:left">0 to 4,294,967,295</td><td style="text-align:left">−2,147,483,648 to 2,147,483,647</td></tr>
+<tr><td style="text-align:left">64</td><td style="text-align:left">0 to 1.8 × 10¹⁹</td><td style="text-align:left">−9.2 × 10¹⁸ to 9.2 × 10¹⁸</td></tr>
+</tbody></table></div>
+<p><strong>Worked exam question:</strong> &quot;What is the range of a signed 8-bit integer?&quot; → <code>−2⁷</code> to <code>2⁷ − 1</code> = <strong>−128 to +127</strong>.</p>
+<p><strong>Overflow:</strong> if you add 1 to 127 in a signed 8-bit integer, you get −128 (wrap-around in practice; in C, signed overflow is undefined behaviour). Unsigned arithmetic wraps modulo 2ⁿ.</p>
+<hr>
+<h2 id="4-cs-basic-data-types">4. C's basic data types</h2>
+<p>C has four basic types (plus modifiers):</p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Type</th><th style="text-align:left">Typical size</th><th style="text-align:left">Format specifier</th><th style="text-align:left">Example</th><th style="text-align:left">Range (typical)</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>char</code></td><td style="text-align:left">1 byte</td><td style="text-align:left"><code>%c</code></td><td style="text-align:left"><code>'A'</code></td><td style="text-align:left">−128 to 127 (signed) or 0 to 255 (unsigned)</td></tr>
+<tr><td style="text-align:left"><code>short</code> / <code>short int</code></td><td style="text-align:left">2 bytes</td><td style="text-align:left"><code>%hd</code></td><td style="text-align:left"><code>-1000</code></td><td style="text-align:left">−32,768 to 32,767</td></tr>
+<tr><td style="text-align:left"><code>int</code></td><td style="text-align:left">4 bytes</td><td style="text-align:left"><code>%d</code></td><td style="text-align:left"><code>42</code></td><td style="text-align:left">−2,147,483,648 to 2,147,483,647</td></tr>
+<tr><td style="text-align:left"><code>unsigned int</code></td><td style="text-align:left">4 bytes</td><td style="text-align:left"><code>%u</code></td><td style="text-align:left"><code>42u</code></td><td style="text-align:left">0 to 4,294,967,295</td></tr>
+<tr><td style="text-align:left"><code>long</code> / <code>long int</code></td><td style="text-align:left">4 or 8 bytes</td><td style="text-align:left"><code>%ld</code></td><td style="text-align:left"><code>100000L</code></td><td style="text-align:left">Platform-dependent</td></tr>
+<tr><td style="text-align:left"><code>long long</code></td><td style="text-align:left">8 bytes</td><td style="text-align:left"><code>%lld</code></td><td style="text-align:left"><code>100000LL</code></td><td style="text-align:left">−9.2×10¹⁸ to 9.2×10¹⁸</td></tr>
+<tr><td style="text-align:left"><code>float</code></td><td style="text-align:left">4 bytes</td><td style="text-align:left"><code>%f</code></td><td style="text-align:left"><code>3.14f</code></td><td style="text-align:left">±3.4×10⁻³⁸ to ±3.4×10³⁸, ~7 digits</td></tr>
+<tr><td style="text-align:left"><code>double</code></td><td style="text-align:left">8 bytes</td><td style="text-align:left"><code>%lf</code> (printf: <code>%f</code> also works)</td><td style="text-align:left"><code>3.14</code></td><td style="text-align:left">±1.7×10⁻³⁰⁸ to ±1.7×10³⁰⁸, ~15 digits</td></tr>
+<tr><td style="text-align:left"><code>long double</code></td><td style="text-align:left">8–16 bytes</td><td style="text-align:left"><code>%Lf</code></td><td style="text-align:left"><code>3.14L</code></td><td style="text-align:left">Platform-dependent</td></tr>
+<tr><td style="text-align:left"><code>void</code></td><td style="text-align:left">0</td><td style="text-align:left">—</td><td style="text-align:left">—</td><td style="text-align:left">&quot;No type&quot; — used for functions with no return value</td></tr>
+</tbody></table></div>
+<blockquote><p><strong>Sizes are platform-dependent.</strong> Always say &quot;typically&quot; in an exam unless the question states the platform. Use <code>sizeof</code> to check.</p></blockquote>
+<h3 id="41-int">4.1 <code>int</code></h3>
+<p>Whole numbers, positive or negative.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> age = <span class="tok-num">20</span>;
+<span class="tok-kw">int</span> temperature = -<span class="tok-num">5</span>;
+<span class="tok-kw">unsigned</span> <span class="tok-kw">int</span> count = <span class="tok-num">100</span>;       <span class="tok-com">/* positive only */</span></code></pre>
+<h3 id="42-float-and-double-floating-point">4.2 <code>float</code> and <code>double</code> (floating-point)</h3>
+<p>Numbers with fractional parts, and very large/small numbers in scientific notation.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">float</span> price = <span class="tok-num">19.99f</span>;           <span class="tok-com">/* f suffix tells the compiler it's a float */</span>
+<span class="tok-kw">double</span> pi = <span class="tok-num">3.141592653589793</span>;
+<span class="tok-kw">double</span> avogadro = <span class="tok-num">6.022e23</span>;     <span class="tok-com">/* 6.022 × 10²³ */</span></code></pre>
+<p><strong>Key differences</strong></p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left"><code>float</code></th><th style="text-align:left"><code>double</code></th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">4 bytes</td><td style="text-align:left">8 bytes</td></tr>
+<tr><td style="text-align:left">~6–7 significant decimal digits</td><td style="text-align:left">~15–16 significant digits</td></tr>
+<tr><td style="text-align:left">Smaller range</td><td style="text-align:left">Larger range</td></tr>
+<tr><td style="text-align:left">Faster, less memory</td><td style="text-align:left">More precise</td></tr>
+<tr><td style="text-align:left"><code>%f</code></td><td style="text-align:left"><code>%lf</code> in <code>scanf</code>; <code>%f</code> or <code>%lf</code> in <code>printf</code></td></tr>
+</tbody></table></div>
+<h3 id="43-how-floating-point-is-stored-ieee-754-idea">4.3 How floating-point is stored (IEEE 754 idea)</h3>
+<p>A floating-point number is stored in three parts:</p>
+<pre class="code"><code>[ sign ][ exponent ][ mantissa / significand ]
+   1 bit   ~8 bits      ~23 bits (float)</code></pre>
+<p>Value = <code>(−1)^sign × 1.mantissa × 2^(exponent − bias)</code></p>
+<ul>
+<li><strong>Sign:</strong> 0 = positive, 1 = negative.</li>
+<li><strong>Exponent:</strong> the power of 2, stored with a bias.</li>
+<li><strong>Mantissa:</strong> the significant binary digits.</li>
+</ul>
+<p>Because the mantissa has limited bits, many decimal fractions cannot be represented exactly. This is why:</p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>) {
+    <span class="tok-kw">float</span> a = <span class="tok-num">0.1f</span>;
+    <span class="tok-kw">if</span> (a == <span class="tok-num">0.1</span>) <span class="tok-fn">printf</span>(<span class="tok-str">&quot;equal\n&quot;</span>);
+    <span class="tok-kw">else</span> <span class="tok-fn">printf</span>(<span class="tok-str">&quot;not equal\n&quot;</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%.20f\n&quot;</span>, a);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p>Typical output:</p>
+<pre class="code"><code>not equal
+0.10000000149011611938</code></pre>
+<p><strong>Rule:</strong> never compare floats with <code>==</code>. Use a tolerance:</p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;math.h&gt;</span>
+<span class="tok-kw">if</span> (<span class="tok-fn">fabs</span>(a - b) &lt; <span class="tok-num">1e-9</span>) { <span class="tok-com">/* considered equal */</span> }</code></pre>
+<h3 id="44-char">4.4 <code>char</code></h3>
+<p>Stores a <strong>single character</strong> — technically a small integer (its ASCII code).</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> letter = <span class="tok-chr">'A'</span>;       <span class="tok-com">/* stored as 65 */</span>
+<span class="tok-kw">char</span> digit = <span class="tok-chr">'7'</span>;        <span class="tok-com">/* stored as 55, NOT the number 7 */</span>
+<span class="tok-kw">char</span> newline = <span class="tok-chr">'\n'</span>;</code></pre>
+<p><strong>Key ASCII codes</strong> (memorise these):</p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Character</th><th style="text-align:left">ASCII</th><th style="text-align:left">Character</th><th style="text-align:left">ASCII</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>'0'</code></td><td style="text-align:left">48</td><td style="text-align:left"><code>'A'</code></td><td style="text-align:left">65</td></tr>
+<tr><td style="text-align:left"><code>'9'</code></td><td style="text-align:left">57</td><td style="text-align:left"><code>'Z'</code></td><td style="text-align:left">90</td></tr>
+<tr><td style="text-align:left">space</td><td style="text-align:left">32</td><td style="text-align:left"><code>'a'</code></td><td style="text-align:left">97</td></tr>
+<tr><td style="text-align:left">newline <code>\n</code></td><td style="text-align:left">10</td><td style="text-align:left"><code>'z'</code></td><td style="text-align:left">122</td></tr>
+<tr><td style="text-align:left">null <code>'\0'</code></td><td style="text-align:left">0</td><td style="text-align:left"><code>'A'</code> → <code>'a'</code> difference</td><td style="text-align:left">32</td></tr>
+</tbody></table></div>
+<p><strong>Useful facts</strong></p>
+<ul>
+<li><code>'a' - 'A' = 32</code></li>
+<li><code>'5' - '0' = 5</code> (converts digit character to its numeric value)</li>
+<li><code>'A' + 1 = 'B'</code></li>
+<li>To convert a lowercase letter to uppercase: <code>c - 32</code> or <code>toupper(c)</code>.</li>
+</ul>
+<h3 id="45-escape-sequences">4.5 Escape sequences</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Escape</th><th style="text-align:left">Meaning</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>\n</code></td><td style="text-align:left">New line</td></tr>
+<tr><td style="text-align:left"><code>\t</code></td><td style="text-align:left">Horizontal tab</td></tr>
+<tr><td style="text-align:left"><code>\\</code></td><td style="text-align:left">Backslash</td></tr>
+<tr><td style="text-align:left"><code>\'</code></td><td style="text-align:left">Single quote</td></tr>
+<tr><td style="text-align:left"><code>\&quot;</code></td><td style="text-align:left">Double quote</td></tr>
+<tr><td style="text-align:left"><code>\0</code></td><td style="text-align:left">Null character (end of string)</td></tr>
+<tr><td style="text-align:left"><code>\a</code></td><td style="text-align:left">Alert / beep</td></tr>
+<tr><td style="text-align:left"><code>\b</code></td><td style="text-align:left">Backspace</td></tr>
+<tr><td style="text-align:left"><code>\r</code></td><td style="text-align:left">Carriage return</td></tr>
+<tr><td style="text-align:left"><code>\f</code></td><td style="text-align:left">Form feed</td></tr>
+<tr><td style="text-align:left"><code>\v</code></td><td style="text-align:left">Vertical tab</td></tr>
+<tr><td style="text-align:left"><code>\ooo</code></td><td style="text-align:left">Octal character code</td></tr>
+<tr><td style="text-align:left"><code>\xhh</code></td><td style="text-align:left">Hexadecimal character code</td></tr>
+</tbody></table></div>
+<h3 id="46-strings">4.6 Strings</h3>
+<p>C has no built-in string type. A string is a <strong><code>char</code> array terminated by <code>'\0'</code></strong>.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> name[] = <span class="tok-str">&quot;Alice&quot;</span>;</code></pre>
+<p>Memory:</p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Index</th><th style="text-align:left">0</th><th style="text-align:left">1</th><th style="text-align:left">2</th><th style="text-align:left">3</th><th style="text-align:left">4</th><th style="text-align:left">5</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Value</td><td style="text-align:left"><code>'A'</code></td><td style="text-align:left"><code>'l'</code></td><td style="text-align:left"><code>'i'</code></td><td style="text-align:left"><code>'c'</code></td><td style="text-align:left"><code>'e'</code></td><td style="text-align:left"><code>'\0'</code></td></tr>
+</tbody></table></div>
+<p><code>sizeof(name)</code> = <strong>6</strong> bytes; <code>strlen(name)</code> = <strong>5</strong> characters (not counting <code>'\0'</code>).</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> word[<span class="tok-num">10</span>] = <span class="tok-str">&quot;Hi&quot;</span>;     <span class="tok-com">/* indexes 2..9 are zero-filled */</span></code></pre>
+<h3 id="47-void">4.7 <code>void</code></h3>
+<ul>
+<li><code>void function(void)</code> — takes no arguments, returns nothing.</li>
+<li><code>void *p</code> — a generic pointer (can point to any type).</li>
+</ul>
+<hr>
+<h2 id="5-constants-and-literals">5. Constants and literals</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Kind</th><th style="text-align:left">Examples</th><th style="text-align:left">Notes</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Integer constant</td><td style="text-align:left"><code>42</code>, <code>-7</code>, <code>0x1A</code>, <code>075</code>, <code>100L</code>, <code>42u</code></td><td style="text-align:left">Decimal, hex (<code>0x</code>), octal (leading <code>0</code>)</td></tr>
+<tr><td style="text-align:left">Floating constant</td><td style="text-align:left"><code>3.14</code>, <code>2.0e-5</code>, <code>1.5f</code>, <code>3.0L</code></td><td style="text-align:left">Default type is <code>double</code></td></tr>
+<tr><td style="text-align:left">Character constant</td><td style="text-align:left"><code>'A'</code>, <code>'\n'</code>, <code>'7'</code></td><td style="text-align:left">Single quotes; value is the ASCII code</td></tr>
+<tr><td style="text-align:left">String constant</td><td style="text-align:left"><code>&quot;Hello&quot;</code>, <code>&quot;&quot;</code>, <code>&quot;A&quot;</code></td><td style="text-align:left">Double quotes; ends with <code>'\0'</code></td></tr>
+<tr><td style="text-align:left">Symbolic constant</td><td style="text-align:left"><code>#define PI 3.14159</code> or <code>const float PI = 3.14159;</code></td><td style="text-align:left">Named value</td></tr>
+</tbody></table></div>
+<p><strong>Careful:</strong> <code>'A'</code> is a character (65), while <code>&quot;A&quot;</code> is a string (two bytes: <code>'A'</code> and <code>'\0'</code>).</p>
+<hr>
+<h2 id="6-variables-declaration-and-initialisation">6. Variables, declaration and initialisation</h2>
+<p>A <strong>variable</strong> is a named memory location whose value can change.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> count;              <span class="tok-com">/* declaration: memory reserved, value uninitialised */</span>
+count = <span class="tok-num">10</span>;             <span class="tok-com">/* assignment */</span>
+<span class="tok-kw">int</span> total = <span class="tok-num">0</span>;          <span class="tok-com">/* declaration + initialisation */</span>
+<span class="tok-kw">float</span> x = <span class="tok-num">2.5f</span>, y = <span class="tok-num">7.1f</span>;
+<span class="tok-kw">char</span> grade = <span class="tok-chr">'A'</span>;</code></pre>
+<p><strong>Rules</strong></p>
+<ul>
+<li>Declare before use (C99 allows declarations anywhere in a block; C89 requires them at the top).</li>
+<li>An uninitialised local variable contains <strong>garbage</strong>, not zero.</li>
+<li>Global variables are zero-initialised by default (but do not rely on it for clarity).</li>
+<li>Use meaningful names.</li>
+</ul>
+<p><strong>Multiple assignment</strong></p>
+<pre class="code" data-lang="c"><code>x = y = z = <span class="tok-num">13</span>;         <span class="tok-com">/* right-to-left: z=13, then y=13, then x=13 */</span></code></pre>
+<hr>
+<h2 id="7-type-conversion">7. Type conversion</h2>
+<h3 id="71-implicit-conversion-coercion">7.1 Implicit conversion (coercion)</h3>
+<p>C automatically converts operands to a common type, following a rank:</p>
+<pre class="code"><code>char → short → int → unsigned int → long → unsigned long → long long
+     → float → double → long double</code></pre>
+<p><strong>Examples</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> i = <span class="tok-num">5</span>;
+<span class="tok-kw">float</span> f = <span class="tok-num">2.0</span>;
+<span class="tok-kw">float</span> result = i / f;        <span class="tok-com">/* i is converted to float before division → 2.5 */</span>
+
+<span class="tok-kw">int</span> a = <span class="tok-num">5</span>, b = <span class="tok-num">2</span>;
+<span class="tok-kw">float</span> wrong = a / b;         <span class="tok-com">/* integer division first → 2.0, then converted */</span>
+<span class="tok-kw">float</span> right = (<span class="tok-kw">float</span>)a / b;  <span class="tok-com">/* 2.5 */</span></code></pre>
+<h3 id="72-explicit-conversion-casting">7.2 Explicit conversion (casting)</h3>
+<pre class="code" data-lang="c"><code>(type) expression</code></pre>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a = <span class="tok-num">7</span>, b = <span class="tok-num">2</span>;
+<span class="tok-kw">float</span> q = (<span class="tok-kw">float</span>)a / b;          <span class="tok-com">/* 3.5 */</span>
+<span class="tok-kw">int</span> truncated = (<span class="tok-kw">int</span>)<span class="tok-num">3.99</span>;       <span class="tok-com">/* 3 — truncation, not rounding */</span>
+<span class="tok-kw">char</span> c = (<span class="tok-kw">char</span>)<span class="tok-num">65</span>;               <span class="tok-com">/* 'A' */</span></code></pre>
+<p><strong>Cast vs round:</strong> <code>(int)3.99</code> is <strong>3</strong>, not 4. To round, use <code>round()</code> from <code>math.h</code>.</p>
+<h3 id="73-conversion-dangers">7.3 Conversion dangers</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Conversion</th><th style="text-align:left">Result</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>float</code> → <code>int</code></td><td style="text-align:left">Fractional part discarded</td></tr>
+<tr><td style="text-align:left"><code>double</code> → <code>float</code></td><td style="text-align:left">Possible loss of precision</td></tr>
+<tr><td style="text-align:left"><code>int</code> → <code>char</code></td><td style="text-align:left">May wrap if value &gt; 127</td></tr>
+<tr><td style="text-align:left">Large <code>int</code> → <code>short</code></td><td style="text-align:left">Overflow / implementation-defined</td></tr>
+<tr><td style="text-align:left"><code>char</code> → <code>int</code></td><td style="text-align:left">ASCII code</td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="8-sizeof">8. <code>sizeof</code></h2>
+<p><code>sizeof</code> is a compile-time operator that returns the size of a type or variable <strong>in bytes</strong>.</p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>) {
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;char        = %zu byte(s)\n&quot;</span>, <span class="tok-kw">sizeof</span>(<span class="tok-kw">char</span>));
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;short       = %zu byte(s)\n&quot;</span>, <span class="tok-kw">sizeof</span>(<span class="tok-kw">short</span>));
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;int         = %zu byte(s)\n&quot;</span>, <span class="tok-kw">sizeof</span>(<span class="tok-kw">int</span>));
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;long        = %zu byte(s)\n&quot;</span>, <span class="tok-kw">sizeof</span>(<span class="tok-kw">long</span>));
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;long long   = %zu byte(s)\n&quot;</span>, <span class="tok-kw">sizeof</span>(<span class="tok-kw">long</span> <span class="tok-kw">long</span>));
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;float       = %zu byte(s)\n&quot;</span>, <span class="tok-kw">sizeof</span>(<span class="tok-kw">float</span>));
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;double      = %zu byte(s)\n&quot;</span>, <span class="tok-kw">sizeof</span>(<span class="tok-kw">double</span>));
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;pointer     = %zu byte(s)\n&quot;</span>, <span class="tok-kw">sizeof</span>(<span class="tok-kw">void</span> *));
+
+    <span class="tok-kw">int</span> arr[<span class="tok-num">10</span>];
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;array       = %zu byte(s)\n&quot;</span>, <span class="tok-kw">sizeof</span>(arr));       <span class="tok-com">/* 40 on typical int=4 */</span>
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;elements    = %zu\n&quot;</span>, <span class="tok-kw">sizeof</span>(arr) / <span class="tok-kw">sizeof</span>(arr[<span class="tok-num">0</span>])); <span class="tok-com">/* 10 */</span>
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p>Use <code>%zu</code> for <code>sizeof</code>. <code>sizeof</code> is <strong>not</strong> a function; it does not need parentheses for a variable, but use them for types.</p>
+<hr>
+<h2 id="9-worked-exam-questions">9. Worked exam questions</h2>
+<h3 id="91-convert-156-to-binary-octal-and-hexadecimal">9.1 &quot;Convert 156 to binary, octal and hexadecimal.&quot;</h3>
+<ul>
+<li>Binary: 156 = 128 + 16 + 8 + 4 = <strong>10011100₂</strong></li>
+<li>Octal: group 3 bits → <code>010 011 100</code> → <strong>234₈</strong></li>
+<li>Hex: group 4 bits → <code>1001 1100</code> → <strong>9C₁₆</strong></li>
+</ul>
+<p>Check: 9×16 + 12 = 144 + 12 = 156. ✓</p>
+<h3 id="92-represent-18-in-8-bit-twos-complement">9.2 &quot;Represent −18 in 8-bit two's complement.&quot;</h3>
+<pre class="code"><code>+18  = 0001 0010
+inv  = 1110 1101
++1   = 1110 1110   (0xEE)</code></pre>
+<p>Check: 238 − 256 = −18. ✓</p>
+<h3 id="93-what-is-the-output">9.3 &quot;What is the output?&quot;</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>) {
+    <span class="tok-kw">int</span> a = <span class="tok-num">5</span>, b = <span class="tok-num">2</span>;
+    <span class="tok-kw">float</span> c = <span class="tok-num">5</span> / <span class="tok-num">2</span>;
+    <span class="tok-kw">float</span> d = <span class="tok-num">5</span> / <span class="tok-num">2.0</span>;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%.1f %.1f\n&quot;</span>, c, d);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Output:</strong> <code>2.0 2.5</code></p>
+<p><code>5 / 2</code> is integer division → 2, then converted to float for storage. <code>5 / 2.0</code> promotes 5 to double → 2.5.</p>
+<h3 id="94-what-is-the-output">9.4 &quot;What is the output?&quot;</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> c = <span class="tok-chr">'A'</span>;
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%c %d\n&quot;</span>, c + <span class="tok-num">2</span>, c + <span class="tok-num">2</span>);</code></pre>
+<p><strong>Output:</strong> <code>C 67</code></p>
+<p><code>'A'</code> is 65, plus 2 = 67, which is <code>'C'</code>.</p>
+<h3 id="95-why-does-printfd-37-give-a-strange-value">9.5 &quot;Why does <code>printf(&quot;%d&quot;, 3.7)</code> give a strange value?&quot;</h3>
+<p>Because <code>%d</code> expects an <code>int</code> but <code>3.7</code> is a <code>double</code>. The bits are misinterpreted — undefined behaviour. Use <code>%f</code>.</p>
+<hr>
+<h2 id="10-common-exam-traps">10. Common exam traps</h2>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<hr>
+<h2 id="11-rapid-revision">11. Rapid revision</h2>
+<ul>
+<li>1 byte = 8 bits; 1 KB = 1024 bytes.</li>
+<li>Binary/octal/hex: 1 octal digit = 3 bits, 1 hex digit = 4 bits.</li>
+<li>Decimal→binary: divide by 2, read remainders upward.</li>
+<li>Two's complement: invert + 1; 8-bit range −128…127.</li>
+<li><code>char</code> = ASCII integer; <code>int</code> = whole; <code>float</code>/<code>double</code> = fractional.</li>
+<li><code>float</code> 4 bytes ~7 digits; <code>double</code> 8 bytes ~15 digits.</li>
+<li><code>sizeof</code> gives bytes; <code>strlen</code> counts characters excluding <code>'\0'</code>.</li>
+<li>Cast: <code>(float)a / b</code>; without it, integer division truncates.</li>
+<li>Never compare floats with <code>==</code>.</li>
+<li><code>%d</code> int, <code>%f</code> float, <code>%lf</code> double in <code>scanf</code>, <code>%c</code> char, <code>%s</code> string, <code>%u</code> unsigned.</li>
+</ul>
+<hr>
+<h2 id="12-self-test-answers-below">12. Self-test (answers below)</h2>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li> ``<code>c char c = 'a'; printf(&quot;%c %d\n&quot;, c - 32, c - 32); </code>``</li>
+<li> ``<code>c int a = 9, b = 2; printf(&quot;%d %.2f\n&quot;, a / b, (float)a / b); </code>``</li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<h3 id="answers">Answers</h3>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<hr>
+<p><strong>Next:</strong> <code>04_operators_and_expressions.md</code></p>
+
+  </article>
+<nav class="pager"><a class="prev" href="../notes/02_c_basics_and_compilation.html"><span class="dir">&larr; Previous</span><span class="name">02 · C basics &amp; compilation</span></a><a class="next" href="../notes/04_operators_and_expressions.html"><span class="dir">Next &rarr;</span><span class="name">04 · Operators &amp; expressions</span></a></nav>
+  <footer class="foot">
+    CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
+  </footer>
+</main>
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  <a href="#1-how-computers-store-information">1. How computers store information</a><a href="#11-units" class="toc-h3">1.1 Units</a><a href="#12-why-binary" class="toc-h3">1.2 Why binary?</a><a href="#2-number-systems">2. Number systems</a><a href="#21-positional-notation" class="toc-h3">2.1 Positional notation</a><a href="#22-binary-decimal" class="toc-h3">2.2 Binary → decimal</a><a href="#23-decimal-binary-repeated-division-by-2" class="toc-h3">2.3 Decimal → binary (repeated division by 2)</a><a href="#24-binary-octal-group-3-bits" class="toc-h3">2.4 Binary ↔ octal (group 3 bits)</a><a href="#25-binary-hexadecimal-group-4-bits" class="toc-h3">2.5 Binary ↔ hexadecimal (group 4 bits)</a><a href="#26-decimal-hexadecimal" class="toc-h3">2.6 Decimal ↔ hexadecimal</a><a href="#27-quick-conversion-table-memorise-015" class="toc-h3">2.7 Quick conversion table (memorise 0–15)</a><a href="#28-binary-arithmetic" class="toc-h3">2.8 Binary arithmetic</a><a href="#3-signed-integer-representation">3. Signed integer representation</a><a href="#31-sign-and-magnitude" class="toc-h3">3.1 Sign-and-magnitude</a><a href="#32-ones-complement" class="toc-h3">3.2 One's complement</a><a href="#33-twos-complement-the-standard" class="toc-h3">3.3 Two's complement (the standard)</a><a href="#34-ranges-memorise" class="toc-h3">3.4 Ranges (memorise)</a><a href="#4-cs-basic-data-types">4. C's basic data types</a><a href="#41-int" class="toc-h3">4.1 int</a><a href="#42-float-and-double-floating-point" class="toc-h3">4.2 float and double (floating-point)</a><a href="#43-how-floating-point-is-stored-ieee-754-idea" class="toc-h3">4.3 How floating-point is stored (IEEE 754 idea)</a><a href="#44-char" class="toc-h3">4.4 char</a><a href="#45-escape-sequences" class="toc-h3">4.5 Escape sequences</a><a href="#46-strings" class="toc-h3">4.6 Strings</a><a href="#47-void" class="toc-h3">4.7 void</a><a href="#5-constants-and-literals">5. Constants and literals</a><a href="#6-variables-declaration-and-initialisation">6. Variables, declaration and initialisation</a><a href="#7-type-conversion">7. Type conversion</a><a href="#71-implicit-conversion-coercion" class="toc-h3">7.1 Implicit conversion (coercion)</a><a href="#72-explicit-conversion-casting" class="toc-h3">7.2 Explicit conversion (casting)</a><a href="#73-conversion-dangers" class="toc-h3">7.3 Conversion dangers</a><a href="#8-sizeof">8. sizeof</a><a href="#9-worked-exam-questions">9. Worked exam questions</a><a href="#91-convert-156-to-binary-octal-and-hexadecimal" class="toc-h3">9.1 &quot;Convert 156 to binary, octal and hexadecimal.&quot;</a><a href="#92-represent-18-in-8-bit-twos-complement" class="toc-h3">9.2 &quot;Represent −18 in 8-bit two's complement.&quot;</a><a href="#93-what-is-the-output" class="toc-h3">9.3 &quot;What is the output?&quot;</a><a href="#94-what-is-the-output" class="toc-h3">9.4 &quot;What is the output?&quot;</a><a href="#95-why-does-printfd-37-give-a-strange-value" class="toc-h3">9.5 &quot;Why does printf(&quot;%d&quot;, 3.7) give a strange value?&quot;</a><a href="#10-common-exam-traps">10. Common exam traps</a><a href="#11-rapid-revision">11. Rapid revision</a><a href="#12-self-test-answers-below">12. Self-test (answers below)</a><a href="#answers" class="toc-h3">Answers</a>
+</aside>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('csc112-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '\u2600' : '\u263D';
+    try { localStorage.setItem('csc112-theme', next); } catch (e) {}
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // highlight the current section in the right-hand table of contents
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (links.length) {
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    window.addEventListener('scroll', function () {
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i] && heads[i].getBoundingClientRect().top < 120) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }, { passive: true });
+  }
+
+  // on phones, start with the contents menu collapsed
+  var det = document.querySelector('.nav-details');
+  if (det && window.innerWidth < 1000) det.removeAttribute('open');
+})();
+</script>
+</body>
+</html>

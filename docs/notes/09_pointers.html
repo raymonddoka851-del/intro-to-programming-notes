@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Note 09 — Pointers · CSC 112 Revision</title>
+<meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
+<link rel="stylesheet" href="../assets/notes.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">C</span>
+    <span class="brand-text"><strong>CSC 112</strong><span>Revision Notes</span></span>
+  </a>
+  <details class="nav-details" open>
+    <summary>Contents</summary>
+    <div class="nav-group"><div class="nav-head"></div><a href="../START_HERE.html">Start here (pack index)</a><a href="../YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="../CHEAT_SHEET.html">Cheat sheet</a><a href="../PROGRESS_TRACKER.html">Progress tracker</a><a href="../SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="../notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="../notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="../notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="../notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="../notes/05_control_statements.html">05 · Control statements</a><a href="../notes/06_loops.html">06 · Loops</a><a href="../notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="../notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="../notes/09_pointers.html" class="active">09 · Pointers</a><a href="../notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="../notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="../practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="../practice/QUESTION_BANK.html">Question bank (96)</a><a href="../practice/ANSWER_KEY.html">Answer key</a><a href="../practice/LAB_TASKS.html">Lab tasks (25)</a><a href="../practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="../practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="../practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="../code/README.html">Program list (22 examples)</a></div>
+  </details>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <span class="crumb">Notes <b>&rsaquo;</b> 09_pointers</span>
+    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+  </div>
+  <article class="content">
+<h1 id="note-09-pointers">Note 09 — Pointers</h1>
+<blockquote><p><strong>Covers outline Week 11</strong> (pointers — overview). Pointers are also essential for call by reference, arrays, strings and dynamic memory.</p></blockquote>
+<hr>
+<h2 id="1-the-idea-of-a-pointer">1. The idea of a pointer</h2>
+<p>Every variable lives at a <strong>memory address</strong>. A <strong>pointer</strong> is a variable that stores the <strong>address</strong> of another variable.</p>
+<pre class="code"><code>Memory (illustrative)
+Address     Variable     Value
+0x1000      x            25
+0x1004      p            0x1000   ← p points to x</code></pre>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> x = <span class="tok-num">25</span>;
+<span class="tok-kw">int</span> *p = &amp;x;      <span class="tok-com">/* p stores the address of x */</span></code></pre>
+<ul>
+<li><code>&amp;x</code> → &quot;address of x&quot; (0x1000)</li>
+<li><code>p</code> → 0x1000</li>
+<li><code>*p</code> → &quot;value at the address in p&quot; → 25</li>
+</ul>
+<p><strong>Analogy:</strong> a pointer is like a house address written on paper. The paper is not the house, but it tells you where the house is.</p>
+<hr>
+<h2 id="2-declaring-and-using-pointers">2. Declaring and using pointers</h2>
+<h3 id="21-declaration">2.1 Declaration</h3>
+<pre class="code" data-lang="c"><code>data_type *pointer_name;</code></pre>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> *p;         <span class="tok-com">/* pointer to int */</span>
+<span class="tok-kw">float</span> *f;       <span class="tok-com">/* pointer to float */</span>
+<span class="tok-kw">char</span> *c;        <span class="tok-com">/* pointer to char */</span>
+<span class="tok-kw">double</span> *d;      <span class="tok-com">/* pointer to double */</span></code></pre>
+<p>The <code>*</code> in a declaration means &quot;pointer to&quot;, not multiplication.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> *p, q;      <span class="tok-com">/* p is int*, q is int — be careful! */</span>
+<span class="tok-kw">int</span> *p, *q;     <span class="tok-com">/* both are pointers */</span></code></pre>
+<h3 id="22-initialisation">2.2 Initialisation</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> x = <span class="tok-num">10</span>;
+<span class="tok-kw">int</span> *p = &amp;x;    <span class="tok-com">/* valid */</span></code></pre>
+<p>or</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> *p;         <span class="tok-com">/* uninitialised — dangerous */</span>
+p = &amp;x;         <span class="tok-com">/* now valid */</span></code></pre>
+<h3 id="23-the-two-operators">2.3 The two operators</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Operator</th><th style="text-align:left">Name</th><th style="text-align:left">Meaning</th><th style="text-align:left">Example</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>&amp;</code></td><td style="text-align:left">Address-of</td><td style="text-align:left">Gives the address of a variable</td><td style="text-align:left"><code>&amp;x</code></td></tr>
+<tr><td style="text-align:left"><code>*</code></td><td style="text-align:left">Dereference / indirection</td><td style="text-align:left">Gives the value stored at an address</td><td style="text-align:left"><code>*p</code></td></tr>
+</tbody></table></div>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> x = <span class="tok-num">10</span>;
+<span class="tok-kw">int</span> *p = &amp;x;
+
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, x);      <span class="tok-com">/* 10 */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%p\n&quot;</span>, (<span class="tok-kw">void</span> *)&amp;x);  <span class="tok-com">/* address of x */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%p\n&quot;</span>, (<span class="tok-kw">void</span> *)p);   <span class="tok-com">/* same address */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, *p);     <span class="tok-com">/* 10 */</span></code></pre>
+<h3 id="24-changing-a-value-through-a-pointer">2.4 Changing a value through a pointer</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> x = <span class="tok-num">10</span>;
+<span class="tok-kw">int</span> *p = &amp;x;
+
+*p = <span class="tok-num">20</span>;            <span class="tok-com">/* changes x to 20 */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, x);  <span class="tok-com">/* 20 */</span></code></pre>
+<p>This is the basis of <strong>call by reference</strong>.</p>
+<h3 id="25-pointer-types-matter">2.5 Pointer types matter</h3>
+<p>A pointer's type tells the compiler:</p>
+<ol>
+<li></li>
+<li></li>
+</ol>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> *ip;
+<span class="tok-kw">char</span> *cp;
+<span class="tok-kw">double</span> *dp;
+
+<span class="tok-com">/* On a typical machine: */</span>
+<span class="tok-kw">sizeof</span>(*ip) = <span class="tok-num">4</span>
+<span class="tok-kw">sizeof</span>(*cp) = <span class="tok-num">1</span>
+<span class="tok-kw">sizeof</span>(*dp) = <span class="tok-num">8</span></code></pre>
+<p>Do not assign an <code>int *</code> to a <code>double *</code> without a cast — the types are incompatible.</p>
+<h3 id="26-the-null-pointer">2.6 The <code>NULL</code> pointer</h3>
+<p><code>NULL</code> (from <code>&lt;stddef.h&gt;</code> / <code>&lt;stdio.h&gt;</code>) is a special value meaning &quot;points to nothing&quot;.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> *p = <span class="tok-kw">NULL</span>;
+
+<span class="tok-kw">if</span> (p != <span class="tok-kw">NULL</span>)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, *p);     <span class="tok-com">/* safe: only dereference if not NULL */</span>
+<span class="tok-kw">else</span>
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;p is null\n&quot;</span>);</code></pre>
+<p><strong>Never dereference a NULL pointer</strong> — it crashes the program (segmentation fault).</p>
+<h3 id="27-uninitialised-and-wild-pointers">2.7 Uninitialised and wild pointers</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> *p;         <span class="tok-com">/* wild pointer: contains garbage address */</span>
+*p = <span class="tok-num">10</span>;        <span class="tok-com">/* undefined behaviour — may crash */</span></code></pre>
+<p>Always initialise:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> *p = <span class="tok-kw">NULL</span>;</code></pre>
+<hr>
+<h2 id="3-pointer-arithmetic">3. Pointer arithmetic</h2>
+<p>Arithmetic on pointers is scaled by the size of the pointed-to type.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">5</span>] = {<span class="tok-num">10</span>, <span class="tok-num">20</span>, <span class="tok-num">30</span>, <span class="tok-num">40</span>, <span class="tok-num">50</span>};
+<span class="tok-kw">int</span> *p = a;             <span class="tok-com">/* p points to a[0] */</span>
+
+p++;                    <span class="tok-com">/* moves forward by sizeof(int) = 4 bytes → a[1] */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, *p);     <span class="tok-com">/* 20 */</span></code></pre>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Expression</th><th style="text-align:left">Meaning</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>p + 1</code></td><td style="text-align:left">Address of the next element</td></tr>
+<tr><td style="text-align:left"><code>p - 1</code></td><td style="text-align:left">Address of the previous element</td></tr>
+<tr><td style="text-align:left"><code>p++</code> / <code>++p</code></td><td style="text-align:left">Move to the next element</td></tr>
+<tr><td style="text-align:left"><code>*p</code></td><td style="text-align:left">Value at the current element</td></tr>
+<tr><td style="text-align:left"><code>p1 - p2</code></td><td style="text-align:left">Number of elements between two pointers (same array)</td></tr>
+<tr><td style="text-align:left"><code>p == q</code></td><td style="text-align:left">Do the pointers point to the same address?</td></tr>
+</tbody></table></div>
+<p><strong>Example</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">5</span>] = {<span class="tok-num">10</span>, <span class="tok-num">20</span>, <span class="tok-num">30</span>, <span class="tok-num">40</span>, <span class="tok-num">50</span>};
+<span class="tok-kw">int</span> *p = a;
+
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, *p);         <span class="tok-com">/* 10 */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, *(p + <span class="tok-num">2</span>));   <span class="tok-com">/* 30 */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, p[<span class="tok-num">3</span>]);       <span class="tok-com">/* 40 — pointer indexing works too */</span></code></pre>
+<p><strong>Pointer arithmetic is only valid within the same array (or one past the end).</strong> Anything else is undefined behaviour.</p>
+<h3 id="31-the-p-family-exam-favourite">3.1 The <code>*p++</code> family (exam favourite)</h3>
+<p>Postfix <code>++</code> has higher precedence than <code>*</code>.</p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Expression</th><th style="text-align:left">Meaning</th><th style="text-align:left">Effect</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>*p++</code></td><td style="text-align:left"><code>*(p++)</code></td><td style="text-align:left">Read <code>*p</code>, then move <code>p</code> to the next element</td></tr>
+<tr><td style="text-align:left"><code>(*p)++</code></td><td style="text-align:left">Increment the value pointed to</td><td style="text-align:left"><code>*p = *p + 1</code>; pointer unchanged</td></tr>
+<tr><td style="text-align:left"><code>*++p</code></td><td style="text-align:left"><code>*(++p)</code></td><td style="text-align:left">Move <code>p</code> first, then read the new element</td></tr>
+<tr><td style="text-align:left"><code>++*p</code></td><td style="text-align:left"><code>++(*p)</code></td><td style="text-align:left">Increment the value pointed to</td></tr>
+</tbody></table></div>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">3</span>] = {<span class="tok-num">10</span>, <span class="tok-num">20</span>, <span class="tok-num">30</span>};
+<span class="tok-kw">int</span> *p = a;
+
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, *p++);    <span class="tok-com">/* prints 10; p now points to a[1] */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, (*p)++);  <span class="tok-com">/* prints 20; a[1] becomes 21 */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, *p);      <span class="tok-com">/* prints 21 */</span></code></pre>
+<hr>
+<h2 id="4-pointers-and-arrays">4. Pointers and arrays</h2>
+<p>An array name, in most expressions, <strong>decays</strong> to a pointer to its first element.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">5</span>] = {<span class="tok-num">10</span>, <span class="tok-num">20</span>, <span class="tok-num">30</span>, <span class="tok-num">40</span>, <span class="tok-num">50</span>};
+<span class="tok-kw">int</span> *p = a;              <span class="tok-com">/* same as &amp;a[0] */</span></code></pre>
+<p>These are equivalent:</p>
+<pre class="code" data-lang="c"><code>a[i]        ≡   *(a + i)
+&amp;a[i]       ≡   a + i
+p[i]        ≡   *(p + i)</code></pre>
+<p><strong>Example</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">for</span> (<span class="tok-kw">int</span> i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">5</span>; i++)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, *(a + i));     <span class="tok-com">/* same as a[i] */</span></code></pre>
+<p><strong>But an array is not a pointer:</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">5</span>];
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%zu\n&quot;</span>, <span class="tok-kw">sizeof</span>(a));      <span class="tok-com">/* 20 bytes (5 × 4) */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%zu\n&quot;</span>, <span class="tok-kw">sizeof</span>(p));      <span class="tok-com">/* 8 bytes (pointer size) */</span></code></pre>
+<p>Also, an array name is <strong>not assignable</strong>:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">5</span>], b[<span class="tok-num">5</span>];
+a = b;          <span class="tok-com">/* ERROR */</span></code></pre>
+<h3 id="41-passing-an-array-to-a-function">4.1 Passing an array to a function</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">void</span> <span class="tok-fn">print_array</span>(<span class="tok-kw">int</span> *arr, <span class="tok-kw">int</span> n)      <span class="tok-com">/* or int arr[] */</span>
+{
+    <span class="tok-kw">for</span> (<span class="tok-kw">int</span> i = <span class="tok-num">0</span>; i &lt; n; i++)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, arr[i]);
+}</code></pre>
+<p>The function receives a pointer, so it can modify the caller's array.</p>
+<hr>
+<h2 id="5-pointers-and-functions">5. Pointers and functions</h2>
+<h3 id="51-call-by-reference-swap">5.1 Call by reference: swap</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">void</span> <span class="tok-fn">swap</span>(<span class="tok-kw">int</span> *a, <span class="tok-kw">int</span> *b)
+{
+    <span class="tok-kw">int</span> temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> x = <span class="tok-num">50</span>, y = <span class="tok-num">25</span>;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Before: %d %d\n&quot;</span>, x, y);
+    <span class="tok-fn">swap</span>(&amp;x, &amp;y);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;After : %d %d\n&quot;</span>, x, y);
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Output</strong></p>
+<pre class="code"><code>Before: 50 25
+After : 25 50</code></pre>
+<p><strong>Trace</strong></p>
+<ul>
+<li><code>a</code> points to <code>x</code>, <code>b</code> points to <code>y</code>.</li>
+<li><code>temp = *a</code> → 50.</li>
+<li><code>*a = *b</code> → x becomes 25.</li>
+<li><code>*b = temp</code> → y becomes 50.</li>
+</ul>
+<h3 id="52-returning-more-than-one-value">5.2 Returning more than one value</h3>
+<p>C functions return only one value, but pointers let you &quot;return&quot; several through parameters:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">void</span> <span class="tok-fn">min_max</span>(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b, <span class="tok-kw">int</span> *min, <span class="tok-kw">int</span> *max)
+{
+    <span class="tok-kw">if</span> (a &lt; b)
+    {
+        *min = a;
+        *max = b;
+    }
+    <span class="tok-kw">else</span>
+    {
+        *min = b;
+        *max = a;
+    }
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> lo, hi;
+    <span class="tok-fn">min_max</span>(<span class="tok-num">7</span>, <span class="tok-num">3</span>, &amp;lo, &amp;hi);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;min=%d max=%d\n&quot;</span>, lo, hi);   <span class="tok-com">/* min=3 max=7 */</span>
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<h3 id="53-modifying-a-variable-through-a-function">5.3 Modifying a variable through a function</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">void</span> <span class="tok-fn">increment</span>(<span class="tok-kw">int</span> *n)
+{
+    (*n)++;          <span class="tok-com">/* parentheses are essential: *n++ would be wrong */</span>
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> x = <span class="tok-num">5</span>;
+    <span class="tok-fn">increment</span>(&amp;x);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, x);   <span class="tok-com">/* 6 */</span>
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<hr>
+<h2 id="6-pointers-and-strings">6. Pointers and strings</h2>
+<p>A string can be accessed through a <code>char *</code>:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> s[] = <span class="tok-str">&quot;Hello&quot;</span>;
+<span class="tok-kw">char</span> *p = s;
+
+<span class="tok-kw">while</span> (*p != <span class="tok-chr">'\0'</span>)
+{
+    <span class="tok-fn">putchar</span>(*p);
+    p++;
+}</code></pre>
+<p>Output: <code>Hello</code></p>
+<p><strong>String literals and pointers</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> *msg = <span class="tok-str">&quot;Hello&quot;</span>;        <span class="tok-com">/* pointer to a read-only string literal */</span>
+msg[<span class="tok-num">0</span>] = <span class="tok-chr">'J'</span>;               <span class="tok-com">/* UNDEFINED BEHAVIOUR — may crash */</span></code></pre>
+<p>If you need to modify it, use an array:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> msg[] = <span class="tok-str">&quot;Hello&quot;</span>;
+msg[<span class="tok-num">0</span>] = <span class="tok-chr">'J'</span>;               <span class="tok-com">/* OK */</span></code></pre>
+<p>Use <code>const char *</code> when you do not intend to modify:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">const</span> <span class="tok-kw">char</span> *msg = <span class="tok-str">&quot;Hello&quot;</span>;</code></pre>
+<hr>
+<h2 id="7-pointer-to-pointer">7. Pointer to pointer</h2>
+<p>A pointer can point to another pointer.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> x = <span class="tok-num">10</span>;
+<span class="tok-kw">int</span> *p = &amp;x;
+<span class="tok-kw">int</span> **pp = &amp;p;
+
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, **pp);       <span class="tok-com">/* 10 */</span></code></pre>
+<pre class="code"><code>pp ──► p ──► x ──► 10</code></pre>
+<p>Used for dynamic 2D arrays, modifying a pointer inside a function, and arrays of strings.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">void</span> <span class="tok-fn">allocate</span>(<span class="tok-kw">int</span> **p, <span class="tok-kw">int</span> n)
+{
+    *p = <span class="tok-fn">malloc</span>(n * <span class="tok-kw">sizeof</span>(<span class="tok-kw">int</span>));
+}</code></pre>
+<hr>
+<h2 id="8-dynamic-memory-allocation">8. Dynamic memory allocation</h2>
+<p>So far, arrays have a fixed size decided at compile time. <strong>Dynamic memory</strong> is allocated at runtime from the <strong>heap</strong>.</p>
+<p>Include <code>&lt;stdlib.h&gt;</code>.</p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Function</th><th style="text-align:left">Purpose</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>malloc(size)</code></td><td style="text-align:left">Allocates <code>size</code> bytes, uninitialised</td></tr>
+<tr><td style="text-align:left"><code>calloc(n, size)</code></td><td style="text-align:left">Allocates <code>n × size</code> bytes, zero-initialised</td></tr>
+<tr><td style="text-align:left"><code>realloc(ptr, new_size)</code></td><td style="text-align:left">Resizes a previously allocated block</td></tr>
+<tr><td style="text-align:left"><code>free(ptr)</code></td><td style="text-align:left">Releases the memory</td></tr>
+</tbody></table></div>
+<h3 id="81-malloc">8.1 <code>malloc</code></h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-pre">#include &lt;stdlib.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> n = <span class="tok-num">5</span>;
+    <span class="tok-kw">int</span> *a = <span class="tok-fn">malloc</span>(n * <span class="tok-kw">sizeof</span>(<span class="tok-kw">int</span>));
+
+    <span class="tok-kw">if</span> (a == <span class="tok-kw">NULL</span>)
+    {
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Memory allocation failed\n&quot;</span>);
+        <span class="tok-kw">return</span> <span class="tok-num">1</span>;
+    }
+
+    <span class="tok-kw">for</span> (<span class="tok-kw">int</span> i = <span class="tok-num">0</span>; i &lt; n; i++)
+        a[i] = i * <span class="tok-num">10</span>;
+
+    <span class="tok-kw">for</span> (<span class="tok-kw">int</span> i = <span class="tok-num">0</span>; i &lt; n; i++)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, a[i]);
+
+    <span class="tok-fn">free</span>(a);            <span class="tok-com">/* release the memory */</span>
+    a = <span class="tok-kw">NULL</span>;           <span class="tok-com">/* avoid a dangling pointer */</span>
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Output:</strong> <code>0 10 20 30 40</code></p>
+<h3 id="82-calloc">8.2 <code>calloc</code></h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> *a = <span class="tok-fn">calloc</span>(<span class="tok-num">5</span>, <span class="tok-kw">sizeof</span>(<span class="tok-kw">int</span>));    <span class="tok-com">/* all elements are 0 */</span></code></pre>
+<h3 id="83-realloc">8.3 <code>realloc</code></h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> *bigger = <span class="tok-fn">realloc</span>(a, <span class="tok-num">10</span> * <span class="tok-kw">sizeof</span>(<span class="tok-kw">int</span>));
+<span class="tok-kw">if</span> (bigger == <span class="tok-kw">NULL</span>)
+{
+    <span class="tok-com">/* realloc failed; original a is still valid */</span>
+}
+<span class="tok-kw">else</span>
+{
+    a = bigger;
+}</code></pre>
+<h3 id="84-free">8.4 <code>free</code></h3>
+<pre class="code" data-lang="c"><code><span class="tok-fn">free</span>(a);
+a = <span class="tok-kw">NULL</span>;</code></pre>
+<p><strong>Rules</strong></p>
+<ul>
+<li>Every <code>malloc</code>/<code>calloc</code>/<code>realloc</code> must have exactly one matching <code>free</code>.</li>
+<li>Do not use memory after freeing it (<strong>use-after-free</strong>).</li>
+<li>Do not free the same block twice (<strong>double free</strong>).</li>
+<li><code>free(NULL)</code> is safe and does nothing.</li>
+<li>Forgetting to free causes a <strong>memory leak</strong>.</li>
+</ul>
+<blockquote><p>Dynamic memory is beyond the basic outline, but it is often mentioned in exams as &quot;what is malloc used for?&quot;</p></blockquote>
+<hr>
+<h2 id="9-worked-memory-diagrams">9. Worked memory diagrams</h2>
+<h3 id="example-1">Example 1</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> x = <span class="tok-num">5</span>;
+<span class="tok-kw">int</span> *p = &amp;x;
+*p = <span class="tok-num">8</span>;</code></pre>
+<pre class="code"><code>Before:  x = 5      p = &amp;x
+After:   x = 8      p = &amp;x</code></pre>
+<h3 id="example-2">Example 2</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">3</span>] = {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>};
+<span class="tok-kw">int</span> *p = a;
+p++;
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d&quot;</span>, *p);</code></pre>
+<pre class="code"><code>a: [1] [2] [3]
+     ↑   ↑
+     a   p (after p++)</code></pre>
+<p><strong>Output:</strong> <code>2</code></p>
+<h3 id="example-3">Example 3</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a = <span class="tok-num">10</span>, b = <span class="tok-num">20</span>;
+<span class="tok-kw">int</span> *p = &amp;a, *q = &amp;b;
+*p = *q;
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d %d\n&quot;</span>, a, b);</code></pre>
+<p><code>a</code> becomes 20, <code>b</code> stays 20. <strong>Output:</strong> <code>20 20</code></p>
+<h3 id="example-4">Example 4</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">4</span>] = {<span class="tok-num">10</span>, <span class="tok-num">20</span>, <span class="tok-num">30</span>, <span class="tok-num">40</span>};
+<span class="tok-kw">int</span> *p = &amp;a[<span class="tok-num">1</span>];
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d %d\n&quot;</span>, *p, *(p + <span class="tok-num">2</span>));</code></pre>
+<p><code>p</code> points to <code>a[1]</code> = 20; <code>p+2</code> points to <code>a[3]</code> = 40. <strong>Output:</strong> <code>20 40</code></p>
+<hr>
+<h2 id="10-common-errors">10. Common errors</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Error</th><th style="text-align:left">Problem</th><th style="text-align:left">Fix</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>int *p; *p = 10;</code></td><td style="text-align:left">Wild pointer dereference</td><td style="text-align:left"><code>int x; int *p = &amp;x;</code></td></tr>
+<tr><td style="text-align:left"><code>int *p = NULL; *p = 5;</code></td><td style="text-align:left">NULL dereference → crash</td><td style="text-align:left">Check <code>if (p != NULL)</code></td></tr>
+<tr><td style="text-align:left"><code>p = 10;</code></td><td style="text-align:left">Assigns an integer to a pointer</td><td style="text-align:left"><code>p = &amp;x;</code> or <code>*p = 10;</code></td></tr>
+<tr><td style="text-align:left"><code>scanf(&quot;%d&quot;, p)</code> when <code>p</code> is uninitialised</td><td style="text-align:left">Writes to a random address</td><td style="text-align:left">Allocate/point first</td></tr>
+<tr><td style="text-align:left">Returning <code>&amp;local</code> from a function</td><td style="text-align:left">Local dies; dangling pointer</td><td style="text-align:left">Return a value or use <code>static</code>/<code>malloc</code></td></tr>
+<tr><td style="text-align:left"><code>free(p); *p = 5;</code></td><td style="text-align:left">Use after free</td><td style="text-align:left">Do not use freed memory</td></tr>
+<tr><td style="text-align:left"><code>free(p); free(p);</code></td><td style="text-align:left">Double free</td><td style="text-align:left">Free once; set <code>p = NULL</code></td></tr>
+<tr><td style="text-align:left">Forgetting <code>free</code></td><td style="text-align:left">Memory leak</td><td style="text-align:left">Free every allocation</td></tr>
+<tr><td style="text-align:left"><code>p + 1</code> on a non-array pointer</td><td style="text-align:left">Undefined behaviour</td><td style="text-align:left">Only within an array</td></tr>
+<tr><td style="text-align:left"><code>*p++</code> vs <code>(*p)++</code></td><td style="text-align:left">Different effects</td><td style="text-align:left">Use parentheses for the value</td></tr>
+<tr><td style="text-align:left">Comparing pointers from different arrays</td><td style="text-align:left">Undefined behaviour</td><td style="text-align:left">Compare only within the same array</td></tr>
+<tr><td style="text-align:left"><code>char *s = &quot;hi&quot;; s[0]='H';</code></td><td style="text-align:left">Modifying a string literal</td><td style="text-align:left"><code>char s[] = &quot;hi&quot;;</code></td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="11-rapid-revision">11. Rapid revision</h2>
+<ul>
+<li>Pointer = variable that stores an address.</li>
+<li><code>&amp;</code> = address-of; <code>*</code> = dereference.</li>
+<li>Declare: <code>int *p;</code> Initialise: <code>p = &amp;x;</code></li>
+<li><code>*p</code> reads/writes the value at the address.</li>
+<li><code>p++</code> moves by <code>sizeof(*p)</code> bytes.</li>
+<li><code>a[i]</code> is the same as <code>*(a + i)</code>.</li>
+<li>Arrays decay to pointers when passed to functions.</li>
+<li>Use pointers for call by reference (swap, multiple outputs).</li>
+<li><code>NULL</code> means &quot;points to nothing&quot;; never dereference it.</li>
+<li><code>*p++</code> = read then move; <code>(*p)++</code> = increment the value.</li>
+<li><code>malloc</code>/<code>calloc</code> allocate; <code>free</code> releases; check for <code>NULL</code>.</li>
+<li>Never return the address of a local variable.</li>
+</ul>
+<hr>
+<h2 id="12-self-test-answers-below">12. Self-test (answers below)</h2>
+<ol>
+<li></li>
+<li></li>
+<li> ``<code>c int x = 10; int *p = &amp;x; *p = 25; printf(&quot;%d %d\n&quot;, x, *p); </code>``</li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li> ``<code>c int a[3] = {5, 10, 15}; int *p = a; printf(&quot;%d %d\n&quot;, *p, *(p + 2)); </code>``</li>
+<li></li>
+<li> ``<code>c void f(int *x) { *x = *x + 5; } int main(void) { int a = 10; f(&amp;a); printf(&quot;%d\n&quot;, a); return 0; } </code>``</li>
+<li></li>
+<li></li>
+<li></li>
+<li> ``<code>c int *f(void) { int x = 10; return &amp;x; } </code>``</li>
+</ol>
+<h3 id="answers">Answers</h3>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<hr>
+<p><strong>Next:</strong> <code>10_structures_unions_files.md</code></p>
+
+  </article>
+<nav class="pager"><a class="prev" href="../notes/08_arrays_and_strings.html"><span class="dir">&larr; Previous</span><span class="name">08 · Arrays &amp; strings</span></a><a class="next" href="../notes/10_structures_unions_files.html"><span class="dir">Next &rarr;</span><span class="name">10 · Structures, unions &amp; files</span></a></nav>
+  <footer class="foot">
+    CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
+  </footer>
+</main>
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  <a href="#1-the-idea-of-a-pointer">1. The idea of a pointer</a><a href="#2-declaring-and-using-pointers">2. Declaring and using pointers</a><a href="#21-declaration" class="toc-h3">2.1 Declaration</a><a href="#22-initialisation" class="toc-h3">2.2 Initialisation</a><a href="#23-the-two-operators" class="toc-h3">2.3 The two operators</a><a href="#24-changing-a-value-through-a-pointer" class="toc-h3">2.4 Changing a value through a pointer</a><a href="#25-pointer-types-matter" class="toc-h3">2.5 Pointer types matter</a><a href="#26-the-null-pointer" class="toc-h3">2.6 The NULL pointer</a><a href="#27-uninitialised-and-wild-pointers" class="toc-h3">2.7 Uninitialised and wild pointers</a><a href="#3-pointer-arithmetic">3. Pointer arithmetic</a><a href="#31-the-p-family-exam-favourite" class="toc-h3">3.1 The p++ family (exam favourite)</a><a href="#4-pointers-and-arrays">4. Pointers and arrays</a><a href="#41-passing-an-array-to-a-function" class="toc-h3">4.1 Passing an array to a function</a><a href="#5-pointers-and-functions">5. Pointers and functions</a><a href="#51-call-by-reference-swap" class="toc-h3">5.1 Call by reference: swap</a><a href="#52-returning-more-than-one-value" class="toc-h3">5.2 Returning more than one value</a><a href="#53-modifying-a-variable-through-a-function" class="toc-h3">5.3 Modifying a variable through a function</a><a href="#6-pointers-and-strings">6. Pointers and strings</a><a href="#7-pointer-to-pointer">7. Pointer to pointer</a><a href="#8-dynamic-memory-allocation">8. Dynamic memory allocation</a><a href="#81-malloc" class="toc-h3">8.1 malloc</a><a href="#82-calloc" class="toc-h3">8.2 calloc</a><a href="#83-realloc" class="toc-h3">8.3 realloc</a><a href="#84-free" class="toc-h3">8.4 free</a><a href="#9-worked-memory-diagrams">9. Worked memory diagrams</a><a href="#example-1" class="toc-h3">Example 1</a><a href="#example-2" class="toc-h3">Example 2</a><a href="#example-3" class="toc-h3">Example 3</a><a href="#example-4" class="toc-h3">Example 4</a><a href="#10-common-errors">10. Common errors</a><a href="#11-rapid-revision">11. Rapid revision</a><a href="#12-self-test-answers-below">12. Self-test (answers below)</a><a href="#answers" class="toc-h3">Answers</a>
+</aside>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('csc112-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '\u2600' : '\u263D';
+    try { localStorage.setItem('csc112-theme', next); } catch (e) {}
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // highlight the current section in the right-hand table of contents
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (links.length) {
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    window.addEventListener('scroll', function () {
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i] && heads[i].getBoundingClientRect().top < 120) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }, { passive: true });
+  }
+
+  // on phones, start with the contents menu collapsed
+  var det = document.querySelector('.nav-details');
+  if (det && window.innerWidth < 1000) det.removeAttribute('open');
+})();
+</script>
+</body>
+</html>

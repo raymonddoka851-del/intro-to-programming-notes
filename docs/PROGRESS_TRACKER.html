@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Progress Tracker · CSC 112 Revision</title>
+<meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
+<link rel="stylesheet" href="assets/notes.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="index.html">
+    <span class="brand-mark">C</span>
+    <span class="brand-text"><strong>CSC 112</strong><span>Revision Notes</span></span>
+  </a>
+  <details class="nav-details" open>
+    <summary>Contents</summary>
+    <div class="nav-group"><div class="nav-head"></div><a href="START_HERE.html">Start here (pack index)</a><a href="YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="CHEAT_SHEET.html">Cheat sheet</a><a href="PROGRESS_TRACKER.html" class="active">Progress tracker</a><a href="SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="notes/05_control_statements.html">05 · Control statements</a><a href="notes/06_loops.html">06 · Loops</a><a href="notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="notes/09_pointers.html">09 · Pointers</a><a href="notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="practice/QUESTION_BANK.html">Question bank (96)</a><a href="practice/ANSWER_KEY.html">Answer key</a><a href="practice/LAB_TASKS.html">Lab tasks (25)</a><a href="practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="code/README.html">Program list (22 examples)</a></div>
+  </details>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <span class="crumb">Start here <b>&rsaquo;</b> PROGRESS_TRACKER</span>
+    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+  </div>
+  <article class="content">
+<h1 id="progress-tracker">Progress Tracker</h1>
+<blockquote><p>Print this file or keep it open. Tick a box only when you can do the task <strong>without notes</strong>. Confidence scale: <strong>1</strong> = lost, <strong>2</strong> = shaky, <strong>3</strong> = okay with notes, <strong>4</strong> = good, <strong>5</strong> = exam-ready.</p></blockquote>
+<hr>
+<h2 id="1-exam-details">1. Exam details</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Item</th><th style="text-align:left">Value</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Course</td><td style="text-align:left">STA 121 / CSC 112 — Introduction to Programming</td></tr>
+<tr><td style="text-align:left">Exam date</td><td style="text-align:left">______________________</td></tr>
+<tr><td style="text-align:left">Days left</td><td style="text-align:left">______________________</td></tr>
+<tr><td style="text-align:left">Venue / time</td><td style="text-align:left">______________________</td></tr>
+<tr><td style="text-align:left">Target score</td><td style="text-align:left">______________________ / 70</td></tr>
+</tbody></table></div>
+<p><strong>Countdown rule:</strong> if fewer than 7 days remain, switch to the 5-day plan in <code>START_HERE.md</code>. If fewer than 48 hours remain, use the 48-hour plan.</p>
+<hr>
+<h2 id="2-topic-mastery">2. Topic mastery</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">#</th><th style="text-align:left">Topic</th><th style="text-align:left">Note</th><th style="text-align:left">Read</th><th style="text-align:left">Recall test</th><th style="text-align:left">Code examples run</th><th style="text-align:left">Question bank</th><th style="text-align:left">Confidence 1–5</th><th style="text-align:left">Review date</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">01</td><td style="text-align:left">Programming fundamentals, algorithms</td><td style="text-align:left"><code>notes/01_...</code></td><td style="text-align:left">☐</td><td style="text-align:left">☐</td><td style="text-align:left">—</td><td style="text-align:left">Q1–Q10</td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">02</td><td style="text-align:left">C basics and compilation</td><td style="text-align:left"><code>notes/02_...</code></td><td style="text-align:left">☐</td><td style="text-align:left">☐</td><td style="text-align:left"><code>hello.c</code>, <code>add_two.c</code>, <code>area_circle.c</code></td><td style="text-align:left">Q11–Q20</td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">03</td><td style="text-align:left">Data types and number systems</td><td style="text-align:left"><code>notes/03_...</code></td><td style="text-align:left">☐</td><td style="text-align:left">☐</td><td style="text-align:left"><code>data_types.c</code></td><td style="text-align:left">Q21–Q30</td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">04</td><td style="text-align:left">Operators and expressions</td><td style="text-align:left"><code>notes/04_...</code></td><td style="text-align:left">☐</td><td style="text-align:left">☐</td><td style="text-align:left"><code>operators.c</code></td><td style="text-align:left">Q31–Q40</td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">05</td><td style="text-align:left">Control statements</td><td style="text-align:left"><code>notes/05_...</code></td><td style="text-align:left">☐</td><td style="text-align:left">☐</td><td style="text-align:left"><code>largest3.c</code>, <code>grade_switch.c</code></td><td style="text-align:left">Q41–Q50</td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">06</td><td style="text-align:left">Loops</td><td style="text-align:left"><code>notes/06_...</code></td><td style="text-align:left">☐</td><td style="text-align:left">☐</td><td style="text-align:left"><code>sum_n.c</code>, <code>factorial.c</code>, <code>reverse_number.c</code>, <code>prime_check.c</code>, <code>star_pyramid.c</code></td><td style="text-align:left">Q51–Q60</td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">07</td><td style="text-align:left">Functions and recursion</td><td style="text-align:left"><code>notes/07_...</code></td><td style="text-align:left">☐</td><td style="text-align:left">☐</td><td style="text-align:left"><code>functions.c</code>, <code>recursion.c</code></td><td style="text-align:left">Q61–Q70</td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">08</td><td style="text-align:left">Arrays and strings</td><td style="text-align:left"><code>notes/08_...</code></td><td style="text-align:left">☐</td><td style="text-align:left">☐</td><td style="text-align:left"><code>array_stats.c</code>, <code>bubble_sort.c</code>, <code>matrix_ops.c</code>, <code>string_demo.c</code></td><td style="text-align:left">Q71–Q80</td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">09</td><td style="text-align:left">Pointers</td><td style="text-align:left"><code>notes/09_...</code></td><td style="text-align:left">☐</td><td style="text-align:left">☐</td><td style="text-align:left"><code>pointer_swap.c</code></td><td style="text-align:left">Q81–Q86</td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">10</td><td style="text-align:left">Structures, unions, files</td><td style="text-align:left"><code>notes/10_...</code></td><td style="text-align:left">☐</td><td style="text-align:left">☐</td><td style="text-align:left"><code>struct_student.c</code>, <code>file_records.c</code></td><td style="text-align:left">Q87–Q93</td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">11</td><td style="text-align:left">Formatted I/O and reports</td><td style="text-align:left"><code>notes/11_...</code></td><td style="text-align:left">☐</td><td style="text-align:left">☐</td><td style="text-align:left"><code>report_table.c</code></td><td style="text-align:left">Q94–Q96</td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+</tbody></table></div>
+<h3 id="weak-topic-action-plan">Weak-topic action plan</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Topic I keep getting wrong</th><th style="text-align:left">Why (concept / syntax / speed)</th><th style="text-align:left">Action</th><th style="text-align:left">Done</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="3-question-bank-log">3. Question bank log</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Section</th><th style="text-align:left">Questions</th><th style="text-align:left">First score</th><th style="text-align:left">Date</th><th style="text-align:left">Redo score</th><th style="text-align:left">Date</th><th style="text-align:left">Status</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">A — Fundamentals</td><td style="text-align:left">Q1–Q10</td><td style="text-align:left">/10</td><td style="text-align:left"></td><td style="text-align:left">/10</td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left">B — C basics</td><td style="text-align:left">Q11–Q20</td><td style="text-align:left">/10</td><td style="text-align:left"></td><td style="text-align:left">/10</td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left">C — Data types</td><td style="text-align:left">Q21–Q30</td><td style="text-align:left">/10</td><td style="text-align:left"></td><td style="text-align:left">/10</td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left">D — Operators</td><td style="text-align:left">Q31–Q40</td><td style="text-align:left">/10</td><td style="text-align:left"></td><td style="text-align:left">/10</td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left">E — Selection</td><td style="text-align:left">Q41–Q50</td><td style="text-align:left">/10</td><td style="text-align:left"></td><td style="text-align:left">/10</td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left">F — Loops</td><td style="text-align:left">Q51–Q60</td><td style="text-align:left">/10</td><td style="text-align:left"></td><td style="text-align:left">/10</td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left">G — Functions + recursion</td><td style="text-align:left">Q61–Q70</td><td style="text-align:left">/10</td><td style="text-align:left"></td><td style="text-align:left">/10</td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left">H — Arrays and strings</td><td style="text-align:left">Q71–Q80</td><td style="text-align:left">/10</td><td style="text-align:left"></td><td style="text-align:left">/10</td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left">I — Pointers</td><td style="text-align:left">Q81–Q86</td><td style="text-align:left">/6</td><td style="text-align:left"></td><td style="text-align:left">/6</td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left">J — Structs/unions/files/formatting</td><td style="text-align:left">Q87–Q96</td><td style="text-align:left">/10</td><td style="text-align:left"></td><td style="text-align:left">/10</td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left"><strong>Total</strong></td><td style="text-align:left"><strong>Q1–Q96</strong></td><td style="text-align:left"><strong>/96</strong></td><td style="text-align:left"></td><td style="text-align:left"><strong>/96</strong></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+</tbody></table></div>
+<p><strong>Target:</strong> 80% or better on a second attempt, with no section below 60%.</p>
+<hr>
+<h2 id="4-lab-task-log">4. Lab task log</h2>
+<p>Full briefs are in <code>practice/LAB_TASKS.md</code>.</p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Level</th><th style="text-align:left">Tasks</th><th style="text-align:left">Completed</th><th style="text-align:left">Best mark</th><th style="text-align:left">Weakest task</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">1 — Basics</td><td style="text-align:left">1–5</td><td style="text-align:left">/5</td><td style="text-align:left">/10</td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">2 — Loops</td><td style="text-align:left">6–10</td><td style="text-align:left">/5</td><td style="text-align:left">/10</td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">3 — Functions/arrays</td><td style="text-align:left">11–16</td><td style="text-align:left">/6</td><td style="text-align:left">/10</td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">4 — Strings/pointers/structs</td><td style="text-align:left">17–20</td><td style="text-align:left">/4</td><td style="text-align:left">/10</td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">5 — Integrated</td><td style="text-align:left">21–25</td><td style="text-align:left">/5</td><td style="text-align:left">/10</td><td style="text-align:left"></td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="5-mock-exam-record">5. Mock exam record</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Paper</th><th style="text-align:left">Date</th><th style="text-align:left">Section A /15</th><th style="text-align:left">Section B /15</th><th style="text-align:left">Section C /20</th><th style="text-align:left">Section D /20</th><th style="text-align:left">Total /70</th><th style="text-align:left">Grade</th><th style="text-align:left">Time used</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Mock 1</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">Mock 1 retake</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">Mock 2</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left">Mock 2 retake</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+</tbody></table></div>
+<h3 id="after-each-mock-answer-these">After each mock, answer these</h3>
+<ol>
+<li></li>
+<li></li>
+<li>
+<ul>
+<li>______________________________________________________</li>
+<li>______________________________________________________</li>
+<li>______________________________________________________</li>
+</ul>
+</li>
+<li></li>
+</ol>
+<hr>
+<h2 id="6-error-log">6. Error log</h2>
+<p>Write every mistake here. This is the most valuable page in the pack.</p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Date</th><th style="text-align:left">Question / program</th><th style="text-align:left">What I did wrong</th><th style="text-align:left">Correct rule</th><th style="text-align:left">Fixed?</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left">☐</td></tr>
+</tbody></table></div>
+<h3 id="most-common-errors-checklist">Most common errors checklist</h3>
+<ul>
+<li><span class="cb">&#9744;</span> <code>=</code> instead of <code>==</code> in a condition</li>
+<li><span class="cb">&#9744;</span> Semicolon after <code>if</code>, <code>for</code> or <code>while</code></li>
+<li><span class="cb">&#9744;</span> Missing <code>&amp;</code> in <code>scanf</code></li>
+<li><span class="cb">&#9744;</span> Integer division when a decimal answer is needed</li>
+<li><span class="cb">&#9744;</span> <code>%</code> used with <code>float</code>/<code>double</code></li>
+<li><span class="cb">&#9744;</span> Missing <code>break</code> in <code>switch</code></li>
+<li><span class="cb">&#9744;</span> Array index out of bounds / loop uses <code>&lt;=</code></li>
+<li><span class="cb">&#9744;</span> Missing <code>'\0'</code> in a hand-built string</li>
+<li><span class="cb">&#9744;</span> Uninitialised variable</li>
+<li><span class="cb">&#9744;</span> Missing <code>return</code> in a non-<code>void</code> function</li>
+<li><span class="cb">&#9744;</span> File opened but not closed / <code>fopen</code> not checked</li>
+<li><span class="cb">&#9744;</span> Wrong format specifier (<code>%d</code> with <code>float</code>, <code>%s</code> with a <code>char</code>)</li>
+</ul>
+<hr>
+<h2 id="7-study-plan-checklist">7. Study-plan checklist</h2>
+<h3 id="14-day-plan">14-day plan</h3>
+<ul>
+<li><span class="cb">&#9744;</span> Day 1 — Fundamentals</li>
+<li><span class="cb">&#9744;</span> Day 2 — C basics + compiler set up</li>
+<li><span class="cb">&#9744;</span> Day 3 — Data types + number systems</li>
+<li><span class="cb">&#9744;</span> Day 4 — Operators</li>
+<li><span class="cb">&#9744;</span> Day 5 — Control statements</li>
+<li><span class="cb">&#9744;</span> Day 6 — Loops</li>
+<li><span class="cb">&#9744;</span> Day 7 — Review + mini-test</li>
+<li><span class="cb">&#9744;</span> Day 8 — Functions</li>
+<li><span class="cb">&#9744;</span> Day 9 — Recursion + parameter passing</li>
+<li><span class="cb">&#9744;</span> Day 10 — 1D arrays</li>
+<li><span class="cb">&#9744;</span> Day 11 — 2D arrays + strings</li>
+<li><span class="cb">&#9744;</span> Day 12 — Pointers</li>
+<li><span class="cb">&#9744;</span> Day 13 — Structures, unions, files</li>
+<li><span class="cb">&#9744;</span> Day 14 — Full mock + review</li>
+</ul>
+<h3 id="5-day-plan">5-day plan</h3>
+<ul>
+<li><span class="cb">&#9744;</span> Day 1 — Notes 01–02</li>
+<li><span class="cb">&#9744;</span> Day 2 — Notes 03–04</li>
+<li><span class="cb">&#9744;</span> Day 3 — Notes 05–06</li>
+<li><span class="cb">&#9744;</span> Day 4 — Notes 07–08</li>
+<li><span class="cb">&#9744;</span> Day 5 — Notes 09–11 + mock</li>
+</ul>
+<h3 id="48-hour-plan">48-hour plan</h3>
+<ul>
+<li><span class="cb">&#9744;</span> Read the cheat sheet</li>
+<li><span class="cb">&#9744;</span> Read Notes 01–06</li>
+<li><span class="cb">&#9744;</span> Do Q1–Q60</li>
+<li><span class="cb">&#9744;</span> Read Notes 07–11</li>
+<li><span class="cb">&#9744;</span> Write 8 programs by hand</li>
+<li><span class="cb">&#9744;</span> Sit Mock 1 and mark it</li>
+<li><span class="cb">&#9744;</span> Review weak sections + sleep</li>
+</ul>
+<hr>
+<h2 id="8-final-7-day-checklist">8. Final 7-day checklist</h2>
+<h3 id="knowledge">Knowledge</h3>
+<ul>
+<li><span class="cb">&#9744;</span> I can define program, programming, language, algorithm, pseudocode, flowchart</li>
+<li><span class="cb">&#9744;</span> I can list the 8 development phases in order</li>
+<li><span class="cb">&#9744;</span> I can explain compiler vs interpreter (4 differences)</li>
+<li><span class="cb">&#9744;</span> I can convert decimal ↔ binary ↔ octal ↔ hex without help</li>
+<li><span class="cb">&#9744;</span> I can do 8-bit two's complement</li>
+<li><span class="cb">&#9744;</span> I can state sizes and format specifiers for the main types</li>
+<li><span class="cb">&#9744;</span> I can reproduce the operator precedence table</li>
+<li><span class="cb">&#9744;</span> I can write if/else-if/switch from memory</li>
+<li><span class="cb">&#9744;</span> I can write while/do-while/for and nested loops</li>
+<li><span class="cb">&#9744;</span> I can write and call functions, including a recursive one</li>
+<li><span class="cb">&#9744;</span> I can declare and process 1D and 2D arrays</li>
+<li><span class="cb">&#9744;</span> I can use strings and the main <code>&lt;string.h&gt;</code> functions</li>
+<li><span class="cb">&#9744;</span> I can use <code>&amp;</code>, <code>*</code>, pointer arithmetic and pass by reference</li>
+<li><span class="cb">&#9744;</span> I can define a struct, array of structs, <code>typedef</code> and <code>-&gt;</code></li>
+<li><span class="cb">&#9744;</span> I can explain struct vs union</li>
+<li><span class="cb">&#9744;</span> I can open, write, read and close a file</li>
+<li><span class="cb">&#9744;</span> I can format a report with widths and precision</li>
+</ul>
+<h3 id="exam-technique">Exam technique</h3>
+<ul>
+<li><span class="cb">&#9744;</span> I have attempted a full 70-mark paper in 2 hours</li>
+<li><span class="cb">&#9744;</span> I know to do definitions first, then tracing, then programs</li>
+<li><span class="cb">&#9744;</span> I always write declarations, input, process, output and <code>return 0;</code></li>
+<li><span class="cb">&#9744;</span> I check every <code>scanf</code> for <code>&amp;</code></li>
+<li><span class="cb">&#9744;</span> I dry-run every program with a small example</li>
+<li><span class="cb">&#9744;</span> I leave no question blank</li>
+</ul>
+<hr>
+<h2 id="9-last-day-page">9. Last-day page</h2>
+<p>Write the five things you keep forgetting:</p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p><strong>On exam day:</strong> sleep, eat, arrive early, read the whole paper first, allocate time by marks, and start with the questions you know best.</p>
+
+  </article>
+<nav class="pager"><a class="prev" href="CHEAT_SHEET.html"><span class="dir">&larr; Previous</span><span class="name">Cheat sheet</span></a><a class="next" href="SETUP_AND_RUN.html"><span class="dir">Next &rarr;</span><span class="name">Setup: run C on this PC</span></a></nav>
+  <footer class="foot">
+    CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
+  </footer>
+</main>
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  <a href="#1-exam-details">1. Exam details</a><a href="#2-topic-mastery">2. Topic mastery</a><a href="#weak-topic-action-plan" class="toc-h3">Weak-topic action plan</a><a href="#3-question-bank-log">3. Question bank log</a><a href="#4-lab-task-log">4. Lab task log</a><a href="#5-mock-exam-record">5. Mock exam record</a><a href="#after-each-mock-answer-these" class="toc-h3">After each mock, answer these</a><a href="#6-error-log">6. Error log</a><a href="#most-common-errors-checklist" class="toc-h3">Most common errors checklist</a><a href="#7-study-plan-checklist">7. Study-plan checklist</a><a href="#14-day-plan" class="toc-h3">14-day plan</a><a href="#5-day-plan" class="toc-h3">5-day plan</a><a href="#48-hour-plan" class="toc-h3">48-hour plan</a><a href="#8-final-7-day-checklist">8. Final 7-day checklist</a><a href="#knowledge" class="toc-h3">Knowledge</a><a href="#exam-technique" class="toc-h3">Exam technique</a><a href="#9-last-day-page">9. Last-day page</a>
+</aside>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('csc112-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '\u2600' : '\u263D';
+    try { localStorage.setItem('csc112-theme', next); } catch (e) {}
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // highlight the current section in the right-hand table of contents
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (links.length) {
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    window.addEventListener('scroll', function () {
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i] && heads[i].getBoundingClientRect().top < 120) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }, { passive: true });
+  }
+
+  // on phones, start with the contents menu collapsed
+  var det = document.querySelector('.nav-details');
+  if (det && window.innerWidth < 1000) det.removeAttribute('open');
+})();
+</script>
+</body>
+</html>

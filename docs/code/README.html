@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code Examples · CSC 112 Revision</title>
+<meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
+<link rel="stylesheet" href="../assets/notes.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">C</span>
+    <span class="brand-text"><strong>CSC 112</strong><span>Revision Notes</span></span>
+  </a>
+  <details class="nav-details" open>
+    <summary>Contents</summary>
+    <div class="nav-group"><div class="nav-head"></div><a href="../START_HERE.html">Start here (pack index)</a><a href="../YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="../CHEAT_SHEET.html">Cheat sheet</a><a href="../PROGRESS_TRACKER.html">Progress tracker</a><a href="../SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="../notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="../notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="../notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="../notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="../notes/05_control_statements.html">05 · Control statements</a><a href="../notes/06_loops.html">06 · Loops</a><a href="../notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="../notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="../notes/09_pointers.html">09 · Pointers</a><a href="../notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="../notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="../practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="../practice/QUESTION_BANK.html">Question bank (96)</a><a href="../practice/ANSWER_KEY.html">Answer key</a><a href="../practice/LAB_TASKS.html">Lab tasks (25)</a><a href="../practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="../practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="../practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="../code/README.html" class="active">Program list (22 examples)</a></div>
+  </details>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <span class="crumb">Code <b>&rsaquo;</b> README</span>
+    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+  </div>
+  <article class="content">
+<h1 id="code-examples">Code Examples</h1>
+<p>All programs are standard C (C99 or later) and compile with:</p>
+<pre class="code" data-lang="bash"><code>gcc -Wall -Wextra program.c -o program</code></pre>
+<p>Run:</p>
+<pre class="code" data-lang="bash"><code>./program          # Linux / macOS
+program.exe        # Windows</code></pre>
+<p>Or paste any file into &lt;https://www.onlinegdb.com/online_c_compiler&gt; and press <strong>Run</strong>.</p>
+<h2 id="index">Index</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">File</th><th style="text-align:left">Topic</th><th style="text-align:left">What it demonstrates</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>hello.c</code></td><td style="text-align:left">C basics</td><td style="text-align:left">Minimal program, <code>printf</code>, <code>return 0</code></td></tr>
+<tr><td style="text-align:left"><code>add_two.c</code></td><td style="text-align:left">Input/output</td><td style="text-align:left"><code>scanf</code>, <code>&amp;</code>, integer addition</td></tr>
+<tr><td style="text-align:left"><code>area_circle.c</code></td><td style="text-align:left">Data types</td><td style="text-align:left"><code>double</code>, <code>#define</code>, formatted output</td></tr>
+<tr><td style="text-align:left"><code>data_types.c</code></td><td style="text-align:left">Data types</td><td style="text-align:left">Sizes, ranges, ASCII, integer division, <code>sizeof</code></td></tr>
+<tr><td style="text-align:left"><code>operators.c</code></td><td style="text-align:left">Operators</td><td style="text-align:left">Arithmetic, relational, logical, bitwise, prefix/postfix</td></tr>
+<tr><td style="text-align:left"><code>largest3.c</code></td><td style="text-align:left">Selection</td><td style="text-align:left"><code>if-else if</code>, logical AND</td></tr>
+<tr><td style="text-align:left"><code>grade_switch.c</code></td><td style="text-align:left">Selection</td><td style="text-align:left"><code>switch</code>, <code>break</code>, <code>default</code></td></tr>
+<tr><td style="text-align:left"><code>sum_n.c</code></td><td style="text-align:left">Loops</td><td style="text-align:left"><code>for</code>, accumulation</td></tr>
+<tr><td style="text-align:left"><code>factorial.c</code></td><td style="text-align:left">Loops</td><td style="text-align:left"><code>for</code>, <code>long long</code></td></tr>
+<tr><td style="text-align:left"><code>reverse_number.c</code></td><td style="text-align:left">Loops</td><td style="text-align:left"><code>while</code>, <code>%</code>, <code>/</code></td></tr>
+<tr><td style="text-align:left"><code>prime_check.c</code></td><td style="text-align:left">Loops</td><td style="text-align:left"><code>for</code>, <code>break</code>, flag</td></tr>
+<tr><td style="text-align:left"><code>star_pyramid.c</code></td><td style="text-align:left">Nested loops</td><td style="text-align:left">Rows, spaces, stars</td></tr>
+<tr><td style="text-align:left"><code>functions.c</code></td><td style="text-align:left">Functions</td><td style="text-align:left">Prototypes, four categories, parameters</td></tr>
+<tr><td style="text-align:left"><code>recursion.c</code></td><td style="text-align:left">Recursion</td><td style="text-align:left">Factorial, Fibonacci, digit sum, GCD, power</td></tr>
+<tr><td style="text-align:left"><code>array_stats.c</code></td><td style="text-align:left">1D arrays</td><td style="text-align:left">Input, sum, average, max, min, reverse</td></tr>
+<tr><td style="text-align:left"><code>bubble_sort.c</code></td><td style="text-align:left">Arrays</td><td style="text-align:left">Bubble sort, swapping</td></tr>
+<tr><td style="text-align:left"><code>matrix_ops.c</code></td><td style="text-align:left">2D arrays</td><td style="text-align:left">Addition, multiplication, transpose</td></tr>
+<tr><td style="text-align:left"><code>string_demo.c</code></td><td style="text-align:left">Strings</td><td style="text-align:left">Length, reverse, palindrome, vowels, uppercase</td></tr>
+<tr><td style="text-align:left"><code>pointer_swap.c</code></td><td style="text-align:left">Pointers</td><td style="text-align:left">Call by value vs call by reference, pointer arithmetic</td></tr>
+<tr><td style="text-align:left"><code>struct_student.c</code></td><td style="text-align:left">Structures</td><td style="text-align:left"><code>typedef struct</code>, array of structs, <code>-&gt;</code></td></tr>
+<tr><td style="text-align:left"><code>file_records.c</code></td><td style="text-align:left">Files</td><td style="text-align:left"><code>fopen</code>, <code>fprintf</code>, <code>fscanf</code>, <code>fclose</code></td></tr>
+<tr><td style="text-align:left"><code>report_table.c</code></td><td style="text-align:left">Formatting</td><td style="text-align:left">Width, precision, aligned report, totals</td></tr>
+</tbody></table></div>
+<h2 id="suggested-order">Suggested order</h2>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p>For every program: <strong>predict the output first</strong>, then run it, then change one thing and predict again.</p>
+
+  </article>
+<nav class="pager"><a class="prev" href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html"><span class="dir">&larr; Previous</span><span class="name">Mock exam 2 — marking</span></a><span class="spacer"></span></nav>
+  <footer class="foot">
+    CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
+  </footer>
+</main>
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  <a href="#index">Index</a><a href="#suggested-order">Suggested order</a>
+</aside>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('csc112-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '\u2600' : '\u263D';
+    try { localStorage.setItem('csc112-theme', next); } catch (e) {}
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // highlight the current section in the right-hand table of contents
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (links.length) {
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    window.addEventListener('scroll', function () {
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i] && heads[i].getBoundingClientRect().top < 120) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }, { passive: true });
+  }
+
+  // on phones, start with the contents menu collapsed
+  var det = document.querySelector('.nav-details');
+  if (det && window.innerWidth < 1000) det.removeAttribute('open');
+})();
+</script>
+</body>
+</html>

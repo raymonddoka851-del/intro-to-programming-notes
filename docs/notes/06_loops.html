@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Note 06 — Loops (Iteration) · CSC 112 Revision</title>
+<meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
+<link rel="stylesheet" href="../assets/notes.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">C</span>
+    <span class="brand-text"><strong>CSC 112</strong><span>Revision Notes</span></span>
+  </a>
+  <details class="nav-details" open>
+    <summary>Contents</summary>
+    <div class="nav-group"><div class="nav-head"></div><a href="../START_HERE.html">Start here (pack index)</a><a href="../YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="../CHEAT_SHEET.html">Cheat sheet</a><a href="../PROGRESS_TRACKER.html">Progress tracker</a><a href="../SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="../notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="../notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="../notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="../notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="../notes/05_control_statements.html">05 · Control statements</a><a href="../notes/06_loops.html" class="active">06 · Loops</a><a href="../notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="../notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="../notes/09_pointers.html">09 · Pointers</a><a href="../notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="../notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="../practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="../practice/QUESTION_BANK.html">Question bank (96)</a><a href="../practice/ANSWER_KEY.html">Answer key</a><a href="../practice/LAB_TASKS.html">Lab tasks (25)</a><a href="../practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="../practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="../practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="../code/README.html">Program list (22 examples)</a></div>
+  </details>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <span class="crumb">Notes <b>&rsaquo;</b> 06_loops</span>
+    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+  </div>
+  <article class="content">
+<h1 id="note-06-loops-iteration">Note 06 — Loops (Iteration)</h1>
+<blockquote><p><strong>Covers outline Week 8</strong> (for, do..while, while..do, goto).</p></blockquote>
+<hr>
+<h2 id="1-why-loops">1. Why loops?</h2>
+<p>A loop repeats a block of statements while a condition remains true.</p>
+<p>Without a loop:</p>
+<pre class="code" data-lang="c"><code><span class="tok-fn">printf</span>(<span class="tok-str">&quot;1\n&quot;</span>);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;2\n&quot;</span>);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;3\n&quot;</span>);
+<span class="tok-com">/* ... 100 lines ... */</span></code></pre>
+<p>With a loop:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">for</span> (<span class="tok-kw">int</span> i = <span class="tok-num">1</span>; i &lt;= <span class="tok-num">100</span>; i++)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, i);</code></pre>
+<p>Loops are used for:</p>
+<ul>
+<li>Counting (sum, average, factorial).</li>
+<li>Processing a sequence of inputs (marks, transactions).</li>
+<li>Searching and sorting.</li>
+<li>Repeating a menu until the user quits.</li>
+<li>Generating patterns and tables.</li>
+</ul>
+<hr>
+<h2 id="2-the-three-parts-of-every-loop">2. The three parts of every loop</h2>
+<p>Every correct loop has:</p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<pre class="code"><code>   initialise
+       │
+       ▼
+   ┌─────────────┐
+   │  condition? │◄────────┐
+   └──┬───────┬──┘         │
+    true     false         │
+      │        │            │
+      ▼        ▼            │
+   body ───► update ────────┘
+      │
+      ▼
+   after loop</code></pre>
+<p><strong>If any part is missing or wrong, you get an infinite loop.</strong></p>
+<hr>
+<h2 id="3-the-while-loop">3. The <code>while</code> loop</h2>
+<h3 id="31-syntax">3.1 Syntax</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">while</span> (condition)
+{
+    <span class="tok-com">/* body */</span>
+}</code></pre>
+<h3 id="32-how-it-works">3.2 How it works</h3>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p>Because the condition is tested <strong>before</strong> the body, <code>while</code> is an <strong>entry-controlled</strong> (pre-test) loop. If the condition is false at the start, the body <strong>never runs</strong>.</p>
+<h3 id="33-example-count-from-1-to-5">3.3 Example: count from 1 to 5</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> i = <span class="tok-num">1</span>;
+
+    <span class="tok-kw">while</span> (i &lt;= <span class="tok-num">5</span>)
+    {
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i);
+        i++;
+    }
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n&quot;</span>);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Output:</strong> <code>1 2 3 4 5</code></p>
+<p><strong>Trace</strong></p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Check</th><th style="text-align:left"><code>i</code></th><th style="text-align:left">Action</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">1 ≤ 5 true</td><td style="text-align:left">1</td><td style="text-align:left">print 1, i=2</td></tr>
+<tr><td style="text-align:left">2 ≤ 5 true</td><td style="text-align:left">2</td><td style="text-align:left">print 2, i=3</td></tr>
+<tr><td style="text-align:left">3 ≤ 5 true</td><td style="text-align:left">3</td><td style="text-align:left">print 3, i=4</td></tr>
+<tr><td style="text-align:left">4 ≤ 5 true</td><td style="text-align:left">4</td><td style="text-align:left">print 4, i=5</td></tr>
+<tr><td style="text-align:left">5 ≤ 5 true</td><td style="text-align:left">5</td><td style="text-align:left">print 5, i=6</td></tr>
+<tr><td style="text-align:left">6 ≤ 5 false</td><td style="text-align:left">6</td><td style="text-align:left">exit</td></tr>
+</tbody></table></div>
+<h3 id="34-example-sum-of-the-first-n-natural-numbers">3.4 Example: sum of the first N natural numbers</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> n, i = <span class="tok-num">1</span>, sum = <span class="tok-num">0</span>;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter N: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+
+    <span class="tok-kw">while</span> (i &lt;= n)
+    {
+        sum = sum + i;
+        i++;
+    }
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Sum = %d\n&quot;</span>, sum);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Input:</strong> <code>5</code> → <strong>Output:</strong> <code>Sum = 15</code> (1+2+3+4+5).</p>
+<h3 id="35-example-sentinel-controlled-loop">3.5 Example: sentinel-controlled loop</h3>
+<p>Read numbers until the user enters <code>0</code>:</p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> num, sum = <span class="tok-num">0</span>, count = <span class="tok-num">0</span>;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter numbers (0 to stop): &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;num);
+
+    <span class="tok-kw">while</span> (num != <span class="tok-num">0</span>)
+    {
+        sum += num;
+        count++;
+        <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;num);
+    }
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Count = %d, Sum = %d\n&quot;</span>, count, sum);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<blockquote><p>A <strong>sentinel</strong> is a special value that marks the end of input. It must be a value that cannot be valid data.</p></blockquote>
+<hr>
+<h2 id="4-the-do-while-loop">4. The <code>do-while</code> loop</h2>
+<h3 id="41-syntax">4.1 Syntax</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">do</span>
+{
+    <span class="tok-com">/* body */</span>
+} <span class="tok-kw">while</span> (condition);</code></pre>
+<p>Note the <strong>semicolon</strong> after <code>while (condition);</code>.</p>
+<h3 id="42-how-it-works">4.2 How it works</h3>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p>The condition is tested <strong>after</strong> the body, so <code>do-while</code> is <strong>exit-controlled</strong> (post-test). The body always runs <strong>at least once</strong>, even if the condition is false.</p>
+<h3 id="43-example-menu-that-runs-at-least-once">4.3 Example: menu that runs at least once</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> choice;
+
+    <span class="tok-kw">do</span>
+    {
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n1. Say hello\n&quot;</span>);
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;2. Say goodbye\n&quot;</span>);
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;0. Quit\n&quot;</span>);
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Choice: &quot;</span>);
+        <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;choice);
+
+        <span class="tok-kw">switch</span> (choice)
+        {
+            <span class="tok-kw">case</span> <span class="tok-num">1</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Hello!\n&quot;</span>); <span class="tok-kw">break</span>;
+            <span class="tok-kw">case</span> <span class="tok-num">2</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Goodbye!\n&quot;</span>); <span class="tok-kw">break</span>;
+            <span class="tok-kw">case</span> <span class="tok-num">0</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Exiting...\n&quot;</span>); <span class="tok-kw">break</span>;
+            <span class="tok-kw">default</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Invalid choice\n&quot;</span>);
+        }
+    } <span class="tok-kw">while</span> (choice != <span class="tok-num">0</span>);
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<h3 id="44-example-add-numbers-until-0">4.4 Example: add numbers until 0</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> num, sum = <span class="tok-num">0</span>;
+
+    <span class="tok-kw">do</span>
+    {
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter a number (0 to stop): &quot;</span>);
+        <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;num);
+        sum += num;
+    } <span class="tok-kw">while</span> (num != <span class="tok-num">0</span>);
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Sum = %d\n&quot;</span>, sum);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Note:</strong> this adds the final <code>0</code>, which does not change the sum.</p>
+<h3 id="45-while-vs-do-while">4.5 <code>while</code> vs <code>do-while</code></h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left"><code>while</code></th><th style="text-align:left"><code>do-while</code></th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Tests condition <strong>before</strong> body</td><td style="text-align:left">Tests condition <strong>after</strong> body</td></tr>
+<tr><td style="text-align:left">Body may run <strong>0</strong> times</td><td style="text-align:left">Body runs <strong>at least once</strong></td></tr>
+<tr><td style="text-align:left">Entry-controlled</td><td style="text-align:left">Exit-controlled</td></tr>
+<tr><td style="text-align:left"><code>while (cond) { ... }</code></td><td style="text-align:left"><code>do { ... } while (cond);</code></td></tr>
+</tbody></table></div>
+<p><strong>Exam favourite:</strong> &quot;What is the output?&quot;</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> i = <span class="tok-num">10</span>;
+<span class="tok-kw">while</span> (i &lt; <span class="tok-num">5</span>)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;A&quot;</span>);</code></pre>
+<p>→ prints <strong>nothing</strong>.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> i = <span class="tok-num">10</span>;
+<span class="tok-kw">do</span>
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;A&quot;</span>);
+<span class="tok-kw">while</span> (i &lt; <span class="tok-num">5</span>);</code></pre>
+<p>→ prints <strong>A once</strong>.</p>
+<hr>
+<h2 id="5-the-for-loop">5. The <code>for</code> loop</h2>
+<h3 id="51-syntax">5.1 Syntax</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">for</span> (initialisation; condition; update)
+{
+    <span class="tok-com">/* body */</span>
+}</code></pre>
+<p>All three parts are on one line:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">for</span> (<span class="tok-kw">int</span> i = <span class="tok-num">1</span>; i &lt;= <span class="tok-num">5</span>; i++)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i);</code></pre>
+<h3 id="52-order-of-execution">5.2 Order of execution</h3>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<pre class="code"><code>i = 1
+  ↓
+i &lt;= 5? ── no ──► exit
+  │ yes
+  ▼
+body
+  ↓
+i++
+  └────────────► back to condition</code></pre>
+<h3 id="53-equivalent-loops">5.3 Equivalent loops</h3>
+<p>These three all print 1 to 5:</p>
+<pre class="code" data-lang="c"><code><span class="tok-com">/* for */</span>
+<span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= <span class="tok-num">5</span>; i++)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i);
+
+<span class="tok-com">/* while */</span>
+i = <span class="tok-num">1</span>;
+<span class="tok-kw">while</span> (i &lt;= <span class="tok-num">5</span>)
+{
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i);
+    i++;
+}
+
+<span class="tok-com">/* do-while */</span>
+i = <span class="tok-num">1</span>;
+<span class="tok-kw">do</span>
+{
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i);
+    i++;
+} <span class="tok-kw">while</span> (i &lt;= <span class="tok-num">5</span>);</code></pre>
+<h3 id="54-flexible-forms">5.4 Flexible forms</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; n; i++)          <span class="tok-com">/* 0 to n-1 — standard array loop */</span>
+<span class="tok-kw">for</span> (i = n; i &gt;= <span class="tok-num">1</span>; i--)         <span class="tok-com">/* countdown */</span>
+<span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt;= <span class="tok-num">10</span>; i += <span class="tok-num">2</span>)     <span class="tok-com">/* step by 2 */</span>
+<span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= n; i *= <span class="tok-num">2</span>)      <span class="tok-com">/* doubling */</span>
+<span class="tok-kw">for</span> ( ; i &lt;= n; i++)             <span class="tok-com">/* initialisation already done */</span>
+<span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; ; i++)               <span class="tok-com">/* no condition = infinite; use break */</span>
+<span class="tok-kw">for</span> ( ; ; )                      <span class="tok-com">/* infinite loop */</span></code></pre>
+<p>Multiple expressions with the comma operator:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">for</span> (i = <span class="tok-num">1</span>, j = <span class="tok-num">10</span>; i &lt; j; i++, j--)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d %d\n&quot;</span>, i, j);</code></pre>
+<h3 id="55-example-factorial">5.5 Example: factorial</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> n, i;
+    <span class="tok-kw">long</span> <span class="tok-kw">long</span> factorial = <span class="tok-num">1</span>;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter a positive integer: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+
+    <span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= n; i++)
+        factorial *= i;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d! = %lld\n&quot;</span>, n, factorial);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Input:</strong> <code>5</code> → <strong>Output:</strong> <code>5! = 120</code></p>
+<blockquote><p>Use <code>long long</code> because factorials grow very fast. <code>13!</code> already exceeds a 32-bit <code>int</code>.</p></blockquote>
+<h3 id="56-example-multiplication-table">5.6 Example: multiplication table</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> n, i;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter a number: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+
+    <span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= <span class="tok-num">10</span>; i++)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d x %2d = %3d\n&quot;</span>, n, i, n * i);
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Input:</strong> <code>7</code></p>
+<pre class="code"><code>7 x  1 =   7
+7 x  2 =  14
+...
+7 x 10 =  70</code></pre>
+<hr>
+<h2 id="6-nested-loops">6. Nested loops</h2>
+<p>A loop inside another loop. The <strong>outer</strong> loop controls rows; the <strong>inner</strong> loop controls columns/items in each row.</p>
+<h3 id="61-syntax">6.1 Syntax</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= rows; i++)
+{
+    <span class="tok-kw">for</span> (j = <span class="tok-num">1</span>; j &lt;= columns; j++)
+    {
+        <span class="tok-com">/* body */</span>
+    }
+    <span class="tok-com">/* statements after inner loop, once per outer iteration */</span>
+}</code></pre>
+<p><strong>The inner loop completes all its iterations for each single outer iteration.</strong></p>
+<h3 id="62-example-multiplication-table-grid">6.2 Example: multiplication table grid</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> i, j;
+
+    <span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= <span class="tok-num">5</span>; i++)
+    {
+        <span class="tok-kw">for</span> (j = <span class="tok-num">1</span>; j &lt;= <span class="tok-num">5</span>; j++)
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%4d&quot;</span>, i * j);
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n&quot;</span>);
+    }
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Output</strong></p>
+<pre class="code"><code>   1   2   3   4   5
+   2   4   6   8  10
+   3   6   9  12  15
+   4   8  12  16  20
+   5  10  15  20  25</code></pre>
+<h3 id="63-example-star-triangle">6.3 Example: star triangle</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> rows, i, j;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter number of rows: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;rows);
+
+    <span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= rows; i++)
+    {
+        <span class="tok-kw">for</span> (j = <span class="tok-num">1</span>; j &lt;= i; j++)
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;*&quot;</span>);
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n&quot;</span>);
+    }
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Input:</strong> <code>5</code></p>
+<pre class="code"><code>*
+**
+***
+****
+*****</code></pre>
+<h3 id="64-example-centred-pyramid">6.4 Example: centred pyramid</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> rows, i, space, star;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter number of rows: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;rows);
+
+    <span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= rows; i++)
+    {
+        <span class="tok-kw">for</span> (space = <span class="tok-num">1</span>; space &lt;= rows - i; space++)
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot; &quot;</span>);
+
+        <span class="tok-kw">for</span> (star = <span class="tok-num">1</span>; star &lt;= <span class="tok-num">2</span> * i - <span class="tok-num">1</span>; star++)
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;*&quot;</span>);
+
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n&quot;</span>);
+    }
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Input:</strong> <code>5</code></p>
+<pre class="code"><code>    *
+   ***
+  *****
+ *******
+*********</code></pre>
+<h3 id="65-example-prime-numbers-from-2-to-50">6.5 Example: prime numbers from 2 to 50</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> i, j, is_prime;
+
+    <span class="tok-kw">for</span> (i = <span class="tok-num">2</span>; i &lt;= <span class="tok-num">50</span>; i++)
+    {
+        is_prime = <span class="tok-num">1</span>;
+
+        <span class="tok-kw">for</span> (j = <span class="tok-num">2</span>; j * j &lt;= i; j++)
+        {
+            <span class="tok-kw">if</span> (i % j == <span class="tok-num">0</span>)
+            {
+                is_prime = <span class="tok-num">0</span>;
+                <span class="tok-kw">break</span>;
+            }
+        }
+
+        <span class="tok-kw">if</span> (is_prime)
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i);
+    }
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n&quot;</span>);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Output:</strong> <code>2 3 5 7 11 13 17 19 23 29 31 37 41 43 47</code></p>
+<hr>
+<h2 id="7-break-continue-and-goto">7. <code>break</code>, <code>continue</code> and <code>goto</code></h2>
+<h3 id="71-break">7.1 <code>break</code></h3>
+<p>Immediately exits the <strong>innermost</strong> loop or <code>switch</code>. Execution continues after that loop.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= <span class="tok-num">10</span>; i++)
+{
+    <span class="tok-kw">if</span> (i == <span class="tok-num">5</span>)
+        <span class="tok-kw">break</span>;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i);
+}</code></pre>
+<p><strong>Output:</strong> <code>1 2 3 4</code></p>
+<p><strong>Use:</strong> stop searching when you find a match; exit a menu; stop on error.</p>
+<h3 id="72-continue">7.2 <code>continue</code></h3>
+<p>Skips the rest of the <strong>current iteration</strong> and jumps to the next iteration (in a <code>for</code> loop, the update runs first).</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= <span class="tok-num">5</span>; i++)
+{
+    <span class="tok-kw">if</span> (i == <span class="tok-num">3</span>)
+        <span class="tok-kw">continue</span>;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i);
+}</code></pre>
+<p><strong>Output:</strong> <code>1 2 4 5</code></p>
+<p><strong>Use:</strong> skip invalid or unwanted values.</p>
+<h3 id="73-break-vs-continue">7.3 <code>break</code> vs <code>continue</code></h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left"><code>break</code></th><th style="text-align:left"><code>continue</code></th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Exits the loop completely</td><td style="text-align:left">Skips to the next iteration</td></tr>
+<tr><td style="text-align:left">Control goes after the loop</td><td style="text-align:left">Control goes to the loop's next test/update</td></tr>
+<tr><td style="text-align:left">Also works in <code>switch</code></td><td style="text-align:left">Does <strong>not</strong> work in <code>switch</code></td></tr>
+</tbody></table></div>
+<h3 id="74-goto">7.4 <code>goto</code></h3>
+<p>Transfers control to a <strong>label</strong> anywhere in the same function.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">goto</span> label;
+...
+label:
+    statement;</code></pre>
+<p><strong>Example</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> i = <span class="tok-num">1</span>;
+
+start:
+    <span class="tok-kw">if</span> (i &lt;= <span class="tok-num">5</span>)
+    {
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i);
+        i++;
+        <span class="tok-kw">goto</span> start;
+    }
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n&quot;</span>);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Output:</strong> <code>1 2 3 4 5</code></p>
+<p><strong>Use <code>goto</code> sparingly.</strong> It can make programs hard to read (&quot;spaghetti code&quot;). Kernighan and Ritchie called it &quot;infinitely abusable&quot;. A common acceptable use is jumping to a single cleanup block on error.</p>
+<h3 id="75-break-in-nested-loops">7.5 <code>break</code> in nested loops</h3>
+<p><code>break</code> only exits the <strong>inner</strong> loop:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= <span class="tok-num">3</span>; i++)
+{
+    <span class="tok-kw">for</span> (j = <span class="tok-num">1</span>; j &lt;= <span class="tok-num">3</span>; j++)
+    {
+        <span class="tok-kw">if</span> (j == <span class="tok-num">2</span>)
+            <span class="tok-kw">break</span>;
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d%d &quot;</span>, i, j);
+    }
+}</code></pre>
+<p><strong>Output:</strong> <code>11 21 31</code> (inner loop breaks at j=2 each time; outer continues).</p>
+<p>To exit both loops, use a flag:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> found = <span class="tok-num">0</span>;
+<span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; n &amp;&amp; !found; i++)
+    <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; m; j++)
+        <span class="tok-kw">if</span> (a[i][j] == target)
+        {
+            found = <span class="tok-num">1</span>;
+            <span class="tok-kw">break</span>;
+        }</code></pre>
+<hr>
+<h2 id="8-classic-loop-programs-know-these-by-heart">8. Classic loop programs (know these by heart)</h2>
+<h3 id="81-count-digits-in-a-number">8.1 Count digits in a number</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> n, count = <span class="tok-num">0</span>;
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+<span class="tok-kw">if</span> (n == <span class="tok-num">0</span>) count = <span class="tok-num">1</span>;
+<span class="tok-kw">while</span> (n != <span class="tok-num">0</span>)
+{
+    n /= <span class="tok-num">10</span>;
+    count++;
+}
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;Digits = %d\n&quot;</span>, count);</code></pre>
+<h3 id="82-sum-of-digits">8.2 Sum of digits</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> n, sum = <span class="tok-num">0</span>;
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+<span class="tok-kw">while</span> (n != <span class="tok-num">0</span>)
+{
+    sum += n % <span class="tok-num">10</span>;
+    n /= <span class="tok-num">10</span>;
+}
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;Sum of digits = %d\n&quot;</span>, sum);</code></pre>
+<h3 id="83-reverse-a-number">8.3 Reverse a number</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> n, reverse = <span class="tok-num">0</span>, digit;
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+<span class="tok-kw">while</span> (n != <span class="tok-num">0</span>)
+{
+    digit = n % <span class="tok-num">10</span>;
+    reverse = reverse * <span class="tok-num">10</span> + digit;
+    n /= <span class="tok-num">10</span>;
+}
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;Reverse = %d\n&quot;</span>, reverse);</code></pre>
+<p><strong>Trace for 1234:</strong></p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left"><code>n</code></th><th style="text-align:left"><code>digit</code></th><th style="text-align:left"><code>reverse</code></th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">1234</td><td style="text-align:left">4</td><td style="text-align:left">4</td></tr>
+<tr><td style="text-align:left">123</td><td style="text-align:left">3</td><td style="text-align:left">43</td></tr>
+<tr><td style="text-align:left">12</td><td style="text-align:left">2</td><td style="text-align:left">432</td></tr>
+<tr><td style="text-align:left">1</td><td style="text-align:left">1</td><td style="text-align:left">4321</td></tr>
+<tr><td style="text-align:left">0</td><td style="text-align:left">—</td><td style="text-align:left">stop</td></tr>
+</tbody></table></div>
+<h3 id="84-palindrome-number">8.4 Palindrome number</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> n, original, reverse = <span class="tok-num">0</span>;
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+original = n;
+<span class="tok-kw">while</span> (n != <span class="tok-num">0</span>)
+{
+    reverse = reverse * <span class="tok-num">10</span> + n % <span class="tok-num">10</span>;
+    n /= <span class="tok-num">10</span>;
+}
+<span class="tok-kw">if</span> (original == reverse)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Palindrome\n&quot;</span>);
+<span class="tok-kw">else</span>
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Not a palindrome\n&quot;</span>);</code></pre>
+<h3 id="85-prime-check">8.5 Prime check</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> n, i, is_prime = <span class="tok-num">1</span>;
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+
+<span class="tok-kw">if</span> (n &lt;= <span class="tok-num">1</span>)
+    is_prime = <span class="tok-num">0</span>;
+<span class="tok-kw">else</span>
+    <span class="tok-kw">for</span> (i = <span class="tok-num">2</span>; i * i &lt;= n; i++)
+        <span class="tok-kw">if</span> (n % i == <span class="tok-num">0</span>)
+        {
+            is_prime = <span class="tok-num">0</span>;
+            <span class="tok-kw">break</span>;
+        }
+
+<span class="tok-kw">if</span> (is_prime)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Prime\n&quot;</span>);
+<span class="tok-kw">else</span>
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Not prime\n&quot;</span>);</code></pre>
+<h3 id="86-fibonacci-series">8.6 Fibonacci series</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> n, i, a = <span class="tok-num">0</span>, b = <span class="tok-num">1</span>, c;
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+
+<span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= n; i++)
+{
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, a);
+    c = a + b;
+    a = b;
+    b = c;
+}</code></pre>
+<p><strong>For n=8:</strong> <code>0 1 1 2 3 5 8 13</code></p>
+<h3 id="87-gcd-euclids-algorithm">8.7 GCD (Euclid's algorithm)</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a, b, temp;
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d %d&quot;</span>, &amp;a, &amp;b);
+
+<span class="tok-kw">while</span> (b != <span class="tok-num">0</span>)
+{
+    temp = b;
+    b = a % b;
+    a = temp;
+}
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;GCD = %d\n&quot;</span>, a);</code></pre>
+<p><strong>Trace for 48, 18:</strong> (48,18) → (18,12) → (12,6) → (6,0) → GCD 6.</p>
+<h3 id="88-armstrong-number-3-digits">8.8 Armstrong number (3 digits)</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> n, temp, digit, sum = <span class="tok-num">0</span>;
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+temp = n;
+
+<span class="tok-kw">while</span> (temp != <span class="tok-num">0</span>)
+{
+    digit = temp % <span class="tok-num">10</span>;
+    sum += digit * digit * digit;
+    temp /= <span class="tok-num">10</span>;
+}
+
+<span class="tok-kw">if</span> (sum == n)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Armstrong\n&quot;</span>);
+<span class="tok-kw">else</span>
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Not Armstrong\n&quot;</span>);</code></pre>
+<p><code>153 = 1³ + 5³ + 3³ = 1 + 125 + 27 = 153</code>. ✓</p>
+<hr>
+<h2 id="9-loop-trace-questions-very-common">9. Loop trace questions (very common)</h2>
+<h3 id="trace-a">Trace A</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> i, sum = <span class="tok-num">0</span>;
+<span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= <span class="tok-num">4</span>; i++)
+    sum += i;
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d&quot;</span>, sum);</code></pre>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left"><code>i</code></th><th style="text-align:left"><code>sum</code></th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">1</td><td style="text-align:left">1</td></tr>
+<tr><td style="text-align:left">2</td><td style="text-align:left">3</td></tr>
+<tr><td style="text-align:left">3</td><td style="text-align:left">6</td></tr>
+<tr><td style="text-align:left">4</td><td style="text-align:left">10</td></tr>
+<tr><td style="text-align:left">5 (fails)</td><td style="text-align:left">10</td></tr>
+</tbody></table></div>
+<p><strong>Output:</strong> <code>10</code></p>
+<h3 id="trace-b">Trace B</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> i = <span class="tok-num">5</span>;
+<span class="tok-kw">while</span> (i &gt; <span class="tok-num">0</span>)
+{
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i);
+    i -= <span class="tok-num">2</span>;
+}</code></pre>
+<p><strong>Output:</strong> <code>5 3 1</code></p>
+<h3 id="trace-c">Trace C</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> i;
+<span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">3</span>; i++)
+{
+    <span class="tok-kw">for</span> (<span class="tok-kw">int</span> j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">2</span>; j++)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d%d &quot;</span>, i, j);
+}</code></pre>
+<p><strong>Output:</strong> <code>00 01 10 11 20 21</code></p>
+<h3 id="trace-d">Trace D</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> i = <span class="tok-num">0</span>;
+<span class="tok-kw">while</span> (i &lt; <span class="tok-num">5</span>)
+{
+    i++;
+    <span class="tok-kw">if</span> (i == <span class="tok-num">3</span>)
+        <span class="tok-kw">continue</span>;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i);
+}</code></pre>
+<p><strong>Output:</strong> <code>1 2 4 5</code></p>
+<h3 id="trace-e">Trace E</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> i = <span class="tok-num">1</span>;
+<span class="tok-kw">do</span>
+{
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i);
+    i++;
+} <span class="tok-kw">while</span> (i &lt;= <span class="tok-num">3</span>);</code></pre>
+<p><strong>Output:</strong> <code>1 2 3</code></p>
+<h3 id="trace-f">Trace F</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> i = <span class="tok-num">10</span>;
+<span class="tok-kw">do</span>
+{
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i);
+    i++;
+} <span class="tok-kw">while</span> (i &lt; <span class="tok-num">5</span>);</code></pre>
+<p><strong>Output:</strong> <code>10</code> (body runs once, then condition false)</p>
+<hr>
+<h2 id="10-common-loop-errors">10. Common loop errors</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Error</th><th style="text-align:left">Result</th><th style="text-align:left">Fix</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Missing initialisation</td><td style="text-align:left">Garbage start value</td><td style="text-align:left">Initialise before the loop</td></tr>
+<tr><td style="text-align:left">Missing update (<code>i++</code>)</td><td style="text-align:left"><strong>Infinite loop</strong></td><td style="text-align:left">Add the update</td></tr>
+<tr><td style="text-align:left">Semicolon after header: <code>while (i&lt;5);</code></td><td style="text-align:left">Empty body; loop does nothing useful</td><td style="text-align:left">Remove the semicolon</td></tr>
+<tr><td style="text-align:left"><code>for (i=1; i&lt;=n; i++);</code></td><td style="text-align:left">Same problem</td><td style="text-align:left">Remove the semicolon</td></tr>
+<tr><td style="text-align:left">Off-by-one: <code>i &lt;= n</code> vs <code>i &lt; n</code></td><td style="text-align:left">One extra or missing iteration</td><td style="text-align:left">Check whether n is inclusive</td></tr>
+<tr><td style="text-align:left">Modifying the loop variable in the body</td><td style="text-align:left">Unpredictable iteration count</td><td style="text-align:left">Use a separate variable</td></tr>
+<tr><td style="text-align:left">Wrong direction: <code>for (i=n; i&lt;=1; i--)</code></td><td style="text-align:left">Never runs</td><td style="text-align:left">Match condition to direction</td></tr>
+<tr><td style="text-align:left"><code>while (n != 0)</code> but <code>n</code> never changes</td><td style="text-align:left">Infinite loop</td><td style="text-align:left">Update <code>n</code></td></tr>
+<tr><td style="text-align:left"><code>float</code> loop counter</td><td style="text-align:left">Precision errors, missed iterations</td><td style="text-align:left">Use <code>int</code></td></tr>
+<tr><td style="text-align:left"><code>break</code> inside nested loop</td><td style="text-align:left">Exits only inner loop</td><td style="text-align:left">Use a flag</td></tr>
+<tr><td style="text-align:left"><code>do-while</code> missing <code>;</code></td><td style="text-align:left">Syntax error</td><td style="text-align:left">Add <code>;</code></td></tr>
+<tr><td style="text-align:left"><code>for (;;)</code></td><td style="text-align:left">Intentional infinite loop</td><td style="text-align:left">Use <code>break</code> to exit</td></tr>
+<tr><td style="text-align:left"><code>while (i &lt;= n)</code> with <code>unsigned</code> and <code>i--</code></td><td style="text-align:left">Underflow → huge value</td><td style="text-align:left">Use signed or restructure</td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="11-how-to-choose-the-right-loop">11. How to choose the right loop</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Situation</th><th style="text-align:left">Best loop</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">You know the number of iterations</td><td style="text-align:left"><code>for</code></td></tr>
+<tr><td style="text-align:left">You do not know how many times, but may run zero times</td><td style="text-align:left"><code>while</code></td></tr>
+<tr><td style="text-align:left">The body must run at least once (menu, input validation)</td><td style="text-align:left"><code>do-while</code></td></tr>
+<tr><td style="text-align:left">Iterating over an array with an index</td><td style="text-align:left"><code>for</code></td></tr>
+<tr><td style="text-align:left">Reading until a sentinel value</td><td style="text-align:left"><code>while</code> or <code>do-while</code></td></tr>
+<tr><td style="text-align:left">Infinite loop with an internal exit</td><td style="text-align:left"><code>for (;;)</code> or <code>while (1)</code></td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="12-self-test-answers-below">12. Self-test (answers below)</h2>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li> ``<code>c int i = 1; while (i &lt;= 5) { printf(&quot;%d &quot;, i); i += 2; } </code>``</li>
+<li> ``<code>c int i; for (i = 5; i &gt;= 1; i--) printf(&quot;%d &quot;, i); </code>``</li>
+<li> ``<code>c int i, j; for (i = 1; i &lt;= 2; i++) for (j = 1; j &lt;= 3; j++) printf(&quot;%d &quot;, i * j); </code>``</li>
+<li> ``<code>c int i; for (i = 1; i &lt;= 5; i++) { if (i % 2 == 0) continue; printf(&quot;%d &quot;, i); } </code>``</li>
+<li> ``<code>c int i = 10; do { printf(&quot;%d &quot;, i); i++; } while (i &lt; 5); </code>``</li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li> ``<code>c int i = 1; while (i &lt;= 3) printf(&quot;%d &quot;, i); i++; </code>``</li>
+</ol>
+<h3 id="answers">Answers</h3>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<hr>
+<p><strong>Next:</strong> <code>07_functions_and_recursion.md</code></p>
+
+  </article>
+<nav class="pager"><a class="prev" href="../notes/05_control_statements.html"><span class="dir">&larr; Previous</span><span class="name">05 · Control statements</span></a><a class="next" href="../notes/07_functions_and_recursion.html"><span class="dir">Next &rarr;</span><span class="name">07 · Functions &amp; recursion</span></a></nav>
+  <footer class="foot">
+    CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
+  </footer>
+</main>
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  <a href="#1-why-loops">1. Why loops?</a><a href="#2-the-three-parts-of-every-loop">2. The three parts of every loop</a><a href="#3-the-while-loop">3. The while loop</a><a href="#31-syntax" class="toc-h3">3.1 Syntax</a><a href="#32-how-it-works" class="toc-h3">3.2 How it works</a><a href="#33-example-count-from-1-to-5" class="toc-h3">3.3 Example: count from 1 to 5</a><a href="#34-example-sum-of-the-first-n-natural-numbers" class="toc-h3">3.4 Example: sum of the first N natural numbers</a><a href="#35-example-sentinel-controlled-loop" class="toc-h3">3.5 Example: sentinel-controlled loop</a><a href="#4-the-do-while-loop">4. The do-while loop</a><a href="#41-syntax" class="toc-h3">4.1 Syntax</a><a href="#42-how-it-works" class="toc-h3">4.2 How it works</a><a href="#43-example-menu-that-runs-at-least-once" class="toc-h3">4.3 Example: menu that runs at least once</a><a href="#44-example-add-numbers-until-0" class="toc-h3">4.4 Example: add numbers until 0</a><a href="#45-while-vs-do-while" class="toc-h3">4.5 while vs do-while</a><a href="#5-the-for-loop">5. The for loop</a><a href="#51-syntax" class="toc-h3">5.1 Syntax</a><a href="#52-order-of-execution" class="toc-h3">5.2 Order of execution</a><a href="#53-equivalent-loops" class="toc-h3">5.3 Equivalent loops</a><a href="#54-flexible-forms" class="toc-h3">5.4 Flexible forms</a><a href="#55-example-factorial" class="toc-h3">5.5 Example: factorial</a><a href="#56-example-multiplication-table" class="toc-h3">5.6 Example: multiplication table</a><a href="#6-nested-loops">6. Nested loops</a><a href="#61-syntax" class="toc-h3">6.1 Syntax</a><a href="#62-example-multiplication-table-grid" class="toc-h3">6.2 Example: multiplication table grid</a><a href="#63-example-star-triangle" class="toc-h3">6.3 Example: star triangle</a><a href="#64-example-centred-pyramid" class="toc-h3">6.4 Example: centred pyramid</a><a href="#65-example-prime-numbers-from-2-to-50" class="toc-h3">6.5 Example: prime numbers from 2 to 50</a><a href="#7-break-continue-and-goto">7. break, continue and goto</a><a href="#71-break" class="toc-h3">7.1 break</a><a href="#72-continue" class="toc-h3">7.2 continue</a><a href="#73-break-vs-continue" class="toc-h3">7.3 break vs continue</a><a href="#74-goto" class="toc-h3">7.4 goto</a><a href="#75-break-in-nested-loops" class="toc-h3">7.5 break in nested loops</a><a href="#8-classic-loop-programs-know-these-by-heart">8. Classic loop programs (know these by heart)</a><a href="#81-count-digits-in-a-number" class="toc-h3">8.1 Count digits in a number</a><a href="#82-sum-of-digits" class="toc-h3">8.2 Sum of digits</a><a href="#83-reverse-a-number" class="toc-h3">8.3 Reverse a number</a><a href="#84-palindrome-number" class="toc-h3">8.4 Palindrome number</a><a href="#85-prime-check" class="toc-h3">8.5 Prime check</a><a href="#86-fibonacci-series" class="toc-h3">8.6 Fibonacci series</a><a href="#87-gcd-euclids-algorithm" class="toc-h3">8.7 GCD (Euclid's algorithm)</a><a href="#88-armstrong-number-3-digits" class="toc-h3">8.8 Armstrong number (3 digits)</a><a href="#9-loop-trace-questions-very-common">9. Loop trace questions (very common)</a><a href="#trace-a" class="toc-h3">Trace A</a><a href="#trace-b" class="toc-h3">Trace B</a><a href="#trace-c" class="toc-h3">Trace C</a><a href="#trace-d" class="toc-h3">Trace D</a><a href="#trace-e" class="toc-h3">Trace E</a><a href="#trace-f" class="toc-h3">Trace F</a><a href="#10-common-loop-errors">10. Common loop errors</a><a href="#11-how-to-choose-the-right-loop">11. How to choose the right loop</a><a href="#12-self-test-answers-below">12. Self-test (answers below)</a><a href="#answers" class="toc-h3">Answers</a>
+</aside>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('csc112-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '\u2600' : '\u263D';
+    try { localStorage.setItem('csc112-theme', next); } catch (e) {}
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // highlight the current section in the right-hand table of contents
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (links.length) {
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    window.addEventListener('scroll', function () {
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i] && heads[i].getBoundingClientRect().top < 120) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }, { passive: true });
+  }
+
+  // on phones, start with the contents menu collapsed
+  var det = document.querySelector('.nav-details');
+  if (det && window.innerWidth < 1000) det.removeAttribute('open');
+})();
+</script>
+</body>
+</html>

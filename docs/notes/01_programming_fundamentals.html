@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Note 01 — Programming Fundamentals, Program Development &amp; Algorithms · CSC 112 Revision</title>
+<meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
+<link rel="stylesheet" href="../assets/notes.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">C</span>
+    <span class="brand-text"><strong>CSC 112</strong><span>Revision Notes</span></span>
+  </a>
+  <details class="nav-details" open>
+    <summary>Contents</summary>
+    <div class="nav-group"><div class="nav-head"></div><a href="../START_HERE.html">Start here (pack index)</a><a href="../YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="../CHEAT_SHEET.html">Cheat sheet</a><a href="../PROGRESS_TRACKER.html">Progress tracker</a><a href="../SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="../notes/01_programming_fundamentals.html" class="active">01 · Programming fundamentals</a><a href="../notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="../notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="../notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="../notes/05_control_statements.html">05 · Control statements</a><a href="../notes/06_loops.html">06 · Loops</a><a href="../notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="../notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="../notes/09_pointers.html">09 · Pointers</a><a href="../notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="../notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="../practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="../practice/QUESTION_BANK.html">Question bank (96)</a><a href="../practice/ANSWER_KEY.html">Answer key</a><a href="../practice/LAB_TASKS.html">Lab tasks (25)</a><a href="../practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="../practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="../practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="../code/README.html">Program list (22 examples)</a></div>
+  </details>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <span class="crumb">Notes <b>&rsaquo;</b> 01_programming_fundamentals</span>
+    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+  </div>
+  <article class="content">
+<h1 id="note-01-programming-fundamentals-program-development-algorit">Note 01 — Programming Fundamentals, Program Development &amp; Algorithms</h1>
+<blockquote><p><strong>Covers outline Week 1</strong> (Introduction to programming methodology) and the algorithm/flowchart part of Week 2.</p></blockquote>
+<hr>
+<h2 id="1-the-absolute-basics">1. The absolute basics</h2>
+<h3 id="key-definitions-learn-these-word-for-word">Key definitions (learn these word-for-word)</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Term</th><th style="text-align:left">Definition</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><strong>Computer</strong></td><td style="text-align:left">An electronic device that accepts data, processes it according to instructions, and produces information.</td></tr>
+<tr><td style="text-align:left"><strong>Data</strong></td><td style="text-align:left">Raw, unprocessed facts (e.g., <code>45</code>, <code>&quot;Ali&quot;</code>, <code>3.14</code>).</td></tr>
+<tr><td style="text-align:left"><strong>Information</strong></td><td style="text-align:left">Processed data that is meaningful (e.g., &quot;Average mark = 45%&quot;).</td></tr>
+<tr><td style="text-align:left"><strong>Program</strong></td><td style="text-align:left">A finite set of sequenced instructions or commands given to a computer to carry out a particular task.</td></tr>
+<tr><td style="text-align:left"><strong>Programming</strong></td><td style="text-align:left">The art and process of writing a set of instructions in a programming language to control the activities of a computer.</td></tr>
+<tr><td style="text-align:left"><strong>Programming language</strong></td><td style="text-align:left">An artificial language with its own vocabulary (keywords) and grammar (syntax) used to write instructions for a computer.</td></tr>
+<tr><td style="text-align:left"><strong>Syntax</strong></td><td style="text-align:left">The set of grammatical rules of a language (spelling, punctuation, structure).</td></tr>
+<tr><td style="text-align:left"><strong>Semantics</strong></td><td style="text-align:left">The meaning of a statement — what it actually does.</td></tr>
+<tr><td style="text-align:left"><strong>Source code</strong></td><td style="text-align:left">The program as written by the programmer (e.g., <code>hello.c</code>).</td></tr>
+<tr><td style="text-align:left"><strong>Object code</strong></td><td style="text-align:left">The machine-language translation of the source code (e.g., <code>hello.o</code>).</td></tr>
+<tr><td style="text-align:left"><strong>Executable</strong></td><td style="text-align:left">The final linked program that the computer can run (e.g., <code>hello.exe</code>).</td></tr>
+</tbody></table></div>
+<p><strong>Analogy:</strong> a program is a recipe; a programming language is the language the recipe is written in; the computer is the cook that follows it exactly — including mistakes.</p>
+<hr>
+<h2 id="2-classification-of-programming-languages">2. Classification of programming languages</h2>
+<p>There are two major levels:</p>
+<pre class="code"><code>Programming languages
+├── Low-level languages
+│   ├── Machine language (binary: 0s and 1s)
+│   └── Assembly language (mnemonics: MOV, ADD, JMP)
+└── High-level languages
+    ├── Compiled (C, C++, Pascal, Java*)
+    └── Interpreted (Python, Ruby, JavaScript)</code></pre>
+<h3 id="21-machine-language-first-generation">2.1 Machine language (first generation)</h3>
+<p>The native language of the CPU. Instructions are strings of 0s and 1s.</p>
+<p><strong>Advantages</strong></p>
+<ul>
+<li>Executed directly — <strong>no translator needed</strong>.</li>
+<li>Fast and efficient use of the computer.</li>
+</ul>
+<p><strong>Disadvantages</strong></p>
+<ul>
+<li>Very bulky and tedious to write.</li>
+<li>Difficult to read, learn and debug.</li>
+<li>Prone to errors that are hard to find.</li>
+<li><strong>Machine-dependent</strong> — runs only on the computer it was written for.</li>
+</ul>
+<h3 id="22-assembly-language-second-generation">2.2 Assembly language (second generation)</h3>
+<p>Uses <strong>mnemonics</strong> (short symbolic names) such as <code>MOV</code>, <code>ADD</code>, <code>SUB</code>, <code>JMP</code> instead of binary. A translator called an <strong>assembler</strong> converts it to machine code.</p>
+<p><strong>Advantages</strong></p>
+<ul>
+<li>Easier than machine language; complex jobs are simpler to express.</li>
+<li>Memory-efficient and fast (less execution time).</li>
+<li>Hardware-oriented; useful for critical jobs (device drivers, embedded systems).</li>
+<li>Fewer instructions needed to get a result.</li>
+</ul>
+<p><strong>Disadvantages</strong></p>
+<ul>
+<li>Still <strong>machine-dependent</strong>; the programmer must know the hardware.</li>
+<li>Cumbersome (though less than machine language).</li>
+<li>Expensive and time-consuming to develop.</li>
+</ul>
+<h3 id="23-high-level-language-third-generation-and-above">2.3 High-level language (third generation and above)</h3>
+<p>Problem-oriented, English-like language. Examples: <strong>FORTRAN, COBOL, BASIC, Pascal, C, C++, Java, Python</strong>.</p>
+<p><strong>Advantages</strong></p>
+<ul>
+<li>No knowledge of the particular computer is required.</li>
+<li><strong>Portable</strong> — the same source program can run on different machines after recompiling.</li>
+<li>Easy to learn, write, read and maintain.</li>
+<li>Supports structured and modular programming.</li>
+</ul>
+<p><strong>Disadvantages</strong></p>
+<ul>
+<li>Needs translation time (compile/interpret).</li>
+<li>Usually slower and less memory-efficient than low-level code.</li>
+<li>Cannot communicate directly with hardware (without special extensions).</li>
+</ul>
+<p><strong>Features of high-level languages:</strong> machine-independent, problem-oriented, readable, portable, and able to reflect program structure clearly.</p>
+<h3 id="24-generations-of-languages-often-a-2-mark-question">2.4 Generations of languages (often a 2-mark question)</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Generation</th><th style="text-align:left">Description</th><th style="text-align:left">Example</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">1GL</td><td style="text-align:left">Machine code</td><td style="text-align:left">Binary instructions</td></tr>
+<tr><td style="text-align:left">2GL</td><td style="text-align:left">Assembly</td><td style="text-align:left"><code>MOV AX, 5</code></td></tr>
+<tr><td style="text-align:left">3GL</td><td style="text-align:left">High-level, procedural</td><td style="text-align:left">C, Pascal, FORTRAN</td></tr>
+<tr><td style="text-align:left">4GL</td><td style="text-align:left">Very high-level, problem-oriented</td><td style="text-align:left">SQL, MATLAB</td></tr>
+<tr><td style="text-align:left">5GL</td><td style="text-align:left">AI / natural language</td><td style="text-align:left">Prolog, Lisp (logic/AI)</td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="3-translators-and-the-tools-around-them">3. Translators and the tools around them</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Tool</th><th style="text-align:left">What it does</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><strong>Assembler</strong></td><td style="text-align:left">Translates assembly language → machine code</td></tr>
+<tr><td style="text-align:left"><strong>Compiler</strong></td><td style="text-align:left">Translates a whole high-level program into machine/object code at once</td></tr>
+<tr><td style="text-align:left"><strong>Interpreter</strong></td><td style="text-align:left">Translates and executes one statement at a time</td></tr>
+<tr><td style="text-align:left"><strong>Linker</strong></td><td style="text-align:left">Joins object code with library code to produce an executable</td></tr>
+<tr><td style="text-align:left"><strong>Loader</strong></td><td style="text-align:left">Loads the executable from secondary storage into RAM for execution</td></tr>
+<tr><td style="text-align:left"><strong>Debugger</strong></td><td style="text-align:left">Helps find and fix errors while the program runs</td></tr>
+<tr><td style="text-align:left"><strong>Preprocessor</strong></td><td style="text-align:left">Handles <code>#include</code>, <code>#define</code> and other <code>#</code> directives before compilation</td></tr>
+</tbody></table></div>
+<h3 id="compiler-vs-interpreter-a-classic-exam-table">Compiler vs interpreter (a classic exam table)</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Compiler</th><th style="text-align:left">Interpreter</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Translates the <strong>entire program</strong> at once</td><td style="text-align:left">Translates <strong>one statement at a time</strong></td></tr>
+<tr><td style="text-align:left">Produces intermediate object code</td><td style="text-align:left">Produces <strong>no</strong> intermediate object code</td></tr>
+<tr><td style="text-align:left">Slower to analyse/compile, but the program then runs faster</td><td style="text-align:left">Faster to start, but overall execution is slower</td></tr>
+<tr><td style="text-align:left">Needs more memory (object code + linker)</td><td style="text-align:left">More memory-efficient</td></tr>
+<tr><td style="text-align:left">Reports errors only after scanning the whole program</td><td style="text-align:left">Stops at the first error, so debugging is easier</td></tr>
+<tr><td style="text-align:left">Examples: C, C++</td><td style="text-align:left">Examples: Python, Ruby, JavaScript</td></tr>
+</tbody></table></div>
+<blockquote><p>Java is a hybrid: it compiles to <strong>bytecode</strong>, which is then interpreted/JIT-compiled by the Java Virtual Machine (JVM).</p></blockquote>
+<hr>
+<h2 id="4-characteristics-of-a-good-program">4. Characteristics of a good program</h2>
+<p>Learn at least six; the examiner may ask for any number.</p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Characteristic</th><th style="text-align:left">Meaning</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><strong>Correctness</strong></td><td style="text-align:left">Produces the right output for all valid inputs.</td></tr>
+<tr><td style="text-align:left"><strong>Reliability</strong></td><td style="text-align:left">Can be depended on to do what it is supposed to do; handles errors gracefully.</td></tr>
+<tr><td style="text-align:left"><strong>Portability / transferability</strong></td><td style="text-align:left">Runs on different computers with little or no change.</td></tr>
+<tr><td style="text-align:left"><strong>Efficiency</strong></td><td style="text-align:left">Uses as little processor time and memory as possible.</td></tr>
+<tr><td style="text-align:left"><strong>Clarity / simplicity</strong></td><td style="text-align:left">Easy to understand; not unnecessarily complicated.</td></tr>
+<tr><td style="text-align:left"><strong>Readability</strong></td><td style="text-align:left">Well-named variables, indentation, comments — other programmers can follow it.</td></tr>
+<tr><td style="text-align:left"><strong>Maintainability / flexibility</strong></td><td style="text-align:left">Easy to modify, correct and extend without breaking other parts.</td></tr>
+<tr><td style="text-align:left"><strong>Robustness</strong></td><td style="text-align:left">Anticipates bad input and runtime problems instead of crashing.</td></tr>
+<tr><td style="text-align:left"><strong>Usability</strong></td><td style="text-align:left">Output is clear and the program is comfortable to use.</td></tr>
+<tr><td style="text-align:left"><strong>Cost-effectiveness</strong></td><td style="text-align:left">The benefit outweighs the development and running cost.</td></tr>
+<tr><td style="text-align:left"><strong>Timeliness</strong></td><td style="text-align:left">Delivered within the agreed time and budget.</td></tr>
+<tr><td style="text-align:left"><strong>Storage saving</strong></td><td style="text-align:left">Not unnecessarily long or memory-hungry.</td></tr>
+</tbody></table></div>
+<p><strong>Memory sentence:</strong> <em>A good program is correct, reliable, portable, efficient, simple, readable, maintainable and robust.</em></p>
+<hr>
+<h2 id="5-phases-of-program-development">5. Phases of program development</h2>
+<p>This is almost guaranteed to appear. Learn the <strong>order</strong>.</p>
+<pre class="code"><code>1. Problem definition / analysis
+2. Selection or development of an algorithm
+3. Designing the program (flowchart / pseudocode / IPO / HIPO)
+4. Coding
+5. Compilation
+6. Testing, running and debugging
+7. Documentation
+8. Maintenance</code></pre>
+<h3 id="51-problem-definition-analysis">5.1 Problem definition / analysis</h3>
+<p>Understand the problem before writing any code:</p>
+<ul>
+<li>What <strong>input</strong> data is needed? What type, form and volume?</li>
+<li>What <strong>processing</strong> is required?</li>
+<li>What <strong>output</strong> is expected?</li>
+<li>What are the constraints, error conditions and interfaces with other systems?</li>
+</ul>
+<blockquote><p>If you skip this stage, you may build the wrong program perfectly.</p></blockquote>
+<h3 id="52-algorithm">5.2 Algorithm</h3>
+<p>An <strong>algorithm</strong> is a finite, ordered set of unambiguous steps for solving a problem. It is written in plain language before coding.</p>
+<p><strong>Features of an algorithm</strong></p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p>Additional good qualities: simple, clear, handles unexpected situations, leads to a unique solution.</p>
+<h3 id="53-designing-the-program">5.3 Designing the program</h3>
+<p>Tools:</p>
+<ul>
+<li><strong>Pseudocode</strong> — English-like structured description of the logic.</li>
+<li><strong>Flowchart</strong> — pictorial/diagrammatic representation.</li>
+<li><strong>IPO chart</strong> — Input, Processing, Output.</li>
+<li><strong>HIPO chart</strong> — Hierarchical Input, Processing and Output.</li>
+<li><strong>Decision table</strong> — tabular representation of rules.</li>
+<li><strong>Data flow diagram (DFD)</strong> — shows how data moves through a system.</li>
+</ul>
+<h3 id="54-coding">5.4 Coding</h3>
+<p>Translate the design into a programming language. Good coding habits:</p>
+<ul>
+<li>Meaningful variable names.</li>
+<li>Simple, clear expressions.</li>
+<li>Modular design.</li>
+<li>Comments and consistent indentation.</li>
+<li>Avoid unnecessary jumps (<code>goto</code>).</li>
+</ul>
+<h3 id="55-compilation">5.5 Compilation</h3>
+<p>The source code is translated into object code and linked with libraries to form an executable. Errors found here are <strong>syntax errors</strong>.</p>
+<h3 id="56-testing-running-and-debugging">5.6 Testing, running and debugging</h3>
+<ul>
+<li><strong>Debugging</strong> = finding and fixing errors.</li>
+<li><strong>Testing</strong> = running the program with carefully chosen data to check it works.</li>
+<li>Test <strong>normal</strong>, <strong>boundary</strong> (minimum/maximum) and <strong>invalid/abnormal</strong> data.</li>
+<li>A program that is error-free on test data can then be used with real data.</li>
+</ul>
+<h3 id="57-documentation">5.7 Documentation</h3>
+<p>Written records describing the program:</p>
+<ul>
+<li>Purpose and what it does.</li>
+<li>Input data: amount, type, source.</li>
+<li>Output: what is produced and who uses it.</li>
+<li>The logic/algorithm followed.</li>
+<li>Author, date, version and modification history.</li>
+<li>How to install, run and maintain it.</li>
+</ul>
+<h3 id="58-maintenance">5.8 Maintenance</h3>
+<p>Everything after delivery:</p>
+<ul>
+<li>Correct errors found in use.</li>
+<li>Adapt to new hardware/software.</li>
+<li>Improve or add features.</li>
+<li>Remove redundant code.</li>
+<li>Update documentation.</li>
+</ul>
+<p><strong>Maintenance is usually the most expensive phase over the life of a program.</strong></p>
+<hr>
+<h2 id="6-algorithms-in-practice">6. Algorithms in practice</h2>
+<h3 id="61-pseudocode-rules">6.1 Pseudocode rules</h3>
+<p>There is no single standard, but be consistent. Common keywords:</p>
+<pre class="code"><code>START / BEGIN
+READ / INPUT
+SET / ASSIGN
+CALCULATE
+IF ... THEN ... ELSE ... ENDIF
+WHILE ... DO ... ENDWHILE
+FOR ... TO ... DO ... ENDFOR
+PRINT / DISPLAY / WRITE
+STOP / END</code></pre>
+<h3 id="example-1-add-two-numbers">Example 1 — add two numbers</h3>
+<pre class="code"><code>START
+READ a, b
+sum = a + b
+PRINT sum
+STOP</code></pre>
+<h3 id="example-2-average-of-four-marks">Example 2 — average of four marks</h3>
+<pre class="code"><code>START
+READ m1, m2, m3, m4
+average = (m1 + m2 + m3 + m4) / 4
+IF average &lt; 50 THEN
+    PRINT &quot;Fail&quot;
+ELSE
+    PRINT &quot;Pass&quot;
+ENDIF
+STOP</code></pre>
+<h3 id="example-3-largest-of-three-numbers">Example 3 — largest of three numbers</h3>
+<pre class="code"><code>START
+READ a, b, c
+IF a &gt; b THEN
+    big = a
+ELSE
+    big = b
+ENDIF
+IF big &gt; c THEN
+    largest = big
+ELSE
+    largest = c
+ENDIF
+PRINT largest
+STOP</code></pre>
+<h3 id="example-4-area-of-a-room">Example 4 — area of a room</h3>
+<pre class="code"><code>START
+READ length, width
+area = length × width
+PRINT area
+STOP</code></pre>
+<h3 id="example-5-sum-of-the-first-n-natural-numbers">Example 5 — sum of the first N natural numbers</h3>
+<pre class="code"><code>START
+READ n
+sum = 0
+FOR i = 1 TO n DO
+    sum = sum + i
+ENDFOR
+PRINT sum
+STOP</code></pre>
+<hr>
+<h2 id="7-flowcharts">7. Flowcharts</h2>
+<p>A <strong>flowchart</strong> is a diagrammatic representation of an algorithm. It shows the flow of control using standard symbols connected by arrows.</p>
+<h3 id="71-standard-symbols">7.1 Standard symbols</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Symbol</th><th style="text-align:left">Name</th><th style="text-align:left">Meaning</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Oval / rounded rectangle</td><td style="text-align:left">Terminator</td><td style="text-align:left">Start or stop</td></tr>
+<tr><td style="text-align:left">Parallelogram</td><td style="text-align:left">Input/Output</td><td style="text-align:left">Read input or display output</td></tr>
+<tr><td style="text-align:left">Rectangle</td><td style="text-align:left">Process</td><td style="text-align:left">Calculation or assignment</td></tr>
+<tr><td style="text-align:left">Diamond</td><td style="text-align:left">Decision</td><td style="text-align:left">A condition with Yes/No (True/False) branches</td></tr>
+<tr><td style="text-align:left">Circle</td><td style="text-align:left">Connector</td><td style="text-align:left">Joins parts of the flowchart (especially across pages)</td></tr>
+<tr><td style="text-align:left">Arrow</td><td style="text-align:left">Flow line</td><td style="text-align:left">Direction of execution</td></tr>
+<tr><td style="text-align:left">Cylinder</td><td style="text-align:left">Data store</td><td style="text-align:left">File/database storage (mostly in system flowcharts)</td></tr>
+<tr><td style="text-align:left">Document</td><td style="text-align:left">Document</td><td style="text-align:left">Printed report/output</td></tr>
+</tbody></table></div>
+<p>You can draw these by hand in the exam; label them clearly.</p>
+<h3 id="72-example-average-of-four-numbers">7.2 Example — average of four numbers</h3>
+<pre class="code"><code>        ┌─────────┐
+        │  START  │
+        └────┬────┘
+             ▼
+   ┌────────────────────┐
+   │ READ A, B, C, D    │
+   └─────────┬──────────┘
+             ▼
+   ┌────────────────────┐
+   │ P = (A+B+C+D)/4    │
+   └─────────┬──────────┘
+             ▼
+   ┌────────────────────┐
+   │ PRINT P            │
+   └─────────┬──────────┘
+             ▼
+        ┌─────────┐
+        │  STOP   │
+        └─────────┘</code></pre>
+<h3 id="73-example-average-only-if-a-is-not-zero">7.3 Example — average only if A is not zero</h3>
+<pre class="code"><code>        ┌─────────┐
+        │  START  │
+        └────┬────┘
+             ▼
+   ┌────────────────────┐
+   │ READ A, B, C, D    │
+   └─────────┬──────────┘
+             ▼
+        ◇─────────◇
+       ╱  A == 0?  ╲
+      ╱ Yes         ╲ No
+     ▼               ▼
+┌─────────┐   ┌────────────────────┐
+│  STOP   │   │ P = (A+B+C+D)/4    │
+└─────────┘   └─────────┬──────────┘
+                        ▼
+                ┌────────────────────┐
+                │ PRINT P            │
+                └─────────┬──────────┘
+                        ▼
+                   ┌─────────┐
+                   │  STOP   │
+                   └─────────┘</code></pre>
+<h3 id="74-uses-of-flowcharts">7.4 Uses of flowcharts</h3>
+<ul>
+<li>Show the entire system as a whole.</li>
+<li>Examine all possible logical outcomes.</li>
+<li>Communicate the logic to others.</li>
+<li>Provide insight into alternative solutions.</li>
+<li>See what happens when variable values change.</li>
+</ul>
+<h3 id="75-advantages">7.5 Advantages</h3>
+<ul>
+<li><strong>Communication</strong> — visual aid for explaining logic.</li>
+<li><strong>Documentation</strong> — records the logic; helps when staff leave or forget.</li>
+<li><strong>Analysis</strong> — clarifies the overall picture.</li>
+<li><strong>Consistency</strong> — standard symbols show relationships between parts.</li>
+<li><strong>Modification</strong> — changes are easier to plan.</li>
+</ul>
+<h3 id="76-disadvantages">7.6 Disadvantages</h3>
+<ul>
+<li><strong>Complex logic</strong> makes the flowchart cluttered and unclear.</li>
+<li><strong>Alterations</strong> may require completely redrawing it.</li>
+<li><strong>Reproduction</strong> is difficult because symbols are hard to type.</li>
+<li>Time-consuming to draw for large programs.</li>
+</ul>
+<hr>
+<h2 id="8-other-design-tools">8. Other design tools</h2>
+<h3 id="81-decision-table">8.1 Decision table</h3>
+<p>A tabular way of representing logic when several conditions combine.</p>
+<p>Example: discount based on age and membership.</p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Conditions / Actions</th><th style="text-align:left">Rule 1</th><th style="text-align:left">Rule 2</th><th style="text-align:left">Rule 3</th><th style="text-align:left">Rule 4</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Age &gt; 60</td><td style="text-align:left">Y</td><td style="text-align:left">Y</td><td style="text-align:left">N</td><td style="text-align:left">N</td></tr>
+<tr><td style="text-align:left">Member</td><td style="text-align:left">Y</td><td style="text-align:left">N</td><td style="text-align:left">Y</td><td style="text-align:left">N</td></tr>
+<tr><td style="text-align:left"><strong>Action: 20% discount</strong></td><td style="text-align:left">✓</td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left"><strong>Action: 10% discount</strong></td><td style="text-align:left"></td><td style="text-align:left">✓</td><td style="text-align:left">✓</td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left"><strong>Action: no discount</strong></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left">✓</td></tr>
+</tbody></table></div>
+<p><strong>Advantages:</strong> clarity, compactness, coverage (all cases considered), maintainability. <strong>Use in programming:</strong> translate columns into <code>if-else</code> chains, <code>switch</code> statements or rule-based systems.</p>
+<h3 id="82-data-flow-diagram-dfd">8.2 Data flow diagram (DFD)</h3>
+<p>Shows <strong>how data moves</strong> through a system. It has no control flow, no loops and no decisions.</p>
+<p><strong>Components</strong></p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p><strong>Types</strong></p>
+<ul>
+<li><strong>Logical DFD</strong> — focuses on processes and data flow, ignoring technology.</li>
+<li><strong>Physical DFD</strong> — shows how the system is actually implemented (technology, storage, transmission).</li>
+</ul>
+<p><strong>Characteristics:</strong> graphical, good for analysis, abstraction, hierarchy (Level 0 context diagram → Level 1 → Level 2), easy to understand, modular.</p>
+<h3 id="83-ipo-chart">8.3 IPO chart</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Input</th><th style="text-align:left">Processing</th><th style="text-align:left">Output</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>length</code>, <code>width</code></td><td style="text-align:left"><code>area = length * width</code></td><td style="text-align:left"><code>area</code></td></tr>
+</tbody></table></div>
+<p>Use this before writing any program — it forces you to think clearly.</p>
+<hr>
+<h2 id="9-errors-in-programs">9. Errors in programs</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Error type</th><th style="text-align:left">When it occurs</th><th style="text-align:left">Detected by</th><th style="text-align:left">Example</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><strong>Syntax error</strong></td><td style="text-align:left">Before the program runs</td><td style="text-align:left">Compiler</td><td style="text-align:left">Missing semicolon, missing <code>)</code>, misspelled keyword, undeclared variable</td></tr>
+<tr><td style="text-align:left"><strong>Runtime error</strong></td><td style="text-align:left">While the program runs</td><td style="text-align:left">The running program / OS</td><td style="text-align:left">Division by zero, array index out of bounds, file not found</td></tr>
+<tr><td style="text-align:left"><strong>Logical error</strong></td><td style="text-align:left">Program runs but gives wrong output</td><td style="text-align:left">Testing / comparing with expected output</td><td style="text-align:left">Using <code>&gt;</code> instead of <code>&gt;=</code>, wrong formula, <code>5/2</code> instead of <code>5.0/2</code></td></tr>
+</tbody></table></div>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>Syntax errors are also called <strong>compile-time errors</strong>.</li>
+<li>A runtime error may crash the program or produce <code>inf</code>/garbage.</li>
+<li>Logical errors are the hardest to find because the compiler reports nothing.</li>
+</ul>
+<h3 id="debugging-tips">Debugging tips</h3>
+<ul>
+<li>Read the error message from the <strong>first</strong> line; fix one error at a time and recompile.</li>
+<li>Print intermediate values with <code>printf</code>.</li>
+<li>Check loop bounds and array indices.</li>
+<li>Dry-run with a small input.</li>
+<li>Check that variables are initialised.</li>
+</ul>
+<hr>
+<h2 id="10-structured-programming">10. Structured programming</h2>
+<p><strong>Structured programming</strong> means building a program from a small set of clear control structures, using top-down design and modules.</p>
+<p>The three control structures (learn these):</p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p><strong>Principles</strong></p>
+<ul>
+<li>Top-down design: break the problem into smaller sub-problems.</li>
+<li>Modularity: one function/module per task.</li>
+<li>Single entry, single exit for each block.</li>
+<li>Avoid <code>goto</code> (it makes control flow hard to follow).</li>
+<li>Use meaningful names, indentation and comments.</li>
+</ul>
+<p><strong>Advantages:</strong> easier to read, test, debug and maintain; reusable modules; fewer errors.</p>
+<hr>
+<h2 id="11-types-of-problems-a-computer-can-solve">11. Types of problems a computer can solve</h2>
+<p>Computers are good at problems that can be broken into precise, repetitive, logical steps:</p>
+<ul>
+<li><strong>Numerical/scientific:</strong> solving equations, statistics, simulations.</li>
+<li><strong>Data processing:</strong> payroll, inventory, student records.</li>
+<li><strong>Business:</strong> accounting, billing, booking systems.</li>
+<li><strong>Information retrieval:</strong> search, databases.</li>
+<li><strong>Control systems:</strong> traffic lights, robots, embedded devices.</li>
+<li><strong>Communication:</strong> email, messaging, networking.</li>
+<li><strong>Graphics and gaming.</strong></li>
+<li><strong>Artificial intelligence / machine learning</strong> (with the right algorithms).</li>
+</ul>
+<p>Computers are <strong>not</strong> good at problems that cannot be specified precisely, require human judgement, creativity, or common-sense understanding.</p>
+<hr>
+<h2 id="12-worked-exam-answer-explain-the-phases-of-program-developm">12. Worked exam answer: &quot;Explain the phases of program development&quot; (10 marks)</h2>
+<blockquote><p>1. <strong>Problem definition/analysis</strong> — identify inputs, processing, outputs and constraints. <em>(1)</em> 2. <strong>Algorithm development</strong> — write a finite, unambiguous step-by-step solution. <em>(1)</em> 3. <strong>Program design</strong> — represent the algorithm using pseudocode, flowcharts, IPO/HIPO charts. <em>(1)</em> 4. <strong>Coding</strong> — translate the design into a programming language, following good style. <em>(1)</em> 5. <strong>Compilation</strong> — translate source code to object code and link with libraries. <em>(1)</em> 6. <strong>Testing and debugging</strong> — run with normal, boundary and invalid data; find and fix syntax, runtime and logical errors. <em>(1)</em> 7. <strong>Documentation</strong> — record the purpose, inputs, outputs, logic and maintenance instructions. <em>(1)</em> 8. <strong>Maintenance</strong> — correct, adapt and improve the program after delivery. <em>(1)</em></p><p>Plus 2 marks for explaining why the order matters (each phase feeds the next; skipping analysis or testing leads to unreliable programs).</p></blockquote>
+<hr>
+<h2 id="13-common-exam-traps">13. Common exam traps</h2>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<hr>
+<h2 id="14-self-test-answers-below">14. Self-test (answers below)</h2>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<h3 id="answers">Answers</h3>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<hr>
+<p><strong>Next:</strong> <code>02_c_basics_and_compilation.md</code></p>
+
+  </article>
+<nav class="pager"><a class="prev" href="../SETUP_AND_RUN.html"><span class="dir">&larr; Previous</span><span class="name">Setup: run C on this PC</span></a><a class="next" href="../notes/02_c_basics_and_compilation.html"><span class="dir">Next &rarr;</span><span class="name">02 · C basics &amp; compilation</span></a></nav>
+  <footer class="foot">
+    CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
+  </footer>
+</main>
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  <a href="#1-the-absolute-basics">1. The absolute basics</a><a href="#key-definitions-learn-these-word-for-word" class="toc-h3">Key definitions (learn these word-for-word)</a><a href="#2-classification-of-programming-languages">2. Classification of programming languages</a><a href="#21-machine-language-first-generation" class="toc-h3">2.1 Machine language (first generation)</a><a href="#22-assembly-language-second-generation" class="toc-h3">2.2 Assembly language (second generation)</a><a href="#23-high-level-language-third-generation-and-above" class="toc-h3">2.3 High-level language (third generation and above)</a><a href="#24-generations-of-languages-often-a-2-mark-question" class="toc-h3">2.4 Generations of languages (often a 2-mark question)</a><a href="#3-translators-and-the-tools-around-them">3. Translators and the tools around them</a><a href="#compiler-vs-interpreter-a-classic-exam-table" class="toc-h3">Compiler vs interpreter (a classic exam table)</a><a href="#4-characteristics-of-a-good-program">4. Characteristics of a good program</a><a href="#5-phases-of-program-development">5. Phases of program development</a><a href="#51-problem-definition-analysis" class="toc-h3">5.1 Problem definition / analysis</a><a href="#52-algorithm" class="toc-h3">5.2 Algorithm</a><a href="#53-designing-the-program" class="toc-h3">5.3 Designing the program</a><a href="#54-coding" class="toc-h3">5.4 Coding</a><a href="#55-compilation" class="toc-h3">5.5 Compilation</a><a href="#56-testing-running-and-debugging" class="toc-h3">5.6 Testing, running and debugging</a><a href="#57-documentation" class="toc-h3">5.7 Documentation</a><a href="#58-maintenance" class="toc-h3">5.8 Maintenance</a><a href="#6-algorithms-in-practice">6. Algorithms in practice</a><a href="#61-pseudocode-rules" class="toc-h3">6.1 Pseudocode rules</a><a href="#example-1-add-two-numbers" class="toc-h3">Example 1 — add two numbers</a><a href="#example-2-average-of-four-marks" class="toc-h3">Example 2 — average of four marks</a><a href="#example-3-largest-of-three-numbers" class="toc-h3">Example 3 — largest of three numbers</a><a href="#example-4-area-of-a-room" class="toc-h3">Example 4 — area of a room</a><a href="#example-5-sum-of-the-first-n-natural-numbers" class="toc-h3">Example 5 — sum of the first N natural numbers</a><a href="#7-flowcharts">7. Flowcharts</a><a href="#71-standard-symbols" class="toc-h3">7.1 Standard symbols</a><a href="#72-example-average-of-four-numbers" class="toc-h3">7.2 Example — average of four numbers</a><a href="#73-example-average-only-if-a-is-not-zero" class="toc-h3">7.3 Example — average only if A is not zero</a><a href="#74-uses-of-flowcharts" class="toc-h3">7.4 Uses of flowcharts</a><a href="#75-advantages" class="toc-h3">7.5 Advantages</a><a href="#76-disadvantages" class="toc-h3">7.6 Disadvantages</a><a href="#8-other-design-tools">8. Other design tools</a><a href="#81-decision-table" class="toc-h3">8.1 Decision table</a><a href="#82-data-flow-diagram-dfd" class="toc-h3">8.2 Data flow diagram (DFD)</a><a href="#83-ipo-chart" class="toc-h3">8.3 IPO chart</a><a href="#9-errors-in-programs">9. Errors in programs</a><a href="#debugging-tips" class="toc-h3">Debugging tips</a><a href="#10-structured-programming">10. Structured programming</a><a href="#11-types-of-problems-a-computer-can-solve">11. Types of problems a computer can solve</a><a href="#12-worked-exam-answer-explain-the-phases-of-program-developm">12. Worked exam answer: &quot;Explain the phases of program development&quot; (10 marks)</a><a href="#13-common-exam-traps">13. Common exam traps</a><a href="#14-self-test-answers-below">14. Self-test (answers below)</a><a href="#answers" class="toc-h3">Answers</a>
+</aside>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('csc112-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '\u2600' : '\u263D';
+    try { localStorage.setItem('csc112-theme', next); } catch (e) {}
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // highlight the current section in the right-hand table of contents
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (links.length) {
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    window.addEventListener('scroll', function () {
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i] && heads[i].getBoundingClientRect().top < 120) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }, { passive: true });
+  }
+
+  // on phones, start with the contents menu collapsed
+  var det = document.querySelector('.nav-details');
+  if (det && window.innerWidth < 1000) det.removeAttribute('open');
+})();
+</script>
+</body>
+</html>

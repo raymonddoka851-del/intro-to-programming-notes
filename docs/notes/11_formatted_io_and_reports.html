@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Note 11 — Formatted Input/Output and Report Design · CSC 112 Revision</title>
+<meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
+<link rel="stylesheet" href="../assets/notes.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">C</span>
+    <span class="brand-text"><strong>CSC 112</strong><span>Revision Notes</span></span>
+  </a>
+  <details class="nav-details" open>
+    <summary>Contents</summary>
+    <div class="nav-group"><div class="nav-head"></div><a href="../START_HERE.html">Start here (pack index)</a><a href="../YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="../CHEAT_SHEET.html">Cheat sheet</a><a href="../PROGRESS_TRACKER.html">Progress tracker</a><a href="../SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="../notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="../notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="../notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="../notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="../notes/05_control_statements.html">05 · Control statements</a><a href="../notes/06_loops.html">06 · Loops</a><a href="../notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="../notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="../notes/09_pointers.html">09 · Pointers</a><a href="../notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="../notes/11_formatted_io_and_reports.html" class="active">11 · Formatted I/O &amp; reports</a><a href="../practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="../practice/QUESTION_BANK.html">Question bank (96)</a><a href="../practice/ANSWER_KEY.html">Answer key</a><a href="../practice/LAB_TASKS.html">Lab tasks (25)</a><a href="../practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="../practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="../practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="../code/README.html">Program list (22 examples)</a></div>
+  </details>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <span class="crumb">Notes <b>&rsaquo;</b> 11_formatted_io_and_reports</span>
+    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+  </div>
+  <article class="content">
+<h1 id="note-11-formatted-inputoutput-and-report-design">Note 11 — Formatted Input/Output and Report Design</h1>
+<blockquote><p><strong>Covers the &quot;report and display design&quot; part of the course description</strong> and the formatted I/O material in your Week 4 notes.</p></blockquote>
+<hr>
+<h2 id="1-why-formatting-matters">1. Why formatting matters</h2>
+<p>The default output of <code>printf</code> is often ugly:</p>
+<pre class="code" data-lang="c"><code><span class="tok-fn">printf</span>(<span class="tok-str">&quot;%f\n&quot;</span>, <span class="tok-num">3.14159</span>);      <span class="tok-com">/* 3.141590 */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, <span class="tok-num">7</span>);            <span class="tok-com">/* 7 */</span></code></pre>
+<p>Formatting lets you control:</p>
+<ul>
+<li>how many decimal places are shown,</li>
+<li>how wide a column is,</li>
+<li>whether numbers are left- or right-aligned,</li>
+<li>whether to show <code>+</code> signs, leading zeros, or hexadecimal,</li>
+<li>how a report or table looks.</li>
+</ul>
+<hr>
+<h2 id="2-the-printf-function">2. The <code>printf</code> function</h2>
+<h3 id="21-general-form">2.1 General form</h3>
+<pre class="code" data-lang="c"><code><span class="tok-fn">printf</span>(<span class="tok-str">&quot;control string&quot;</span>, argument1, argument2, ...);</code></pre>
+<p>The control string contains:</p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<h3 id="22-format-specifier-syntax">2.2 Format specifier syntax</h3>
+<pre class="code"><code>%[flags][width][.precision][length]specifier</code></pre>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Part</th><th style="text-align:left">Meaning</th><th style="text-align:left">Example</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>%</code></td><td style="text-align:left">Start of specifier</td><td style="text-align:left"><code>%</code></td></tr>
+<tr><td style="text-align:left"><strong>flags</strong></td><td style="text-align:left"><code>-</code> left-align, <code>+</code> show sign, <code>0</code> pad with zeros, space, <code>#</code></td><td style="text-align:left"><code>%-8d</code></td></tr>
+<tr><td style="text-align:left"><strong>width</strong></td><td style="text-align:left">Minimum number of characters</td><td style="text-align:left"><code>%8d</code></td></tr>
+<tr><td style="text-align:left"><strong>.precision</strong></td><td style="text-align:left">Decimal places (float) or max characters (string)</td><td style="text-align:left"><code>%.2f</code></td></tr>
+<tr><td style="text-align:left"><strong>length</strong></td><td style="text-align:left"><code>h</code>, <code>l</code>, <code>ll</code>, <code>L</code></td><td style="text-align:left"><code>%ld</code>, <code>%lf</code></td></tr>
+<tr><td style="text-align:left"><strong>specifier</strong></td><td style="text-align:left">Type of value</td><td style="text-align:left"><code>d</code>, <code>f</code>, <code>s</code>, <code>c</code></td></tr>
+</tbody></table></div>
+<h3 id="23-specifier-table">2.3 Specifier table</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Specifier</th><th style="text-align:left">Type</th><th style="text-align:left">Example</th><th style="text-align:left">Output</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>%d</code> / <code>%i</code></td><td style="text-align:left">Signed decimal integer</td><td style="text-align:left"><code>printf(&quot;%d&quot;, 42)</code></td><td style="text-align:left"><code>42</code></td></tr>
+<tr><td style="text-align:left"><code>%u</code></td><td style="text-align:left">Unsigned decimal integer</td><td style="text-align:left"><code>printf(&quot;%u&quot;, 42u)</code></td><td style="text-align:left"><code>42</code></td></tr>
+<tr><td style="text-align:left"><code>%o</code></td><td style="text-align:left">Octal integer</td><td style="text-align:left"><code>printf(&quot;%o&quot;, 8)</code></td><td style="text-align:left"><code>10</code></td></tr>
+<tr><td style="text-align:left"><code>%x</code> / <code>%X</code></td><td style="text-align:left">Hexadecimal (lower/upper)</td><td style="text-align:left"><code>printf(&quot;%x&quot;, 255)</code></td><td style="text-align:left"><code>ff</code></td></tr>
+<tr><td style="text-align:left"><code>%f</code></td><td style="text-align:left">Floating point (decimal)</td><td style="text-align:left"><code>printf(&quot;%f&quot;, 3.14)</code></td><td style="text-align:left"><code>3.140000</code></td></tr>
+<tr><td style="text-align:left"><code>%e</code> / <code>%E</code></td><td style="text-align:left">Scientific notation</td><td style="text-align:left"><code>printf(&quot;%e&quot;, 314.0)</code></td><td style="text-align:left"><code>3.140000e+02</code></td></tr>
+<tr><td style="text-align:left"><code>%g</code> / <code>%G</code></td><td style="text-align:left">Shorter of <code>%f</code> and <code>%e</code></td><td style="text-align:left"><code>printf(&quot;%g&quot;, 0.0001)</code></td><td style="text-align:left"><code>0.0001</code></td></tr>
+<tr><td style="text-align:left"><code>%c</code></td><td style="text-align:left">Single character</td><td style="text-align:left"><code>printf(&quot;%c&quot;, 'A')</code></td><td style="text-align:left"><code>A</code></td></tr>
+<tr><td style="text-align:left"><code>%s</code></td><td style="text-align:left">String</td><td style="text-align:left"><code>printf(&quot;%s&quot;, &quot;Hi&quot;)</code></td><td style="text-align:left"><code>Hi</code></td></tr>
+<tr><td style="text-align:left"><code>%p</code></td><td style="text-align:left">Pointer address</td><td style="text-align:left"><code>printf(&quot;%p&quot;, (void*)&amp;x)</code></td><td style="text-align:left"><code>0x...</code></td></tr>
+<tr><td style="text-align:left"><code>%%</code></td><td style="text-align:left">A literal percent sign</td><td style="text-align:left"><code>printf(&quot;100%%&quot;)</code></td><td style="text-align:left"><code>100%</code></td></tr>
+<tr><td style="text-align:left"><code>%zu</code></td><td style="text-align:left"><code>sizeof</code> result (<code>size_t</code>)</td><td style="text-align:left"><code>printf(&quot;%zu&quot;, sizeof(int))</code></td><td style="text-align:left"><code>4</code></td></tr>
+</tbody></table></div>
+<h3 id="24-width-and-alignment">2.4 Width and alignment</h3>
+<pre class="code" data-lang="c"><code><span class="tok-fn">printf</span>(<span class="tok-str">&quot;|%6d|\n&quot;</span>, <span class="tok-num">9876</span>);      <span class="tok-com">/* |  9876|  right-aligned in 6 columns */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;|%-6d|\n&quot;</span>, <span class="tok-num">9876</span>);     <span class="tok-com">/* |9876  |  left-aligned */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;|%06d|\n&quot;</span>, <span class="tok-num">9876</span>);     <span class="tok-com">/* |009876|  zero-padded */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;|%3d|\n&quot;</span>, <span class="tok-num">9876</span>);      <span class="tok-com">/* |9876|    too narrow: expands, does not truncate */</span></code></pre>
+<h3 id="25-precision">2.5 Precision</h3>
+<pre class="code" data-lang="c"><code><span class="tok-fn">printf</span>(<span class="tok-str">&quot;%.2f\n&quot;</span>, <span class="tok-num">987.6543</span>);   <span class="tok-com">/* 987.65  (rounded) */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%.0f\n&quot;</span>, <span class="tok-num">987.6543</span>);   <span class="tok-com">/* 988     (0 decimal places) */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%.f\n&quot;</span>, <span class="tok-num">987.6543</span>);    <span class="tok-com">/* 988     (same as .0) */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%10.3f\n&quot;</span>, <span class="tok-num">3.14159</span>);  <span class="tok-com">/*     3.142 (width 10, 3 decimals) */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%-10.2f|\n&quot;</span>, <span class="tok-num">3.14</span>);   <span class="tok-com">/* 3.14      | (left-aligned) */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%.3s\n&quot;</span>, <span class="tok-str">&quot;Hello&quot;</span>);    <span class="tok-com">/* Hel     (max 3 characters) */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%8s\n&quot;</span>, <span class="tok-str">&quot;Hi&quot;</span>);        <span class="tok-com">/*       Hi (right-aligned in 8) */</span></code></pre>
+<h3 id="26-flags">2.6 Flags</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Flag</th><th style="text-align:left">Meaning</th><th style="text-align:left">Example</th><th style="text-align:left">Output</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>-</code></td><td style="text-align:left">Left-align</td><td style="text-align:left"><code>%-5d</code></td><td style="text-align:left"><code>42   </code></td></tr>
+<tr><td style="text-align:left"><code>+</code></td><td style="text-align:left">Always show sign</td><td style="text-align:left"><code>%+d</code></td><td style="text-align:left"><code>+42</code></td></tr>
+<tr><td style="text-align:left"><code>0</code></td><td style="text-align:left">Pad with zeros</td><td style="text-align:left"><code>%05d</code></td><td style="text-align:left"><code>00042</code></td></tr>
+<tr><td style="text-align:left">space</td><td style="text-align:left">Show space for positive</td><td style="text-align:left"><code>% d</code></td><td style="text-align:left"><code> 42</code></td></tr>
+<tr><td style="text-align:left"><code>#</code></td><td style="text-align:left">Alternate form (<code>0x</code>, leading <code>0</code>)</td><td style="text-align:left"><code>%#x</code></td><td style="text-align:left"><code>0x2a</code></td></tr>
+</tbody></table></div>
+<pre class="code" data-lang="c"><code><span class="tok-fn">printf</span>(<span class="tok-str">&quot;%+d %+d\n&quot;</span>, <span class="tok-num">5</span>, -<span class="tok-num">5</span>);       <span class="tok-com">/* +5 -5 */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%#x %#o\n&quot;</span>, <span class="tok-num">42</span>, <span class="tok-num">42</span>);      <span class="tok-com">/* 0x2a 052 */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%08.2f\n&quot;</span>, <span class="tok-num">3.14159</span>);      <span class="tok-com">/* 00003.14 */</span></code></pre>
+<h3 id="27-argument-mismatch">2.7 Argument mismatch</h3>
+<p>The number and type of arguments must match the format specifiers.</p>
+<pre class="code" data-lang="c"><code><span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d %d\n&quot;</span>, <span class="tok-num">1</span>);             <span class="tok-com">/* missing argument — undefined */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, <span class="tok-num">3.5</span>);              <span class="tok-com">/* wrong type — undefined */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%f\n&quot;</span>, <span class="tok-num">5</span>);                <span class="tok-com">/* wrong type — undefined */</span></code></pre>
+<p>The compiler may warn, but C does not check at runtime. <strong>Always match the specifier to the type.</strong></p>
+<hr>
+<h2 id="3-the-scanf-function">3. The <code>scanf</code> function</h2>
+<h3 id="31-general-form">3.1 General form</h3>
+<pre class="code" data-lang="c"><code><span class="tok-fn">scanf</span>(<span class="tok-str">&quot;control string&quot;</span>, &amp;variable1, &amp;variable2, ...);</code></pre>
+<ul>
+<li><code>&amp;</code> gives the address where the value should be stored.</li>
+<li><strong>Exception:</strong> array/string names already represent addresses, so no <code>&amp;</code>.</li>
+</ul>
+<h3 id="32-reading-multiple-values">3.2 Reading multiple values</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a, b;
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d %d&quot;</span>, &amp;a, &amp;b);</code></pre>
+<p>Input can be separated by spaces, tabs or newlines.</p>
+<h3 id="33-return-value">3.3 Return value</h3>
+<p><code>scanf</code> returns the <strong>number of items successfully read</strong>.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> n = <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d %d&quot;</span>, &amp;a, &amp;b);
+<span class="tok-kw">if</span> (n != <span class="tok-num">2</span>)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Invalid input\n&quot;</span>);</code></pre>
+<ul>
+<li><code>0</code> = no items matched.</li>
+<li><code>EOF</code> = end of input.</li>
+</ul>
+<p>Always check when input reliability matters.</p>
+<h3 id="34-whitespace-and-c">3.4 Whitespace and <code>%c</code></h3>
+<p><code>%d</code>, <code>%f</code>, <code>%s</code> skip leading whitespace automatically. <strong><code>%c</code> does not.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> ch;
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%c&quot;</span>, &amp;ch);       <span class="tok-com">/* may read a leftover newline */</span>
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot; %c&quot;</span>, &amp;ch);      <span class="tok-com">/* the space skips whitespace — usually what you want */</span></code></pre>
+<h3 id="35-reading-strings">3.5 Reading strings</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> name[<span class="tok-num">20</span>];
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%19s&quot;</span>, name);    <span class="tok-com">/* reads one word, max 19 chars; no &amp; */</span></code></pre>
+<p><code>scanf(&quot;%s&quot;)</code> <strong>stops at the first whitespace</strong>. To read a full line, use <code>fgets</code>:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> line[<span class="tok-num">100</span>];
+<span class="tok-fn">fgets</span>(line, <span class="tok-kw">sizeof</span>(line), stdin);</code></pre>
+<h3 id="36-width-limits">3.6 Width limits</h3>
+<pre class="code" data-lang="c"><code><span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%3d&quot;</span>, &amp;n);       <span class="tok-com">/* reads at most 3 digits */</span>
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%9s&quot;</span>, name);     <span class="tok-com">/* reads at most 9 characters — prevents overflow */</span></code></pre>
+<h3 id="37-character-sets">3.7 Character sets</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> line[<span class="tok-num">100</span>];
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%[^\n]&quot;</span>, line);   <span class="tok-com">/* read until newline (spaces included) */</span>
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%[0-9]&quot;</span>, digits); <span class="tok-com">/* read only digits */</span></code></pre>
+<blockquote><p><code>%[^\n]</code> is powerful but does not limit the buffer size; prefer <code>fgets</code> in real code.</p></blockquote>
+<h3 id="38-suppression">3.8 Suppression</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> day, year;
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d/%*d/%d&quot;</span>, &amp;day, &amp;year);   <span class="tok-com">/* skip the month */</span></code></pre>
+<h3 id="39-common-scanf-problems">3.9 Common <code>scanf</code> problems</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> x;
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, x);          <span class="tok-com">/* WRONG: missing &amp; */</span>
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;x);         <span class="tok-com">/* correct */</span>
+
+<span class="tok-kw">float</span> f;
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%f&quot;</span>, &amp;f);         <span class="tok-com">/* correct for float */</span>
+
+<span class="tok-kw">double</span> d;
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%lf&quot;</span>, &amp;d);        <span class="tok-com">/* correct for double: %lf */</span>
+
+<span class="tok-kw">char</span> s[<span class="tok-num">20</span>];
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%s&quot;</span>, &amp;s);         <span class="tok-com">/* WRONG type: s is already an address */</span>
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%s&quot;</span>, s);          <span class="tok-com">/* correct */</span></code></pre>
+<h3 id="310-leftover-newline-problem">3.10 Leftover newline problem</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> age;
+<span class="tok-kw">char</span> name[<span class="tok-num">50</span>];
+
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;Age: &quot;</span>);
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;age);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;Name: &quot;</span>);
+<span class="tok-fn">fgets</span>(name, <span class="tok-kw">sizeof</span>(name), stdin);   <span class="tok-com">/* may read the leftover '\n' and appear empty */</span></code></pre>
+<p><strong>Fix:</strong> consume the newline first:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">while</span> (<span class="tok-fn">getchar</span>() != <span class="tok-chr">'\n'</span>);          <span class="tok-com">/* discard rest of line */</span>
+<span class="tok-fn">fgets</span>(name, <span class="tok-kw">sizeof</span>(name), stdin);</code></pre>
+<p>Or use <code>scanf(&quot; %[^\n]&quot;, name);</code> (note the leading space).</p>
+<hr>
+<h2 id="4-character-inputoutput">4. Character input/output</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Function</th><th style="text-align:left">Purpose</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>getchar()</code></td><td style="text-align:left">Read one character from stdin</td></tr>
+<tr><td style="text-align:left"><code>putchar(c)</code></td><td style="text-align:left">Write one character to stdout</td></tr>
+<tr><td style="text-align:left"><code>gets(s)</code></td><td style="text-align:left"><strong>Unsafe, removed</strong> — never use</td></tr>
+<tr><td style="text-align:left"><code>fgets(s, n, stdin)</code></td><td style="text-align:left">Read a line safely</td></tr>
+<tr><td style="text-align:left"><code>puts(s)</code></td><td style="text-align:left">Print a string followed by newline</td></tr>
+</tbody></table></div>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> ch;
+<span class="tok-kw">while</span> ((ch = <span class="tok-fn">getchar</span>()) != <span class="tok-chr">'\n'</span> &amp;&amp; ch != <span class="tok-kw">EOF</span>)
+    <span class="tok-fn">putchar</span>(ch);</code></pre>
+<p><strong>Why <code>int ch</code>, not <code>char ch</code>?</strong> Because <code>getchar</code> returns <code>EOF</code> (usually −1), which may not fit in an unsigned <code>char</code>.</p>
+<hr>
+<h2 id="5-report-and-display-design">5. Report and display design</h2>
+<p>A <strong>report</strong> presents information clearly to a user. Good reports are:</p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<h3 id="51-a-simple-tabular-report">5.1 A simple tabular report</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;==============================================\n&quot;</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;           STUDENT FEE REPORT\n&quot;</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;           Date: 2026-11-04\n&quot;</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;==============================================\n&quot;</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%-5s %-15s %5s %12s\n&quot;</span>, <span class="tok-str">&quot;No.&quot;</span>, <span class="tok-str">&quot;Name&quot;</span>, <span class="tok-str">&quot;Age&quot;</span>, <span class="tok-str">&quot;Fee (KSh)&quot;</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;----------------------------------------------\n&quot;</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%-5d %-15s %5d %12.2f\n&quot;</span>, <span class="tok-num">1</span>, <span class="tok-str">&quot;Alice&quot;</span>, <span class="tok-num">20</span>, <span class="tok-num">45000.50</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%-5d %-15s %5d %12.2f\n&quot;</span>, <span class="tok-num">2</span>, <span class="tok-str">&quot;Bob&quot;</span>,   <span class="tok-num">21</span>, <span class="tok-num">42000.00</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%-5d %-15s %5d %12.2f\n&quot;</span>, <span class="tok-num">3</span>, <span class="tok-str">&quot;Carol&quot;</span>, <span class="tok-num">19</span>, <span class="tok-num">47000.75</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;----------------------------------------------\n&quot;</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%-5s %-15s %5s %12.2f\n&quot;</span>, <span class="tok-str">&quot;&quot;</span>, <span class="tok-str">&quot;TOTAL&quot;</span>, <span class="tok-str">&quot;&quot;</span>, <span class="tok-num">134043.25</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;==============================================\n&quot;</span>);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Output</strong></p>
+<pre class="code"><code>==============================================
+           STUDENT FEE REPORT
+           Date: 2026-11-04
+==============================================
+No.   Name              Age   Fee (KSh)
+----------------------------------------------
+1     Alice              20     45000.50
+2     Bob                21     42000.00
+3     Carol              19     47000.75
+----------------------------------------------
+      TOTAL                       134043.25
+==============================================</code></pre>
+<h3 id="52-design-principles-in-practice">5.2 Design principles in practice</h3>
+<ul>
+<li>Use <code>%-15s</code> for left-aligned names and <code>%10.2f</code> for right-aligned money.</li>
+<li>Keep a <strong>fixed number of decimal places</strong> for money (usually 2).</li>
+<li>Right-align numbers; left-align text.</li>
+<li>Include a title, date, column headings, totals and a footer.</li>
+<li>Use separators (<code>-</code>, <code>=</code>) to guide the eye.</li>
+<li>Do not print raw variable names; use meaningful labels.</li>
+<li>Test with zero, negative, very large and missing values.</li>
+</ul>
+<h3 id="53-a-menu-display">5.3 A menu display</h3>
+<pre class="code" data-lang="c"><code><span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n========== MAIN MENU ==========\n&quot;</span>);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;1. Add student\n&quot;</span>);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;2. View students\n&quot;</span>);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;3. Search student\n&quot;</span>);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;4. Delete student\n&quot;</span>);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;0. Exit\n&quot;</span>);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;================================\n&quot;</span>);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter choice: &quot;</span>);</code></pre>
+<h3 id="54-error-messages">5.4 Error messages</h3>
+<p>Good:</p>
+<pre class="code"><code>Error: score must be between 0 and 100.</code></pre>
+<p>Bad:</p>
+<pre class="code"><code>Error!</code></pre>
+<p>Good messages state <strong>what went wrong</strong> and <strong>what to do</strong>.</p>
+<hr>
+<h2 id="6-worked-exam-questions">6. Worked exam questions</h2>
+<h3 id="61-what-is-the-output">6.1 &quot;What is the output?&quot;</h3>
+<pre class="code" data-lang="c"><code><span class="tok-fn">printf</span>(<span class="tok-str">&quot;|%5d|%-5d|%05d|\n&quot;</span>, <span class="tok-num">42</span>, <span class="tok-num">42</span>, <span class="tok-num">42</span>);</code></pre>
+<p><strong>Output:</strong> <code>|   42|42   |00042|</code></p>
+<h3 id="62-what-is-the-output">6.2 &quot;What is the output?&quot;</h3>
+<pre class="code" data-lang="c"><code><span class="tok-fn">printf</span>(<span class="tok-str">&quot;%.2f %.0f %.3s\n&quot;</span>, <span class="tok-num">3.14159</span>, <span class="tok-num">3.14159</span>, <span class="tok-str">&quot;Hello&quot;</span>);</code></pre>
+<p><strong>Output:</strong> <code>3.14 3 Hel</code></p>
+<h3 id="63-what-is-the-output">6.3 &quot;What is the output?&quot;</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> x = <span class="tok-num">255</span>;
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d %o %x %X\n&quot;</span>, x, x, x, x);</code></pre>
+<p><strong>Output:</strong> <code>255 377 ff FF</code></p>
+<h3 id="64-what-is-wrong">6.4 &quot;What is wrong?&quot;</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">double</span> d;
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%f&quot;</span>, &amp;d);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, d);</code></pre>
+<p><strong>Errors:</strong> <code>%f</code> in <code>scanf</code> is for <code>float</code>, not <code>double</code> — use <code>%lf</code>. <code>%d</code> in <code>printf</code> is for <code>int</code>, not <code>double</code> — use <code>%f</code> or <code>%lf</code>.</p>
+<h3 id="65-design-the-output-for-an-invoice">6.5 &quot;Design the output for an invoice.&quot;</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">const</span> <span class="tok-kw">float</span> price = <span class="tok-num">250.00f</span>;
+    <span class="tok-kw">int</span> qty = <span class="tok-num">4</span>;
+    <span class="tok-kw">float</span> subtotal = price * qty;
+    <span class="tok-kw">float</span> vat = subtotal * <span class="tok-num">0.16f</span>;
+    <span class="tok-kw">float</span> total = subtotal + vat;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;========================================\n&quot;</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;              INVOICE\n&quot;</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;========================================\n&quot;</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%-20s %10s\n&quot;</span>, <span class="tok-str">&quot;Item&quot;</span>, <span class="tok-str">&quot;Amount&quot;</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;----------------------------------------\n&quot;</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%-20s %10.2f\n&quot;</span>, <span class="tok-str">&quot;Exercise book&quot;</span>, subtotal);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%-20s %10.2f\n&quot;</span>, <span class="tok-str">&quot;VAT (16%)&quot;</span>, vat);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;----------------------------------------\n&quot;</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%-20s %10.2f\n&quot;</span>, <span class="tok-str">&quot;TOTAL&quot;</span>, total);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;========================================\n&quot;</span>);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<hr>
+<h2 id="7-common-errors">7. Common errors</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Error</th><th style="text-align:left">Problem</th><th style="text-align:left">Fix</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>printf(&quot;%d&quot;, 3.5)</code></td><td style="text-align:left">Wrong specifier</td><td style="text-align:left"><code>%f</code></td></tr>
+<tr><td style="text-align:left"><code>scanf(&quot;%f&quot;, &amp;d)</code> where <code>d</code> is <code>double</code></td><td style="text-align:left">Wrong specifier</td><td style="text-align:left"><code>%lf</code></td></tr>
+<tr><td style="text-align:left"><code>scanf(&quot;%d&quot;, x)</code></td><td style="text-align:left">Missing <code>&amp;</code></td><td style="text-align:left"><code>&amp;x</code></td></tr>
+<tr><td style="text-align:left"><code>scanf(&quot;%s&quot;, &amp;s)</code></td><td style="text-align:left">Array already an address</td><td style="text-align:left"><code>s</code></td></tr>
+<tr><td style="text-align:left"><code>%c</code> after <code>%d</code></td><td style="text-align:left">Reads leftover newline</td><td style="text-align:left"><code>&quot; %c&quot;</code></td></tr>
+<tr><td style="text-align:left"><code>%s</code> expecting spaces</td><td style="text-align:left"><code>%s</code> stops at whitespace</td><td style="text-align:left"><code>fgets</code> or <code>%[^\n]</code></td></tr>
+<tr><td style="text-align:left">No width on <code>%s</code> input</td><td style="text-align:left">Buffer overflow</td><td style="text-align:left"><code>%19s</code></td></tr>
+<tr><td style="text-align:left"><code>printf(&quot;%d&quot;, sizeof(x))</code></td><td style="text-align:left"><code>sizeof</code> returns <code>size_t</code></td><td style="text-align:left"><code>%zu</code></td></tr>
+<tr><td style="text-align:left">Too few/many arguments</td><td style="text-align:left">Undefined behaviour</td><td style="text-align:left">Match counts</td></tr>
+<tr><td style="text-align:left">Inconsistent decimals</td><td style="text-align:left">Ugly report</td><td style="text-align:left">Use <code>%.2f</code> everywhere for money</td></tr>
+<tr><td style="text-align:left">No <code>\n</code> at end</td><td style="text-align:left">Output runs together</td><td style="text-align:left">Add <code>\n</code></td></tr>
+<tr><td style="text-align:left"><code>gets</code></td><td style="text-align:left">Unsafe</td><td style="text-align:left"><code>fgets</code></td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="8-rapid-revision">8. Rapid revision</h2>
+<ul>
+<li><code>printf(&quot;%[flags][width][.precision][length]specifier&quot;, value)</code></li>
+<li><code>%d</code> int, <code>%f</code> float/double, <code>%lf</code> double in <code>scanf</code>, <code>%c</code> char, <code>%s</code> string, <code>%x</code> hex, <code>%o</code> octal, <code>%u</code> unsigned, <code>%zu</code> size.</li>
+<li><code>%6d</code> right-align in 6; <code>%-6d</code> left-align; <code>%06d</code> zero-pad.</li>
+<li><code>%.2f</code> two decimal places; <code>%.3s</code> first three characters.</li>
+<li><code>scanf</code> needs <code>&amp;</code> except for arrays/strings.</li>
+<li><code>%c</code> does not skip whitespace; use <code>&quot; %c&quot;</code>.</li>
+<li><code>%s</code> stops at whitespace; use <code>fgets</code> for lines.</li>
+<li>Check <code>scanf</code>'s return value for valid input.</li>
+<li>Reports: title, headings, aligned columns, consistent decimals, totals, separators, clear errors.</li>
+</ul>
+<hr>
+<h2 id="9-self-test-answers-below">9. Self-test (answers below)</h2>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li> ``<code>c double d; scanf(&quot;%f&quot;, &amp;d); printf(&quot;%d&quot;, d); </code>``</li>
+<li></li>
+<li> ``<code>c printf(&quot;%5.1f|%-5.1f|&quot;, 2.345, 2.345); </code>``</li>
+</ol>
+<h3 id="answers">Answers</h3>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<hr>
+<p><strong>Next:</strong> <code>CHEAT_SHEET.md</code>, then the practice folder.</p>
+
+  </article>
+<nav class="pager"><a class="prev" href="../notes/10_structures_unions_files.html"><span class="dir">&larr; Previous</span><span class="name">10 · Structures, unions &amp; files</span></a><a class="next" href="../practice/ACTUAL_QUIZ_ANSWERS.html"><span class="dir">Next &rarr;</span><span class="name">Actual quiz answers (24)</span></a></nav>
+  <footer class="foot">
+    CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
+  </footer>
+</main>
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  <a href="#1-why-formatting-matters">1. Why formatting matters</a><a href="#2-the-printf-function">2. The printf function</a><a href="#21-general-form" class="toc-h3">2.1 General form</a><a href="#22-format-specifier-syntax" class="toc-h3">2.2 Format specifier syntax</a><a href="#23-specifier-table" class="toc-h3">2.3 Specifier table</a><a href="#24-width-and-alignment" class="toc-h3">2.4 Width and alignment</a><a href="#25-precision" class="toc-h3">2.5 Precision</a><a href="#26-flags" class="toc-h3">2.6 Flags</a><a href="#27-argument-mismatch" class="toc-h3">2.7 Argument mismatch</a><a href="#3-the-scanf-function">3. The scanf function</a><a href="#31-general-form" class="toc-h3">3.1 General form</a><a href="#32-reading-multiple-values" class="toc-h3">3.2 Reading multiple values</a><a href="#33-return-value" class="toc-h3">3.3 Return value</a><a href="#34-whitespace-and-c" class="toc-h3">3.4 Whitespace and %c</a><a href="#35-reading-strings" class="toc-h3">3.5 Reading strings</a><a href="#36-width-limits" class="toc-h3">3.6 Width limits</a><a href="#37-character-sets" class="toc-h3">3.7 Character sets</a><a href="#38-suppression" class="toc-h3">3.8 Suppression</a><a href="#39-common-scanf-problems" class="toc-h3">3.9 Common scanf problems</a><a href="#310-leftover-newline-problem" class="toc-h3">3.10 Leftover newline problem</a><a href="#4-character-inputoutput">4. Character input/output</a><a href="#5-report-and-display-design">5. Report and display design</a><a href="#51-a-simple-tabular-report" class="toc-h3">5.1 A simple tabular report</a><a href="#52-design-principles-in-practice" class="toc-h3">5.2 Design principles in practice</a><a href="#53-a-menu-display" class="toc-h3">5.3 A menu display</a><a href="#54-error-messages" class="toc-h3">5.4 Error messages</a><a href="#6-worked-exam-questions">6. Worked exam questions</a><a href="#61-what-is-the-output" class="toc-h3">6.1 &quot;What is the output?&quot;</a><a href="#62-what-is-the-output" class="toc-h3">6.2 &quot;What is the output?&quot;</a><a href="#63-what-is-the-output" class="toc-h3">6.3 &quot;What is the output?&quot;</a><a href="#64-what-is-wrong" class="toc-h3">6.4 &quot;What is wrong?&quot;</a><a href="#65-design-the-output-for-an-invoice" class="toc-h3">6.5 &quot;Design the output for an invoice.&quot;</a><a href="#7-common-errors">7. Common errors</a><a href="#8-rapid-revision">8. Rapid revision</a><a href="#9-self-test-answers-below">9. Self-test (answers below)</a><a href="#answers" class="toc-h3">Answers</a>
+</aside>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('csc112-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '\u2600' : '\u263D';
+    try { localStorage.setItem('csc112-theme', next); } catch (e) {}
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // highlight the current section in the right-hand table of contents
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (links.length) {
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    window.addEventListener('scroll', function () {
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i] && heads[i].getBoundingClientRect().top < 120) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }, { passive: true });
+  }
+
+  // on phones, start with the contents menu collapsed
+  var det = document.querySelector('.nav-details');
+  if (det && window.innerWidth < 1000) det.removeAttribute('open');
+})();
+</script>
+</body>
+</html>

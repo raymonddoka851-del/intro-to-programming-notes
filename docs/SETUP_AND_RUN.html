@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Setup: Run C Code on This Computer · CSC 112 Revision</title>
+<meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
+<link rel="stylesheet" href="assets/notes.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="index.html">
+    <span class="brand-mark">C</span>
+    <span class="brand-text"><strong>CSC 112</strong><span>Revision Notes</span></span>
+  </a>
+  <details class="nav-details" open>
+    <summary>Contents</summary>
+    <div class="nav-group"><div class="nav-head"></div><a href="START_HERE.html">Start here (pack index)</a><a href="YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="CHEAT_SHEET.html">Cheat sheet</a><a href="PROGRESS_TRACKER.html">Progress tracker</a><a href="SETUP_AND_RUN.html" class="active">Setup: run C on this PC</a><a href="notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="notes/05_control_statements.html">05 · Control statements</a><a href="notes/06_loops.html">06 · Loops</a><a href="notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="notes/09_pointers.html">09 · Pointers</a><a href="notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="practice/QUESTION_BANK.html">Question bank (96)</a><a href="practice/ANSWER_KEY.html">Answer key</a><a href="practice/LAB_TASKS.html">Lab tasks (25)</a><a href="practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="code/README.html">Program list (22 examples)</a></div>
+  </details>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <span class="crumb">Start here <b>&rsaquo;</b> SETUP_AND_RUN</span>
+    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+  </div>
+  <article class="content">
+<h1 id="setup-run-c-code-on-this-computer">Setup: Run C Code on This Computer</h1>
+<p>You do <strong>not</strong> need to install anything else. A C compiler (GCC 16.2.0) has already been set up for you on this computer.</p>
+<hr>
+<h2 id="the-easy-way-runcodebat">The easy way: <code>RUN_CODE.bat</code></h2>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p>Or simply <strong>drag a <code>.c</code> file</strong> from the <code>code</code> folder onto <code>RUN_CODE.bat</code>.</p>
+<p>The window shows:</p>
+<ul>
+<li>any compiler errors (if the program is wrong), and</li>
+<li>the program's output (if it compiles).</li>
+</ul>
+<p>It pauses at the end so you can read the result. Press any key to close.</p>
+<blockquote><p>The first time you run a program, Windows may show a security warning. Choose <strong>More info → Run anyway</strong> only if you trust the file (it is a simple batch file created for this revision pack).</p></blockquote>
+<hr>
+<h2 id="run-from-a-terminal-optional">Run from a terminal (optional)</h2>
+<p>Open PowerShell in the <code>code</code> folder and run:</p>
+<pre class="code" data-lang="powershell"><code>&amp; &quot;$env:LOCALAPPDATA\mingw64\mingw64\bin\gcc.exe&quot; -std=c11 -Wall -Wextra hello.c -o hello.exe
+.\hello.exe</code></pre>
+<p>For any other file, replace <code>hello.c</code> and <code>hello.exe</code>.</p>
+<p>To see useful warnings (recommended while learning):</p>
+<pre class="code" data-lang="powershell"><code>&amp; &quot;$env:LOCALAPPDATA\mingw64\mingw64\bin\gcc.exe&quot; -std=c11 -Wall -Wextra -g program.c -o program.exe</code></pre>
+<p><code>-Wall -Wextra</code> turns on warnings. <strong>Read warnings even when the program runs</strong> — they often point to the exact bug the examiner will test.</p>
+<hr>
+<h2 id="if-windows-defender-blocks-the-compiler">If Windows Defender blocks the compiler</h2>
+<p>Windows Defender sometimes flags <code>ld.exe</code> (the linker inside GCC) as <code>Trojan:Win32/Bearfoos.A!ml</code>. <strong>This is a known false positive</strong> — <code>ld.exe</code> is a standard part of every C compiler, not a virus.</p>
+<p>The folder has already been added to Defender's exclusion list, so this should not happen again. If <code>RUN_CODE.bat</code> ever says <code>cannot find 'ld'</code> or <code>CreateProcess: No such file or directory</code>, the linker has been quarantined again. Two ways to fix it:</p>
+<ol>
+<li></li>
+<li> <em>Protection history</em>, find the <code>ld.exe</code> item and choose <strong>Restore</strong> (or <strong>Allow on device</strong>). Then run <code>hello.c</code> again.</li>
+</ol>
+<p>As a last resort, re-extract it by opening PowerShell and running:</p>
+<pre class="code" data-lang="powershell"><code>&amp; &quot;C:\Program Files\7-Zip\7z.exe&quot; x &quot;$env:TEMP\opencode\winlibs.7z&quot; `
+  &quot;mingw64\bin\ld.exe&quot; &quot;-o$env:LOCALAPPDATA\mingw64&quot; -y</code></pre>
+<p>(That only works while the download is still in your Temp folder. If it is gone, just use the online compiler — it is completely fine for this exam.)</p>
+<hr>
+<h2 id="the-absolutely-easiest-fallback-online">The absolutely easiest fallback: online</h2>
+<p>If anything goes wrong with the local compiler:</p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p>You can also use &lt;https://www.programiz.com/c-programming/online-compiler/&gt;.</p>
+<hr>
+<h2 id="day-2-check-do-this-once">Day 2 check (do this once)</h2>
+<ol>
+<li></li>
+</ol>
+<pre class="code"><code>   Hello, World!
+   Welcome to C programming.</code></pre>
+<ol>
+<li></li>
+<li></li>
+</ol>
+<p>If all three work, your setup is complete.</p>
+<hr>
+<h2 id="what-the-compiler-messages-mean">What the compiler messages mean</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Message contains</th><th style="text-align:left">Meaning</th><th style="text-align:left">Usual fix</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>expected ';' before ...</code></td><td style="text-align:left">Missing semicolon</td><td style="text-align:left">Add <code>;</code> at the end of the previous statement</td></tr>
+<tr><td style="text-align:left"><code>'x' undeclared</code></td><td style="text-align:left">Variable used before declaration</td><td style="text-align:left">Declare it, e.g. <code>int x;</code></td></tr>
+<tr><td style="text-align:left"><code>expected declaration or statement at end of input</code></td><td style="text-align:left">Missing <code>}</code></td><td style="text-align:left">Count your braces</td></tr>
+<tr><td style="text-align:left"><code>implicit declaration of function 'printf'</code></td><td style="text-align:left">Missing header</td><td style="text-align:left">Add <code>#include &lt;stdio.h&gt;</code></td></tr>
+<tr><td style="text-align:left"><code>format '%d' expects argument of type 'int'</code></td><td style="text-align:left">Wrong <code>printf</code>/<code>scanf</code> specifier</td><td style="text-align:left">Match <code>%d</code> with <code>int</code>, <code>%f</code> with <code>float</code>, <code>%lf</code> with <code>double</code></td></tr>
+<tr><td style="text-align:left"><code>warning: suggest parentheses around assignment used as truth value</code></td><td style="text-align:left">You wrote <code>=</code> instead of <code>==</code></td><td style="text-align:left">Fix the condition</td></tr>
+<tr><td style="text-align:left"><code>undefined reference to ...</code></td><td style="text-align:left">Function declared but not defined / missing library</td><td style="text-align:left">Check the function name or link the library</td></tr>
+<tr><td style="text-align:left">Program compiles but prints garbage</td><td style="text-align:left">Uninitialised variable or wrong format</td><td style="text-align:left">Initialise the variable; check specifiers</td></tr>
+<tr><td style="text-align:left">Program freezes</td><td style="text-align:left">Infinite loop / waiting for input</td><td style="text-align:left">Check the loop update and <code>scanf</code></td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="if-you-ever-need-to-reinstall-the-compiler">If you ever need to reinstall the compiler</h2>
+<p>The compiler lives here:</p>
+<pre class="code"><code>%LOCALAPPDATA%\mingw64\mingw64\bin\gcc.exe</code></pre>
+<p>Alternative options:</p>
+<ul>
+<li><strong>Online:</strong> use the links above (no install).</li>
+<li><strong>Dev-C++:</strong> &lt;https://www.bloodshed.net/&gt; (simple IDE for beginners).</li>
+<li><strong>Code::Blocks:</strong> &lt;https://www.codeblocks.org/downloads/&gt; (choose the <code>mingw</code> build).</li>
+<li><strong>VS Code + MinGW:</strong> install the C/C++ extension, then use the GCC path above.</li>
+</ul>
+<p>You do <strong>not</strong> need an IDE for this exam. A terminal, or <code>RUN_CODE.bat</code>, is enough.</p>
+
+  </article>
+<nav class="pager"><a class="prev" href="PROGRESS_TRACKER.html"><span class="dir">&larr; Previous</span><span class="name">Progress tracker</span></a><a class="next" href="notes/01_programming_fundamentals.html"><span class="dir">Next &rarr;</span><span class="name">01 · Programming fundamentals</span></a></nav>
+  <footer class="foot">
+    CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
+  </footer>
+</main>
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  <a href="#the-easy-way-runcodebat">The easy way: RUN_CODE.bat</a><a href="#run-from-a-terminal-optional">Run from a terminal (optional)</a><a href="#if-windows-defender-blocks-the-compiler">If Windows Defender blocks the compiler</a><a href="#the-absolutely-easiest-fallback-online">The absolutely easiest fallback: online</a><a href="#day-2-check-do-this-once">Day 2 check (do this once)</a><a href="#what-the-compiler-messages-mean">What the compiler messages mean</a><a href="#if-you-ever-need-to-reinstall-the-compiler">If you ever need to reinstall the compiler</a>
+</aside>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('csc112-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '\u2600' : '\u263D';
+    try { localStorage.setItem('csc112-theme', next); } catch (e) {}
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // highlight the current section in the right-hand table of contents
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (links.length) {
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    window.addEventListener('scroll', function () {
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i] && heads[i].getBoundingClientRect().top < 120) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }, { passive: true });
+  }
+
+  // on phones, start with the contents menu collapsed
+  var det = document.querySelector('.nav-details');
+  if (det && window.innerWidth < 1000) det.removeAttribute('open');
+})();
+</script>
+</body>
+</html>

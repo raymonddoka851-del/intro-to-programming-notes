@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STA 121 / CSC 112 — Introduction to Programming · CSC 112 Revision</title>
+<meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
+<link rel="stylesheet" href="assets/notes.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="index.html">
+    <span class="brand-mark">C</span>
+    <span class="brand-text"><strong>CSC 112</strong><span>Revision Notes</span></span>
+  </a>
+  <details class="nav-details" open>
+    <summary>Contents</summary>
+    <div class="nav-group"><div class="nav-head"></div><a href="START_HERE.html" class="active">Start here (pack index)</a><a href="YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="CHEAT_SHEET.html">Cheat sheet</a><a href="PROGRESS_TRACKER.html">Progress tracker</a><a href="SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="notes/05_control_statements.html">05 · Control statements</a><a href="notes/06_loops.html">06 · Loops</a><a href="notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="notes/09_pointers.html">09 · Pointers</a><a href="notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="practice/QUESTION_BANK.html">Question bank (96)</a><a href="practice/ANSWER_KEY.html">Answer key</a><a href="practice/LAB_TASKS.html">Lab tasks (25)</a><a href="practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="code/README.html">Program list (22 examples)</a></div>
+  </details>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <span class="crumb">Start here <b>&rsaquo;</b> START_HERE</span>
+    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+  </div>
+  <article class="content">
+<h1 id="sta-121-csc-112-introduction-to-programming">STA 121 / CSC 112 — Introduction to Programming</h1>
+<h2 id="complete-exam-revision-pack">Complete Exam Revision Pack</h2>
+<p>This pack was built from:</p>
+<ul>
+<li><code>STA 121 COURSE OUTLINE.odt</code> (the official course map)</li>
+<li><code>csc 112 week 1.docx</code> — programming languages, program development, algorithms</li>
+<li><code>csc 112 week 2.docx</code> — algorithms, flowcharts, pseudocode, decision tables, DFDs</li>
+<li><code>WEEK 3 NOTES.docx</code> — C program structure, variables, data types, operators, I/O</li>
+<li><code>week 4 a dn 6.docx</code> — formatted I/O, operators, control statements, loops, functions</li>
+<li><code>week 7 notes.docx</code> — functions and arrays</li>
+</ul>
+<p>The weekly outline stops at structures/unions, but the course description also mentions <strong>number systems, strings, recursion and files</strong>. I have covered those too, because examiners often set them.</p>
+<blockquote><p><strong>Language:</strong> All examples are in <strong>C</strong>, because that is the language used throughout your notes and the outline (&quot;C programming format and structure&quot;).</p></blockquote>
+<hr>
+<h2 id="1-what-is-in-this-pack">1. What is in this pack</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Folder</th><th style="text-align:left">File</th><th style="text-align:left">Use it for</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">—</td><td style="text-align:left"><code>OPEN_NOTES.bat</code></td><td style="text-align:left"><strong>Start here:</strong> opens the formatted, clickable version of every note in your browser</td></tr>
+<tr><td style="text-align:left"><code>docs/</code></td><td style="text-align:left"><code>index.html</code></td><td style="text-align:left">The styled notes site (tables, code colouring, search, print to PDF)</td></tr>
+<tr><td style="text-align:left">—</td><td style="text-align:left"><code>START_HERE.md</code></td><td style="text-align:left">Study plan, exam strategy, checklist</td></tr>
+<tr><td style="text-align:left">—</td><td style="text-align:left"><code>YOUR_14_DAY_PLAN.md</code></td><td style="text-align:left">Detailed day-by-day plan with minimum pass paths</td></tr>
+<tr><td style="text-align:left">—</td><td style="text-align:left"><code>SETUP_AND_RUN.md</code></td><td style="text-align:left">Install or use a C compiler; compile and run programs</td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>01_programming_fundamentals.md</code></td><td style="text-align:left">Definitions, language levels, program development, algorithms, flowcharts, errors</td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>02_c_basics_and_compilation.md</code></td><td style="text-align:left">C structure, compilation, identifiers, comments, first programs</td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>03_data_types_and_number_systems.md</code></td><td style="text-align:left">Bits/bytes, binary/octal/hex, 2's complement, int/float/char, ASCII, casting</td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>04_operators_and_expressions.md</code></td><td style="text-align:left">All operator types, precedence, prefix/postfix, evaluation</td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>05_control_statements.md</code></td><td style="text-align:left">if, if-else, else-if, nested if, switch</td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>06_loops.md</code></td><td style="text-align:left">while, do-while, for, nested loops, break/continue/goto</td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>07_functions_and_recursion.md</code></td><td style="text-align:left">Prototypes, parameters, call by value/reference, scope, recursion</td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>08_arrays_and_strings.md</code></td><td style="text-align:left">1D/2D arrays, searching, sorting, strings, <code>string.h</code></td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>09_pointers.md</code></td><td style="text-align:left">Addresses, dereferencing, pointer arithmetic, pass-by-reference, dynamic memory</td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>10_structures_unions_files.md</code></td><td style="text-align:left">struct, union, enum, file handling</td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>11_formatted_io_and_reports.md</code></td><td style="text-align:left"><code>printf</code>/<code>scanf</code> formatting, display/report design</td></tr>
+<tr><td style="text-align:left">—</td><td style="text-align:left"><code>CHEAT_SHEET.md</code></td><td style="text-align:left">One-page syntax reference for the last day</td></tr>
+<tr><td style="text-align:left"><code>code/</code></td><td style="text-align:left"><code>*.c</code></td><td style="text-align:left">Complete, compilable example programs</td></tr>
+<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><code>ACTUAL_QUIZ_ANSWERS.md</code></td><td style="text-align:left">Model answers to the e-learning quiz questions</td></tr>
+<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><code>QUESTION_BANK.md</code></td><td style="text-align:left">96 questions by topic</td></tr>
+<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><code>ANSWER_KEY.md</code></td><td style="text-align:left">Answers and explanations</td></tr>
+<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><code>LAB_TASKS.md</code></td><td style="text-align:left">25 programs to write yourself, easy → hard</td></tr>
+<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><code>MOCK_EXAM_1.md</code></td><td style="text-align:left">Full 70-mark practice paper</td></tr>
+<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><code>MOCK_EXAM_1_MARKING_SCHEME.md</code></td><td style="text-align:left">Marking scheme and model answers</td></tr>
+<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><code>MOCK_EXAM_2.md</code></td><td style="text-align:left">Second full paper</td></tr>
+<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><code>MOCK_EXAM_2_MARKING_SCHEME.md</code></td><td style="text-align:left">Marking scheme and model answers</td></tr>
+<tr><td style="text-align:left">—</td><td style="text-align:left"><code>PROGRESS_TRACKER.md</code></td><td style="text-align:left">Tick off topics as you master them</td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="2-course-map-outline-week-what-to-master">2. Course map: outline week → what to master</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Week</th><th style="text-align:left">Outline topic</th><th style="text-align:left">Read</th><th style="text-align:left">You must be able to…</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">1</td><td style="text-align:left">Introduction to programming methodology</td><td style="text-align:left">Note 01</td><td style="text-align:left">Define program/programming/language; classify languages; list characteristics of a good program; list the 8 development phases; write an algorithm and pseudocode</td></tr>
+<tr><td style="text-align:left">2</td><td style="text-align:left">Compilation; C format and structure</td><td style="text-align:left">Note 02</td><td style="text-align:left">Write and explain the parts of a C program; describe preprocessor → compiler → assembler → linker → loader; list syntax/runtime/logical errors</td></tr>
+<tr><td style="text-align:left">3–4</td><td style="text-align:left">Data types</td><td style="text-align:left">Note 03</td><td style="text-align:left">Convert between number systems; explain bits/bytes/words; signed vs unsigned; <code>int</code>, <code>float</code>, <code>double</code>, <code>char</code>; ASCII; casting</td></tr>
+<tr><td style="text-align:left">5</td><td style="text-align:left">CAT ONE</td><td style="text-align:left">—</td><td style="text-align:left">Revise weeks 1–4</td></tr>
+<tr><td style="text-align:left">6</td><td style="text-align:left">Operators</td><td style="text-align:left">Note 04</td><td style="text-align:left">Use arithmetic, relational, logical, bitwise, assignment, increment/decrement, conditional; apply precedence; evaluate expressions</td></tr>
+<tr><td style="text-align:left">7</td><td style="text-align:left">Control statements</td><td style="text-align:left">Note 05</td><td style="text-align:left">Write if, if-else, else-if ladder, nested if, switch; trace output</td></tr>
+<tr><td style="text-align:left">8</td><td style="text-align:left">Looping</td><td style="text-align:left">Note 06</td><td style="text-align:left">Write while, do-while, for, nested loops; use break/continue/goto; trace loops</td></tr>
+<tr><td style="text-align:left">9</td><td style="text-align:left">Arrays</td><td style="text-align:left">Note 08</td><td style="text-align:left">Declare/initialise 1D, 2D and multi-dimensional arrays; search, sort, sum, average, matrix operations</td></tr>
+<tr><td style="text-align:left">10</td><td style="text-align:left">CAT TWO</td><td style="text-align:left">—</td><td style="text-align:left">Revise weeks 6–9</td></tr>
+<tr><td style="text-align:left">11</td><td style="text-align:left">Pointers</td><td style="text-align:left">Note 09</td><td style="text-align:left">Use <code>&amp;</code> and <code>*</code>; pointer arithmetic; pass by reference; swap; explain pointer–array link</td></tr>
+<tr><td style="text-align:left">12</td><td style="text-align:left">Unions and structures</td><td style="text-align:left">Note 10</td><td style="text-align:left">Define/use structs and unions; array of structs; <code>typedef</code>; <code>-&gt;</code>; file handling basics</td></tr>
+</tbody></table></div>
+<p><strong>Also examinable from the course description:</strong> number systems, character codes, strings, recursion, functions, parameter passing, files, report/display design.</p>
+<hr>
+<h2 id="3-the-14-day-plan-23-hours-per-day">3. The 14-day plan (2–3 hours per day)</h2>
+<p>If your exam is about two weeks away, follow this. Each day has <strong>read → recall → code → questions</strong>.</p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Day</th><th style="text-align:left">Focus</th><th style="text-align:left">Tasks</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">1</td><td style="text-align:left">Fundamentals</td><td style="text-align:left">Read Note 01. Memorise the 8 development phases and 6+ characteristics of a good program. Write pseudocode and draw a flowchart for &quot;largest of three numbers&quot;. Do Q1–Q10 in the question bank.</td></tr>
+<tr><td style="text-align:left">2</td><td style="text-align:left">C basics + compilation</td><td style="text-align:left">Read Note 02. Get a compiler working (see §7). Type and run <code>hello.c</code>, <code>add_two.c</code>, <code>area_circle.c</code>. Learn the compilation pipeline. Do Q11–Q20.</td></tr>
+<tr><td style="text-align:left">3</td><td style="text-align:left">Data types + number systems</td><td style="text-align:left">Read Note 03. Practise 10 decimal↔binary conversions and 5 two's-complement conversions. Run <code>data_types.c</code>. Do Q21–Q30.</td></tr>
+<tr><td style="text-align:left">4</td><td style="text-align:left">Operators</td><td style="text-align:left">Read Note 04. Copy the precedence table from memory. Run <code>operators.c</code>. Do Q31–Q40.</td></tr>
+<tr><td style="text-align:left">5</td><td style="text-align:left">Control statements</td><td style="text-align:left">Read Note 05. Write even/odd, largest of 3, grade program, calculator with <code>switch</code>. Do Q41–Q50.</td></tr>
+<tr><td style="text-align:left">6</td><td style="text-align:left">Loops</td><td style="text-align:left">Read Note 06. Write sum 1..n, factorial, reverse digits, prime check, multiplication table, star triangle. Do Q51–Q60.</td></tr>
+<tr><td style="text-align:left">7</td><td style="text-align:left">Review + mini-test</td><td style="text-align:left">Re-do every wrong question from days 1–6. Do Sections A–F (Q1–Q60) of <code>QUESTION_BANK.md</code> under timed conditions.</td></tr>
+<tr><td style="text-align:left">8</td><td style="text-align:left">Functions</td><td style="text-align:left">Read Note 07 (first half). Write a function for max of two, factorial, prime check. Learn the four function categories. Do Q61–Q66.</td></tr>
+<tr><td style="text-align:left">9</td><td style="text-align:left">Recursion + parameter passing</td><td style="text-align:left">Read Note 07 (second half). Trace factorial(5) and Fibonacci(5) by hand. Write swap with pointers. Do Q67–Q70.</td></tr>
+<tr><td style="text-align:left">10</td><td style="text-align:left">1D arrays</td><td style="text-align:left">Read Note 08 (first half). Write array input/output, sum/average, max/min, reverse, linear search. Run <code>array_stats.c</code> and <code>bubble_sort.c</code>. Do Q71–Q75.</td></tr>
+<tr><td style="text-align:left">11</td><td style="text-align:left">2D arrays + strings</td><td style="text-align:left">Read Note 08 (second half). Write matrix addition and transpose. Write string length, copy, compare without <code>string.h</code>. Do Q76–Q80.</td></tr>
+<tr><td style="text-align:left">12</td><td style="text-align:left">Pointers</td><td style="text-align:left">Read Note 09. Draw memory diagrams for <code>int x = 5; int *p = &amp;x;</code>. Write swap and array traversal with pointers. Do Q81–Q86.</td></tr>
+<tr><td style="text-align:left">13</td><td style="text-align:left">Structures, unions, files, reports</td><td style="text-align:left">Read Notes 10 and 11. Write a student struct program and a file write/read program. Learn the <code>union</code> vs <code>struct</code> size question and the report-formatting question. Do Q87–Q96.</td></tr>
+<tr><td style="text-align:left">14</td><td style="text-align:left">Full mock + review</td><td style="text-align:left">Sit <code>MOCK_EXAM_1.md</code> in 2 hours without notes. Mark it with the scheme. Re-do every missed question, then re-read the cheat sheet and your weak notes.</td></tr>
+</tbody></table></div>
+<h3 id="if-you-only-have-5-days">If you only have 5 days</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Day</th><th style="text-align:left">Focus</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">1</td><td style="text-align:left">Note 01 + 02; learn all definitions and the compilation pipeline</td></tr>
+<tr><td style="text-align:left">2</td><td style="text-align:left">Note 03 + 04; number conversions and expression evaluation</td></tr>
+<tr><td style="text-align:left">3</td><td style="text-align:left">Note 05 + 06; write and trace if/loops</td></tr>
+<tr><td style="text-align:left">4</td><td style="text-align:left">Note 07 + 08; functions, recursion, arrays, strings</td></tr>
+<tr><td style="text-align:left">5</td><td style="text-align:left">Notes 09–11 + cheat sheet; one mock exam</td></tr>
+</tbody></table></div>
+<h3 id="if-you-have-48-hours">If you have 48 hours</h3>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<hr>
+<h2 id="4-how-to-study-programming-even-alone">4. How to study programming (even alone)</h2>
+<p>For every example program, use the <strong>P.A.C.E.</strong> method:</p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p>When you trace code in the exam, always draw a <strong>variable table</strong>:</p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Line</th><th style="text-align:left"><code>i</code></th><th style="text-align:left"><code>sum</code></th><th style="text-align:left">Output</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>i=1</code></td><td style="text-align:left">1</td><td style="text-align:left">0</td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left"><code>sum+=i</code></td><td style="text-align:left">1</td><td style="text-align:left">1</td><td style="text-align:left"></td></tr>
+<tr><td style="text-align:left"><code>i++</code></td><td style="text-align:left">2</td><td style="text-align:left">1</td><td style="text-align:left"></td></tr>
+</tbody></table></div>
+<p>This prevents most lost marks.</p>
+<hr>
+<h2 id="5-exam-strategy-70-written-paper">5. Exam strategy (70% written paper)</h2>
+<h3 id="question-types-and-how-to-answer">Question types and how to answer</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Type</th><th style="text-align:left">What the examiner wants</th><th style="text-align:left">Technique</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Define</td><td style="text-align:left">A precise one- or two-sentence definition</td><td style="text-align:left">Learn definitions word-for-word, then add an example</td></tr>
+<tr><td style="text-align:left">List / state</td><td style="text-align:left">The required number of points</td><td style="text-align:left">Number your points; do not write a paragraph</td></tr>
+<tr><td style="text-align:left">Differentiate</td><td style="text-align:left">A table with at least 3 clear differences</td><td style="text-align:left">Draw the table even if not asked</td></tr>
+<tr><td style="text-align:left">Explain</td><td style="text-align:left">Meaning + how it works + example</td><td style="text-align:left">Use the phrase &quot;This means that… For example…&quot;</td></tr>
+<tr><td style="text-align:left">Trace output</td><td style="text-align:left">Exact output, including new lines</td><td style="text-align:left">Variable table; watch <code>/</code> and <code>%</code>, prefix/postfix, loop bounds</td></tr>
+<tr><td style="text-align:left">Write a program</td><td style="text-align:left">Correct, complete, readable code</td><td style="text-align:left">IPO plan → declare → input → process → output → <code>return 0;</code></td></tr>
+<tr><td style="text-align:left">Debug</td><td style="text-align:left">Identify the error, explain it, correct it</td><td style="text-align:left">Name the error type (syntax/runtime/logical)</td></tr>
+</tbody></table></div>
+<h3 id="code-writing-recipe-use-every-time">Code-writing recipe (use every time)</h3>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<h3 id="marks-per-minute">Marks per minute</h3>
+<ul>
+<li>70 marks in 120 minutes ≈ <strong>1.7 minutes per mark</strong>.</li>
+<li>Do the <strong>theory definitions first</strong> (fast marks), then tracing, then the long program.</li>
+<li>If a program is 10 marks, spend at most ~15 minutes.</li>
+<li>Never leave a program blank: declarations, <code>main</code>, input and output can earn part marks.</li>
+</ul>
+<h3 id="the-10-mistakes-that-cost-the-most-marks">The 10 mistakes that cost the most marks</h3>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<hr>
+<h2 id="6-must-know-checklist">6. Must-know checklist</h2>
+<p>Tick each only when you can do it <strong>without notes</strong>.</p>
+<h3 id="theory">Theory</h3>
+<ul>
+<li><span class="cb">&#9744;</span> Define program, programming, programming language, algorithm, pseudocode, flowchart</li>
+<li><span class="cb">&#9744;</span> Classify programming languages (machine, assembly, high-level) with 2 advantages and 2 disadvantages each</li>
+<li><span class="cb">&#9744;</span> Explain compiler vs interpreter (4 differences)</li>
+<li><span class="cb">&#9744;</span> List 6 characteristics of a good program</li>
+<li><span class="cb">&#9744;</span> List the 8 phases of program development in order</li>
+<li><span class="cb">&#9744;</span> Explain syntax, runtime and logical errors with examples</li>
+<li><span class="cb">&#9744;</span> Explain sequence, selection and repetition</li>
+<li><span class="cb">&#9744;</span> Describe the 5 flowchart symbols and 5 algorithm representations</li>
+<li><span class="cb">&#9744;</span> Describe the compilation pipeline (preprocessor, compiler, assembler, linker, loader)</li>
+</ul>
+<h3 id="c-language">C language</h3>
+<ul>
+<li><span class="cb">&#9744;</span> Write the structure of a C program from memory</li>
+<li><span class="cb">&#9744;</span> List 5 header files and what they provide</li>
+<li><span class="cb">&#9744;</span> State the rules for identifiers and list 10 keywords</li>
+<li><span class="cb">&#9744;</span> Explain <code>#define</code> vs <code>const</code></li>
+<li><span class="cb">&#9744;</span> Convert decimal ↔ binary ↔ octal ↔ hex</li>
+<li><span class="cb">&#9744;</span> Explain signed vs unsigned, 2's complement, range of 8-bit numbers</li>
+<li><span class="cb">&#9744;</span> Explain <code>int</code>, <code>float</code>, <code>double</code>, <code>char</code> (size, format specifier, example)</li>
+<li><span class="cb">&#9744;</span> State key ASCII codes (<code>'A'</code>, <code>'a'</code>, <code>'0'</code>, space, newline)</li>
+<li><span class="cb">&#9744;</span> Explain implicit conversion and casting</li>
+<li><span class="cb">&#9744;</span> Use all operator types; state precedence and associativity</li>
+<li><span class="cb">&#9744;</span> Evaluate prefix vs postfix expressions</li>
+<li><span class="cb">&#9744;</span> Write if, if-else, else-if, nested if, switch</li>
+<li><span class="cb">&#9744;</span> Write while, do-while, for, nested loops</li>
+<li><span class="cb">&#9744;</span> Use <code>break</code>, <code>continue</code>, <code>goto</code> correctly</li>
+<li><span class="cb">&#9744;</span> Define function, prototype, definition, call, return</li>
+<li><span class="cb">&#9744;</span> Explain actual vs formal parameters</li>
+<li><span class="cb">&#9744;</span> Explain call by value vs call by reference</li>
+<li><span class="cb">&#9744;</span> Explain local vs global vs static scope</li>
+<li><span class="cb">&#9744;</span> Write a recursive function with a base case</li>
+<li><span class="cb">&#9744;</span> Declare/initialise 1D and 2D arrays</li>
+<li><span class="cb">&#9744;</span> Search (linear/binary) and sort (bubble) an array</li>
+<li><span class="cb">&#9744;</span> Explain how strings are stored; use <code>strlen</code>, <code>strcpy</code>, <code>strcat</code>, <code>strcmp</code></li>
+<li><span class="cb">&#9744;</span> Declare pointers, use <code>&amp;</code> and <code>*</code>, do pointer arithmetic</li>
+<li><span class="cb">&#9744;</span> Explain the link between arrays and pointers</li>
+<li><span class="cb">&#9744;</span> Define and use a <code>struct</code>, array of structs, <code>typedef</code>, <code>-&gt;</code></li>
+<li><span class="cb">&#9744;</span> Explain <code>struct</code> vs <code>union</code></li>
+<li><span class="cb">&#9744;</span> Open, write, read and close a text file</li>
+<li><span class="cb">&#9744;</span> Format output with width and precision; design a simple report</li>
+</ul>
+<hr>
+<h2 id="7-running-c-code-already-set-up-for-you">7. Running C code (already set up for you)</h2>
+<p>A C compiler (GCC) is <strong>already installed on this computer</strong>. You do not need to install anything.</p>
+<p><strong>The easy way:</strong> double-click <code>RUN_CODE.bat</code> in this folder, type a program name (for example <code>hello.c</code>), and press Enter. You can also drag any <code>.c</code> file from the <code>code/</code> folder onto <code>RUN_CODE.bat</code>.</p>
+<p>Full instructions, terminal commands and fixes for common compiler errors are in <strong><code>SETUP_AND_RUN.md</code></strong>.</p>
+<p><strong>If the local compiler ever fails,</strong> use the online compiler: &lt;https://www.onlinegdb.com/online_c_compiler&gt; — paste the code and press <strong>Run</strong>.</p>
+<blockquote><p>Do not spend study time installing IDEs. A compiler plus <code>RUN_CODE.bat</code> is enough for this exam.</p></blockquote>
+<hr>
+<h2 id="7b-reading-the-notes-nicely-formatted">7b. Reading the notes (nicely formatted)</h2>
+<p>The <code>.md</code> files are <strong>Markdown</strong>. If you double-click one, Word or Notepad opens it as raw text and you see <code>#</code>, <code>**</code> and <code>|</code> symbols — that is normal, but it is not meant to be read that way.</p>
+<p><strong>Double-click <code>OPEN_NOTES.bat</code></strong> to read everything the way it is supposed to look: formatted headings, coloured tables, highlighted C code, a sidebar, search, and a dark mode. Every page can be saved as a PDF with <strong>Ctrl+P</strong>.</p>
+<p>The browser version is generated from the same <code>.md</code> files, so the two always match.</p>
+<hr>
+<h2 id="8-a-note-about-what-is-published">8. A note about what is published</h2>
+<p>This folder is also a public GitHub repository. Only the revision material is uploaded: notes, programs, practice questions and the formatted HTML site.</p>
+<p>Anything personal stays on your computer and is never committed — exam slips, screenshots, student emails and two-factor backup codes. <code>.gitignore</code> blocks the common accidents (build outputs, <code>students.txt</code> written by <code>file_records.c</code>).</p>
+<hr>
+<h2 id="9-suggested-daily-routine">9. Suggested daily routine</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Time</th><th style="text-align:left">Activity</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">0:00–0:35</td><td style="text-align:left">Read one note section actively (underline, write questions in the margin)</td></tr>
+<tr><td style="text-align:left">0:35–0:45</td><td style="text-align:left">Close the note; write the key syntax/table from memory</td></tr>
+<tr><td style="text-align:left">0:45–1:30</td><td style="text-align:left">Type and run 1–2 programs; change values and predict output</td></tr>
+<tr><td style="text-align:left">1:30–2:00</td><td style="text-align:left">Do practice questions; mark yourself</td></tr>
+<tr><td style="text-align:left">2:00–2:10</td><td style="text-align:left">Write 3 things you learned and 1 thing you still do not understand</td></tr>
+</tbody></table></div>
+<p><strong>Start here:</strong> open <code>YOUR_14_DAY_PLAN.md</code> and do Day 1. Before anything else, learn <code>practice/ACTUAL_QUIZ_ANSWERS.md</code> — those are the exact e-learning quiz questions.</p>
+
+  </article>
+<nav class="pager"><span class="spacer"></span><a class="next" href="YOUR_14_DAY_PLAN.html"><span class="dir">Next &rarr;</span><span class="name">Your 14-day study plan</span></a></nav>
+  <footer class="foot">
+    CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
+  </footer>
+</main>
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  <a href="#complete-exam-revision-pack">Complete Exam Revision Pack</a><a href="#1-what-is-in-this-pack">1. What is in this pack</a><a href="#2-course-map-outline-week-what-to-master">2. Course map: outline week → what to master</a><a href="#3-the-14-day-plan-23-hours-per-day">3. The 14-day plan (2–3 hours per day)</a><a href="#if-you-only-have-5-days" class="toc-h3">If you only have 5 days</a><a href="#if-you-have-48-hours" class="toc-h3">If you have 48 hours</a><a href="#4-how-to-study-programming-even-alone">4. How to study programming (even alone)</a><a href="#5-exam-strategy-70-written-paper">5. Exam strategy (70% written paper)</a><a href="#question-types-and-how-to-answer" class="toc-h3">Question types and how to answer</a><a href="#code-writing-recipe-use-every-time" class="toc-h3">Code-writing recipe (use every time)</a><a href="#marks-per-minute" class="toc-h3">Marks per minute</a><a href="#the-10-mistakes-that-cost-the-most-marks" class="toc-h3">The 10 mistakes that cost the most marks</a><a href="#6-must-know-checklist">6. Must-know checklist</a><a href="#theory" class="toc-h3">Theory</a><a href="#c-language" class="toc-h3">C language</a><a href="#7-running-c-code-already-set-up-for-you">7. Running C code (already set up for you)</a><a href="#7b-reading-the-notes-nicely-formatted">7b. Reading the notes (nicely formatted)</a><a href="#8-a-note-about-what-is-published">8. A note about what is published</a><a href="#9-suggested-daily-routine">9. Suggested daily routine</a>
+</aside>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('csc112-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '\u2600' : '\u263D';
+    try { localStorage.setItem('csc112-theme', next); } catch (e) {}
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // highlight the current section in the right-hand table of contents
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (links.length) {
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    window.addEventListener('scroll', function () {
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i] && heads[i].getBoundingClientRect().top < 120) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }, { passive: true });
+  }
+
+  // on phones, start with the contents menu collapsed
+  var det = document.querySelector('.nav-details');
+  if (det && window.innerWidth < 1000) det.removeAttribute('open');
+})();
+</script>
+</body>
+</html>

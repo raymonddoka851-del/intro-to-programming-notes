@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Note 07 — Functions, Parameter Passing &amp; Recursion · CSC 112 Revision</title>
+<meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
+<link rel="stylesheet" href="../assets/notes.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">C</span>
+    <span class="brand-text"><strong>CSC 112</strong><span>Revision Notes</span></span>
+  </a>
+  <details class="nav-details" open>
+    <summary>Contents</summary>
+    <div class="nav-group"><div class="nav-head"></div><a href="../START_HERE.html">Start here (pack index)</a><a href="../YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="../CHEAT_SHEET.html">Cheat sheet</a><a href="../PROGRESS_TRACKER.html">Progress tracker</a><a href="../SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="../notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="../notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="../notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="../notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="../notes/05_control_statements.html">05 · Control statements</a><a href="../notes/06_loops.html">06 · Loops</a><a href="../notes/07_functions_and_recursion.html" class="active">07 · Functions &amp; recursion</a><a href="../notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="../notes/09_pointers.html">09 · Pointers</a><a href="../notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="../notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="../practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="../practice/QUESTION_BANK.html">Question bank (96)</a><a href="../practice/ANSWER_KEY.html">Answer key</a><a href="../practice/LAB_TASKS.html">Lab tasks (25)</a><a href="../practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="../practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="../practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="../code/README.html">Program list (22 examples)</a></div>
+  </details>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <span class="crumb">Notes <b>&rsaquo;</b> 07_functions_and_recursion</span>
+    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+  </div>
+  <article class="content">
+<h1 id="note-07-functions-parameter-passing-recursion">Note 07 — Functions, Parameter Passing &amp; Recursion</h1>
+<blockquote><p><strong>Covers the functions part of the course description and your Week 7 notes</strong> (Module 7, Unit 1). Recursion is also in the course description.</p></blockquote>
+<hr>
+<h2 id="1-why-functions">1. Why functions?</h2>
+<p>A <strong>function</strong> is a named block of code that performs one specific task. It can be called (invoked) whenever that task is needed.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> <span class="tok-fn">add</span>(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b)       <span class="tok-com">/* function definition */</span>
+{
+    <span class="tok-kw">return</span> a + b;
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> sum = <span class="tok-fn">add</span>(<span class="tok-num">5</span>, <span class="tok-num">3</span>);    <span class="tok-com">/* function call */</span>
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, sum);    <span class="tok-com">/* 8 */</span>
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<h3 id="11-monolithic-vs-modular-programming">1.1 Monolithic vs modular programming</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Monolithic programming</th><th style="text-align:left">Modular programming</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">One large <code>main()</code> for the whole program</td><td style="text-align:left">Program split into functions/modules</td></tr>
+<tr><td style="text-align:left">Single thread of execution</td><td style="text-align:left">Each module developed and tested separately</td></tr>
+<tr><td style="text-align:left">Hard to read, test, debug and maintain</td><td style="text-align:left">Easier to read, test, debug and reuse</td></tr>
+<tr><td style="text-align:left">Code is specific to one problem</td><td style="text-align:left">Code can be reused in other programs</td></tr>
+<tr><td style="text-align:left">Errors are hard to isolate</td><td style="text-align:left">Errors are isolated to a module</td></tr>
+<tr><td style="text-align:left">Linker not needed for structure</td><td style="text-align:left">Linker combines modules into one program</td></tr>
+</tbody></table></div>
+<p><strong>Advantages of functions / modularity</strong></p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p><strong>Disadvantages / costs</strong></p>
+<ul>
+<li>Function call overhead (small).</li>
+<li>Too many tiny functions can obscure the overall flow.</li>
+<li>Needs careful interface design (parameters and return types).</li>
+</ul>
+<hr>
+<h2 id="2-the-three-parts-of-a-user-defined-function">2. The three parts of a user-defined function</h2>
+<p>Every user-defined function has:</p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<h3 id="21-function-prototype-declaration">2.1 Function prototype (declaration)</h3>
+<pre class="code" data-lang="c"><code>return_type <span class="tok-fn">function_name</span>(type1 parameter1, type2 parameter2, ...);</code></pre>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> <span class="tok-fn">add</span>(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b);
+<span class="tok-kw">float</span> <span class="tok-fn">average</span>(<span class="tok-kw">float</span> x, <span class="tok-kw">float</span> y);
+<span class="tok-kw">void</span> <span class="tok-fn">greet</span>(<span class="tok-kw">void</span>);</code></pre>
+<ul>
+<li>Ends with a <strong>semicolon</strong>.</li>
+<li>Parameter names are optional in a prototype: <code>int add(int, int);</code></li>
+<li>The prototype must appear <strong>before</strong> the first call (usually at the top of the file or in a header).</li>
+<li>If the function is defined <strong>before</strong> <code>main</code>, a separate prototype is not needed.</li>
+</ul>
+<h3 id="22-function-definition">2.2 Function definition</h3>
+<pre class="code" data-lang="c"><code>return_type <span class="tok-fn">function_name</span>(type1 parameter1, type2 parameter2, ...)
+{
+    <span class="tok-com">/* local declarations */</span>
+    <span class="tok-com">/* statements */</span>
+    <span class="tok-kw">return</span> value;        <span class="tok-com">/* omit if return_type is void */</span>
+}</code></pre>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> <span class="tok-fn">add</span>(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b)
+{
+    <span class="tok-kw">int</span> sum = a + b;
+    <span class="tok-kw">return</span> sum;
+}</code></pre>
+<p><strong>Rules</strong></p>
+<ul>
+<li>A function cannot be defined inside another function.</li>
+<li><code>return</code> ends the function and sends a value back.</li>
+<li>A <code>void</code> function may use <code>return;</code> to exit early, but returns no value.</li>
+<li>If a non-<code>void</code> function reaches the end without <code>return</code>, the result is undefined.</li>
+<li>Local variables inside a function are destroyed when it ends.</li>
+</ul>
+<h3 id="23-function-call">2.3 Function call</h3>
+<pre class="code" data-lang="c"><code><span class="tok-fn">function_name</span>(argument1, argument2, ...);</code></pre>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> result = <span class="tok-fn">add</span>(<span class="tok-num">5</span>, <span class="tok-num">3</span>);</code></pre>
+<ul>
+<li>The number, order and types of arguments must match the parameters.</li>
+<li>The call can appear in an expression: <code>printf(&quot;%d&quot;, add(2, 3));</code></li>
+<li>A <code>void</code> function is called as a statement: <code>greet();</code></li>
+</ul>
+<hr>
+<h2 id="3-a-complete-example">3. A complete example</h2>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-com">/* Prototypes */</span>
+<span class="tok-kw">int</span> <span class="tok-fn">add</span>(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b);
+<span class="tok-kw">int</span> <span class="tok-fn">max_of_two</span>(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b);
+<span class="tok-kw">void</span> <span class="tok-fn">print_line</span>(<span class="tok-kw">void</span>);
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> x, y;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter two integers: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d %d&quot;</span>, &amp;x, &amp;y);
+
+    <span class="tok-fn">print_line</span>();
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Sum   = %d\n&quot;</span>, <span class="tok-fn">add</span>(x, y));
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Max   = %d\n&quot;</span>, <span class="tok-fn">max_of_two</span>(x, y));
+    <span class="tok-fn">print_line</span>();
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}
+
+<span class="tok-com">/* Definitions */</span>
+<span class="tok-kw">int</span> <span class="tok-fn">add</span>(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b)
+{
+    <span class="tok-kw">return</span> a + b;
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">max_of_two</span>(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b)
+{
+    <span class="tok-kw">if</span> (a &gt; b)
+        <span class="tok-kw">return</span> a;
+    <span class="tok-kw">else</span>
+        <span class="tok-kw">return</span> b;
+}
+
+<span class="tok-kw">void</span> <span class="tok-fn">print_line</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;----------------\n&quot;</span>);
+}</code></pre>
+<p><strong>Output (input 4 9)</strong></p>
+<pre class="code"><code>----------------
+Sum   = 13
+Max   = 9
+----------------</code></pre>
+<hr>
+<h2 id="4-the-four-categories-of-functions">4. The four categories of functions</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Category</th><th style="text-align:left">Arguments?</th><th style="text-align:left">Return value?</th><th style="text-align:left">Example</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">1. No arguments, no return value</td><td style="text-align:left">No</td><td style="text-align:left">No</td><td style="text-align:left"><code>void greet(void)</code></td></tr>
+<tr><td style="text-align:left">2. No arguments, returns a value</td><td style="text-align:left">No</td><td style="text-align:left">Yes</td><td style="text-align:left"><code>int read_number(void)</code></td></tr>
+<tr><td style="text-align:left">3. Arguments, no return value</td><td style="text-align:left">Yes</td><td style="text-align:left">No</td><td style="text-align:left"><code>void print_sum(int a, int b)</code></td></tr>
+<tr><td style="text-align:left">4. Arguments, returns a value</td><td style="text-align:left">Yes</td><td style="text-align:left">Yes</td><td style="text-align:left"><code>int add(int a, int b)</code></td></tr>
+</tbody></table></div>
+<h3 id="41-no-arguments-no-return-value">4.1 No arguments, no return value</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">void</span> <span class="tok-fn">greet</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Hello, student!\n&quot;</span>);
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-fn">greet</span>();
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p>No data goes in or out. The function reads/prints independently.</p>
+<h3 id="42-no-arguments-returns-a-value">4.2 No arguments, returns a value</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> <span class="tok-fn">read_number</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> n;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter a number: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+    <span class="tok-kw">return</span> n;
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> x = <span class="tok-fn">read_number</span>();
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;You entered %d\n&quot;</span>, x);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<h3 id="43-arguments-no-return-value">4.3 Arguments, no return value</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">void</span> <span class="tok-fn">print_sum</span>(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b)
+{
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Sum = %d\n&quot;</span>, a + b);
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-fn">print_sum</span>(<span class="tok-num">3</span>, <span class="tok-num">4</span>);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<h3 id="44-arguments-returns-a-value">4.4 Arguments, returns a value</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> <span class="tok-fn">add</span>(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b)
+{
+    <span class="tok-kw">return</span> a + b;
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> s = <span class="tok-fn">add</span>(<span class="tok-num">3</span>, <span class="tok-num">4</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Sum = %d\n&quot;</span>, s);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p>This is the most flexible and most common category.</p>
+<hr>
+<h2 id="5-actual-vs-formal-parameters">5. Actual vs formal parameters</h2>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> <span class="tok-fn">add</span>(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b)       <span class="tok-com">/* a and b are FORMAL parameters */</span>
+{
+    <span class="tok-kw">return</span> a + b;
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> x = <span class="tok-num">5</span>, y = <span class="tok-num">3</span>;
+    <span class="tok-kw">int</span> s = <span class="tok-fn">add</span>(x, y);      <span class="tok-com">/* x and y are ACTUAL arguments */</span>
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Actual arguments</th><th style="text-align:left">Formal parameters</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Appear in the function <strong>call</strong></td><td style="text-align:left">Appear in the function <strong>definition</strong></td></tr>
+<tr><td style="text-align:left">Are the real values passed by the caller</td><td style="text-align:left">Are local variables that receive copies</td></tr>
+<tr><td style="text-align:left">Can be constants, variables or expressions</td><td style="text-align:left">Must be declared with a type</td></tr>
+<tr><td style="text-align:left">Exist in the calling function</td><td style="text-align:left">Exist only while the called function runs</td></tr>
+<tr><td style="text-align:left">—</td><td style="text-align:left">Created when the call starts, destroyed when it ends</td></tr>
+</tbody></table></div>
+<p>The order, number and type of actual arguments must match the formal parameters.</p>
+<hr>
+<h2 id="6-parameter-passing-call-by-value-vs-call-by-reference">6. Parameter passing: call by value vs call by reference</h2>
+<h3 id="61-call-by-value-the-default-in-c">6.1 Call by value (the default in C)</h3>
+<p>The <strong>value</strong> of the argument is copied into the parameter. Changes inside the function affect only the copy.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">void</span> <span class="tok-fn">swap</span>(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b)
+{
+    <span class="tok-kw">int</span> temp = a;
+    a = b;
+    b = temp;
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> x = <span class="tok-num">50</span>, y = <span class="tok-num">25</span>;
+    <span class="tok-fn">swap</span>(x, y);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d %d\n&quot;</span>, x, y);    <span class="tok-com">/* 50 25 — unchanged */</span>
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Why unchanged?</strong> <code>a</code> and <code>b</code> are copies. Swapping copies does not swap the originals.</p>
+<h3 id="62-call-by-reference-using-pointers">6.2 Call by reference (using pointers)</h3>
+<p>The <strong>address</strong> of the argument is passed. The function can modify the original variable through the pointer.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">void</span> <span class="tok-fn">swap</span>(<span class="tok-kw">int</span> *a, <span class="tok-kw">int</span> *b)
+{
+    <span class="tok-kw">int</span> temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> x = <span class="tok-num">50</span>, y = <span class="tok-num">25</span>;
+    <span class="tok-fn">swap</span>(&amp;x, &amp;y);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d %d\n&quot;</span>, x, y);    <span class="tok-com">/* 25 50 — swapped */</span>
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<h3 id="63-comparison">6.3 Comparison</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Call by value</th><th style="text-align:left">Call by reference</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Passes a copy of the value</td><td style="text-align:left">Passes the address</td></tr>
+<tr><td style="text-align:left">Original cannot be changed</td><td style="text-align:left">Original can be changed</td></tr>
+<tr><td style="text-align:left">Safer (no accidental modification)</td><td style="text-align:left">More powerful but riskier</td></tr>
+<tr><td style="text-align:left">Default in C</td><td style="text-align:left">Requires pointers (<code>&amp;</code>, <code>*</code>)</td></tr>
+<tr><td style="text-align:left">Syntax: <code>f(x)</code></td><td style="text-align:left">Syntax: <code>f(&amp;x)</code></td></tr>
+</tbody></table></div>
+<p><strong>Exam note:</strong> C is strictly <strong>call by value</strong>. &quot;Call by reference&quot; is simulated by passing addresses (pointers). Some textbooks still call this call by reference/address.</p>
+<h3 id="64-arrays-as-parameters">6.4 Arrays as parameters</h3>
+<p>When an array is passed to a function, what is actually passed is a <strong>pointer to its first element</strong>. The function can therefore modify the original array.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">void</span> <span class="tok-fn">double_all</span>(<span class="tok-kw">int</span> arr[], <span class="tok-kw">int</span> n)
+{
+    <span class="tok-kw">for</span> (<span class="tok-kw">int</span> i = <span class="tok-num">0</span>; i &lt; n; i++)
+        arr[i] *= <span class="tok-num">2</span>;
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> a[<span class="tok-num">5</span>] = {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>, <span class="tok-num">4</span>, <span class="tok-num">5</span>};
+    <span class="tok-fn">double_all</span>(a, <span class="tok-num">5</span>);           <span class="tok-com">/* no &amp; needed */</span>
+    <span class="tok-kw">for</span> (<span class="tok-kw">int</span> i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">5</span>; i++)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, a[i]);    <span class="tok-com">/* 2 4 6 8 10 */</span>
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Important:</strong> inside the function, <code>sizeof(arr)</code> gives the size of a pointer (e.g., 8), <strong>not</strong> the array. Always pass the length as a separate parameter.</p>
+<hr>
+<h2 id="7-scope-and-lifetime">7. Scope and lifetime</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Kind</th><th style="text-align:left">Where declared</th><th style="text-align:left">Visible where</th><th style="text-align:left">Lifetime</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><strong>Local (automatic)</strong></td><td style="text-align:left">Inside a function/block</td><td style="text-align:left">That block only</td><td style="text-align:left">Until the block ends</td></tr>
+<tr><td style="text-align:left"><strong>Global</strong></td><td style="text-align:left">Outside all functions</td><td style="text-align:left">Whole file (and other files with <code>extern</code>)</td><td style="text-align:left">Entire program</td></tr>
+<tr><td style="text-align:left"><strong>Static local</strong></td><td style="text-align:left">Inside a function with <code>static</code></td><td style="text-align:left">That block only</td><td style="text-align:left">Entire program (value persists between calls)</td></tr>
+<tr><td style="text-align:left"><strong>Formal parameter</strong></td><td style="text-align:left">In the function header</td><td style="text-align:left">That function only</td><td style="text-align:left">Until the function returns</td></tr>
+<tr><td style="text-align:left"><strong>Register</strong></td><td style="text-align:left"><code>register int x;</code></td><td style="text-align:left">That block</td><td style="text-align:left">Same as automatic (hint to CPU)</td></tr>
+</tbody></table></div>
+<h3 id="71-local-variables">7.1 Local variables</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">void</span> <span class="tok-fn">f</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> x = <span class="tok-num">10</span>;     <span class="tok-com">/* local to f */</span>
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> x = <span class="tok-num">20</span>;     <span class="tok-com">/* different x */</span>
+    <span class="tok-fn">f</span>();
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, x);   <span class="tok-com">/* 20 */</span>
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p>Local variables <strong>shadow</strong> globals with the same name.</p>
+<h3 id="72-global-variables">7.2 Global variables</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> counter = <span class="tok-num">0</span>;         <span class="tok-com">/* global */</span>
+
+<span class="tok-kw">void</span> <span class="tok-fn">increment</span>(<span class="tok-kw">void</span>)
+{
+    counter++;
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-fn">increment</span>();
+    <span class="tok-fn">increment</span>();
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, counter);   <span class="tok-com">/* 2 */</span>
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p>Globals are convenient but make programs harder to debug; prefer parameters and return values.</p>
+<h3 id="73-static-local-variables">7.3 Static local variables</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">void</span> <span class="tok-fn">count_calls</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">static</span> <span class="tok-kw">int</span> calls = <span class="tok-num">0</span>;   <span class="tok-com">/* initialised only once */</span>
+    calls++;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Called %d time(s)\n&quot;</span>, calls);
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-fn">count_calls</span>();
+    <span class="tok-fn">count_calls</span>();
+    <span class="tok-fn">count_calls</span>();
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Output</strong></p>
+<pre class="code"><code>Called 1 time(s)
+Called 2 time(s)
+Called 3 time(s)</code></pre>
+<p>Without <code>static</code>, <code>calls</code> would reset to 0 on every call.</p>
+<hr>
+<h2 id="8-recursion">8. Recursion</h2>
+<p><strong>Recursion</strong> is when a function calls <strong>itself</strong> to solve a smaller version of the same problem.</p>
+<p>Every recursive function needs:</p>
+<ol>
+<li></li>
+<li></li>
+</ol>
+<pre class="code"><code>factorial(n)
+   │
+   ├── if n == 0 or 1 → return 1        (base case)
+   └── otherwise → return n * factorial(n-1)   (recursive case)</code></pre>
+<h3 id="81-how-the-call-stack-works">8.1 How the call stack works</h3>
+<p>For <code>factorial(4)</code>:</p>
+<pre class="code"><code>factorial(4) = 4 * factorial(3)
+                  factorial(3) = 3 * factorial(2)
+                                    factorial(2) = 2 * factorial(1)
+                                                      factorial(1) = 1  ← base case
+                                    factorial(2) = 2 * 1 = 2
+                  factorial(3) = 3 * 2 = 6
+factorial(4) = 4 * 6 = 24</code></pre>
+<p>Each call is stacked until the base case is reached, then the results are returned back up.</p>
+<h3 id="82-factorial-iterative-and-recursive">8.2 Factorial (iterative and recursive)</h3>
+<pre class="code" data-lang="c"><code><span class="tok-com">/* Iterative */</span>
+<span class="tok-kw">long</span> <span class="tok-kw">long</span> <span class="tok-fn">factorial_iter</span>(<span class="tok-kw">int</span> n)
+{
+    <span class="tok-kw">long</span> <span class="tok-kw">long</span> result = <span class="tok-num">1</span>;
+    <span class="tok-kw">for</span> (<span class="tok-kw">int</span> i = <span class="tok-num">1</span>; i &lt;= n; i++)
+        result *= i;
+    <span class="tok-kw">return</span> result;
+}
+
+<span class="tok-com">/* Recursive */</span>
+<span class="tok-kw">long</span> <span class="tok-kw">long</span> <span class="tok-fn">factorial_rec</span>(<span class="tok-kw">int</span> n)
+{
+    <span class="tok-kw">if</span> (n &lt;= <span class="tok-num">1</span>)             <span class="tok-com">/* base case */</span>
+        <span class="tok-kw">return</span> <span class="tok-num">1</span>;
+    <span class="tok-kw">return</span> n * <span class="tok-fn">factorial_rec</span>(n - <span class="tok-num">1</span>);   <span class="tok-com">/* recursive case */</span>
+}</code></pre>
+<h3 id="83-fibonacci">8.3 Fibonacci</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> <span class="tok-fn">fib</span>(<span class="tok-kw">int</span> n)
+{
+    <span class="tok-kw">if</span> (n &lt;= <span class="tok-num">1</span>)             <span class="tok-com">/* base cases: fib(0)=0, fib(1)=1 */</span>
+        <span class="tok-kw">return</span> n;
+    <span class="tok-kw">return</span> <span class="tok-fn">fib</span>(n - <span class="tok-num">1</span>) + <span class="tok-fn">fib</span>(n - <span class="tok-num">2</span>);
+}</code></pre>
+<p><strong>Sequence:</strong> 0, 1, 1, 2, 3, 5, 8, 13, 21, ...</p>
+<p><strong>Warning:</strong> naive recursive Fibonacci is very inefficient — it recomputes the same values many times (exponential time). An iterative version is better for large <code>n</code>.</p>
+<h3 id="84-sum-of-digits">8.4 Sum of digits</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> <span class="tok-fn">sum_digits</span>(<span class="tok-kw">int</span> n)
+{
+    <span class="tok-kw">if</span> (n == <span class="tok-num">0</span>)
+        <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+    <span class="tok-kw">return</span> (n % <span class="tok-num">10</span>) + <span class="tok-fn">sum_digits</span>(n / <span class="tok-num">10</span>);
+}</code></pre>
+<p><code>sum_digits(1234) = 4 + 3 + 2 + 1 = 10</code>.</p>
+<h3 id="85-power">8.5 Power</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">long</span> <span class="tok-kw">long</span> <span class="tok-fn">power</span>(<span class="tok-kw">int</span> base, <span class="tok-kw">int</span> exp)
+{
+    <span class="tok-kw">if</span> (exp == <span class="tok-num">0</span>)
+        <span class="tok-kw">return</span> <span class="tok-num">1</span>;
+    <span class="tok-kw">return</span> base * <span class="tok-fn">power</span>(base, exp - <span class="tok-num">1</span>);
+}</code></pre>
+<p><code>power(2, 5) = 32</code>.</p>
+<h3 id="86-gcd-euclid">8.6 GCD (Euclid)</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> <span class="tok-fn">gcd</span>(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b)
+{
+    <span class="tok-kw">if</span> (b == <span class="tok-num">0</span>)
+        <span class="tok-kw">return</span> a;
+    <span class="tok-kw">return</span> <span class="tok-fn">gcd</span>(b, a % b);
+}</code></pre>
+<p><code>gcd(48, 18) → gcd(18, 12) → gcd(12, 6) → gcd(6, 0) → 6</code>.</p>
+<h3 id="87-tower-of-hanoi">8.7 Tower of Hanoi</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">void</span> <span class="tok-fn">hanoi</span>(<span class="tok-kw">int</span> n, <span class="tok-kw">char</span> from, <span class="tok-kw">char</span> to, <span class="tok-kw">char</span> aux)
+{
+    <span class="tok-kw">if</span> (n == <span class="tok-num">1</span>)
+    {
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Move disk 1 from %c to %c\n&quot;</span>, from, to);
+        <span class="tok-kw">return</span>;
+    }
+    <span class="tok-fn">hanoi</span>(n - <span class="tok-num">1</span>, from, aux, to);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Move disk %d from %c to %c\n&quot;</span>, n, from, to);
+    <span class="tok-fn">hanoi</span>(n - <span class="tok-num">1</span>, aux, to, from);
+}</code></pre>
+<p>For <code>n = 3</code>, it takes <code>2³ − 1 = 7</code> moves.</p>
+<h3 id="88-recursion-vs-iteration">8.8 Recursion vs iteration</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Recursion</th><th style="text-align:left">Iteration</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Function calls itself</td><td style="text-align:left">Uses <code>for</code>/<code>while</code></td></tr>
+<tr><td style="text-align:left">Needs a base case</td><td style="text-align:left">Needs a terminating condition</td></tr>
+<tr><td style="text-align:left">Elegant for tree/divide-and-conquer problems</td><td style="text-align:left">Usually faster and uses less memory</td></tr>
+<tr><td style="text-align:left">Uses the call stack (risk of stack overflow)</td><td style="text-align:left">Uses constant extra memory</td></tr>
+<tr><td style="text-align:left">Can be harder to debug</td><td style="text-align:left">Usually easier to trace</td></tr>
+<tr><td style="text-align:left">Example: factorial, Fibonacci, Hanoi</td><td style="text-align:left">Example: factorial, Fibonacci, sum</td></tr>
+</tbody></table></div>
+<p><strong>Use recursion when</strong> the problem is naturally self-similar (trees, graphs, divide and conquer, backtracking). <strong>Use iteration when</strong> a simple loop is clearer and more efficient.</p>
+<h3 id="89-recursion-dangers">8.9 Recursion dangers</h3>
+<ul>
+<li><strong>Missing base case</strong> → infinite recursion → <strong>stack overflow</strong> (program crashes).</li>
+<li><strong>Base case never reached</strong> (wrong update) → same.</li>
+<li><strong>Deep recursion</strong> can overflow the stack even with a base case.</li>
+<li><strong>Repeated computation</strong> (naive Fibonacci) is slow.</li>
+</ul>
+<hr>
+<h2 id="9-worked-exam-traces">9. Worked exam traces</h2>
+<h3 id="trace-1-factorialrec5">Trace 1: <code>factorial_rec(5)</code></h3>
+<pre class="code"><code>factorial_rec(5) = 5 * factorial_rec(4)
+                 = 5 * 4 * factorial_rec(3)
+                 = 5 * 4 * 3 * factorial_rec(2)
+                 = 5 * 4 * 3 * 2 * factorial_rec(1)
+                 = 5 * 4 * 3 * 2 * 1
+                 = 120</code></pre>
+<h3 id="trace-2-what-is-printed">Trace 2: what is printed?</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">void</span> <span class="tok-fn">mystery</span>(<span class="tok-kw">int</span> n)
+{
+    <span class="tok-kw">if</span> (n == <span class="tok-num">0</span>)
+        <span class="tok-kw">return</span>;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, n);
+    <span class="tok-fn">mystery</span>(n - <span class="tok-num">1</span>);
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-fn">mystery</span>(<span class="tok-num">3</span>);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Output:</strong> <code>3 2 1</code></p>
+<h3 id="trace-3-what-is-printed">Trace 3: what is printed?</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">void</span> <span class="tok-fn">mystery</span>(<span class="tok-kw">int</span> n)
+{
+    <span class="tok-kw">if</span> (n == <span class="tok-num">0</span>)
+        <span class="tok-kw">return</span>;
+    <span class="tok-fn">mystery</span>(n - <span class="tok-num">1</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, n);
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-fn">mystery</span>(<span class="tok-num">3</span>);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Output:</strong> <code>1 2 3</code></p>
+<p>The <code>printf</code> happens <strong>after</strong> the recursive call returns, so the order reverses.</p>
+<h3 id="trace-4-what-is-printed">Trace 4: what is printed?</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> <span class="tok-fn">f</span>(<span class="tok-kw">int</span> n)
+{
+    <span class="tok-kw">if</span> (n &lt;= <span class="tok-num">1</span>)
+        <span class="tok-kw">return</span> <span class="tok-num">1</span>;
+    <span class="tok-kw">return</span> n * <span class="tok-fn">f</span>(n - <span class="tok-num">1</span>);
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, <span class="tok-fn">f</span>(<span class="tok-num">4</span>) + <span class="tok-fn">f</span>(<span class="tok-num">2</span>));
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><code>f(4) = 24</code>, <code>f(2) = 2</code> → <strong>26</strong>.</p>
+<hr>
+<h2 id="10-common-errors">10. Common errors</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Error</th><th style="text-align:left">Explanation</th><th style="text-align:left">Fix</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Missing prototype</td><td style="text-align:left">Compiler does not know the function before the call</td><td style="text-align:left">Declare it before <code>main</code> or define it first</td></tr>
+<tr><td style="text-align:left">Wrong number/type of arguments</td><td style="text-align:left">The call does not match the definition</td><td style="text-align:left">Match exactly</td></tr>
+<tr><td style="text-align:left">Missing <code>return</code> in a non-<code>void</code> function</td><td style="text-align:left">Undefined result</td><td style="text-align:left">Return a value on every path</td></tr>
+<tr><td style="text-align:left">Returning a local variable's address</td><td style="text-align:left">The variable is destroyed when the function ends</td><td style="text-align:left">Return a value or use <code>static</code>/<code>malloc</code></td></tr>
+<tr><td style="text-align:left">Defining a function inside another</td><td style="text-align:left">Not allowed in C</td><td style="text-align:left">Move it outside</td></tr>
+<tr><td style="text-align:left">Expecting call by value to change the caller</td><td style="text-align:left">Only copies are changed</td><td style="text-align:left">Pass pointers</td></tr>
+<tr><td style="text-align:left">Forgetting <code>&amp;</code> in <code>scanf</code></td><td style="text-align:left"><code>scanf</code> needs the address</td><td style="text-align:left"><code>scanf(&quot;%d&quot;, &amp;x)</code></td></tr>
+<tr><td style="text-align:left">Recursion without a base case</td><td style="text-align:left">Infinite recursion / stack overflow</td><td style="text-align:left">Add a base case</td></tr>
+<tr><td style="text-align:left">Base case never reached</td><td style="text-align:left">The argument does not move toward it</td><td style="text-align:left">Change the recursive argument</td></tr>
+<tr><td style="text-align:left"><code>void</code> function used in an expression</td><td style="text-align:left">It has no value</td><td style="text-align:left">Do not assign its result</td></tr>
+<tr><td style="text-align:left">Name clash with a library function</td><td style="text-align:left">Linker/compiler conflict</td><td style="text-align:left">Rename your function</td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="11-rapid-revision">11. Rapid revision</h2>
+<ul>
+<li>Function = reusable block of code for one task.</li>
+<li>Prototype: <code>return_type name(types);</code> — ends with <code>;</code>.</li>
+<li>Definition: header + body; no <code>;</code> after the header.</li>
+<li>Call: <code>name(arguments);</code>.</li>
+<li>Four categories: (no args/no return), (no args/return), (args/no return), (args/return).</li>
+<li>Actual arguments are in the call; formal parameters are in the definition.</li>
+<li>C is call by value; use pointers for call by reference.</li>
+<li>Arrays decay to pointers when passed; pass the size separately.</li>
+<li>Local variables die at block end; <code>static</code> locals persist; globals are visible everywhere.</li>
+<li>Recursion = base case + recursive case.</li>
+<li>Missing base case → stack overflow.</li>
+<li>Recursion is elegant but often slower and memory-hungry than iteration.</li>
+</ul>
+<hr>
+<h2 id="12-self-test-answers-below">12. Self-test (answers below)</h2>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li> ``<code>c void change(int x) { x = 100; } int main(void) { int a = 5; change(a); printf(&quot;%d\n&quot;, a); return 0; } </code>``</li>
+<li> ``<code>c void change(int *x) { *x = 100; } int main(void) { int a = 5; change(&amp;a); printf(&quot;%d\n&quot;, a); return 0; } </code>``</li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li> ``<code>c int f(int n) { if (n == 0) return 0; return n + f(n - 1); } int main(void) { printf(&quot;%d\n&quot;, f(4)); return 0; } </code>``</li>
+<li></li>
+<li></li>
+</ol>
+<h3 id="answers">Answers</h3>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<hr>
+<p><strong>Next:</strong> <code>08_arrays_and_strings.md</code></p>
+
+  </article>
+<nav class="pager"><a class="prev" href="../notes/06_loops.html"><span class="dir">&larr; Previous</span><span class="name">06 · Loops</span></a><a class="next" href="../notes/08_arrays_and_strings.html"><span class="dir">Next &rarr;</span><span class="name">08 · Arrays &amp; strings</span></a></nav>
+  <footer class="foot">
+    CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
+  </footer>
+</main>
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  <a href="#1-why-functions">1. Why functions?</a><a href="#11-monolithic-vs-modular-programming" class="toc-h3">1.1 Monolithic vs modular programming</a><a href="#2-the-three-parts-of-a-user-defined-function">2. The three parts of a user-defined function</a><a href="#21-function-prototype-declaration" class="toc-h3">2.1 Function prototype (declaration)</a><a href="#22-function-definition" class="toc-h3">2.2 Function definition</a><a href="#23-function-call" class="toc-h3">2.3 Function call</a><a href="#3-a-complete-example">3. A complete example</a><a href="#4-the-four-categories-of-functions">4. The four categories of functions</a><a href="#41-no-arguments-no-return-value" class="toc-h3">4.1 No arguments, no return value</a><a href="#42-no-arguments-returns-a-value" class="toc-h3">4.2 No arguments, returns a value</a><a href="#43-arguments-no-return-value" class="toc-h3">4.3 Arguments, no return value</a><a href="#44-arguments-returns-a-value" class="toc-h3">4.4 Arguments, returns a value</a><a href="#5-actual-vs-formal-parameters">5. Actual vs formal parameters</a><a href="#6-parameter-passing-call-by-value-vs-call-by-reference">6. Parameter passing: call by value vs call by reference</a><a href="#61-call-by-value-the-default-in-c" class="toc-h3">6.1 Call by value (the default in C)</a><a href="#62-call-by-reference-using-pointers" class="toc-h3">6.2 Call by reference (using pointers)</a><a href="#63-comparison" class="toc-h3">6.3 Comparison</a><a href="#64-arrays-as-parameters" class="toc-h3">6.4 Arrays as parameters</a><a href="#7-scope-and-lifetime">7. Scope and lifetime</a><a href="#71-local-variables" class="toc-h3">7.1 Local variables</a><a href="#72-global-variables" class="toc-h3">7.2 Global variables</a><a href="#73-static-local-variables" class="toc-h3">7.3 Static local variables</a><a href="#8-recursion">8. Recursion</a><a href="#81-how-the-call-stack-works" class="toc-h3">8.1 How the call stack works</a><a href="#82-factorial-iterative-and-recursive" class="toc-h3">8.2 Factorial (iterative and recursive)</a><a href="#83-fibonacci" class="toc-h3">8.3 Fibonacci</a><a href="#84-sum-of-digits" class="toc-h3">8.4 Sum of digits</a><a href="#85-power" class="toc-h3">8.5 Power</a><a href="#86-gcd-euclid" class="toc-h3">8.6 GCD (Euclid)</a><a href="#87-tower-of-hanoi" class="toc-h3">8.7 Tower of Hanoi</a><a href="#88-recursion-vs-iteration" class="toc-h3">8.8 Recursion vs iteration</a><a href="#89-recursion-dangers" class="toc-h3">8.9 Recursion dangers</a><a href="#9-worked-exam-traces">9. Worked exam traces</a><a href="#trace-1-factorialrec5" class="toc-h3">Trace 1: factorial_rec(5)</a><a href="#trace-2-what-is-printed" class="toc-h3">Trace 2: what is printed?</a><a href="#trace-3-what-is-printed" class="toc-h3">Trace 3: what is printed?</a><a href="#trace-4-what-is-printed" class="toc-h3">Trace 4: what is printed?</a><a href="#10-common-errors">10. Common errors</a><a href="#11-rapid-revision">11. Rapid revision</a><a href="#12-self-test-answers-below">12. Self-test (answers below)</a><a href="#answers" class="toc-h3">Answers</a>
+</aside>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('csc112-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '\u2600' : '\u263D';
+    try { localStorage.setItem('csc112-theme', next); } catch (e) {}
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // highlight the current section in the right-hand table of contents
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (links.length) {
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    window.addEventListener('scroll', function () {
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i] && heads[i].getBoundingClientRect().top < 120) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }, { passive: true });
+  }
+
+  // on phones, start with the contents menu collapsed
+  var det = document.querySelector('.nav-details');
+  if (det && window.innerWidth < 1000) det.removeAttribute('open');
+})();
+</script>
+</body>
+</html>

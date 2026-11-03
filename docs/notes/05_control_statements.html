@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Note 05 — Control Statements: Selection · CSC 112 Revision</title>
+<meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
+<link rel="stylesheet" href="../assets/notes.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">C</span>
+    <span class="brand-text"><strong>CSC 112</strong><span>Revision Notes</span></span>
+  </a>
+  <details class="nav-details" open>
+    <summary>Contents</summary>
+    <div class="nav-group"><div class="nav-head"></div><a href="../START_HERE.html">Start here (pack index)</a><a href="../YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="../CHEAT_SHEET.html">Cheat sheet</a><a href="../PROGRESS_TRACKER.html">Progress tracker</a><a href="../SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="../notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="../notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="../notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="../notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="../notes/05_control_statements.html" class="active">05 · Control statements</a><a href="../notes/06_loops.html">06 · Loops</a><a href="../notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="../notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="../notes/09_pointers.html">09 · Pointers</a><a href="../notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="../notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="../practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="../practice/QUESTION_BANK.html">Question bank (96)</a><a href="../practice/ANSWER_KEY.html">Answer key</a><a href="../practice/LAB_TASKS.html">Lab tasks (25)</a><a href="../practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="../practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="../practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="../code/README.html">Program list (22 examples)</a></div>
+  </details>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <span class="crumb">Notes <b>&rsaquo;</b> 05_control_statements</span>
+    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+  </div>
+  <article class="content">
+<h1 id="note-05-control-statements-selection">Note 05 — Control Statements: Selection</h1>
+<blockquote><p><strong>Covers outline Week 7</strong> (if, if..else, nested if). Also includes <code>switch</code>, because it is in your Week 4/6 notes and is examinable.</p></blockquote>
+<hr>
+<h2 id="1-the-three-control-structures">1. The three control structures</h2>
+<p>Every program, no matter how complex, can be built from three structures:</p>
+<pre class="code"><code>1. SEQUENCE         2. SELECTION          3. REPETITION
+   statement 1         condition?             while (condition)
+   statement 2        /          \               statement
+   statement 3     true          false
+                  block A       block B</code></pre>
+<p>This note covers <strong>selection</strong> (also called <strong>branching</strong> or <strong>decision control</strong>).</p>
+<p>Selection is used when the program must <strong>choose</strong> between alternatives:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">if</span> (weather == SUNNY)
+    <span class="tok-fn">play_outside</span>();
+<span class="tok-kw">else</span>
+    <span class="tok-fn">stay_inside</span>();</code></pre>
+<p>C provides:</p>
+<ul>
+<li><code>if</code></li>
+<li><code>if-else</code></li>
+<li><code>else-if</code> ladder</li>
+<li>nested <code>if</code></li>
+<li><code>switch</code></li>
+<li>the conditional operator <code>?:</code> (Note 04)</li>
+</ul>
+<hr>
+<h2 id="2-the-if-statement">2. The <code>if</code> statement</h2>
+<h3 id="21-syntax">2.1 Syntax</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">if</span> (condition)
+{
+    <span class="tok-com">/* statements executed only if condition is true */</span>
+}</code></pre>
+<p>or, for a single statement, the braces are optional (but recommended):</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">if</span> (condition)
+    statement;</code></pre>
+<h3 id="22-how-it-works">2.2 How it works</h3>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<pre class="code"><code>        ┌───────────────┐
+        │   condition?  │
+        └──┬─────────┬──┘
+        true       false
+          │          │
+          ▼          ▼
+   ┌────────────┐    │
+   │ statements │    │
+   └─────┬──────┘    │
+         └─────┬─────┘
+               ▼
+          rest of program</code></pre>
+<h3 id="23-example-print-a-message-if-a-number-is-negative">2.3 Example: print a message if a number is negative</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> number;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter a number: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;number);
+
+    <span class="tok-kw">if</span> (number &lt; <span class="tok-num">0</span>)
+    {
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;The number is negative.\n&quot;</span>);
+        number = -number;          <span class="tok-com">/* make it positive */</span>
+    }
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Value = %d\n&quot;</span>, number);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Run 1</strong></p>
+<pre class="code"><code>Enter a number: 6
+Value = 6</code></pre>
+<p><strong>Run 2</strong></p>
+<pre class="code"><code>Enter a number: -2
+The number is negative.
+Value = 2</code></pre>
+<h3 id="24-example-avoid-division-by-zero">2.4 Example: avoid division by zero</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> a, b;
+    <span class="tok-kw">float</span> quotient;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter two integers: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d %d&quot;</span>, &amp;a, &amp;b);
+
+    <span class="tok-kw">if</span> (b == <span class="tok-num">0</span>)
+    {
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Division by zero is not allowed.\n&quot;</span>);
+        <span class="tok-kw">return</span> <span class="tok-num">1</span>;
+    }
+
+    quotient = (<span class="tok-kw">float</span>)a / b;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Quotient = %.2f\n&quot;</span>, quotient);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<hr>
+<h2 id="3-the-if-else-statement">3. The <code>if-else</code> statement</h2>
+<h3 id="31-syntax">3.1 Syntax</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">if</span> (condition)
+{
+    <span class="tok-com">/* if block: runs when true */</span>
+}
+<span class="tok-kw">else</span>
+{
+    <span class="tok-com">/* else block: runs when false */</span>
+}</code></pre>
+<p>Exactly <strong>one</strong> of the two blocks runs — never both, never neither.</p>
+<h3 id="32-example-even-or-odd">3.2 Example: even or odd</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> n;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter an integer: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+
+    <span class="tok-kw">if</span> (n % <span class="tok-num">2</span> == <span class="tok-num">0</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Even\n&quot;</span>);
+    <span class="tok-kw">else</span>
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Odd\n&quot;</span>);
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<h3 id="33-example-largest-of-two-numbers">3.3 Example: largest of two numbers</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> a, b;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter two numbers: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d %d&quot;</span>, &amp;a, &amp;b);
+
+    <span class="tok-kw">if</span> (a &gt; b)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d is larger\n&quot;</span>, a);
+    <span class="tok-kw">else</span> <span class="tok-kw">if</span> (b &gt; a)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d is larger\n&quot;</span>, b);
+    <span class="tok-kw">else</span>
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Both are equal\n&quot;</span>);
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<h3 id="34-example-leap-year">3.4 Example: leap year</h3>
+<p>A year is a leap year if:</p>
+<ul>
+<li>it is divisible by 4 <strong>and not</strong> divisible by 100, <strong>or</strong></li>
+<li>it is divisible by 400.</li>
+</ul>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> year;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter a year: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;year);
+
+    <span class="tok-kw">if</span> ((year % <span class="tok-num">4</span> == <span class="tok-num">0</span> &amp;&amp; year % <span class="tok-num">100</span> != <span class="tok-num">0</span>) || (year % <span class="tok-num">400</span> == <span class="tok-num">0</span>))
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d is a leap year.\n&quot;</span>, year);
+    <span class="tok-kw">else</span>
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d is not a leap year.\n&quot;</span>, year);
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Test values:</strong> 1996 (leap), 2000 (leap), 1900 (not leap), 2015 (not leap), 2024 (leap).</p>
+<hr>
+<h2 id="4-the-else-if-ladder">4. The <code>else-if</code> ladder</h2>
+<p>Use this when there are <strong>several mutually exclusive alternatives</strong>.</p>
+<h3 id="41-syntax">4.1 Syntax</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">if</span> (condition1)
+{
+    <span class="tok-com">/* block 1 */</span>
+}
+<span class="tok-kw">else</span> <span class="tok-kw">if</span> (condition2)
+{
+    <span class="tok-com">/* block 2 */</span>
+}
+<span class="tok-kw">else</span> <span class="tok-kw">if</span> (condition3)
+{
+    <span class="tok-com">/* block 3 */</span>
+}
+<span class="tok-kw">else</span>
+{
+    <span class="tok-com">/* default block */</span>
+}</code></pre>
+<p>The conditions are tested <strong>top to bottom</strong>. The first true condition wins; the rest are skipped.</p>
+<h3 id="42-example-grade-classification">4.2 Example: grade classification</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> score;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter score (0-100): &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;score);
+
+    <span class="tok-kw">if</span> (score &lt; <span class="tok-num">0</span> || score &gt; <span class="tok-num">100</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Invalid score\n&quot;</span>);
+    <span class="tok-kw">else</span> <span class="tok-kw">if</span> (score &gt;= <span class="tok-num">70</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Grade A\n&quot;</span>);
+    <span class="tok-kw">else</span> <span class="tok-kw">if</span> (score &gt;= <span class="tok-num">60</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Grade B\n&quot;</span>);
+    <span class="tok-kw">else</span> <span class="tok-kw">if</span> (score &gt;= <span class="tok-num">50</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Grade C\n&quot;</span>);
+    <span class="tok-kw">else</span> <span class="tok-kw">if</span> (score &gt;= <span class="tok-num">40</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Grade D\n&quot;</span>);
+    <span class="tok-kw">else</span>
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Grade F\n&quot;</span>);
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Why this order?</strong> Because <code>&gt;= 70</code> is checked first, a score of 75 never reaches <code>&gt;= 60</code>. If you reversed the order, everyone above 40 would get a D.</p>
+<h3 id="43-example-largest-of-three-numbers">4.3 Example: largest of three numbers</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> a, b, c;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter three numbers: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d %d %d&quot;</span>, &amp;a, &amp;b, &amp;c);
+
+    <span class="tok-kw">if</span> (a &gt;= b &amp;&amp; a &gt;= c)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d is the largest\n&quot;</span>, a);
+    <span class="tok-kw">else</span> <span class="tok-kw">if</span> (b &gt;= a &amp;&amp; b &gt;= c)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d is the largest\n&quot;</span>, b);
+    <span class="tok-kw">else</span>
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d is the largest\n&quot;</span>, c);
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<h3 id="44-example-character-type">4.4 Example: character type</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">char</span> ch;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter a character: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot; %c&quot;</span>, &amp;ch);          <span class="tok-com">/* the space skips leftover whitespace */</span>
+
+    <span class="tok-kw">if</span> (ch &gt;= <span class="tok-chr">'A'</span> &amp;&amp; ch &lt;= <span class="tok-chr">'Z'</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Uppercase letter\n&quot;</span>);
+    <span class="tok-kw">else</span> <span class="tok-kw">if</span> (ch &gt;= <span class="tok-chr">'a'</span> &amp;&amp; ch &lt;= <span class="tok-chr">'z'</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Lowercase letter\n&quot;</span>);
+    <span class="tok-kw">else</span> <span class="tok-kw">if</span> (ch &gt;= <span class="tok-chr">'0'</span> &amp;&amp; ch &lt;= <span class="tok-chr">'9'</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Digit\n&quot;</span>);
+    <span class="tok-kw">else</span>
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Other character\n&quot;</span>);
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<hr>
+<h2 id="5-nested-if">5. Nested <code>if</code></h2>
+<p>An <code>if</code> (or <code>if-else</code>) placed <strong>inside</strong> another <code>if</code> or <code>else</code> block.</p>
+<h3 id="51-syntax">5.1 Syntax</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">if</span> (condition1)
+{
+    <span class="tok-kw">if</span> (condition2)
+    {
+        <span class="tok-com">/* both true */</span>
+    }
+    <span class="tok-kw">else</span>
+    {
+        <span class="tok-com">/* condition1 true, condition2 false */</span>
+    }
+}
+<span class="tok-kw">else</span>
+{
+    <span class="tok-com">/* condition1 false */</span>
+}</code></pre>
+<h3 id="52-example-positive-numbers-and-which-is-larger">5.2 Example: positive numbers and which is larger</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> m = <span class="tok-num">40</span>, n = <span class="tok-num">20</span>;
+
+    <span class="tok-kw">if</span> (m &gt; <span class="tok-num">0</span> &amp;&amp; n &gt; <span class="tok-num">0</span>)
+    {
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Both numbers are positive\n&quot;</span>);
+
+        <span class="tok-kw">if</span> (m &gt; n)
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;m is greater than n\n&quot;</span>);
+        <span class="tok-kw">else</span> <span class="tok-kw">if</span> (m &lt; n)
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;m is less than n\n&quot;</span>);
+        <span class="tok-kw">else</span>
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;m is equal to n\n&quot;</span>);
+    }
+    <span class="tok-kw">else</span>
+    {
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;At least one number is not positive\n&quot;</span>);
+    }
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Output</strong></p>
+<pre class="code"><code>Both numbers are positive
+m is greater than n</code></pre>
+<h3 id="53-the-dangling-else-problem">5.3 The dangling-<code>else</code> problem</h3>
+<p>An <code>else</code> always binds to the <strong>nearest unmatched <code>if</code></strong>.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">if</span> (a &gt; <span class="tok-num">0</span>)
+    <span class="tok-kw">if</span> (b &gt; <span class="tok-num">0</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;both positive\n&quot;</span>);
+<span class="tok-kw">else</span>
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;a is not positive\n&quot;</span>);     <span class="tok-com">/* WRONG indentation: else belongs to inner if */</span></code></pre>
+<p>The compiler sees:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">if</span> (a &gt; <span class="tok-num">0</span>)
+{
+    <span class="tok-kw">if</span> (b &gt; <span class="tok-num">0</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;both positive\n&quot;</span>);
+    <span class="tok-kw">else</span>
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;b is not positive\n&quot;</span>);   <span class="tok-com">/* this is what it actually means */</span>
+}</code></pre>
+<p><strong>Fix: always use braces.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">if</span> (a &gt; <span class="tok-num">0</span>)
+{
+    <span class="tok-kw">if</span> (b &gt; <span class="tok-num">0</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;both positive\n&quot;</span>);
+}
+<span class="tok-kw">else</span>
+{
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;a is not positive\n&quot;</span>);
+}</code></pre>
+<hr>
+<h2 id="6-the-switch-statement">6. The <code>switch</code> statement</h2>
+<p><code>switch</code> is a multi-way decision that compares <strong>one integer or character expression</strong> against several <strong>constant</strong> cases.</p>
+<h3 id="61-syntax">6.1 Syntax</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">switch</span> (expression)
+{
+    <span class="tok-kw">case</span> constant1:
+        statements;
+        <span class="tok-kw">break</span>;
+    <span class="tok-kw">case</span> constant2:
+        statements;
+        <span class="tok-kw">break</span>;
+    <span class="tok-kw">case</span> constant3:
+        statements;
+        <span class="tok-kw">break</span>;
+    <span class="tok-kw">default</span>:
+        statements;
+}</code></pre>
+<h3 id="62-rules">6.2 Rules</h3>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<h3 id="63-example-grade-remarks">6.3 Example: grade remarks</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">char</span> grade;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter grade: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot; %c&quot;</span>, &amp;grade);
+
+    <span class="tok-kw">switch</span> (grade)
+    {
+        <span class="tok-kw">case</span> <span class="tok-chr">'A'</span>:
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Outstanding!\n&quot;</span>);
+            <span class="tok-kw">break</span>;
+        <span class="tok-kw">case</span> <span class="tok-chr">'B'</span>:
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Excellent!\n&quot;</span>);
+            <span class="tok-kw">break</span>;
+        <span class="tok-kw">case</span> <span class="tok-chr">'C'</span>:
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Well done\n&quot;</span>);
+            <span class="tok-kw">break</span>;
+        <span class="tok-kw">case</span> <span class="tok-chr">'D'</span>:
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;You passed\n&quot;</span>);
+            <span class="tok-kw">break</span>;
+        <span class="tok-kw">case</span> <span class="tok-chr">'F'</span>:
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Better try again\n&quot;</span>);
+            <span class="tok-kw">break</span>;
+        <span class="tok-kw">default</span>:
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Invalid grade\n&quot;</span>);
+    }
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Your grade is %c\n&quot;</span>, grade);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<h3 id="64-fall-through-demonstration">6.4 Fall-through demonstration</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> i = <span class="tok-num">2</span>;
+<span class="tok-kw">switch</span> (i)
+{
+    <span class="tok-kw">case</span> <span class="tok-num">1</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;I am in case 1\n&quot;</span>);
+    <span class="tok-kw">case</span> <span class="tok-num">2</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;I am in case 2\n&quot;</span>);
+    <span class="tok-kw">case</span> <span class="tok-num">3</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;I am in case 3\n&quot;</span>);
+    <span class="tok-kw">default</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;I am in default\n&quot;</span>);
+}</code></pre>
+<p><strong>Output</strong></p>
+<pre class="code"><code>I am in case 2
+I am in case 3
+I am in default</code></pre>
+<p>Because there is no <code>break</code>, execution continues downward. Add <code>break</code> to each case if you want only one message.</p>
+<p><strong>Intentional fall-through</strong> is sometimes useful:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">switch</span> (month)
+{
+    <span class="tok-kw">case</span> <span class="tok-num">12</span>:
+    <span class="tok-kw">case</span> <span class="tok-num">1</span>:
+    <span class="tok-kw">case</span> <span class="tok-num">2</span>:
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Winter\n&quot;</span>);
+        <span class="tok-kw">break</span>;
+    <span class="tok-kw">case</span> <span class="tok-num">3</span>: <span class="tok-kw">case</span> <span class="tok-num">4</span>: <span class="tok-kw">case</span> <span class="tok-num">5</span>:
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Spring\n&quot;</span>);
+        <span class="tok-kw">break</span>;
+    <span class="tok-com">/* ... */</span>
+}</code></pre>
+<h3 id="65-example-simple-calculator">6.5 Example: simple calculator</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">char</span> op;
+    <span class="tok-kw">float</span> a, b;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter expression (e.g. 5 + 3): &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%f %c %f&quot;</span>, &amp;a, &amp;op, &amp;b);
+
+    <span class="tok-kw">switch</span> (op)
+    {
+        <span class="tok-kw">case</span> <span class="tok-chr">'+'</span>:
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%.2f\n&quot;</span>, a + b);
+            <span class="tok-kw">break</span>;
+        <span class="tok-kw">case</span> <span class="tok-chr">'-'</span>:
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%.2f\n&quot;</span>, a - b);
+            <span class="tok-kw">break</span>;
+        <span class="tok-kw">case</span> <span class="tok-chr">'*'</span>:
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%.2f\n&quot;</span>, a * b);
+            <span class="tok-kw">break</span>;
+        <span class="tok-kw">case</span> <span class="tok-chr">'/'</span>:
+            <span class="tok-kw">if</span> (b != <span class="tok-num">0</span>)
+                <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%.2f\n&quot;</span>, a / b);
+            <span class="tok-kw">else</span>
+                <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Division by zero is not allowed\n&quot;</span>);
+            <span class="tok-kw">break</span>;
+        <span class="tok-kw">default</span>:
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Invalid operator\n&quot;</span>);
+    }
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<h3 id="66-switch-vs-if-else">6.6 <code>switch</code> vs <code>if-else</code></h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left"><code>switch</code></th><th style="text-align:left"><code>if-else</code></th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Tests one expression against constant cases</td><td style="text-align:left">Can test any condition, including ranges</td></tr>
+<tr><td style="text-align:left">Only integer/char/enum expressions</td><td style="text-align:left">Any expression, including float and strings</td></tr>
+<tr><td style="text-align:left">Cleaner for many fixed choices (menus)</td><td style="text-align:left">Better for ranges and complex logic</td></tr>
+<tr><td style="text-align:left">Uses <code>break</code> to prevent fall-through</td><td style="text-align:left">No fall-through concept</td></tr>
+<tr><td style="text-align:left">Can be faster (jump table)</td><td style="text-align:left">Evaluated in order</td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="7-worked-traces">7. Worked traces</h2>
+<h3 id="trace-1">Trace 1</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> x = <span class="tok-num">10</span>;
+<span class="tok-kw">if</span> (x &gt; <span class="tok-num">5</span>)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;A&quot;</span>);
+<span class="tok-kw">if</span> (x &gt; <span class="tok-num">8</span>)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;B&quot;</span>);
+<span class="tok-kw">else</span>
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;C&quot;</span>);</code></pre>
+<p><strong>Output:</strong> <code>AB</code></p>
+<ul>
+<li>First <code>if</code> is independent → A.</li>
+<li>Second <code>if</code> true → B; the <code>else</code> is skipped.</li>
+</ul>
+<h3 id="trace-2">Trace 2</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> x = <span class="tok-num">3</span>;
+<span class="tok-kw">if</span> (x &gt; <span class="tok-num">5</span>)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;A&quot;</span>);
+<span class="tok-kw">else</span> <span class="tok-kw">if</span> (x &gt; <span class="tok-num">2</span>)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;B&quot;</span>);
+<span class="tok-kw">else</span> <span class="tok-kw">if</span> (x &gt; <span class="tok-num">1</span>)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;C&quot;</span>);
+<span class="tok-kw">else</span>
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;D&quot;</span>);</code></pre>
+<p><strong>Output:</strong> <code>B</code></p>
+<p>The first true condition wins; <code>x &gt; 1</code> is never checked.</p>
+<h3 id="trace-3">Trace 3</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a = <span class="tok-num">5</span>, b = <span class="tok-num">10</span>;
+<span class="tok-kw">if</span> (a &gt; <span class="tok-num">3</span>)
+    <span class="tok-kw">if</span> (b &gt; <span class="tok-num">20</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;X&quot;</span>);
+    <span class="tok-kw">else</span>
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Y&quot;</span>);</code></pre>
+<p><strong>Output:</strong> <code>Y</code></p>
+<p>The <code>else</code> belongs to the inner <code>if</code> (<code>b &gt; 20</code> is false).</p>
+<h3 id="trace-4">Trace 4</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> i = <span class="tok-num">2</span>;
+<span class="tok-kw">switch</span> (i)
+{
+    <span class="tok-kw">case</span> <span class="tok-num">1</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;One &quot;</span>);
+    <span class="tok-kw">case</span> <span class="tok-num">2</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Two &quot;</span>);
+    <span class="tok-kw">case</span> <span class="tok-num">3</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Three &quot;</span>);
+    <span class="tok-kw">default</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Default&quot;</span>);
+}</code></pre>
+<p><strong>Output:</strong> <code>Two Three Default</code></p>
+<h3 id="trace-5">Trace 5</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> i = <span class="tok-num">5</span>;
+<span class="tok-kw">switch</span> (i)
+{
+    <span class="tok-kw">case</span> <span class="tok-num">1</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;One&quot;</span>);
+    <span class="tok-kw">case</span> <span class="tok-num">2</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Two&quot;</span>); <span class="tok-kw">break</span>;
+    <span class="tok-kw">default</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Default&quot;</span>);
+}</code></pre>
+<p><strong>Output:</strong> <code>Default</code></p>
+<p>No case matches; execution jumps to <code>default</code>.</p>
+<hr>
+<h2 id="8-common-errors">8. Common errors</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Error</th><th style="text-align:left">Explanation</th><th style="text-align:left">Fix</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>if (x = 5)</code></td><td style="text-align:left">Assignment, not comparison; always true</td><td style="text-align:left"><code>if (x == 5)</code></td></tr>
+<tr><td style="text-align:left"><code>if (x &gt; 5);</code></td><td style="text-align:left">Semicolon ends the <code>if</code>; the next statement always runs</td><td style="text-align:left">Remove the semicolon</td></tr>
+<tr><td style="text-align:left">Missing braces</td><td style="text-align:left">Only the first statement is controlled</td><td style="text-align:left">Always use <code>{ }</code></td></tr>
+<tr><td style="text-align:left"><code>else</code> without <code>if</code></td><td style="text-align:left">Syntax error</td><td style="text-align:left">Match each <code>else</code></td></tr>
+<tr><td style="text-align:left">Dangling <code>else</code></td><td style="text-align:left">Binds to nearest <code>if</code></td><td style="text-align:left">Use braces</td></tr>
+<tr><td style="text-align:left"><code>if (a &lt; b &lt; c)</code></td><td style="text-align:left">Evaluates <code>(a &lt; b) &lt; c</code>, i.e. <code>0 &lt; c</code> or <code>1 &lt; c</code></td><td style="text-align:left"><code>if (a &lt; b &amp;&amp; b &lt; c)</code></td></tr>
+<tr><td style="text-align:left"><code>switch</code> on <code>float</code>/string</td><td style="text-align:left">Not allowed</td><td style="text-align:left">Use <code>if-else</code> or <code>strcmp</code></td></tr>
+<tr><td style="text-align:left">Missing <code>break</code></td><td style="text-align:left">Unwanted fall-through</td><td style="text-align:left">Add <code>break</code></td></tr>
+<tr><td style="text-align:left">Duplicate <code>case</code></td><td style="text-align:left">Compile error</td><td style="text-align:left">Use unique constants</td></tr>
+<tr><td style="text-align:left"><code>case x:</code> where <code>x</code> is a variable</td><td style="text-align:left">Case labels must be constant</td><td style="text-align:left">Use a constant or <code>if</code></td></tr>
+<tr><td style="text-align:left">Comparing floats with <code>==</code></td><td style="text-align:left">Precision problems</td><td style="text-align:left">Compare with a tolerance</td></tr>
+<tr><td style="text-align:left"><code>if (x == 0.1)</code></td><td style="text-align:left">Same problem</td><td style="text-align:left"><code>fabs(x - 0.1) &lt; 1e-9</code></td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="9-exam-style-programs-to-practise">9. Exam-style programs to practise</h2>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<hr>
+<h2 id="10-rapid-revision">10. Rapid revision</h2>
+<ul>
+<li><code>if (condition) { ... }</code> — runs the block only if true.</li>
+<li><code>if-else</code> — exactly one of two blocks runs.</li>
+<li><code>else-if</code> ladder — first true condition wins; order matters.</li>
+<li>Nested <code>if</code> — an <code>if</code> inside another; use braces to avoid dangling <code>else</code>.</li>
+<li><code>switch</code> — integer/char expression, constant cases, <code>break</code>, optional <code>default</code>.</li>
+<li>Missing <code>break</code> causes fall-through.</li>
+<li><code>=</code> vs <code>==</code> is the most common bug.</li>
+<li>Never put a semicolon after <code>if (...)</code>.</li>
+<li>For ranges, use <code>if-else</code>; for fixed choices, <code>switch</code>.</li>
+</ul>
+<hr>
+<h2 id="11-self-test-answers-below">11. Self-test (answers below)</h2>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li> ``<code>c int a = 4; if (a &gt; 2) printf(&quot;X&quot;); if (a &gt; 5) printf(&quot;Y&quot;); else printf(&quot;Z&quot;); </code>``</li>
+<li> ``<code>c int x = 7; if (x &gt; 10) printf(&quot;A&quot;); else if (x &gt; 5) printf(&quot;B&quot;); else if (x &gt; 0) printf(&quot;C&quot;); </code>``</li>
+<li> ``<code>c int n = 1; switch (n) { case 1: printf(&quot;One &quot;); case 2: printf(&quot;Two &quot;); default: printf(&quot;Many&quot;); } </code>``</li>
+<li></li>
+<li></li>
+</ol>
+<h3 id="answers">Answers</h3>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<hr>
+<p><strong>Next:</strong> <code>06_loops.md</code></p>
+
+  </article>
+<nav class="pager"><a class="prev" href="../notes/04_operators_and_expressions.html"><span class="dir">&larr; Previous</span><span class="name">04 · Operators &amp; expressions</span></a><a class="next" href="../notes/06_loops.html"><span class="dir">Next &rarr;</span><span class="name">06 · Loops</span></a></nav>
+  <footer class="foot">
+    CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
+  </footer>
+</main>
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  <a href="#1-the-three-control-structures">1. The three control structures</a><a href="#2-the-if-statement">2. The if statement</a><a href="#21-syntax" class="toc-h3">2.1 Syntax</a><a href="#22-how-it-works" class="toc-h3">2.2 How it works</a><a href="#23-example-print-a-message-if-a-number-is-negative" class="toc-h3">2.3 Example: print a message if a number is negative</a><a href="#24-example-avoid-division-by-zero" class="toc-h3">2.4 Example: avoid division by zero</a><a href="#3-the-if-else-statement">3. The if-else statement</a><a href="#31-syntax" class="toc-h3">3.1 Syntax</a><a href="#32-example-even-or-odd" class="toc-h3">3.2 Example: even or odd</a><a href="#33-example-largest-of-two-numbers" class="toc-h3">3.3 Example: largest of two numbers</a><a href="#34-example-leap-year" class="toc-h3">3.4 Example: leap year</a><a href="#4-the-else-if-ladder">4. The else-if ladder</a><a href="#41-syntax" class="toc-h3">4.1 Syntax</a><a href="#42-example-grade-classification" class="toc-h3">4.2 Example: grade classification</a><a href="#43-example-largest-of-three-numbers" class="toc-h3">4.3 Example: largest of three numbers</a><a href="#44-example-character-type" class="toc-h3">4.4 Example: character type</a><a href="#5-nested-if">5. Nested if</a><a href="#51-syntax" class="toc-h3">5.1 Syntax</a><a href="#52-example-positive-numbers-and-which-is-larger" class="toc-h3">5.2 Example: positive numbers and which is larger</a><a href="#53-the-dangling-else-problem" class="toc-h3">5.3 The dangling-else problem</a><a href="#6-the-switch-statement">6. The switch statement</a><a href="#61-syntax" class="toc-h3">6.1 Syntax</a><a href="#62-rules" class="toc-h3">6.2 Rules</a><a href="#63-example-grade-remarks" class="toc-h3">6.3 Example: grade remarks</a><a href="#64-fall-through-demonstration" class="toc-h3">6.4 Fall-through demonstration</a><a href="#65-example-simple-calculator" class="toc-h3">6.5 Example: simple calculator</a><a href="#66-switch-vs-if-else" class="toc-h3">6.6 switch vs if-else</a><a href="#7-worked-traces">7. Worked traces</a><a href="#trace-1" class="toc-h3">Trace 1</a><a href="#trace-2" class="toc-h3">Trace 2</a><a href="#trace-3" class="toc-h3">Trace 3</a><a href="#trace-4" class="toc-h3">Trace 4</a><a href="#trace-5" class="toc-h3">Trace 5</a><a href="#8-common-errors">8. Common errors</a><a href="#9-exam-style-programs-to-practise">9. Exam-style programs to practise</a><a href="#10-rapid-revision">10. Rapid revision</a><a href="#11-self-test-answers-below">11. Self-test (answers below)</a><a href="#answers" class="toc-h3">Answers</a>
+</aside>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('csc112-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '\u2600' : '\u263D';
+    try { localStorage.setItem('csc112-theme', next); } catch (e) {}
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // highlight the current section in the right-hand table of contents
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (links.length) {
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    window.addEventListener('scroll', function () {
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i] && heads[i].getBoundingClientRect().top < 120) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }, { passive: true });
+  }
+
+  // on phones, start with the contents menu collapsed
+  var det = document.querySelector('.nav-details');
+  if (det && window.innerWidth < 1000) det.removeAttribute('open');
+})();
+</script>
+</body>
+</html>

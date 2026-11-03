@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Note 08 — Arrays and Strings · CSC 112 Revision</title>
+<meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
+<link rel="stylesheet" href="../assets/notes.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">C</span>
+    <span class="brand-text"><strong>CSC 112</strong><span>Revision Notes</span></span>
+  </a>
+  <details class="nav-details" open>
+    <summary>Contents</summary>
+    <div class="nav-group"><div class="nav-head"></div><a href="../START_HERE.html">Start here (pack index)</a><a href="../YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="../CHEAT_SHEET.html">Cheat sheet</a><a href="../PROGRESS_TRACKER.html">Progress tracker</a><a href="../SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="../notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="../notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="../notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="../notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="../notes/05_control_statements.html">05 · Control statements</a><a href="../notes/06_loops.html">06 · Loops</a><a href="../notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="../notes/08_arrays_and_strings.html" class="active">08 · Arrays &amp; strings</a><a href="../notes/09_pointers.html">09 · Pointers</a><a href="../notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="../notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="../practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="../practice/QUESTION_BANK.html">Question bank (96)</a><a href="../practice/ANSWER_KEY.html">Answer key</a><a href="../practice/LAB_TASKS.html">Lab tasks (25)</a><a href="../practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="../practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="../practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="../code/README.html">Program list (22 examples)</a></div>
+  </details>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <span class="crumb">Notes <b>&rsaquo;</b> 08_arrays_and_strings</span>
+    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+  </div>
+  <article class="content">
+<h1 id="note-08-arrays-and-strings">Note 08 — Arrays and Strings</h1>
+<blockquote><p><strong>Covers outline Week 9</strong> (one-, two- and multi-dimensional arrays) plus strings from the course description.</p></blockquote>
+<hr>
+<h2 id="1-what-is-an-array">1. What is an array?</h2>
+<p>An <strong>array</strong> is a collection of a <strong>fixed number</strong> of elements of the <strong>same data type</strong>, stored in <strong>contiguous memory</strong>, and accessed by an <strong>index</strong>.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> marks[<span class="tok-num">5</span>];       <span class="tok-com">/* 5 integers */</span></code></pre>
+<pre class="code"><code>Index:    0     1     2     3     4
+        ┌─────┬─────┬─────┬─────┬─────┐
+marks:  │     │     │     │     │     │
+        └─────┴─────┴─────┴─────┴─────┘
+Address: 1000  1004  1008  1012  1016   (if int = 4 bytes)</code></pre>
+<p><strong>Key facts</strong></p>
+<ul>
+<li>The <strong>first element is at index 0</strong>.</li>
+<li>The last element of <code>a[n]</code> is at index <strong>n − 1</strong>.</li>
+<li>C does <strong>not</strong> check array bounds. Accessing <code>a[5]</code> in a 5-element array is <strong>undefined behaviour</strong>.</li>
+<li>The array name represents the <strong>address of the first element</strong> (except in <code>sizeof</code> and <code>&amp;</code>).</li>
+</ul>
+<p><strong>Why arrays?</strong> Instead of 100 separate variables (<code>mark1</code>, <code>mark2</code>, ...), you use one array and a loop:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> marks[<span class="tok-num">100</span>];
+<span class="tok-kw">for</span> (<span class="tok-kw">int</span> i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">100</span>; i++)
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;marks[i]);</code></pre>
+<hr>
+<h2 id="2-one-dimensional-arrays">2. One-dimensional arrays</h2>
+<h3 id="21-declaration">2.1 Declaration</h3>
+<pre class="code" data-lang="c"><code>data_type array_name[size];</code></pre>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> numbers[<span class="tok-num">10</span>];
+<span class="tok-kw">float</span> prices[<span class="tok-num">5</span>];
+<span class="tok-kw">char</span> letters[<span class="tok-num">26</span>];</code></pre>
+<ul>
+<li><code>size</code> must be a positive integer constant (or, in C99, a variable-length array).</li>
+<li>Memory allocated = <code>size × sizeof(element)</code> bytes.</li>
+</ul>
+<h3 id="22-initialisation">2.2 Initialisation</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">5</span>] = {<span class="tok-num">10</span>, <span class="tok-num">20</span>, <span class="tok-num">30</span>, <span class="tok-num">40</span>, <span class="tok-num">50</span>};     <span class="tok-com">/* all five */</span>
+<span class="tok-kw">int</span> b[<span class="tok-num">5</span>] = {<span class="tok-num">1</span>, <span class="tok-num">2</span>};                   <span class="tok-com">/* b = {1, 2, 0, 0, 0} */</span>
+<span class="tok-kw">int</span> c[<span class="tok-num">5</span>] = {<span class="tok-num">0</span>};                      <span class="tok-com">/* all zeros */</span>
+<span class="tok-kw">int</span> d[]  = {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>, <span class="tok-num">4</span>};             <span class="tok-com">/* size inferred = 4 */</span>
+<span class="tok-kw">char</span> vowels[] = {<span class="tok-chr">'a'</span>, <span class="tok-chr">'e'</span>, <span class="tok-chr">'i'</span>, <span class="tok-chr">'o'</span>, <span class="tok-chr">'u'</span>};</code></pre>
+<p><strong>Not allowed after declaration:</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">5</span>];
+a = {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>, <span class="tok-num">4</span>, <span class="tok-num">5</span>};        <span class="tok-com">/* ERROR */</span>
+a[<span class="tok-num">0</span>] = <span class="tok-num">1</span>; a[<span class="tok-num">1</span>] = <span class="tok-num">2</span>;          <span class="tok-com">/* correct: assign element by element */</span></code></pre>
+<p>C99 designated initialisers (may appear in modern courses):</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">5</span>] = {[<span class="tok-num">0</span>] = <span class="tok-num">1</span>, [<span class="tok-num">3</span>] = <span class="tok-num">7</span>};   <span class="tok-com">/* {1, 0, 0, 7, 0} */</span></code></pre>
+<h3 id="23-access-and-assignment">2.3 Access and assignment</h3>
+<pre class="code" data-lang="c"><code>a[<span class="tok-num">0</span>] = <span class="tok-num">100</span>;              <span class="tok-com">/* first element */</span>
+a[<span class="tok-num">4</span>] = <span class="tok-num">500</span>;              <span class="tok-com">/* last element of a[5] */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d&quot;</span>, a[<span class="tok-num">2</span>]);      <span class="tok-com">/* third element */</span></code></pre>
+<p>The index can be a variable or expression:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">5</span>; i++)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, a[i]);</code></pre>
+<h3 id="24-input-and-output">2.4 Input and output</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> a[<span class="tok-num">5</span>], i;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter 5 integers:\n&quot;</span>);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">5</span>; i++)
+        <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;a[i]);          <span class="tok-com">/* note the &amp; */</span>
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;You entered: &quot;</span>);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">5</span>; i++)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, a[i]);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n&quot;</span>);
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<h3 id="25-size-of-an-array">2.5 Size of an array</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">10</span>];
+<span class="tok-kw">int</span> n = <span class="tok-kw">sizeof</span>(a) / <span class="tok-kw">sizeof</span>(a[<span class="tok-num">0</span>]);    <span class="tok-com">/* 10 */</span></code></pre>
+<p><code>sizeof(a)</code> = total bytes; <code>sizeof(a[0])</code> = bytes per element.</p>
+<hr>
+<h2 id="3-standard-array-operations">3. Standard array operations</h2>
+<h3 id="31-sum-and-average">3.1 Sum and average</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">5</span>] = {<span class="tok-num">10</span>, <span class="tok-num">20</span>, <span class="tok-num">30</span>, <span class="tok-num">40</span>, <span class="tok-num">50</span>};
+<span class="tok-kw">int</span> i, sum = <span class="tok-num">0</span>;
+<span class="tok-kw">float</span> average;
+
+<span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">5</span>; i++)
+    sum += a[i];
+
+average = (<span class="tok-kw">float</span>)sum / <span class="tok-num">5</span>;
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;Sum = %d, Average = %.2f\n&quot;</span>, sum, average);</code></pre>
+<p><strong>Output:</strong> <code>Sum = 150, Average = 30.00</code></p>
+<h3 id="32-maximum-and-minimum">3.2 Maximum and minimum</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">5</span>] = {<span class="tok-num">12</span>, <span class="tok-num">45</span>, <span class="tok-num">7</span>, <span class="tok-num">89</span>, <span class="tok-num">23</span>};
+<span class="tok-kw">int</span> i, max = a[<span class="tok-num">0</span>], min = a[<span class="tok-num">0</span>];
+
+<span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt; <span class="tok-num">5</span>; i++)
+{
+    <span class="tok-kw">if</span> (a[i] &gt; max) max = a[i];
+    <span class="tok-kw">if</span> (a[i] &lt; min) min = a[i];
+}
+
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;Max = %d, Min = %d\n&quot;</span>, max, min);</code></pre>
+<p><strong>Output:</strong> <code>Max = 89, Min = 7</code></p>
+<h3 id="33-reverse-an-array-in-place">3.3 Reverse an array (in place)</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">5</span>] = {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>, <span class="tok-num">4</span>, <span class="tok-num">5</span>};
+<span class="tok-kw">int</span> i, temp;
+
+<span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">5</span> / <span class="tok-num">2</span>; i++)
+{
+    temp = a[i];
+    a[i] = a[<span class="tok-num">4</span> - i];
+    a[<span class="tok-num">4</span> - i] = temp;
+}
+<span class="tok-com">/* a = {5, 4, 3, 2, 1} */</span></code></pre>
+<h3 id="34-print-in-reverse-order-without-changing-the-array">3.4 Print in reverse order (without changing the array)</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">for</span> (i = <span class="tok-num">4</span>; i &gt;= <span class="tok-num">0</span>; i--)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, a[i]);</code></pre>
+<h3 id="35-linear-search">3.5 Linear search</h3>
+<p>Check each element until the target is found.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">5</span>] = {<span class="tok-num">12</span>, <span class="tok-num">45</span>, <span class="tok-num">7</span>, <span class="tok-num">89</span>, <span class="tok-num">23</span>};
+<span class="tok-kw">int</span> target = <span class="tok-num">89</span>, i, position = -<span class="tok-num">1</span>;
+
+<span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">5</span>; i++)
+{
+    <span class="tok-kw">if</span> (a[i] == target)
+    {
+        position = i;
+        <span class="tok-kw">break</span>;
+    }
+}
+
+<span class="tok-kw">if</span> (position != -<span class="tok-num">1</span>)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Found at index %d\n&quot;</span>, position);
+<span class="tok-kw">else</span>
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Not found\n&quot;</span>);</code></pre>
+<p><strong>Time complexity:</strong> O(n) — in the worst case you check every element.</p>
+<h3 id="36-binary-search-sorted-array-only">3.6 Binary search (sorted array only)</h3>
+<p>Repeatedly halve the search range.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">8</span>] = {<span class="tok-num">2</span>, <span class="tok-num">5</span>, <span class="tok-num">8</span>, <span class="tok-num">12</span>, <span class="tok-num">16</span>, <span class="tok-num">23</span>, <span class="tok-num">38</span>, <span class="tok-num">56</span>};
+<span class="tok-kw">int</span> target = <span class="tok-num">23</span>;
+<span class="tok-kw">int</span> low = <span class="tok-num">0</span>, high = <span class="tok-num">7</span>, mid, found = -<span class="tok-num">1</span>;
+
+<span class="tok-kw">while</span> (low &lt;= high)
+{
+    mid = (low + high) / <span class="tok-num">2</span>;
+
+    <span class="tok-kw">if</span> (a[mid] == target)
+    {
+        found = mid;
+        <span class="tok-kw">break</span>;
+    }
+    <span class="tok-kw">else</span> <span class="tok-kw">if</span> (a[mid] &lt; target)
+        low = mid + <span class="tok-num">1</span>;
+    <span class="tok-kw">else</span>
+        high = mid - <span class="tok-num">1</span>;
+}
+
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;Found at index %d\n&quot;</span>, found);    <span class="tok-com">/* 5 */</span></code></pre>
+<p><strong>Time complexity:</strong> O(log n). <strong>The array must be sorted first.</strong></p>
+<h3 id="37-bubble-sort">3.7 Bubble sort</h3>
+<p>Repeatedly compare adjacent elements and swap them if they are in the wrong order.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">6</span>] = {<span class="tok-num">5</span>, <span class="tok-num">1</span>, <span class="tok-num">4</span>, <span class="tok-num">2</span>, <span class="tok-num">8</span>, <span class="tok-num">3</span>};
+<span class="tok-kw">int</span> i, j, temp;
+
+<span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">6</span> - <span class="tok-num">1</span>; i++)
+{
+    <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">6</span> - <span class="tok-num">1</span> - i; j++)
+    {
+        <span class="tok-kw">if</span> (a[j] &gt; a[j + <span class="tok-num">1</span>])
+        {
+            temp = a[j];
+            a[j] = a[j + <span class="tok-num">1</span>];
+            a[j + <span class="tok-num">1</span>] = temp;
+        }
+    }
+}
+<span class="tok-com">/* a = {1, 2, 3, 4, 5, 8} */</span></code></pre>
+<p><strong>Trace (first pass):</strong></p>
+<pre class="code"><code>5 1 4 2 8 3
+1 5 4 2 8 3   (swap 5,1)
+1 4 5 2 8 3   (swap 5,4)
+1 4 2 5 8 3   (swap 5,2)
+1 4 2 5 8 3   (no swap 5,8)
+1 4 2 5 3 8   (swap 8,3)</code></pre>
+<p>After each pass, the largest remaining element &quot;bubbles&quot; to the end.</p>
+<h3 id="38-frequency-count">3.8 Frequency count</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">10</span>] = {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>, <span class="tok-num">3</span>, <span class="tok-num">3</span>, <span class="tok-num">4</span>, <span class="tok-num">4</span>, <span class="tok-num">4</span>, <span class="tok-num">4</span>};
+<span class="tok-kw">int</span> i, j, count;
+
+<span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">10</span>; i++)
+{
+    count = <span class="tok-num">1</span>;
+    <span class="tok-kw">for</span> (j = i + <span class="tok-num">1</span>; j &lt; <span class="tok-num">10</span>; j++)
+        <span class="tok-kw">if</span> (a[j] == a[i])
+            count++;
+
+    <span class="tok-com">/* print only the first occurrence */</span>
+    <span class="tok-kw">int</span> first = <span class="tok-num">1</span>;
+    <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; i; j++)
+        <span class="tok-kw">if</span> (a[j] == a[i])
+            first = <span class="tok-num">0</span>;
+
+    <span class="tok-kw">if</span> (first)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d occurs %d times\n&quot;</span>, a[i], count);
+}</code></pre>
+<p>For sorted arrays, a simpler single pass works.</p>
+<hr>
+<h2 id="4-arrays-and-functions">4. Arrays and functions</h2>
+<p>Pass the array <strong>and its size</strong>:</p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">void</span> <span class="tok-fn">print_array</span>(<span class="tok-kw">int</span> arr[], <span class="tok-kw">int</span> n)
+{
+    <span class="tok-kw">for</span> (<span class="tok-kw">int</span> i = <span class="tok-num">0</span>; i &lt; n; i++)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, arr[i]);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n&quot;</span>);
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">sum_array</span>(<span class="tok-kw">int</span> arr[], <span class="tok-kw">int</span> n)
+{
+    <span class="tok-kw">int</span> sum = <span class="tok-num">0</span>;
+    <span class="tok-kw">for</span> (<span class="tok-kw">int</span> i = <span class="tok-num">0</span>; i &lt; n; i++)
+        sum += arr[i];
+    <span class="tok-kw">return</span> sum;
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> a[<span class="tok-num">5</span>] = {<span class="tok-num">10</span>, <span class="tok-num">20</span>, <span class="tok-num">30</span>, <span class="tok-num">40</span>, <span class="tok-num">50</span>};
+
+    <span class="tok-fn">print_array</span>(a, <span class="tok-num">5</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Sum = %d\n&quot;</span>, <span class="tok-fn">sum_array</span>(a, <span class="tok-num">5</span>));
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Important facts</strong></p>
+<ul>
+<li><code>int arr[]</code> in a parameter is the same as <code>int *arr</code>.</li>
+<li>The function receives a <strong>pointer</strong>, so it can modify the original array.</li>
+<li><code>sizeof(arr)</code> inside the function gives the <strong>pointer size</strong>, not the array size — always pass <code>n</code>.</li>
+<li>You do not use <code>&amp;</code> when passing an array name.</li>
+</ul>
+<hr>
+<h2 id="5-two-dimensional-arrays">5. Two-dimensional arrays</h2>
+<p>A 2D array is an <strong>array of arrays</strong>, useful for tables, matrices, grids and images.</p>
+<h3 id="51-declaration">5.1 Declaration</h3>
+<pre class="code" data-lang="c"><code>data_type name[rows][columns];</code></pre>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> matrix[<span class="tok-num">3</span>][<span class="tok-num">4</span>];       <span class="tok-com">/* 3 rows, 4 columns = 12 elements */</span></code></pre>
+<p>Memory is stored <strong>row by row</strong> (row-major order):</p>
+<pre class="code"><code>matrix[0][0] matrix[0][1] matrix[0][2] matrix[0][3]
+matrix[1][0] matrix[1][1] matrix[1][2] matrix[1][3]
+matrix[2][0] matrix[2][1] matrix[2][2] matrix[2][3]</code></pre>
+<h3 id="52-initialisation">5.2 Initialisation</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">2</span>][<span class="tok-num">3</span>] = {
+    {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>},
+    {<span class="tok-num">4</span>, <span class="tok-num">5</span>, <span class="tok-num">6</span>}
+};
+
+<span class="tok-kw">int</span> b[<span class="tok-num">2</span>][<span class="tok-num">3</span>] = {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>, <span class="tok-num">4</span>, <span class="tok-num">5</span>, <span class="tok-num">6</span>};   <span class="tok-com">/* same, row by row */</span>
+<span class="tok-kw">int</span> c[<span class="tok-num">3</span>][<span class="tok-num">3</span>] = {<span class="tok-num">0</span>};                   <span class="tok-com">/* all zeros */</span>
+<span class="tok-kw">int</span> d[][<span class="tok-num">2</span>] = {{<span class="tok-num">1</span>, <span class="tok-num">2</span>}, {<span class="tok-num">3</span>, <span class="tok-num">4</span>}};       <span class="tok-com">/* 2 rows inferred */</span></code></pre>
+<h3 id="53-input-and-output">5.3 Input and output</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">3</span>][<span class="tok-num">3</span>], i, j;
+
+<span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">3</span>; i++)
+    <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">3</span>; j++)
+        <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;a[i][j]);
+
+<span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">3</span>; i++)
+{
+    <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">3</span>; j++)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%4d&quot;</span>, a[i][j]);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n&quot;</span>);
+}</code></pre>
+<h3 id="54-matrix-addition">5.4 Matrix addition</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">2</span>][<span class="tok-num">2</span>] = {{<span class="tok-num">1</span>, <span class="tok-num">2</span>}, {<span class="tok-num">3</span>, <span class="tok-num">4</span>}};
+<span class="tok-kw">int</span> b[<span class="tok-num">2</span>][<span class="tok-num">2</span>] = {{<span class="tok-num">5</span>, <span class="tok-num">6</span>}, {<span class="tok-num">7</span>, <span class="tok-num">8</span>}};
+<span class="tok-kw">int</span> c[<span class="tok-num">2</span>][<span class="tok-num">2</span>], i, j;
+
+<span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">2</span>; i++)
+    <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">2</span>; j++)
+        c[i][j] = a[i][j] + b[i][j];
+
+<span class="tok-com">/* c = {{6, 8}, {10, 12}} */</span></code></pre>
+<h3 id="55-matrix-transpose">5.5 Matrix transpose</h3>
+<p>Swap rows and columns: <code>transpose[j][i] = a[i][j]</code>.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">2</span>][<span class="tok-num">3</span>] = {{<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>}, {<span class="tok-num">4</span>, <span class="tok-num">5</span>, <span class="tok-num">6</span>}};
+<span class="tok-kw">int</span> t[<span class="tok-num">3</span>][<span class="tok-num">2</span>], i, j;
+
+<span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">2</span>; i++)
+    <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">3</span>; j++)
+        t[j][i] = a[i][j];
+
+<span class="tok-com">/* t = {{1, 4}, {2, 5}, {3, 6}} */</span></code></pre>
+<h3 id="56-matrix-multiplication">5.6 Matrix multiplication</h3>
+<p>For <code>A (m × n)</code> and <code>B (n × p)</code>, the result <code>C</code> is <code>m × p</code>:</p>
+<pre class="code"><code>C[i][j] = Σ (A[i][k] × B[k][j])   for k = 0..n-1</code></pre>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">2</span>][<span class="tok-num">3</span>] = {{<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>}, {<span class="tok-num">4</span>, <span class="tok-num">5</span>, <span class="tok-num">6</span>}};
+<span class="tok-kw">int</span> b[<span class="tok-num">3</span>][<span class="tok-num">2</span>] = {{<span class="tok-num">7</span>, <span class="tok-num">8</span>}, {<span class="tok-num">9</span>, <span class="tok-num">10</span>}, {<span class="tok-num">11</span>, <span class="tok-num">12</span>}};
+<span class="tok-kw">int</span> c[<span class="tok-num">2</span>][<span class="tok-num">2</span>] = {<span class="tok-num">0</span>};
+<span class="tok-kw">int</span> i, j, k;
+
+<span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">2</span>; i++)
+    <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">2</span>; j++)
+        <span class="tok-kw">for</span> (k = <span class="tok-num">0</span>; k &lt; <span class="tok-num">3</span>; k++)
+            c[i][j] += a[i][k] * b[k][j];
+
+<span class="tok-com">/* c = {{58, 64}, {139, 154}} */</span></code></pre>
+<p>Check: <code>c[0][0] = 1*7 + 2*9 + 3*11 = 7 + 18 + 33 = 58</code>. ✓</p>
+<h3 id="57-diagonal-sum">5.7 Diagonal sum</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">3</span>][<span class="tok-num">3</span>], i, sum = <span class="tok-num">0</span>;
+<span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">3</span>; i++)
+    sum += a[i][i];          <span class="tok-com">/* main diagonal */</span></code></pre>
+<h3 id="58-2d-arrays-and-functions">5.8 2D arrays and functions</h3>
+<p>You must specify the number of columns (so the compiler can calculate offsets):</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">void</span> <span class="tok-fn">print_matrix</span>(<span class="tok-kw">int</span> a[][<span class="tok-num">3</span>], <span class="tok-kw">int</span> rows)
+{
+    <span class="tok-kw">for</span> (<span class="tok-kw">int</span> i = <span class="tok-num">0</span>; i &lt; rows; i++)
+    {
+        <span class="tok-kw">for</span> (<span class="tok-kw">int</span> j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">3</span>; j++)
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%4d&quot;</span>, a[i][j]);
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n&quot;</span>);
+    }
+}</code></pre>
+<hr>
+<h2 id="6-multi-dimensional-arrays">6. Multi-dimensional arrays</h2>
+<p>C supports more than two dimensions:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> cube[<span class="tok-num">2</span>][<span class="tok-num">3</span>][<span class="tok-num">4</span>];      <span class="tok-com">/* 2 × 3 × 4 = 24 elements */</span></code></pre>
+<pre class="code" data-lang="c"><code>cube[<span class="tok-num">1</span>][<span class="tok-num">2</span>][<span class="tok-num">3</span>] = <span class="tok-num">99</span>;
+
+<span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">2</span>; i++)
+    <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">3</span>; j++)
+        <span class="tok-kw">for</span> (k = <span class="tok-num">0</span>; k &lt; <span class="tok-num">4</span>; k++)
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, cube[i][j][k]);</code></pre>
+<p>3D arrays are used for volumetric data, 3D graphics, simulations and multi-dimensional tables. In practice, most exam questions use 1D and 2D.</p>
+<hr>
+<h2 id="7-strings-in-c">7. Strings in C</h2>
+<h3 id="71-what-is-a-string">7.1 What is a string?</h3>
+<p>A <strong>string</strong> is a sequence of characters stored in a <code>char</code> array and terminated by the <strong>null character</strong> <code>'\0'</code> (ASCII 0).</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> greeting[] = <span class="tok-str">&quot;Hello&quot;</span>;</code></pre>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Index</th><th style="text-align:left">0</th><th style="text-align:left">1</th><th style="text-align:left">2</th><th style="text-align:left">3</th><th style="text-align:left">4</th><th style="text-align:left">5</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Value</td><td style="text-align:left"><code>'H'</code></td><td style="text-align:left"><code>'e'</code></td><td style="text-align:left"><code>'l'</code></td><td style="text-align:left"><code>'l'</code></td><td style="text-align:left"><code>'o'</code></td><td style="text-align:left"><code>'\0'</code></td></tr>
+</tbody></table></div>
+<p>The <code>'\0'</code> tells functions like <code>printf(&quot;%s&quot;)</code> where the string ends.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> a[] = <span class="tok-str">&quot;Hello&quot;</span>;                      <span class="tok-com">/* 6 bytes, auto null */</span>
+<span class="tok-kw">char</span> b[<span class="tok-num">6</span>] = {<span class="tok-chr">'H'</span>,<span class="tok-chr">'e'</span>,<span class="tok-chr">'l'</span>,<span class="tok-chr">'l'</span>,<span class="tok-chr">'o'</span>,<span class="tok-chr">'\0'</span>};  <span class="tok-com">/* same */</span>
+<span class="tok-kw">char</span> c[<span class="tok-num">20</span>] = <span class="tok-str">&quot;Hello&quot;</span>;                    <span class="tok-com">/* 20 bytes, rest zero */</span>
+<span class="tok-kw">char</span> d[<span class="tok-num">5</span>] = <span class="tok-str">&quot;Hello&quot;</span>;                     <span class="tok-com">/* WRONG: no room for '\0' */</span></code></pre>
+<h3 id="72-reading-strings">7.2 Reading strings</h3>
+<p><strong><code>scanf(&quot;%s&quot;, ...)</code></strong> reads a word (stops at whitespace):</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> name[<span class="tok-num">20</span>];
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%19s&quot;</span>, name);        <span class="tok-com">/* width limit prevents overflow; no &amp; */</span></code></pre>
+<p><strong><code>fgets</code></strong> reads a whole line, including spaces, and stores the newline:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> line[<span class="tok-num">100</span>];
+<span class="tok-fn">fgets</span>(line, <span class="tok-kw">sizeof</span>(line), stdin);</code></pre>
+<p>To remove the newline:</p>
+<pre class="code" data-lang="c"><code>line[<span class="tok-fn">strcspn</span>(line, <span class="tok-str">&quot;\n&quot;</span>)] = <span class="tok-chr">'\0'</span>;</code></pre>
+<p><strong><code>gets</code> is unsafe and has been removed from modern C. Never use it.</strong></p>
+<h3 id="73-printing-strings">7.3 Printing strings</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> name[] = <span class="tok-str">&quot;Alice&quot;</span>;
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%s\n&quot;</span>, name);       <span class="tok-com">/* Alice */</span>
+<span class="tok-fn">puts</span>(name);                 <span class="tok-com">/* Alice + newline */</span></code></pre>
+<p>To print character by character:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">for</span> (<span class="tok-kw">int</span> i = <span class="tok-num">0</span>; name[i] != <span class="tok-chr">'\0'</span>; i++)
+    <span class="tok-fn">putchar</span>(name[i]);</code></pre>
+<h3 id="74-string-length">7.4 String length</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> len = <span class="tok-num">0</span>;
+<span class="tok-kw">while</span> (name[len] != <span class="tok-chr">'\0'</span>)
+    len++;</code></pre>
+<p>or</p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;string.h&gt;</span>
+<span class="tok-kw">int</span> len = <span class="tok-fn">strlen</span>(name);     <span class="tok-com">/* excludes '\0' */</span></code></pre>
+<p><code>sizeof(name)</code> includes <code>'\0'</code>.</p>
+<h3 id="75-copying-a-string">7.5 Copying a string</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> source[] = <span class="tok-str">&quot;Hello&quot;</span>;
+<span class="tok-kw">char</span> dest[<span class="tok-num">20</span>];
+
+<span class="tok-fn">strcpy</span>(dest, source);           <span class="tok-com">/* unsafe if dest is too small */</span>
+<span class="tok-fn">strncpy</span>(dest, source, <span class="tok-kw">sizeof</span>(dest) - <span class="tok-num">1</span>);
+dest[<span class="tok-kw">sizeof</span>(dest) - <span class="tok-num">1</span>] = <span class="tok-chr">'\0'</span>;</code></pre>
+<p>Manual copy:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> i = <span class="tok-num">0</span>;
+<span class="tok-kw">while</span> (source[i] != <span class="tok-chr">'\0'</span>)
+{
+    dest[i] = source[i];
+    i++;
+}
+dest[i] = <span class="tok-chr">'\0'</span>;                 <span class="tok-com">/* don't forget! */</span></code></pre>
+<h3 id="76-concatenating-strings">7.6 Concatenating strings</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> first[<span class="tok-num">20</span>] = <span class="tok-str">&quot;Hello&quot;</span>;
+<span class="tok-kw">char</span> second[] = <span class="tok-str">&quot; World&quot;</span>;
+
+<span class="tok-fn">strcat</span>(first, second);          <span class="tok-com">/* first becomes &quot;Hello World&quot; */</span>
+<span class="tok-fn">strncat</span>(first, second, <span class="tok-num">5</span>);      <span class="tok-com">/* safer, copies at most 5 chars */</span></code></pre>
+<h3 id="77-comparing-strings">7.7 Comparing strings</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;string.h&gt;</span>
+
+<span class="tok-kw">if</span> (<span class="tok-fn">strcmp</span>(s1, s2) == <span class="tok-num">0</span>)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Equal\n&quot;</span>);
+<span class="tok-kw">else</span> <span class="tok-kw">if</span> (<span class="tok-fn">strcmp</span>(s1, s2) &lt; <span class="tok-num">0</span>)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;s1 comes before s2\n&quot;</span>);
+<span class="tok-kw">else</span>
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;s1 comes after s2\n&quot;</span>);</code></pre>
+<p><code>strcmp</code> returns:</p>
+<ul>
+<li><code>0</code> if equal,</li>
+<li>a negative value if <code>s1 &lt; s2</code>,</li>
+<li>a positive value if <code>s1 &gt; s2</code>.</li>
+</ul>
+<p><strong>Never compare strings with <code>==</code></strong> — that compares addresses, not contents.</p>
+<h3 id="78-other-stringh-functions">7.8 Other <code>&lt;string.h&gt;</code> functions</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Function</th><th style="text-align:left">Purpose</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>strlen(s)</code></td><td style="text-align:left">Length (excluding <code>'\0'</code>)</td></tr>
+<tr><td style="text-align:left"><code>strcpy(d, s)</code></td><td style="text-align:left">Copy <code>s</code> into <code>d</code></td></tr>
+<tr><td style="text-align:left"><code>strncpy(d, s, n)</code></td><td style="text-align:left">Copy at most <code>n</code> characters</td></tr>
+<tr><td style="text-align:left"><code>strcat(d, s)</code></td><td style="text-align:left">Append <code>s</code> to <code>d</code></td></tr>
+<tr><td style="text-align:left"><code>strncat(d, s, n)</code></td><td style="text-align:left">Append at most <code>n</code> characters</td></tr>
+<tr><td style="text-align:left"><code>strcmp(s1, s2)</code></td><td style="text-align:left">Compare</td></tr>
+<tr><td style="text-align:left"><code>strncmp(s1, s2, n)</code></td><td style="text-align:left">Compare first <code>n</code> characters</td></tr>
+<tr><td style="text-align:left"><code>strchr(s, c)</code></td><td style="text-align:left">Pointer to first occurrence of <code>c</code></td></tr>
+<tr><td style="text-align:left"><code>strstr(s, sub)</code></td><td style="text-align:left">Pointer to first occurrence of <code>sub</code></td></tr>
+<tr><td style="text-align:left"><code>strrev(s)</code></td><td style="text-align:left">Reverse (non-standard, not in all compilers)</td></tr>
+</tbody></table></div>
+<h3 id="79-string-traversal-examples">7.9 String traversal examples</h3>
+<p><strong>Count vowels</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> s[] = <span class="tok-str">&quot;Hello World&quot;</span>;
+<span class="tok-kw">int</span> i, count = <span class="tok-num">0</span>;
+
+<span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; s[i] != <span class="tok-chr">'\0'</span>; i++)
+{
+    <span class="tok-kw">char</span> c = s[i];
+    <span class="tok-kw">if</span> (c==<span class="tok-chr">'a'</span>||c==<span class="tok-chr">'e'</span>||c==<span class="tok-chr">'i'</span>||c==<span class="tok-chr">'o'</span>||c==<span class="tok-chr">'u'</span>||
+        c==<span class="tok-chr">'A'</span>||c==<span class="tok-chr">'E'</span>||c==<span class="tok-chr">'I'</span>||c==<span class="tok-chr">'O'</span>||c==<span class="tok-chr">'U'</span>)
+        count++;
+}
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;Vowels = %d\n&quot;</span>, count);     <span class="tok-com">/* 3 */</span></code></pre>
+<p><strong>Palindrome string</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> s[] = <span class="tok-str">&quot;madam&quot;</span>;
+<span class="tok-kw">int</span> i, j = <span class="tok-fn">strlen</span>(s) - <span class="tok-num">1</span>, palindrome = <span class="tok-num">1</span>;
+
+<span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; j; i++, j--)
+{
+    <span class="tok-kw">if</span> (s[i] != s[j])
+    {
+        palindrome = <span class="tok-num">0</span>;
+        <span class="tok-kw">break</span>;
+    }
+}
+
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%s\n&quot;</span>, palindrome ? <span class="tok-str">&quot;Palindrome&quot;</span> : <span class="tok-str">&quot;Not palindrome&quot;</span>);</code></pre>
+<p><strong>Convert to uppercase</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; s[i] != <span class="tok-chr">'\0'</span>; i++)
+    <span class="tok-kw">if</span> (s[i] &gt;= <span class="tok-chr">'a'</span> &amp;&amp; s[i] &lt;= <span class="tok-chr">'z'</span>)
+        s[i] = s[i] - <span class="tok-num">32</span>;</code></pre>
+<p>or <code>s[i] = toupper(s[i]);</code> from <code>&lt;ctype.h&gt;</code>.</p>
+<h3 id="710-array-of-strings">7.10 Array of strings</h3>
+<p>A list of strings is a 2D <code>char</code> array (or an array of pointers):</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> names[<span class="tok-num">3</span>][<span class="tok-num">20</span>] = {<span class="tok-str">&quot;Alice&quot;</span>, <span class="tok-str">&quot;Bob&quot;</span>, <span class="tok-str">&quot;Charlie&quot;</span>};
+
+<span class="tok-kw">for</span> (<span class="tok-kw">int</span> i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">3</span>; i++)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%s\n&quot;</span>, names[i]);</code></pre>
+<p><code>names[0]</code> is a <code>char[20]</code>, i.e. the first string.</p>
+<hr>
+<h2 id="8-common-errors">8. Common errors</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Error</th><th style="text-align:left">Explanation</th><th style="text-align:left">Fix</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>int a[5]; a[5] = 10;</code></td><td style="text-align:left">Out of bounds (valid indices 0–4)</td><td style="text-align:left">Use <code>a[4]</code></td></tr>
+<tr><td style="text-align:left"><code>for (i=0; i&lt;=5; i++) a[i]</code></td><td style="text-align:left">One past the end</td><td style="text-align:left"><code>i &lt; 5</code></td></tr>
+<tr><td style="text-align:left"><code>int a[5] = {1,2,3,4,5,6};</code></td><td style="text-align:left">Too many initialisers</td><td style="text-align:left">Match the size</td></tr>
+<tr><td style="text-align:left"><code>a = {1,2,3};</code> after declaration</td><td style="text-align:left">Arrays are not assignable</td><td style="text-align:left">Initialise at declaration or assign elements</td></tr>
+<tr><td style="text-align:left"><code>scanf(&quot;%s&quot;, &amp;name);</code></td><td style="text-align:left"><code>name</code> is already an address; <code>&amp;name</code> has wrong type</td><td style="text-align:left"><code>scanf(&quot;%s&quot;, name)</code></td></tr>
+<tr><td style="text-align:left"><code>scanf(&quot;%s&quot;, name)</code> with long input</td><td style="text-align:left">Buffer overflow</td><td style="text-align:left"><code>scanf(&quot;%19s&quot;, name)</code></td></tr>
+<tr><td style="text-align:left"><code>char s[5] = &quot;Hello&quot;;</code></td><td style="text-align:left">Needs 6 bytes</td><td style="text-align:left"><code>char s[6]</code></td></tr>
+<tr><td style="text-align:left"><code>if (s1 == s2)</code></td><td style="text-align:left">Compares addresses</td><td style="text-align:left"><code>strcmp(s1, s2) == 0</code></td></tr>
+<tr><td style="text-align:left"><code>strlen</code> vs <code>sizeof</code></td><td style="text-align:left"><code>strlen</code> excludes <code>'\0'</code>; <code>sizeof</code> includes it</td><td style="text-align:left">Use the right one</td></tr>
+<tr><td style="text-align:left"><code>char *s = &quot;hello&quot;; s[0]='H';</code></td><td style="text-align:left">String literal is read-only</td><td style="text-align:left"><code>char s[] = &quot;hello&quot;;</code></td></tr>
+<tr><td style="text-align:left"><code>fgets</code> leaves <code>'\n'</code></td><td style="text-align:left">Newline stored in the string</td><td style="text-align:left">Strip it</td></tr>
+<tr><td style="text-align:left"><code>sizeof(arr)</code> inside a function</td><td style="text-align:left">Gives pointer size, not array size</td><td style="text-align:left">Pass length separately</td></tr>
+<tr><td style="text-align:left">2D function parameter <code>int a[][]</code></td><td style="text-align:left">Column count missing</td><td style="text-align:left"><code>int a[][3]</code></td></tr>
+<tr><td style="text-align:left"><code>matrix[i][j]</code> vs <code>matrix[j][i]</code></td><td style="text-align:left">Wrong element</td><td style="text-align:left">Check row/column order</td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="9-worked-exam-questions">9. Worked exam questions</h2>
+<h3 id="91-write-a-program-to-find-the-average-of-n-numbers-using-an">9.1 &quot;Write a program to find the average of N numbers using an array.&quot;</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> n, i, sum = <span class="tok-num">0</span>;
+    <span class="tok-kw">int</span> marks[<span class="tok-num">50</span>];
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;How many numbers? &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+
+    <span class="tok-kw">if</span> (n &lt;= <span class="tok-num">0</span> || n &gt; <span class="tok-num">50</span>)
+    {
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Invalid count\n&quot;</span>);
+        <span class="tok-kw">return</span> <span class="tok-num">1</span>;
+    }
+
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; n; i++)
+    {
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter number %d: &quot;</span>, i + <span class="tok-num">1</span>);
+        <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;marks[i]);
+        sum += marks[i];
+    }
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Average = %.2f\n&quot;</span>, (<span class="tok-kw">float</span>)sum / n);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<h3 id="92-write-a-program-to-add-two-22-matrices">9.2 &quot;Write a program to add two 2×2 matrices.&quot;</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> a[<span class="tok-num">2</span>][<span class="tok-num">2</span>], b[<span class="tok-num">2</span>][<span class="tok-num">2</span>], c[<span class="tok-num">2</span>][<span class="tok-num">2</span>];
+    <span class="tok-kw">int</span> i, j;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter matrix A (4 numbers):\n&quot;</span>);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">2</span>; i++)
+        <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">2</span>; j++)
+            <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;a[i][j]);
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter matrix B (4 numbers):\n&quot;</span>);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">2</span>; i++)
+        <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">2</span>; j++)
+            <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;b[i][j]);
+
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">2</span>; i++)
+        <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">2</span>; j++)
+            c[i][j] = a[i][j] + b[i][j];
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Sum matrix:\n&quot;</span>);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">2</span>; i++)
+    {
+        <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">2</span>; j++)
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%4d&quot;</span>, c[i][j]);
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n&quot;</span>);
+    }
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<h3 id="93-write-a-program-to-check-whether-a-string-is-a-palindrome">9.3 &quot;Write a program to check whether a string is a palindrome.&quot;</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-pre">#include &lt;string.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">char</span> s[<span class="tok-num">100</span>];
+    <span class="tok-kw">int</span> i, j, ok = <span class="tok-num">1</span>;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter a string: &quot;</span>);
+    <span class="tok-fn">fgets</span>(s, <span class="tok-kw">sizeof</span>(s), stdin);
+
+    <span class="tok-com">/* remove newline */</span>
+    s[<span class="tok-fn">strcspn</span>(s, <span class="tok-str">&quot;\n&quot;</span>)] = <span class="tok-chr">'\0'</span>;
+
+    j = <span class="tok-fn">strlen</span>(s) - <span class="tok-num">1</span>;
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; j; i++, j--)
+    {
+        <span class="tok-kw">if</span> (s[i] != s[j])
+        {
+            ok = <span class="tok-num">0</span>;
+            <span class="tok-kw">break</span>;
+        }
+    }
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%s\n&quot;</span>, ok ? <span class="tok-str">&quot;Palindrome&quot;</span> : <span class="tok-str">&quot;Not a palindrome&quot;</span>);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<hr>
+<h2 id="10-rapid-revision">10. Rapid revision</h2>
+<ul>
+<li>Array = fixed-size collection of same-type elements, index starts at 0.</li>
+<li>No bounds checking; <code>a[n]</code> has valid indices <code>0..n-1</code>.</li>
+<li>Initialise with <code>{...}</code> only at declaration.</li>
+<li><code>sizeof(a)/sizeof(a[0])</code> gives the element count.</li>
+<li>Pass arrays to functions with their length.</li>
+<li>2D array = rows × columns, stored row by row.</li>
+<li>Matrix multiplication needs three nested loops.</li>
+<li>String = <code>char</code> array ending in <code>'\0'</code>.</li>
+<li><code>strlen</code> excludes <code>'\0'</code>; <code>sizeof</code> includes it.</li>
+<li><code>scanf(&quot;%s&quot;)</code> stops at whitespace; <code>fgets</code> reads a line.</li>
+<li>Compare strings with <code>strcmp</code>, copy with <code>strcpy</code>, join with <code>strcat</code>.</li>
+<li>String literals are read-only; use a <code>char</code> array to modify.</li>
+</ul>
+<hr>
+<h2 id="11-self-test-answers-below">11. Self-test (answers below)</h2>
+<ol>
+<li></li>
+<li></li>
+<li> ``<code>c int a[5] = {10, 20, 30}; printf(&quot;%d %d %d\n&quot;, a[0], a[2], a[4]); </code>``</li>
+<li> ``<code>c int a[5]; a = {1, 2, 3, 4, 5}; </code>``</li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li> ``<code>c int a[2][2] = {{1,2},{3,4}}; printf(&quot;%d\n&quot;, a[1][0]); </code>``</li>
+<li></li>
+<li></li>
+<li></li>
+<li> ``<code>c char s[] = &quot;abc&quot;; printf(&quot;%c %d\n&quot;, s[1], s[3]); </code>``</li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<h3 id="answers">Answers</h3>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<hr>
+<p><strong>Next:</strong> <code>09_pointers.md</code></p>
+
+  </article>
+<nav class="pager"><a class="prev" href="../notes/07_functions_and_recursion.html"><span class="dir">&larr; Previous</span><span class="name">07 · Functions &amp; recursion</span></a><a class="next" href="../notes/09_pointers.html"><span class="dir">Next &rarr;</span><span class="name">09 · Pointers</span></a></nav>
+  <footer class="foot">
+    CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
+  </footer>
+</main>
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  <a href="#1-what-is-an-array">1. What is an array?</a><a href="#2-one-dimensional-arrays">2. One-dimensional arrays</a><a href="#21-declaration" class="toc-h3">2.1 Declaration</a><a href="#22-initialisation" class="toc-h3">2.2 Initialisation</a><a href="#23-access-and-assignment" class="toc-h3">2.3 Access and assignment</a><a href="#24-input-and-output" class="toc-h3">2.4 Input and output</a><a href="#25-size-of-an-array" class="toc-h3">2.5 Size of an array</a><a href="#3-standard-array-operations">3. Standard array operations</a><a href="#31-sum-and-average" class="toc-h3">3.1 Sum and average</a><a href="#32-maximum-and-minimum" class="toc-h3">3.2 Maximum and minimum</a><a href="#33-reverse-an-array-in-place" class="toc-h3">3.3 Reverse an array (in place)</a><a href="#34-print-in-reverse-order-without-changing-the-array" class="toc-h3">3.4 Print in reverse order (without changing the array)</a><a href="#35-linear-search" class="toc-h3">3.5 Linear search</a><a href="#36-binary-search-sorted-array-only" class="toc-h3">3.6 Binary search (sorted array only)</a><a href="#37-bubble-sort" class="toc-h3">3.7 Bubble sort</a><a href="#38-frequency-count" class="toc-h3">3.8 Frequency count</a><a href="#4-arrays-and-functions">4. Arrays and functions</a><a href="#5-two-dimensional-arrays">5. Two-dimensional arrays</a><a href="#51-declaration" class="toc-h3">5.1 Declaration</a><a href="#52-initialisation" class="toc-h3">5.2 Initialisation</a><a href="#53-input-and-output" class="toc-h3">5.3 Input and output</a><a href="#54-matrix-addition" class="toc-h3">5.4 Matrix addition</a><a href="#55-matrix-transpose" class="toc-h3">5.5 Matrix transpose</a><a href="#56-matrix-multiplication" class="toc-h3">5.6 Matrix multiplication</a><a href="#57-diagonal-sum" class="toc-h3">5.7 Diagonal sum</a><a href="#58-2d-arrays-and-functions" class="toc-h3">5.8 2D arrays and functions</a><a href="#6-multi-dimensional-arrays">6. Multi-dimensional arrays</a><a href="#7-strings-in-c">7. Strings in C</a><a href="#71-what-is-a-string" class="toc-h3">7.1 What is a string?</a><a href="#72-reading-strings" class="toc-h3">7.2 Reading strings</a><a href="#73-printing-strings" class="toc-h3">7.3 Printing strings</a><a href="#74-string-length" class="toc-h3">7.4 String length</a><a href="#75-copying-a-string" class="toc-h3">7.5 Copying a string</a><a href="#76-concatenating-strings" class="toc-h3">7.6 Concatenating strings</a><a href="#77-comparing-strings" class="toc-h3">7.7 Comparing strings</a><a href="#78-other-stringh-functions" class="toc-h3">7.8 Other &lt;string.h&gt; functions</a><a href="#79-string-traversal-examples" class="toc-h3">7.9 String traversal examples</a><a href="#710-array-of-strings" class="toc-h3">7.10 Array of strings</a><a href="#8-common-errors">8. Common errors</a><a href="#9-worked-exam-questions">9. Worked exam questions</a><a href="#91-write-a-program-to-find-the-average-of-n-numbers-using-an" class="toc-h3">9.1 &quot;Write a program to find the average of N numbers using an array.&quot;</a><a href="#92-write-a-program-to-add-two-22-matrices" class="toc-h3">9.2 &quot;Write a program to add two 2×2 matrices.&quot;</a><a href="#93-write-a-program-to-check-whether-a-string-is-a-palindrome" class="toc-h3">9.3 &quot;Write a program to check whether a string is a palindrome.&quot;</a><a href="#10-rapid-revision">10. Rapid revision</a><a href="#11-self-test-answers-below">11. Self-test (answers below)</a><a href="#answers" class="toc-h3">Answers</a>
+</aside>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('csc112-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '\u2600' : '\u263D';
+    try { localStorage.setItem('csc112-theme', next); } catch (e) {}
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // highlight the current section in the right-hand table of contents
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (links.length) {
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    window.addEventListener('scroll', function () {
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i] && heads[i].getBoundingClientRect().top < 120) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }, { passive: true });
+  }
+
+  // on phones, start with the contents menu collapsed
+  var det = document.querySelector('.nav-details');
+  if (det && window.innerWidth < 1000) det.removeAttribute('open');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Note 10 — Structures, Unions, Enums and Files · CSC 112 Revision</title>
+<meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
+<link rel="stylesheet" href="../assets/notes.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">C</span>
+    <span class="brand-text"><strong>CSC 112</strong><span>Revision Notes</span></span>
+  </a>
+  <details class="nav-details" open>
+    <summary>Contents</summary>
+    <div class="nav-group"><div class="nav-head"></div><a href="../START_HERE.html">Start here (pack index)</a><a href="../YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="../CHEAT_SHEET.html">Cheat sheet</a><a href="../PROGRESS_TRACKER.html">Progress tracker</a><a href="../SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="../notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="../notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="../notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="../notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="../notes/05_control_statements.html">05 · Control statements</a><a href="../notes/06_loops.html">06 · Loops</a><a href="../notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="../notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="../notes/09_pointers.html">09 · Pointers</a><a href="../notes/10_structures_unions_files.html" class="active">10 · Structures, unions &amp; files</a><a href="../notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="../practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="../practice/QUESTION_BANK.html">Question bank (96)</a><a href="../practice/ANSWER_KEY.html">Answer key</a><a href="../practice/LAB_TASKS.html">Lab tasks (25)</a><a href="../practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="../practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="../practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="../code/README.html">Program list (22 examples)</a></div>
+  </details>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <span class="crumb">Notes <b>&rsaquo;</b> 10_structures_unions_files</span>
+    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+  </div>
+  <article class="content">
+<h1 id="note-10-structures-unions-enums-and-files">Note 10 — Structures, Unions, Enums and Files</h1>
+<blockquote><p><strong>Covers outline Week 12</strong> (unions and structures) plus file handling from the course description.</p></blockquote>
+<hr>
+<h2 id="1-structures">1. Structures</h2>
+<p>A <strong>structure</strong> (<code>struct</code>) groups variables of <strong>different types</strong> under one name. It is used to model a real-world object.</p>
+<p>Example: a student has a name (string), an age (int) and a fee (float). A struct keeps them together.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">struct</span> Student
+{
+    <span class="tok-kw">char</span> name[<span class="tok-num">50</span>];
+    <span class="tok-kw">int</span> age;
+    <span class="tok-kw">float</span> fee;
+};</code></pre>
+<h3 id="11-defining-a-structure">1.1 Defining a structure</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">struct</span> tag_name
+{
+    type member1;
+    type member2;
+    ...
+};          <span class="tok-com">/* semicolon is required */</span></code></pre>
+<p>The <code>struct</code> definition creates a <strong>new type</strong>, but allocates no memory until you declare variables.</p>
+<h3 id="12-declaring-structure-variables">1.2 Declaring structure variables</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">struct</span> Student s1;                  <span class="tok-com">/* one variable */</span>
+<span class="tok-kw">struct</span> Student s2, s3;              <span class="tok-com">/* several */</span>
+<span class="tok-kw">struct</span> Student class_list[<span class="tok-num">50</span>];      <span class="tok-com">/* array of structs */</span></code></pre>
+<p>Or combine definition and declaration:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">struct</span> Student
+{
+    <span class="tok-kw">char</span> name[<span class="tok-num">50</span>];
+    <span class="tok-kw">int</span> age;
+    <span class="tok-kw">float</span> fee;
+} s1, s2;</code></pre>
+<h3 id="13-typedef-cleaner-names">1.3 <code>typedef</code> (cleaner names)</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">typedef</span> <span class="tok-kw">struct</span>
+{
+    <span class="tok-kw">char</span> name[<span class="tok-num">50</span>];
+    <span class="tok-kw">int</span> age;
+    <span class="tok-kw">float</span> fee;
+} Student;
+
+Student s1;         <span class="tok-com">/* no need to write &quot;struct&quot; every time */</span></code></pre>
+<p><code>typedef</code> creates an <strong>alias</strong>, not a new type.</p>
+<h3 id="14-accessing-members">1.4 Accessing members</h3>
+<p>Use the <strong>dot operator</strong> <code>.</code>:</p>
+<pre class="code" data-lang="c"><code><span class="tok-fn">strcpy</span>(s1.name, <span class="tok-str">&quot;Alice&quot;</span>);
+s1.age = <span class="tok-num">20</span>;
+s1.fee = <span class="tok-num">45000.50</span>;
+
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;Name: %s\n&quot;</span>, s1.name);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;Age : %d\n&quot;</span>, s1.age);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;Fee : %.2f\n&quot;</span>, s1.fee);</code></pre>
+<h3 id="15-initialisation">1.5 Initialisation</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">struct</span> Student s1 = {<span class="tok-str">&quot;Alice&quot;</span>, <span class="tok-num">20</span>, <span class="tok-num">45000.50</span>};
+
+<span class="tok-com">/* Designated initialisers (C99) */</span>
+<span class="tok-kw">struct</span> Student s2 = {.name = <span class="tok-str">&quot;Bob&quot;</span>, .age = <span class="tok-num">21</span>, .fee = <span class="tok-num">42000.00</span>};</code></pre>
+<p>The order of values must match the order of members.</p>
+<h3 id="16-assigning-structs">1.6 Assigning structs</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">struct</span> Student s1 = {<span class="tok-str">&quot;Alice&quot;</span>, <span class="tok-num">20</span>, <span class="tok-num">45000.50</span>};
+<span class="tok-kw">struct</span> Student s2;
+
+s2 = s1;            <span class="tok-com">/* copies all members */</span></code></pre>
+<p>Unlike arrays, structs <strong>can</strong> be assigned with <code>=</code>.</p>
+<h3 id="17-array-of-structures">1.7 Array of structures</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-pre">#include &lt;string.h&gt;</span>
+
+<span class="tok-kw">typedef</span> <span class="tok-kw">struct</span>
+{
+    <span class="tok-kw">char</span> name[<span class="tok-num">50</span>];
+    <span class="tok-kw">int</span> age;
+    <span class="tok-kw">float</span> fee;
+} Student;
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    Student s[<span class="tok-num">3</span>];
+    <span class="tok-kw">int</span> i;
+
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">3</span>; i++)
+    {
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Student %d name: &quot;</span>, i + <span class="tok-num">1</span>);
+        <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%49s&quot;</span>, s[i].name);
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Age: &quot;</span>);
+        <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;s[i].age);
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Fee: &quot;</span>);
+        <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%f&quot;</span>, &amp;s[i].fee);
+    }
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n%-15s %5s %10s\n&quot;</span>, <span class="tok-str">&quot;Name&quot;</span>, <span class="tok-str">&quot;Age&quot;</span>, <span class="tok-str">&quot;Fee&quot;</span>);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">3</span>; i++)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%-15s %5d %10.2f\n&quot;</span>, s[i].name, s[i].age, s[i].fee);
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<h3 id="18-nested-structures">1.8 Nested structures</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">struct</span> Date
+{
+    <span class="tok-kw">int</span> day, month, year;
+};
+
+<span class="tok-kw">struct</span> Student
+{
+    <span class="tok-kw">char</span> name[<span class="tok-num">50</span>];
+    <span class="tok-kw">struct</span> Date dob;        <span class="tok-com">/* nested struct */</span>
+    <span class="tok-kw">float</span> fee;
+};
+
+<span class="tok-kw">struct</span> Student s1 = {<span class="tok-str">&quot;Alice&quot;</span>, {<span class="tok-num">15</span>, <span class="tok-num">8</span>, <span class="tok-num">2005</span>}, <span class="tok-num">45000.50</span>};
+
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;Born: %d/%d/%d\n&quot;</span>, s1.dob.day, s1.dob.month, s1.dob.year);</code></pre>
+<h3 id="19-pointers-to-structures-and">1.9 Pointers to structures and <code>-&gt;</code></h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">struct</span> Student s1 = {<span class="tok-str">&quot;Alice&quot;</span>, <span class="tok-num">20</span>, <span class="tok-num">45000.50</span>};
+<span class="tok-kw">struct</span> Student *p = &amp;s1;
+
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%s\n&quot;</span>, (*p).name);      <span class="tok-com">/* dereference then dot */</span>
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%s\n&quot;</span>, p-&gt;name);        <span class="tok-com">/* arrow: cleaner and standard */</span></code></pre>
+<p><code>p-&gt;member</code> is shorthand for <code>(*p).member</code>.</p>
+<h3 id="110-structures-and-functions">1.10 Structures and functions</h3>
+<p><strong>Pass by value</strong> — the function gets a copy (cannot change the original):</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">void</span> <span class="tok-fn">print_student</span>(<span class="tok-kw">struct</span> Student s)
+{
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%s %d %.2f\n&quot;</span>, s.name, s.age, s.fee);
+}</code></pre>
+<p><strong>Pass by pointer</strong> — the function can modify the original and avoids copying large structs:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">void</span> <span class="tok-fn">update_fee</span>(<span class="tok-kw">struct</span> Student *s, <span class="tok-kw">float</span> new_fee)
+{
+    s-&gt;fee = new_fee;
+}
+
+<span class="tok-fn">update_fee</span>(&amp;s1, <span class="tok-num">50000.00</span>);</code></pre>
+<p><strong>Return a struct:</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">struct</span> Student <span class="tok-fn">make_student</span>(<span class="tok-kw">const</span> <span class="tok-kw">char</span> *name, <span class="tok-kw">int</span> age, <span class="tok-kw">float</span> fee)
+{
+    <span class="tok-kw">struct</span> Student s;
+    <span class="tok-fn">strcpy</span>(s.name, name);
+    s.age = age;
+    s.fee = fee;
+    <span class="tok-kw">return</span> s;
+}</code></pre>
+<h3 id="111-size-of-a-struct">1.11 Size of a struct</h3>
+<p>The size is at least the sum of the members, but the compiler may add <strong>padding</strong> for alignment.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">struct</span> Example
+{
+    <span class="tok-kw">char</span> c;      <span class="tok-com">/* 1 byte */</span>
+    <span class="tok-kw">int</span> i;       <span class="tok-com">/* 4 bytes */</span>
+};</code></pre>
+<p><code>sizeof(struct Example)</code> is often <strong>8</strong>, not 5, because of 3 padding bytes.</p>
+<p><strong>Exam answer:</strong> &quot;The size may be greater than the sum of the members because of memory alignment/padding.&quot;</p>
+<h3 id="112-self-referential-structures-linked-lists">1.12 Self-referential structures (linked lists)</h3>
+<p>A struct can contain a pointer to its own type:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">struct</span> Node
+{
+    <span class="tok-kw">int</span> data;
+    <span class="tok-kw">struct</span> Node *next;
+};</code></pre>
+<p>This is the basis of linked lists, trees and graphs. (You only need the idea for an intro course.)</p>
+<hr>
+<h2 id="2-unions">2. Unions</h2>
+<p>A <strong>union</strong> is like a struct, but all members <strong>share the same memory</strong>. Only <strong>one member can hold a valid value at a time</strong>.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">union</span> Value
+{
+    <span class="tok-kw">int</span> i;
+    <span class="tok-kw">float</span> f;
+    <span class="tok-kw">char</span> c;
+};</code></pre>
+<p>Memory layout:</p>
+<pre class="code"><code>union Value (size = largest member, e.g. 4 bytes)
+┌─────────────────────────────┐
+│  i / f / c all use these    │
+│  same 4 bytes               │
+└─────────────────────────────┘</code></pre>
+<h3 id="21-example">2.1 Example</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">union</span> Value
+{
+    <span class="tok-kw">int</span> i;
+    <span class="tok-kw">float</span> f;
+    <span class="tok-kw">char</span> c;
+};
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">union</span> Value v;
+
+    v.i = <span class="tok-num">65</span>;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;i = %d\n&quot;</span>, v.i);        <span class="tok-com">/* 65 */</span>
+
+    v.c = <span class="tok-chr">'A'</span>;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;c = %c\n&quot;</span>, v.c);        <span class="tok-com">/* A — overwrites part of the same memory */</span>
+
+    v.f = <span class="tok-num">3.14f</span>;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;f = %.2f\n&quot;</span>, v.f);      <span class="tok-com">/* 3.14 */</span>
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Size of union = %zu\n&quot;</span>, <span class="tok-kw">sizeof</span>(<span class="tok-kw">union</span> Value));  <span class="tok-com">/* 4 typically */</span>
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p>Changing one member <strong>overwrites</strong> the memory used by the others.</p>
+<h3 id="22-struct-vs-union">2.2 <code>struct</code> vs <code>union</code></h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left"><code>struct</code></th><th style="text-align:left"><code>union</code></th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Members have <strong>separate</strong> memory</td><td style="text-align:left">Members <strong>share</strong> memory</td></tr>
+<tr><td style="text-align:left">Size ≥ sum of member sizes (+ padding)</td><td style="text-align:left">Size = size of the <strong>largest</strong> member</td></tr>
+<tr><td style="text-align:left">All members can be valid at once</td><td style="text-align:left">Only <strong>one</strong> member valid at a time</td></tr>
+<tr><td style="text-align:left">Used to group related data</td><td style="text-align:left">Used to save memory when only one of several types is needed</td></tr>
+<tr><td style="text-align:left">Access any member at any time</td><td style="text-align:left">Accessing a different member reinterprets the bytes</td></tr>
+</tbody></table></div>
+<p><strong>When to use a union:</strong> a variable that can hold an integer <strong>or</strong> a float <strong>or</strong> a string, but never more than one at a time; memory-constrained systems; interpreting the same bytes in different ways.</p>
+<h3 id="23-size-examples">2.3 Size examples</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">struct</span> S { <span class="tok-kw">int</span> i; <span class="tok-kw">float</span> f; <span class="tok-kw">char</span> c; };   <span class="tok-com">/* 4 + 4 + 1 + 3 padding = 12 typically */</span>
+<span class="tok-kw">union</span>  U { <span class="tok-kw">int</span> i; <span class="tok-kw">float</span> f; <span class="tok-kw">char</span> c; };   <span class="tok-com">/* max(4,4,1) = 4 typically */</span></code></pre>
+<hr>
+<h2 id="3-enumerations-enum">3. Enumerations (<code>enum</code>)</h2>
+<p>An <code>enum</code> creates a type whose values are named integer constants.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">enum</span> Day
+{
+    MON, TUE, WED, THU, FRI, SAT, SUN
+};</code></pre>
+<ul>
+<li><code>MON = 0</code>, <code>TUE = 1</code>, ... by default.</li>
+<li>You can assign explicit values:</li>
+</ul>
+<pre class="code" data-lang="c"><code><span class="tok-kw">enum</span> Status { LOW = <span class="tok-num">1</span>, MEDIUM = <span class="tok-num">5</span>, HIGH = <span class="tok-num">10</span> };</code></pre>
+<ul>
+<li>Enums make code readable:</li>
+</ul>
+<pre class="code" data-lang="c"><code><span class="tok-kw">enum</span> Day today = WED;
+<span class="tok-kw">if</span> (today == WED)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Midweek\n&quot;</span>);</code></pre>
+<p><code>enum</code> values are integers, so they can be used in <code>switch</code>.</p>
+<hr>
+<h2 id="4-files">4. Files</h2>
+<p>So far, data disappears when the program ends. <strong>Files</strong> store data permanently on disk.</p>
+<h3 id="41-the-file-type">4.1 The <code>FILE</code> type</h3>
+<p>C uses a <code>FILE *</code> (file pointer) to refer to an open file. Include <code>&lt;stdio.h&gt;</code>.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">FILE</span> *fp;</code></pre>
+<h3 id="42-opening-a-file-fopen">4.2 Opening a file: <code>fopen</code></h3>
+<pre class="code" data-lang="c"><code>fp = <span class="tok-fn">fopen</span>(<span class="tok-str">&quot;data.txt&quot;</span>, <span class="tok-str">&quot;r&quot;</span>);</code></pre>
+<p><strong>Modes</strong></p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Mode</th><th style="text-align:left">Meaning</th><th style="text-align:left">If the file exists</th><th style="text-align:left">If it does not exist</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>&quot;r&quot;</code></td><td style="text-align:left">Read only</td><td style="text-align:left">Opens it</td><td style="text-align:left">Returns <code>NULL</code></td></tr>
+<tr><td style="text-align:left"><code>&quot;w&quot;</code></td><td style="text-align:left">Write only</td><td style="text-align:left"><strong>Erases</strong> the contents</td><td style="text-align:left">Creates it</td></tr>
+<tr><td style="text-align:left"><code>&quot;a&quot;</code></td><td style="text-align:left">Append</td><td style="text-align:left">Writes at the end</td><td style="text-align:left">Creates it</td></tr>
+<tr><td style="text-align:left"><code>&quot;r+&quot;</code></td><td style="text-align:left">Read and write</td><td style="text-align:left">Opens it</td><td style="text-align:left">Returns <code>NULL</code></td></tr>
+<tr><td style="text-align:left"><code>&quot;w+&quot;</code></td><td style="text-align:left">Read and write</td><td style="text-align:left"><strong>Erases</strong> the contents</td><td style="text-align:left">Creates it</td></tr>
+<tr><td style="text-align:left"><code>&quot;a+&quot;</code></td><td style="text-align:left">Read and append</td><td style="text-align:left">Writes at the end</td><td style="text-align:left">Creates it</td></tr>
+<tr><td style="text-align:left"><code>&quot;rb&quot;</code>, <code>&quot;wb&quot;</code>, <code>&quot;ab&quot;</code></td><td style="text-align:left">Binary modes</td><td style="text-align:left">Same as above, binary</td><td style="text-align:left">—</td></tr>
+</tbody></table></div>
+<p><strong>Always check whether <code>fopen</code> succeeded:</strong></p>
+<pre class="code" data-lang="c"><code>fp = <span class="tok-fn">fopen</span>(<span class="tok-str">&quot;data.txt&quot;</span>, <span class="tok-str">&quot;r&quot;</span>);
+<span class="tok-kw">if</span> (fp == <span class="tok-kw">NULL</span>)
+{
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Could not open file\n&quot;</span>);
+    <span class="tok-kw">return</span> <span class="tok-num">1</span>;
+}</code></pre>
+<h3 id="43-closing-a-file-fclose">4.3 Closing a file: <code>fclose</code></h3>
+<pre class="code" data-lang="c"><code><span class="tok-fn">fclose</span>(fp);</code></pre>
+<p>Always close files. It flushes buffers and releases the file handle.</p>
+<h3 id="44-writing-to-a-text-file">4.4 Writing to a text file</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">FILE</span> *fp = <span class="tok-fn">fopen</span>(<span class="tok-str">&quot;students.txt&quot;</span>, <span class="tok-str">&quot;w&quot;</span>);
+
+    <span class="tok-kw">if</span> (fp == <span class="tok-kw">NULL</span>)
+    {
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Error opening file\n&quot;</span>);
+        <span class="tok-kw">return</span> <span class="tok-num">1</span>;
+    }
+
+    <span class="tok-fn">fprintf</span>(fp, <span class="tok-str">&quot;Alice 20 45000.50\n&quot;</span>);
+    <span class="tok-fn">fprintf</span>(fp, <span class="tok-str">&quot;Bob 21 42000.00\n&quot;</span>);
+
+    <span class="tok-fn">fclose</span>(fp);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Data written\n&quot;</span>);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<ul>
+<li><code>fprintf</code> works like <code>printf</code>, but writes to a file.</li>
+<li><code>fputs(&quot;Hello\n&quot;, fp)</code> writes a string.</li>
+<li><code>fputc('A', fp)</code> writes one character.</li>
+</ul>
+<h3 id="45-reading-from-a-text-file">4.5 Reading from a text file</h3>
+<p><strong>Using <code>fscanf</code> (formatted):</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">FILE</span> *fp = <span class="tok-fn">fopen</span>(<span class="tok-str">&quot;students.txt&quot;</span>, <span class="tok-str">&quot;r&quot;</span>);
+    <span class="tok-kw">char</span> name[<span class="tok-num">50</span>];
+    <span class="tok-kw">int</span> age;
+    <span class="tok-kw">float</span> fee;
+
+    <span class="tok-kw">if</span> (fp == <span class="tok-kw">NULL</span>)
+    {
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Error opening file\n&quot;</span>);
+        <span class="tok-kw">return</span> <span class="tok-num">1</span>;
+    }
+
+    <span class="tok-kw">while</span> (<span class="tok-fn">fscanf</span>(fp, <span class="tok-str">&quot;%49s %d %f&quot;</span>, name, &amp;age, &amp;fee) == <span class="tok-num">3</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%s %d %.2f\n&quot;</span>, name, age, fee);
+
+    <span class="tok-fn">fclose</span>(fp);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Using <code>fgets</code> (line by line):</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> line[<span class="tok-num">200</span>];
+
+<span class="tok-kw">while</span> (<span class="tok-fn">fgets</span>(line, <span class="tok-kw">sizeof</span>(line), fp) != <span class="tok-kw">NULL</span>)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%s&quot;</span>, line);</code></pre>
+<p><strong>Using <code>fgetc</code> (character by character):</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> ch;
+<span class="tok-kw">while</span> ((ch = <span class="tok-fn">fgetc</span>(fp)) != <span class="tok-kw">EOF</span>)
+    <span class="tok-fn">putchar</span>(ch);</code></pre>
+<h3 id="46-end-of-file">4.6 End of file</h3>
+<ul>
+<li><code>EOF</code> is a special negative value returned by input functions when the end is reached.</li>
+<li><code>fgetc</code> returns <code>EOF</code>.</li>
+<li><code>fgets</code> returns <code>NULL</code>.</li>
+<li><code>fscanf</code> returns the number of items successfully read (or <code>EOF</code>).</li>
+</ul>
+<p><strong>Do not use <code>while (!feof(fp))</code></strong> — it often processes the last line twice. Use the return value of the read function instead.</p>
+<h3 id="47-fprintf-vs-printf-fscanf-vs-scanf">4.7 <code>fprintf</code> vs <code>printf</code>, <code>fscanf</code> vs <code>scanf</code></h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Console</th><th style="text-align:left">File</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>printf(...)</code></td><td style="text-align:left"><code>fprintf(fp, ...)</code></td></tr>
+<tr><td style="text-align:left"><code>scanf(...)</code></td><td style="text-align:left"><code>fscanf(fp, ...)</code></td></tr>
+<tr><td style="text-align:left"><code>fgets</code>/<code>fputs</code></td><td style="text-align:left">same, with <code>fp</code></td></tr>
+<tr><td style="text-align:left"><code>fgetc</code>/<code>fputc</code></td><td style="text-align:left">same, with <code>fp</code></td></tr>
+</tbody></table></div>
+<h3 id="48-counting-lines-words-and-characters">4.8 Counting lines, words and characters</h3>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">FILE</span> *fp = <span class="tok-fn">fopen</span>(<span class="tok-str">&quot;data.txt&quot;</span>, <span class="tok-str">&quot;r&quot;</span>);
+    <span class="tok-kw">int</span> ch, lines = <span class="tok-num">0</span>, words = <span class="tok-num">0</span>, chars = <span class="tok-num">0</span>;
+    <span class="tok-kw">int</span> in_word = <span class="tok-num">0</span>;
+
+    <span class="tok-kw">if</span> (fp == <span class="tok-kw">NULL</span>)
+    {
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Cannot open file\n&quot;</span>);
+        <span class="tok-kw">return</span> <span class="tok-num">1</span>;
+    }
+
+    <span class="tok-kw">while</span> ((ch = <span class="tok-fn">fgetc</span>(fp)) != <span class="tok-kw">EOF</span>)
+    {
+        chars++;
+
+        <span class="tok-kw">if</span> (ch == <span class="tok-chr">'\n'</span>)
+            lines++;
+
+        <span class="tok-kw">if</span> (ch == <span class="tok-chr">' '</span> || ch == <span class="tok-chr">'\n'</span> || ch == <span class="tok-chr">'\t'</span>)
+            in_word = <span class="tok-num">0</span>;
+        <span class="tok-kw">else</span> <span class="tok-kw">if</span> (!in_word)
+        {
+            in_word = <span class="tok-num">1</span>;
+            words++;
+        }
+    }
+
+    <span class="tok-fn">fclose</span>(fp);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Lines = %d, Words = %d, Characters = %d\n&quot;</span>, lines, words, chars);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<h3 id="49-writing-and-reading-structs">4.9 Writing and reading structs</h3>
+<pre class="code" data-lang="c"><code><span class="tok-kw">typedef</span> <span class="tok-kw">struct</span>
+{
+    <span class="tok-kw">char</span> name[<span class="tok-num">50</span>];
+    <span class="tok-kw">int</span> age;
+    <span class="tok-kw">float</span> fee;
+} Student;
+
+<span class="tok-com">/* Write */</span>
+Student s = {<span class="tok-str">&quot;Alice&quot;</span>, <span class="tok-num">20</span>, <span class="tok-num">45000.50</span>};
+<span class="tok-kw">FILE</span> *fp = <span class="tok-fn">fopen</span>(<span class="tok-str">&quot;student.dat&quot;</span>, <span class="tok-str">&quot;wb&quot;</span>);
+<span class="tok-fn">fwrite</span>(&amp;s, <span class="tok-kw">sizeof</span>(Student), <span class="tok-num">1</span>, fp);
+<span class="tok-fn">fclose</span>(fp);
+
+<span class="tok-com">/* Read */</span>
+fp = <span class="tok-fn">fopen</span>(<span class="tok-str">&quot;student.dat&quot;</span>, <span class="tok-str">&quot;rb&quot;</span>);
+<span class="tok-fn">fread</span>(&amp;s, <span class="tok-kw">sizeof</span>(Student), <span class="tok-num">1</span>, fp);
+<span class="tok-fn">fclose</span>(fp);</code></pre>
+<p><code>fwrite</code>/<code>fread</code> are used for <strong>binary</strong> files. They are fast but not human-readable and are platform-dependent.</p>
+<h3 id="410-other-useful-file-functions">4.10 Other useful file functions</h3>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Function</th><th style="text-align:left">Purpose</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>fopen</code>, <code>fclose</code></td><td style="text-align:left">Open/close</td></tr>
+<tr><td style="text-align:left"><code>fprintf</code>, <code>fscanf</code></td><td style="text-align:left">Formatted text I/O</td></tr>
+<tr><td style="text-align:left"><code>fgets</code>, <code>fputs</code></td><td style="text-align:left">Line/string I/O</td></tr>
+<tr><td style="text-align:left"><code>fgetc</code>, <code>fputc</code></td><td style="text-align:left">Character I/O</td></tr>
+<tr><td style="text-align:left"><code>fread</code>, <code>fwrite</code></td><td style="text-align:left">Binary block I/O</td></tr>
+<tr><td style="text-align:left"><code>feof(fp)</code></td><td style="text-align:left">Non-zero if end-of-file indicator is set</td></tr>
+<tr><td style="text-align:left"><code>ferror(fp)</code></td><td style="text-align:left">Non-zero if an error occurred</td></tr>
+<tr><td style="text-align:left"><code>rewind(fp)</code></td><td style="text-align:left">Go back to the beginning</td></tr>
+<tr><td style="text-align:left"><code>fseek(fp, offset, whence)</code></td><td style="text-align:left">Move to a position</td></tr>
+<tr><td style="text-align:left"><code>ftell(fp)</code></td><td style="text-align:left">Current position</td></tr>
+<tr><td style="text-align:left"><code>remove(&quot;file&quot;)</code></td><td style="text-align:left">Delete a file</td></tr>
+<tr><td style="text-align:left"><code>rename(&quot;old&quot;, &quot;new&quot;)</code></td><td style="text-align:left">Rename a file</td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="5-worked-exam-program-student-records">5. Worked exam program: student records</h2>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-pre">#include &lt;string.h&gt;</span>
+
+<span class="tok-kw">typedef</span> <span class="tok-kw">struct</span>
+{
+    <span class="tok-kw">char</span> name[<span class="tok-num">50</span>];
+    <span class="tok-kw">int</span> age;
+    <span class="tok-kw">float</span> fee;
+} Student;
+
+<span class="tok-kw">void</span> <span class="tok-fn">print_student</span>(<span class="tok-kw">const</span> Student *s)
+{
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%-15s %5d %10.2f\n&quot;</span>, s-&gt;name, s-&gt;age, s-&gt;fee);
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    Student list[<span class="tok-num">3</span>] = {
+        {<span class="tok-str">&quot;Alice&quot;</span>, <span class="tok-num">20</span>, <span class="tok-num">45000.50</span>},
+        {<span class="tok-str">&quot;Bob&quot;</span>,   <span class="tok-num">21</span>, <span class="tok-num">42000.00</span>},
+        {<span class="tok-str">&quot;Carol&quot;</span>, <span class="tok-num">19</span>, <span class="tok-num">47000.75</span>}
+    };
+    <span class="tok-kw">int</span> i;
+    <span class="tok-kw">FILE</span> *fp;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%-15s %5s %10s\n&quot;</span>, <span class="tok-str">&quot;Name&quot;</span>, <span class="tok-str">&quot;Age&quot;</span>, <span class="tok-str">&quot;Fee&quot;</span>);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;---------------------------------\n&quot;</span>);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">3</span>; i++)
+        <span class="tok-fn">print_student</span>(&amp;list[i]);
+
+    fp = <span class="tok-fn">fopen</span>(<span class="tok-str">&quot;students.txt&quot;</span>, <span class="tok-str">&quot;w&quot;</span>);
+    <span class="tok-kw">if</span> (fp == <span class="tok-kw">NULL</span>)
+    {
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Cannot create file\n&quot;</span>);
+        <span class="tok-kw">return</span> <span class="tok-num">1</span>;
+    }
+
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">3</span>; i++)
+        <span class="tok-fn">fprintf</span>(fp, <span class="tok-str">&quot;%s %d %.2f\n&quot;</span>, list[i].name, list[i].age, list[i].fee);
+
+    <span class="tok-fn">fclose</span>(fp);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Saved to students.txt\n&quot;</span>);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<hr>
+<h2 id="6-common-errors">6. Common errors</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Error</th><th style="text-align:left">Explanation</th><th style="text-align:left">Fix</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Forgetting <code>;</code> after <code>struct { ... }</code></td><td style="text-align:left">Syntax error</td><td style="text-align:left">Add <code>;</code></td></tr>
+<tr><td style="text-align:left">Using <code>struct Student</code> as a type without <code>struct</code></td><td style="text-align:left">Unless <code>typedef</code></td><td style="text-align:left"><code>struct Student s;</code> or use <code>typedef</code></td></tr>
+<tr><td style="text-align:left"><code>s.name = &quot;Alice&quot;;</code></td><td style="text-align:left">Arrays are not assignable</td><td style="text-align:left"><code>strcpy(s.name, &quot;Alice&quot;);</code></td></tr>
+<tr><td style="text-align:left"><code>p.name</code> when <code>p</code> is a pointer</td><td style="text-align:left">Needs <code>-&gt;</code></td><td style="text-align:left"><code>p-&gt;name</code></td></tr>
+<tr><td style="text-align:left"><code>sizeof(struct)</code> assumes sum of members</td><td style="text-align:left">Padding may increase it</td><td style="text-align:left">Explain padding</td></tr>
+<tr><td style="text-align:left">Union: reading a member you did not last write</td><td style="text-align:left">Reinterprets bytes</td><td style="text-align:left">Access only the active member</td></tr>
+<tr><td style="text-align:left"><code>fopen</code> result not checked</td><td style="text-align:left">Crash on missing file</td><td style="text-align:left"><code>if (fp == NULL)</code></td></tr>
+<tr><td style="text-align:left">Wrong mode (<code>&quot;w&quot;</code> for reading)</td><td style="text-align:left">Fails or erases data</td><td style="text-align:left">Use <code>&quot;r&quot;</code> to read</td></tr>
+<tr><td style="text-align:left">Forgetting <code>fclose</code></td><td style="text-align:left">Data may not be flushed; file handle leak</td><td style="text-align:left">Always close</td></tr>
+<tr><td style="text-align:left"><code>while (!feof(fp))</code></td><td style="text-align:left">Last record processed twice</td><td style="text-align:left">Use the read function's return value</td></tr>
+<tr><td style="text-align:left"><code>scanf</code> instead of <code>fscanf</code> on a file</td><td style="text-align:left">Reads from keyboard</td><td style="text-align:left">Use <code>fscanf(fp, ...)</code></td></tr>
+<tr><td style="text-align:left">File path wrong</td><td style="text-align:left"><code>NULL</code> returned</td><td style="text-align:left">Check the working directory</td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="7-rapid-revision">7. Rapid revision</h2>
+<ul>
+<li><code>struct</code> groups different types; access with <code>.</code>, pointer access with <code>-&gt;</code>.</li>
+<li><code>typedef struct { ... } Name;</code> lets you write <code>Name s;</code>.</li>
+<li>Array of structs: <code>Student list[50];</code></li>
+<li>Nested struct: <code>s.dob.day</code>.</li>
+<li>Struct assignment copies all members.</li>
+<li>Pass large structs by pointer (<code>const Student *s</code>) to avoid copying.</li>
+<li><code>union</code> members share memory; size = largest member; one active member.</li>
+<li><code>enum</code> gives named integer constants.</li>
+<li><code>FILE *fp = fopen(&quot;file&quot;, &quot;mode&quot;);</code> — check for <code>NULL</code>.</li>
+<li><code>&quot;r&quot;</code> read, <code>&quot;w&quot;</code> write (erases), <code>&quot;a&quot;</code> append.</li>
+<li><code>fprintf</code>/<code>fscanf</code> for formatted file I/O; <code>fgets</code> for lines; <code>fgetc</code> for characters.</li>
+<li>Always <code>fclose(fp)</code>.</li>
+</ul>
+<hr>
+<h2 id="8-self-test-answers-below">8. Self-test (answers below)</h2>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li> ``<code>c struct Point { int x, y; }; struct Point p = {3, 4}; struct Point *q = &amp;p; printf(&quot;%d %d\n&quot;, p.x, q-&gt;y); </code>``</li>
+<li></li>
+</ol>
+<h3 id="answers">Answers</h3>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<hr>
+<p><strong>Next:</strong> <code>11_formatted_io_and_reports.md</code></p>
+
+  </article>
+<nav class="pager"><a class="prev" href="../notes/09_pointers.html"><span class="dir">&larr; Previous</span><span class="name">09 · Pointers</span></a><a class="next" href="../notes/11_formatted_io_and_reports.html"><span class="dir">Next &rarr;</span><span class="name">11 · Formatted I/O &amp; reports</span></a></nav>
+  <footer class="foot">
+    CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
+  </footer>
+</main>
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  <a href="#1-structures">1. Structures</a><a href="#11-defining-a-structure" class="toc-h3">1.1 Defining a structure</a><a href="#12-declaring-structure-variables" class="toc-h3">1.2 Declaring structure variables</a><a href="#13-typedef-cleaner-names" class="toc-h3">1.3 typedef (cleaner names)</a><a href="#14-accessing-members" class="toc-h3">1.4 Accessing members</a><a href="#15-initialisation" class="toc-h3">1.5 Initialisation</a><a href="#16-assigning-structs" class="toc-h3">1.6 Assigning structs</a><a href="#17-array-of-structures" class="toc-h3">1.7 Array of structures</a><a href="#18-nested-structures" class="toc-h3">1.8 Nested structures</a><a href="#19-pointers-to-structures-and" class="toc-h3">1.9 Pointers to structures and -&gt;</a><a href="#110-structures-and-functions" class="toc-h3">1.10 Structures and functions</a><a href="#111-size-of-a-struct" class="toc-h3">1.11 Size of a struct</a><a href="#112-self-referential-structures-linked-lists" class="toc-h3">1.12 Self-referential structures (linked lists)</a><a href="#2-unions">2. Unions</a><a href="#21-example" class="toc-h3">2.1 Example</a><a href="#22-struct-vs-union" class="toc-h3">2.2 struct vs union</a><a href="#23-size-examples" class="toc-h3">2.3 Size examples</a><a href="#3-enumerations-enum">3. Enumerations (enum)</a><a href="#4-files">4. Files</a><a href="#41-the-file-type" class="toc-h3">4.1 The FILE type</a><a href="#42-opening-a-file-fopen" class="toc-h3">4.2 Opening a file: fopen</a><a href="#43-closing-a-file-fclose" class="toc-h3">4.3 Closing a file: fclose</a><a href="#44-writing-to-a-text-file" class="toc-h3">4.4 Writing to a text file</a><a href="#45-reading-from-a-text-file" class="toc-h3">4.5 Reading from a text file</a><a href="#46-end-of-file" class="toc-h3">4.6 End of file</a><a href="#47-fprintf-vs-printf-fscanf-vs-scanf" class="toc-h3">4.7 fprintf vs printf, fscanf vs scanf</a><a href="#48-counting-lines-words-and-characters" class="toc-h3">4.8 Counting lines, words and characters</a><a href="#49-writing-and-reading-structs" class="toc-h3">4.9 Writing and reading structs</a><a href="#410-other-useful-file-functions" class="toc-h3">4.10 Other useful file functions</a><a href="#5-worked-exam-program-student-records">5. Worked exam program: student records</a><a href="#6-common-errors">6. Common errors</a><a href="#7-rapid-revision">7. Rapid revision</a><a href="#8-self-test-answers-below">8. Self-test (answers below)</a><a href="#answers" class="toc-h3">Answers</a>
+</aside>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('csc112-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '\u2600' : '\u263D';
+    try { localStorage.setItem('csc112-theme', next); } catch (e) {}
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // highlight the current section in the right-hand table of contents
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (links.length) {
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    window.addEventListener('scroll', function () {
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i] && heads[i].getBoundingClientRect().top < 120) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }, { passive: true });
+  }
+
+  // on phones, start with the contents menu collapsed
+  var det = document.querySelector('.nav-details');
+  if (det && window.innerWidth < 1000) det.removeAttribute('open');
+})();
+</script>
+</body>
+</html>

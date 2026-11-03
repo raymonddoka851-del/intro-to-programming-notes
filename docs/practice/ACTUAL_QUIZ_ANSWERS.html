@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Actual E-Learning Quiz — Model Answers · CSC 112 Revision</title>
+<meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
+<link rel="stylesheet" href="../assets/notes.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">C</span>
+    <span class="brand-text"><strong>CSC 112</strong><span>Revision Notes</span></span>
+  </a>
+  <details class="nav-details" open>
+    <summary>Contents</summary>
+    <div class="nav-group"><div class="nav-head"></div><a href="../START_HERE.html">Start here (pack index)</a><a href="../YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="../CHEAT_SHEET.html">Cheat sheet</a><a href="../PROGRESS_TRACKER.html">Progress tracker</a><a href="../SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="../notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="../notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="../notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="../notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="../notes/05_control_statements.html">05 · Control statements</a><a href="../notes/06_loops.html">06 · Loops</a><a href="../notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="../notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="../notes/09_pointers.html">09 · Pointers</a><a href="../notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="../notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="../practice/ACTUAL_QUIZ_ANSWERS.html" class="active">Actual quiz answers (24)</a><a href="../practice/QUESTION_BANK.html">Question bank (96)</a><a href="../practice/ANSWER_KEY.html">Answer key</a><a href="../practice/LAB_TASKS.html">Lab tasks (25)</a><a href="../practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="../practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="../practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="../code/README.html">Program list (22 examples)</a></div>
+  </details>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <span class="crumb">Practice <b>&rsaquo;</b> ACTUAL_QUIZ_ANSWERS</span>
+    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+  </div>
+  <article class="content">
+<h1 id="actual-e-learning-quiz-model-answers">Actual E-Learning Quiz — Model Answers</h1>
+<blockquote><p>These are the questions visible in your CSC 112 e-learning quiz screenshots (University of Embu, Semester 1 2026/2027). The quiz uses <strong>highest grade</strong>, so you can retry it. Learn these answers word-for-word first — they are the cheapest marks in the whole unit.</p></blockquote>
+<p><strong>How to use this file:</strong> cover the answer, say it aloud, then check. Aim for 2–3 sentences per answer: a definition + an example. Do not write an essay in a quiz box.</p>
+<hr>
+<h2 id="1-what-is-programming">1. What is programming?</h2>
+<p><strong>Programming</strong> is the process of designing, writing, testing and maintaining a set of instructions that tells a computer how to perform a task. It includes understanding the problem, planning the steps (algorithm), writing the code, and fixing errors — not just typing code.</p>
+<p><em>Example:</em> writing a C program that reads two numbers and prints their sum.</p>
+<blockquote><p>Memory hook: <strong>programming = planning + coding + testing</strong>, not only coding.</p></blockquote>
+<hr>
+<h2 id="2-what-is-a-computer-program">2. What is a computer program?</h2>
+<p>A <strong>computer program</strong> is a finite set of sequenced (ordered) instructions that a computer follows to carry out a particular task.</p>
+<p><em>Example:</em> a calculator program that reads two numbers and displays their product.</p>
+<blockquote><p>Memory hook: <strong>program = recipe</strong>; the computer is the cook.</p></blockquote>
+<hr>
+<h2 id="3-what-is-a-programming-language">3. What is a programming language?</h2>
+<p>A <strong>programming language</strong> is an artificial/formal language with defined syntax (grammar) and semantics (meaning), used to write instructions that a computer can execute.</p>
+<p><em>Examples:</em> C, C++, Java, Python, Pascal, Visual Basic.</p>
+<blockquote><p>Memory hook: it is how humans <strong>communicate instructions</strong> to a machine.</p></blockquote>
+<hr>
+<h2 id="4-give-two-examples-of-high-level-programming-languages">4. Give two examples of high-level programming languages.</h2>
+<p><strong>C</strong> and <strong>Python</strong> (also acceptable: C++, Java, Pascal, Visual Basic, COBOL, FORTRAN, JavaScript).</p>
+<p>High-level languages are machine-independent, easy to read and written in English-like statements. They must be translated by a compiler or interpreter.</p>
+<hr>
+<h2 id="5-what-is-a-compiler">5. What is a compiler?</h2>
+<p>A <strong>compiler</strong> is a translator program that converts an entire source program into machine/object code <strong>before</strong> the program is run. It scans the whole program and reports all syntax errors at once (at the end of compilation).</p>
+<p><em>Example:</em> the C compiler converts <code>program.c</code> into <code>program.obj</code>/<code>program.o</code>, which is then linked into an executable.</p>
+<blockquote><p>Memory hook: <strong>compiler = whole book translated at once</strong>.</p></blockquote>
+<hr>
+<h2 id="6-what-is-an-interpreter">6. What is an interpreter?</h2>
+<p>An <strong>interpreter</strong> is a translator program that translates and executes a program <strong>one statement at a time</strong>. It stops when it reaches the first error, so debugging is easier, but execution is slower.</p>
+<p><em>Examples:</em> Python, Ruby and JavaScript are commonly interpreted.</p>
+<blockquote><p>Memory hook: <strong>interpreter = live translator, sentence by sentence</strong>.</p></blockquote>
+<hr>
+<h2 id="7-what-is-the-difference-between-source-code-and-object-code">7. What is the difference between source code and object code?</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Source code</th><th style="text-align:left">Object code</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Human-readable program written by the programmer</td><td style="text-align:left">Machine-readable code produced by the compiler</td></tr>
+<tr><td style="text-align:left">Written in a high-level language, e.g. C</td><td style="text-align:left">Usually binary/machine code (<code>.o</code> / <code>.obj</code>)</td></tr>
+<tr><td style="text-align:left">File ends in <code>.c</code></td><td style="text-align:left">File ends in <code>.o</code> or <code>.obj</code></td></tr>
+<tr><td style="text-align:left">Can be edited and understood</td><td style="text-align:left">Not easily read or edited by humans</td></tr>
+<tr><td style="text-align:left">Must be translated before running</td><td style="text-align:left">Still needs linking before it becomes an executable</td></tr>
+</tbody></table></div>
+<p><em>Example:</em> <code>hello.c</code> is source code; <code>hello.o</code> is its object code; <code>hello.exe</code> is the linked executable.</p>
+<hr>
+<h2 id="8-what-is-debugging">8. What is debugging?</h2>
+<p><strong>Debugging</strong> is the process of finding, locating and correcting errors (bugs) in a program so that it produces the expected output.</p>
+<p><em>Techniques:</em> reading the code, adding temporary <code>printf</code> statements, using a debugger with breakpoints, and testing with sample data.</p>
+<blockquote><p>Debugging = <strong>find + fix</strong> errors. Testing = <strong>discover</strong> them.</p></blockquote>
+<hr>
+<h2 id="9-what-is-an-algorithm">9. What is an algorithm?</h2>
+<p>An <strong>algorithm</strong> is a finite, ordered and unambiguous set of steps that solves a problem or performs a task.</p>
+<p><strong>Features:</strong> input, output, definiteness (clear steps), finiteness (must end) and effectiveness (each step is doable).</p>
+<p><em>Example — largest of two numbers:</em></p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<hr>
+<h2 id="10-what-is-a-variable">10. What is a variable?</h2>
+<p>A <strong>variable</strong> is a named memory location whose value can change while the program is running. It must be declared with a data type before use.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> age = <span class="tok-num">20</span>;      <span class="tok-com">/* 'age' is a variable of type int */</span>
+age = <span class="tok-num">21</span>;          <span class="tok-com">/* its value can change */</span></code></pre>
+<blockquote><p>Memory hook: a variable is a <strong>labelled box</strong> in memory.</p></blockquote>
+<hr>
+<h2 id="11-what-is-a-constant">11. What is a constant?</h2>
+<p>A <strong>constant</strong> is a value that cannot change during program execution.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">const</span> <span class="tok-kw">float</span> PI = <span class="tok-num">3.14159</span>;   <span class="tok-com">/* const constant */</span>
+<span class="tok-pre">#define MAX 100             /* preprocessor constant */</span></code></pre>
+<p><em>Examples:</em> <code>3.14</code>, <code>'A'</code>, <code>100</code> are literal constants.</p>
+<hr>
+<h2 id="12-what-are-data-types">12. What are data types?</h2>
+<p><strong>Data types</strong> specify the kind of data a variable can hold, how much memory it uses, its range of values, and which operations can be performed on it.</p>
+<p><em>Examples:</em> <code>int</code> (whole numbers), <code>float</code>/<code>double</code> (decimals), <code>char</code> (single character), <code>char[]</code> (string).</p>
+<hr>
+<h2 id="13-give-two-examples-of-numeric-data-types">13. Give two examples of numeric data types.</h2>
+<p><strong><code>int</code></strong> (whole numbers, e.g. 25) and <strong><code>float</code></strong> (decimal numbers, e.g. 3.14).</p>
+<p>Also acceptable: <code>double</code>, <code>short</code>, <code>long</code>, <code>unsigned int</code>.</p>
+<hr>
+<h2 id="14-what-is-a-string">14. What is a string?</h2>
+<p>A <strong>string</strong> is a sequence of characters stored in a character array and terminated by the null character <code>'\0'</code>.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> name[] = <span class="tok-str">&quot;John&quot;</span>;   <span class="tok-com">/* J o h n \0  → 5 bytes */</span></code></pre>
+<p>The length of <code>&quot;John&quot;</code> is 4, but it occupies 5 bytes including <code>'\0'</code>.</p>
+<hr>
+<h2 id="15-what-is-type-casting">15. What is type casting?</h2>
+<p><strong>Type casting</strong> is the explicit conversion of a value from one data type to another.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a = <span class="tok-num">5</span>, b = <span class="tok-num">2</span>;
+<span class="tok-kw">float</span> result = (<span class="tok-kw">float</span>)a / b;   <span class="tok-com">/* 2.5, not 2 */</span>
+<span class="tok-kw">int</span> x = (<span class="tok-kw">int</span>)<span class="tok-num">3.99</span>;             <span class="tok-com">/* x = 3 (fraction discarded) */</span></code></pre>
+<p><strong>Implicit conversion</strong> is done automatically by the compiler (e.g. <code>int</code> to <code>float</code>); <strong>explicit casting</strong> is done by the programmer with <code>(type)</code>.</p>
+<hr>
+<h2 id="16-what-is-an-array">16. What is an array?</h2>
+<p>An <strong>array</strong> is a collection of a fixed number of elements of the <strong>same data type</strong>, stored in contiguous memory locations and accessed using a single name and an index.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> marks[<span class="tok-num">5</span>] = {<span class="tok-num">60</span>, <span class="tok-num">70</span>, <span class="tok-num">80</span>, <span class="tok-num">90</span>, <span class="tok-num">100</span>};</code></pre>
+<p><code>marks[0]</code> is 60, <code>marks[4]</code> is 100.</p>
+<hr>
+<h2 id="17-what-is-an-index-in-an-array">17. What is an index in an array?</h2>
+<p>An <strong>index</strong> (or subscript) is the position number used to access a particular element of an array. In C, indexing <strong>starts at 0</strong>, so the first element is at index 0 and the last element of an array of size <code>n</code> is at index <code>n - 1</code>.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">3</span>] = {<span class="tok-num">10</span>, <span class="tok-num">20</span>, <span class="tok-num">30</span>};
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d&quot;</span>, a[<span class="tok-num">1</span>]);   <span class="tok-com">/* 20 */</span></code></pre>
+<hr>
+<h2 id="18-what-is-the-difference-between-one-dimensional-and-two-di">18. What is the difference between one-dimensional and two-dimensional arrays?</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">One-dimensional (1D)</th><th style="text-align:left">Two-dimensional (2D)</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Has <strong>one</strong> index</td><td style="text-align:left">Has <strong>two</strong> indices: row and column</td></tr>
+<tr><td style="text-align:left">Stores a single list of values</td><td style="text-align:left">Stores a table/matrix of values</td></tr>
+<tr><td style="text-align:left"><code>int a[5];</code></td><td style="text-align:left"><code>int m[3][4];</code></td></tr>
+<tr><td style="text-align:left">Accessed as <code>a[i]</code></td><td style="text-align:left">Accessed as <code>m[i][j]</code></td></tr>
+<tr><td style="text-align:left">One loop is enough to process it</td><td style="text-align:left">Usually needs nested loops</td></tr>
+</tbody></table></div>
+<p><em>Example:</em> a list of 30 student marks is 1D; a table of marks for 30 students in 5 subjects is 2D.</p>
+<hr>
+<h2 id="19-what-is-an-element-of-an-array">19. What is an element of an array?</h2>
+<p>An <strong>element</strong> is one individual value stored in an array at a particular index.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">3</span>] = {<span class="tok-num">10</span>, <span class="tok-num">20</span>, <span class="tok-num">30</span>};
+<span class="tok-com">/* 10, 20 and 30 are elements; a[1] is the element 20 */</span></code></pre>
+<hr>
+<h2 id="20-what-is-a-local-variable">20. What is a local variable?</h2>
+<p>A <strong>local variable</strong> is declared inside a function or block and can only be used within that function or block. It is created when the block is entered and destroyed when the block ends, and it is <strong>not automatically initialised</strong> (it contains garbage unless you assign a value).</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">void</span> <span class="tok-fn">demo</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> x = <span class="tok-num">5</span>;   <span class="tok-com">/* local to demo() */</span>
+}</code></pre>
+<hr>
+<h2 id="21-what-is-a-global-variable">21. What is a global variable?</h2>
+<p>A <strong>global variable</strong> is declared <strong>outside all functions</strong>, so it can be accessed by all functions in the program (after its declaration). It exists for the whole run of the program and is automatically initialised to <strong>0</strong>.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> count = <span class="tok-num">0</span>;          <span class="tok-com">/* global */</span>
+
+<span class="tok-kw">void</span> <span class="tok-fn">increment</span>(<span class="tok-kw">void</span>) { count++; }</code></pre>
+<blockquote><p>Global variables are convenient but make programs harder to debug; prefer local variables and parameters.</p></blockquote>
+<hr>
+<h2 id="22-what-is-a-function-call">22. What is a function call?</h2>
+<p>A <strong>function call</strong> is a statement or expression that invokes (runs) a function, passing it the required arguments and receiving its return value.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> <span class="tok-fn">add</span>(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b);      <span class="tok-com">/* declaration/prototype */</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> sum = <span class="tok-fn">add</span>(<span class="tok-num">3</span>, <span class="tok-num">4</span>);    <span class="tok-com">/* function call; sum = 7 */</span>
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<hr>
+<h2 id="23-what-is-string-concatenation">23. What is string concatenation?</h2>
+<p><strong>String concatenation</strong> is joining two strings end-to-end to form one longer string.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> dest[<span class="tok-num">20</span>] = <span class="tok-str">&quot;Hello&quot;</span>;
+<span class="tok-fn">strcat</span>(dest, <span class="tok-str">&quot; World&quot;</span>);     <span class="tok-com">/* dest becomes &quot;Hello World&quot; */</span></code></pre>
+<p>In C, use <code>strcat()</code> (or <code>strncat()</code>) from <code>&lt;string.h&gt;</code>. The destination array must be large enough to hold both strings plus <code>'\0'</code>.</p>
+<hr>
+<h2 id="24-what-is-the-length-of-a-string">24. What is the length of a string?</h2>
+<p>The <strong>length of a string</strong> is the number of characters it contains, <strong>excluding</strong> the null terminator <code>'\0'</code>.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> s[] = <span class="tok-str">&quot;Hello&quot;</span>;
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d&quot;</span>, <span class="tok-fn">strlen</span>(s));   <span class="tok-com">/* 5 */</span></code></pre>
+<p><code>&quot;Hello&quot;</code> occupies 6 bytes in memory but has length 5.</p>
+<hr>
+<h2 id="rapid-self-test-cover-the-answers">Rapid self-test (cover the answers)</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">#</th><th style="text-align:left">Question</th><th style="text-align:left">Answer</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">1</td><td style="text-align:left">Programming</td><td style="text-align:left">Designing + writing + testing instructions</td></tr>
+<tr><td style="text-align:left">2</td><td style="text-align:left">Program</td><td style="text-align:left">Finite ordered set of instructions</td></tr>
+<tr><td style="text-align:left">3</td><td style="text-align:left">Programming language</td><td style="text-align:left">Formal language with syntax/semantics</td></tr>
+<tr><td style="text-align:left">4</td><td style="text-align:left">Two high-level languages</td><td style="text-align:left">C, Python</td></tr>
+<tr><td style="text-align:left">5</td><td style="text-align:left">Compiler</td><td style="text-align:left">Whole program → object code before running</td></tr>
+<tr><td style="text-align:left">6</td><td style="text-align:left">Interpreter</td><td style="text-align:left">One statement at a time</td></tr>
+<tr><td style="text-align:left">7</td><td style="text-align:left">Source vs object</td><td style="text-align:left">Human-readable <code>.c</code> vs machine <code>.o</code></td></tr>
+<tr><td style="text-align:left">8</td><td style="text-align:left">Debugging</td><td style="text-align:left">Find and fix errors</td></tr>
+<tr><td style="text-align:left">9</td><td style="text-align:left">Algorithm</td><td style="text-align:left">Finite, clear steps to solve a problem</td></tr>
+<tr><td style="text-align:left">10</td><td style="text-align:left">Variable</td><td style="text-align:left">Named memory location; value can change</td></tr>
+<tr><td style="text-align:left">11</td><td style="text-align:left">Constant</td><td style="text-align:left">Value cannot change</td></tr>
+<tr><td style="text-align:left">12</td><td style="text-align:left">Data types</td><td style="text-align:left">Kind/size/range/operations of data</td></tr>
+<tr><td style="text-align:left">13</td><td style="text-align:left">Numeric types</td><td style="text-align:left"><code>int</code>, <code>float</code></td></tr>
+<tr><td style="text-align:left">14</td><td style="text-align:left">String</td><td style="text-align:left">Characters ending in <code>'\0'</code></td></tr>
+<tr><td style="text-align:left">15</td><td style="text-align:left">Type casting</td><td style="text-align:left">Explicit conversion, <code>(float)a</code></td></tr>
+<tr><td style="text-align:left">16</td><td style="text-align:left">Array</td><td style="text-align:left">Fixed-size collection of same type</td></tr>
+<tr><td style="text-align:left">17</td><td style="text-align:left">Index</td><td style="text-align:left">Position, starts at 0</td></tr>
+<tr><td style="text-align:left">18</td><td style="text-align:left">1D vs 2D</td><td style="text-align:left">One index vs row + column</td></tr>
+<tr><td style="text-align:left">19</td><td style="text-align:left">Element</td><td style="text-align:left">One value at an index</td></tr>
+<tr><td style="text-align:left">20</td><td style="text-align:left">Local variable</td><td style="text-align:left">Inside a block; dies at block end</td></tr>
+<tr><td style="text-align:left">21</td><td style="text-align:left">Global variable</td><td style="text-align:left">Outside all functions; lives for whole program</td></tr>
+<tr><td style="text-align:left">22</td><td style="text-align:left">Function call</td><td style="text-align:left">Invoking a function with arguments</td></tr>
+<tr><td style="text-align:left">23</td><td style="text-align:left">Concatenation</td><td style="text-align:left">Joining strings with <code>strcat</code></td></tr>
+<tr><td style="text-align:left">24</td><td style="text-align:left">String length</td><td style="text-align:left">Characters excluding <code>'\0'</code></td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="quiz-strategy">Quiz strategy</h2>
+<ol>
+<li> studying. Do not fear a low first score.</li>
+<li></li>
+<li> <em>compiler</em>, <em>interpreter</em>, <em>index</em>, <em>null terminator</em>.</li>
+<li></li>
+<li> sentences with &quot;whereas&quot;.</li>
+<li></li>
+</ol>
+
+  </article>
+<nav class="pager"><a class="prev" href="../notes/11_formatted_io_and_reports.html"><span class="dir">&larr; Previous</span><span class="name">11 · Formatted I/O &amp; reports</span></a><a class="next" href="../practice/QUESTION_BANK.html"><span class="dir">Next &rarr;</span><span class="name">Question bank (96)</span></a></nav>
+  <footer class="foot">
+    CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
+  </footer>
+</main>
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  <a href="#1-what-is-programming">1. What is programming?</a><a href="#2-what-is-a-computer-program">2. What is a computer program?</a><a href="#3-what-is-a-programming-language">3. What is a programming language?</a><a href="#4-give-two-examples-of-high-level-programming-languages">4. Give two examples of high-level programming languages.</a><a href="#5-what-is-a-compiler">5. What is a compiler?</a><a href="#6-what-is-an-interpreter">6. What is an interpreter?</a><a href="#7-what-is-the-difference-between-source-code-and-object-code">7. What is the difference between source code and object code?</a><a href="#8-what-is-debugging">8. What is debugging?</a><a href="#9-what-is-an-algorithm">9. What is an algorithm?</a><a href="#10-what-is-a-variable">10. What is a variable?</a><a href="#11-what-is-a-constant">11. What is a constant?</a><a href="#12-what-are-data-types">12. What are data types?</a><a href="#13-give-two-examples-of-numeric-data-types">13. Give two examples of numeric data types.</a><a href="#14-what-is-a-string">14. What is a string?</a><a href="#15-what-is-type-casting">15. What is type casting?</a><a href="#16-what-is-an-array">16. What is an array?</a><a href="#17-what-is-an-index-in-an-array">17. What is an index in an array?</a><a href="#18-what-is-the-difference-between-one-dimensional-and-two-di">18. What is the difference between one-dimensional and two-dimensional arrays?</a><a href="#19-what-is-an-element-of-an-array">19. What is an element of an array?</a><a href="#20-what-is-a-local-variable">20. What is a local variable?</a><a href="#21-what-is-a-global-variable">21. What is a global variable?</a><a href="#22-what-is-a-function-call">22. What is a function call?</a><a href="#23-what-is-string-concatenation">23. What is string concatenation?</a><a href="#24-what-is-the-length-of-a-string">24. What is the length of a string?</a><a href="#rapid-self-test-cover-the-answers">Rapid self-test (cover the answers)</a><a href="#quiz-strategy">Quiz strategy</a>
+</aside>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('csc112-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '\u2600' : '\u263D';
+    try { localStorage.setItem('csc112-theme', next); } catch (e) {}
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // highlight the current section in the right-hand table of contents
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (links.length) {
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    window.addEventListener('scroll', function () {
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i] && heads[i].getBoundingClientRect().top < 120) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }, { passive: true });
+  }
+
+  // on phones, start with the contents menu collapsed
+  var det = document.querySelector('.nav-details');
+  if (det && window.innerWidth < 1000) det.removeAttribute('open');
+})();
+</script>
+</body>
+</html>

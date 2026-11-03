@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Answer Key — Question Bank · CSC 112 Revision</title>
+<meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
+<link rel="stylesheet" href="../assets/notes.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">C</span>
+    <span class="brand-text"><strong>CSC 112</strong><span>Revision Notes</span></span>
+  </a>
+  <details class="nav-details" open>
+    <summary>Contents</summary>
+    <div class="nav-group"><div class="nav-head"></div><a href="../START_HERE.html">Start here (pack index)</a><a href="../YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="../CHEAT_SHEET.html">Cheat sheet</a><a href="../PROGRESS_TRACKER.html">Progress tracker</a><a href="../SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="../notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="../notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="../notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="../notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="../notes/05_control_statements.html">05 · Control statements</a><a href="../notes/06_loops.html">06 · Loops</a><a href="../notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="../notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="../notes/09_pointers.html">09 · Pointers</a><a href="../notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="../notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="../practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="../practice/QUESTION_BANK.html">Question bank (96)</a><a href="../practice/ANSWER_KEY.html" class="active">Answer key</a><a href="../practice/LAB_TASKS.html">Lab tasks (25)</a><a href="../practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="../practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="../practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="../code/README.html">Program list (22 examples)</a></div>
+  </details>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <span class="crumb">Practice <b>&rsaquo;</b> ANSWER_KEY</span>
+    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+  </div>
+  <article class="content">
+<h1 id="answer-key-question-bank">Answer Key — Question Bank</h1>
+<blockquote><p>Mark your own work strictly. A wrong answer you understand is worth more than a right answer you guessed. For code questions, any correct program earns the marks — the versions below are model answers, not the only answers.</p></blockquote>
+<hr>
+<h2 id="section-a-programming-fundamentals">Section A — Programming fundamentals</h2>
+<p><strong>Q1.</strong> (a) <strong>Program:</strong> a finite set of sequenced instructions that tells a computer how to perform a task. (b) <strong>Programming:</strong> the process of designing, writing, testing and maintaining those instructions. (c) <strong>Programming language:</strong> a formal language with syntax and semantics used to write instructions, e.g. C, Python, Java.</p>
+<p><strong>Q2.</strong> <strong>Low-level languages</strong> (machine and assembly):</p>
+<ul>
+<li>Advantages: fast execution; efficient use of memory; no translator needed for machine code; direct control of hardware.</li>
+<li>Disadvantages: machine-dependent; difficult to learn/write/read; error-prone; bulky; time-consuming to develop.</li>
+</ul>
+<p><strong>High-level languages</strong> (C, Python, Java):</p>
+<ul>
+<li>Advantages: machine-independent/portable; easy to learn and write; readable; easier to debug and maintain.</li>
+<li>Disadvantages: need translation (compiler/interpreter); slower than low-level; less memory-efficient; cannot access hardware directly.</li>
+</ul>
+<p><strong>Q3.</strong></p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Machine language</th><th style="text-align:left">Assembly language</th><th style="text-align:left">High-level language</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Binary 0s and 1s</td><td style="text-align:left">Mnemonics, e.g. <code>MOV</code>, <code>ADD</code></td><td style="text-align:left">English-like statements</td></tr>
+<tr><td style="text-align:left">Directly executed by CPU</td><td style="text-align:left">Needs an assembler</td><td style="text-align:left">Needs compiler/interpreter</td></tr>
+<tr><td style="text-align:left">Machine-dependent</td><td style="text-align:left">Machine-dependent</td><td style="text-align:left">Machine-independent</td></tr>
+<tr><td style="text-align:left">Example: <code>10110000 01100001</code></td><td style="text-align:left">Example: <code>MOV AL, 61h</code></td><td style="text-align:left">Example: <code>x = a + b;</code></td></tr>
+</tbody></table></div>
+<p><strong>Q4.</strong></p>
+<ol>
+<li> statement at a time.</li>
+<li></li>
+<li> first error.</li>
+<li> are easier to debug.</li>
+<li></li>
+</ol>
+<p><strong>Q5.</strong></p>
+<ol>
+<li> requirements.</li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p><strong>Q6.</strong> Any six with a sentence each:</p>
+<ul>
+<li><strong>Correctness/reliability</strong> — does what it is supposed to do.</li>
+<li><strong>Portability</strong> — runs on different machines with little/no change.</li>
+<li><strong>Efficiency</strong> — uses reasonable time and memory.</li>
+<li><strong>Simplicity/readability</strong> — easy to read and understand.</li>
+<li><strong>Maintainability</strong> — easy to modify and fix.</li>
+<li><strong>Robustness</strong> — handles invalid input without crashing.</li>
+<li><strong>Cost-effectiveness</strong> — benefits outweigh development cost.</li>
+<li><strong>Documentation</strong> — well explained for users and maintainers.</li>
+</ul>
+<p><strong>Q7.</strong> (a) An <strong>algorithm</strong> is a finite, ordered, unambiguous set of steps that solves a problem. (b) Features: <strong>input</strong>, <strong>output</strong>, <strong>definiteness</strong> (clear steps), <strong>finiteness</strong> (must terminate), <strong>effectiveness</strong> (each step is simple enough to perform), and it should produce a unique solution.</p>
+<p><strong>Q8.</strong> <em>Algorithm:</em></p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p><em>Pseudocode:</em></p>
+<pre class="code"><code>BEGIN
+  INPUT A, B, C
+  IF A &gt;= B AND A &gt;= C THEN
+      Largest = A
+  ELSE IF B &gt;= A AND B &gt;= C THEN
+      Largest = B
+  ELSE
+      Largest = C
+  END IF
+  PRINT Largest
+END</code></pre>
+<p><strong>Q9.</strong> (a)</p>
+<ul>
+<li><strong>Terminal (oval):</strong> start/stop.</li>
+<li><strong>Input/Output (parallelogram):</strong> read data or display results.</li>
+<li><strong>Process (rectangle):</strong> a calculation or assignment.</li>
+<li><strong>Decision (diamond):</strong> a condition with Yes/No branches.</li>
+<li><strong>Connector (circle):</strong> joins parts of the chart / continues on another page.</li>
+<li>(Also flow lines = arrows.)</li>
+</ul>
+<p>(b) Flowchart:</p>
+<pre class="code"><code>        ( Start )
+            |
+      / Read n /
+            |
+        &lt; n % 2 == 0 ? &gt;
+         /          \
+      Yes            No
+       |              |
+/ Print &quot;Even&quot; /  / Print &quot;Odd&quot; /
+       \              /
+        +-------&gt; ( Stop )</code></pre>
+<p><strong>Q10.</strong></p>
+<ul>
+<li><strong>Syntax error:</strong> breaks the grammar of C; detected by the compiler; the program will not compile. Example: <code>printf(&quot;Hi&quot;)</code> missing <code>;</code>.</li>
+<li><strong>Runtime error:</strong> occurs while the program runs, after successful compilation. Example: division by zero <code>a / 0</code>.</li>
+<li><strong>Logical error:</strong> the program compiles and runs but gives the wrong result. Example: using <code>average = sum + n</code> instead of <code>sum / n</code>.</li>
+</ul>
+<hr>
+<h2 id="section-b-c-basics-and-compilation">Section B — C basics and compilation</h2>
+<p><strong>Q11.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;      /* preprocessor: include header */</span>
+
+<span class="tok-pre">#define PI 3.14159      /* symbolic constant */</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)          <span class="tok-com">/* main function: program starts here */</span>
+{
+    <span class="tok-kw">int</span> x = <span class="tok-num">5</span>;          <span class="tok-com">/* declarations */</span>
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, x);  <span class="tok-com">/* statements */</span>
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;           <span class="tok-com">/* return success to the OS */</span>
+}</code></pre>
+<p>Parts: <strong>documentation/comments</strong>, <strong>preprocessor directives</strong>, <strong>global declarations</strong>, <strong>main function</strong>, <strong>declarations</strong>, <strong>executable statements</strong>, <strong>return</strong>.</p>
+<p><strong>Q12.</strong> A header file contains declarations of functions, macros and types used by the program; it is included with <code>#include</code>.</p>
+<ul>
+<li><code>&lt;stdio.h&gt;</code> — input/output (<code>printf</code>, <code>scanf</code>, <code>fopen</code>).</li>
+<li><code>&lt;stdlib.h&gt;</code> — general utilities (<code>malloc</code>, <code>free</code>, <code>exit</code>, <code>atoi</code>).</li>
+<li><code>&lt;math.h&gt;</code> — mathematical functions (<code>sqrt</code>, <code>pow</code>, <code>sin</code>).</li>
+<li><code>&lt;string.h&gt;</code> — string functions (<code>strlen</code>, <code>strcpy</code>, <code>strcmp</code>).</li>
+<li><code>&lt;ctype.h&gt;</code> — character tests (<code>isalpha</code>, <code>isdigit</code>, <code>toupper</code>).</li>
+<li><code>&lt;conio.h&gt;</code> — console input/output (non-standard; <code>getch</code>).</li>
+</ul>
+<p><strong>Q13.</strong> Rules:</p>
+<ul>
+<li>Must begin with a letter or underscore.</li>
+<li>May contain only letters, digits and underscores.</li>
+<li>No spaces or special symbols.</li>
+<li>Cannot be a keyword.</li>
+<li>Case-sensitive; meaningful names recommended.</li>
+</ul>
+<p>Valid: <code>total</code>, <code>_count</code>, <code>Sum</code>. Invalid: <code>2ndNumber</code> (starts with a digit), <code>student-name</code> (hyphen), <code>float</code> (keyword).</p>
+<p><strong>Q14.</strong> <strong>Keywords</strong> are reserved words with a fixed meaning to the compiler, e.g. <code>int</code>, <code>float</code>, <code>char</code>, <code>if</code>, <code>else</code>, <code>for</code>, <code>while</code>, <code>return</code>, <code>void</code>, <code>switch</code>. They cannot be used as identifiers because the compiler would confuse the user name with its own reserved instruction.</p>
+<p><strong>Q15.</strong> | <code>#define</code> | <code>const</code> | |---|---| | Preprocessor directive | C keyword/qualifier | | No semicolon; no <code>=</code> | Uses <code>=</code> and ends with <code>;</code> | | Textual substitution before compilation | Real typed variable | | No data type; no type checking | Has a type; type-checked | | <code>#define PI 3.14</code> | <code>const float PI = 3.14;</code> |</p>
+<p><strong>Q16.</strong></p>
+<ul>
+<li><code>/* ... */</code> — block comment, can span lines.</li>
+<li><code>// ...</code> — single-line comment (C99 onwards).</li>
+</ul>
+<p>Reasons: document the program; explain difficult logic; record author/date/version; temporarily disable code. Comments <strong>cannot be nested</strong> — the first <code>*/</code> closes the comment.</p>
+<p><strong>Q17.</strong></p>
+<ol>
+<li> expanded source code.</li>
+<li> language.</li>
+<li></li>
+<li> produce an executable.</li>
+<li> execution.</li>
+</ol>
+<p><strong>Q18.</strong></p>
+<ul>
+<li><strong>Source code:</strong> human-readable program written in a high-level language, e.g. <code>program.c</code>.</li>
+<li><strong>Object code:</strong> machine code produced by the compiler, e.g. <code>program.o</code>; not yet executable because library functions are missing.</li>
+<li><strong>Executable:</strong> fully linked file, e.g. <code>program.exe</code>, that the operating system can run.</li>
+</ul>
+<p><strong>Q19.</strong> The <strong>linker</strong> combines object files and library functions (e.g. <code>printf</code>) into one executable program and resolves references between them. Without it, the object code would lack the library code needed to run.</p>
+<p><strong>Q20.</strong> Two errors:</p>
+<ol>
+<li> will not compile.</li>
+<li> <code>b = 0</code>, causing undefined behaviour/a crash.</li>
+</ol>
+<hr>
+<h2 id="section-c-data-types-and-number-systems">Section C — Data types and number systems</h2>
+<p><strong>Q21.</strong> A <strong>bit</strong> is one binary digit (0 or 1). A <strong>byte</strong> is 8 bits. A <strong>nibble</strong> is 4 bits. A <strong>word</strong> is the natural unit a CPU processes at once (often 16, 32 or 64 bits). Values: 4 bits → 2⁴ = 16; 8 bits → 2⁸ = 256; n bits → 2ⁿ.</p>
+<p><strong>Q22.</strong></p>
+<ul>
+<li>13 = <code>1101</code></li>
+<li>45 = <code>101101</code></li>
+<li>100 = <code>1100100</code></li>
+<li>255 = <code>11111111</code></li>
+</ul>
+<p><strong>Q23.</strong></p>
+<ul>
+<li><code>1011</code> = 8 + 2 + 1 = <strong>11</strong></li>
+<li><code>110010</code> = 32 + 16 + 2 = <strong>50</strong></li>
+<li><code>11111111</code> = 128+64+32+16+8+4+2+1 = <strong>255</strong></li>
+</ul>
+<p><strong>Q24.</strong> (a) 60 ÷ 8 = 7 remainder 4, 7 ÷ 8 = 0 remainder 7 → <strong>074₈</strong>. (b) 60 = 3×16 + 12 → <strong>0x3C</strong>. (c) <code>101011</code> → group <code>0010 1011</code> → <strong>0x2B</strong>. (d) <code>3F</code> = 3×16 + 15 = <strong>63</strong>.</p>
+<p><strong>Q25.</strong> <strong>Signed</strong> integers can be positive, negative or zero and use one bit (usually the leftmost) for the sign. <strong>Unsigned</strong> integers are only zero or positive, so all bits represent magnitude.</p>
+<ul>
+<li>8-bit unsigned: 0 to 255.</li>
+<li>8-bit signed (two's complement): −128 to +127.</li>
+<li>16-bit signed: −32,768 to +32,767.</li>
+</ul>
+<p><strong>Q26.</strong> (a) −12: 12 = <code>00001100</code> → invert <code>11110011</code> → +1 = <strong><code>11110100</code></strong> (0xF4). −25: 25 = <code>00011001</code> → invert <code>11100110</code> → +1 = <strong><code>11100111</code></strong> (0xE7).</p>
+<p>(b) Two's complement has only one representation of zero, makes addition and subtraction use the same hardware, and handles overflow simply. Sign-and-magnitude has two zeros (+0 and −0) and needs separate subtraction circuitry.</p>
+<p><strong>Q27.</strong></p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Type</th><th style="text-align:left">Size (typical)</th><th style="text-align:left"><code>printf</code></th><th style="text-align:left">Example</th><th style="text-align:left">Use</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left"><code>int</code></td><td style="text-align:left">4 bytes</td><td style="text-align:left"><code>%d</code></td><td style="text-align:left"><code>25</code></td><td style="text-align:left">counting, whole numbers</td></tr>
+<tr><td style="text-align:left"><code>float</code></td><td style="text-align:left">4 bytes</td><td style="text-align:left"><code>%f</code></td><td style="text-align:left"><code>3.14f</code></td><td style="text-align:left">decimals (6–7 digits)</td></tr>
+<tr><td style="text-align:left"><code>double</code></td><td style="text-align:left">8 bytes</td><td style="text-align:left"><code>%f</code> (printf), <code>%lf</code> (scanf)</td><td style="text-align:left"><code>3.14159</code></td><td style="text-align:left">precise decimals</td></tr>
+<tr><td style="text-align:left"><code>char</code></td><td style="text-align:left">1 byte</td><td style="text-align:left"><code>%c</code></td><td style="text-align:left"><code>'A'</code></td><td style="text-align:left">single character</td></tr>
+</tbody></table></div>
+<p><strong>Q28.</strong> <code>'A'</code> = 65, <code>'a'</code> = 97, <code>'0'</code> = 48, space = 32, <code>'\n'</code> = 10, <code>'\0'</code> = 0. A <strong>character code</strong> is the numeric value used internally to represent a character (C uses ASCII on most systems).</p>
+<p><strong>Q29.</strong></p>
+<ul>
+<li><strong>Implicit conversion:</strong> automatic conversion by the compiler when types are mixed, e.g. <code>int</code> to <code>float</code> in <code>3 + 2.5</code>.</li>
+<li><strong>Explicit casting:</strong> the programmer forces a conversion with <code>(type)</code>, e.g. <code>(float)7 / 2</code>.</li>
+</ul>
+<p>(a) <code>7 / 2</code> = <strong>3</strong> (integer division). (b) <code>(float)7 / 2</code> = <strong>3.5</strong>. (c) <code>(int)7.9</code> = <strong>7</strong> (fraction discarded). (d) <code>'A' + 1</code> = 65 + 1 = <strong>66</strong> (which is <code>'B'</code>).</p>
+<p><strong>Q30.</strong> <code>sizeof</code> returns the number of bytes occupied by a type or variable. <code>sizeof(int)</code> is typically <strong>4</strong> and <code>sizeof(char)</code> is <strong>1</strong>, so the output is <code>4 1</code>.</p>
+<hr>
+<h2 id="section-d-operators-and-expressions">Section D — Operators and expressions</h2>
+<p><strong>Q31.</strong> Any five:</p>
+<ul>
+<li>Arithmetic: <code>+ - * / %</code></li>
+<li>Relational: <code>== != &lt; &gt; &lt;= &gt;=</code></li>
+<li>Logical: <code>&amp;&amp; || !</code></li>
+<li>Bitwise: <code>&amp; | ^ ~ &lt;&lt; &gt;&gt;</code></li>
+<li>Assignment: <code>= += -= *= /= %=</code></li>
+<li>Increment/decrement: <code>++ --</code></li>
+<li>Conditional: <code>?:</code></li>
+<li><code>sizeof</code>, <code>&amp;</code>, <code>*</code>, <code>.</code>, <code>-&gt;</code>.</li>
+</ul>
+<p><strong>Q32.</strong> (a) 17 / 5 = <strong>3</strong>. (b) 17 % 5 = <strong>2</strong>. (c) −17 / 5 = <strong>−3</strong> (C truncates toward zero); −17 % 5 = <strong>−2</strong>. (d) 7 / 2.0 = <strong>3.5</strong>.</p>
+<p><code>/</code> gives the quotient and works with integers or floating point. <code>%</code> gives the remainder and works <strong>only with integers</strong>.</p>
+<p><strong>Q33.</strong> <strong>Relational operators</strong> compare two values and return 1 (true) or 0 (false), e.g. <code>&gt;</code>, <code>==</code>. <strong>Logical operators</strong> combine conditions, e.g. <code>&amp;&amp;</code>, <code>||</code>, <code>!</code>.</p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">a</th><th style="text-align:left">b</th><th style="text-align:left">a &amp;&amp; b</th><th style="text-align:left">a || b</th><th style="text-align:left">!a</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">0</td><td style="text-align:left">0</td><td style="text-align:left">0</td><td style="text-align:left">0</td><td style="text-align:left">1</td></tr>
+<tr><td style="text-align:left">0</td><td style="text-align:left">1</td><td style="text-align:left">0</td><td style="text-align:left">1</td><td style="text-align:left">1</td></tr>
+<tr><td style="text-align:left">1</td><td style="text-align:left">0</td><td style="text-align:left">0</td><td style="text-align:left">1</td><td style="text-align:left">0</td></tr>
+<tr><td style="text-align:left">1</td><td style="text-align:left">1</td><td style="text-align:left">1</td><td style="text-align:left">1</td><td style="text-align:left">0</td></tr>
+</tbody></table></div>
+<p><strong>Q34.</strong> 12 = <code>1100</code>, 10 = <code>1010</code>. (a) <code>12 &amp; 10</code> = <code>1000</code> = <strong>8</strong>. (b) <code>12 | 10</code> = <code>1110</code> = <strong>14</strong>. (c) <code>12 ^ 10</code> = <code>0110</code> = <strong>6</strong>. (d) <code>~12</code> = <strong>−13</strong>. (e) <code>12 &lt;&lt; 2</code> = 12 × 4 = <strong>48</strong>. (f) <code>12 &gt;&gt; 2</code> = <strong>3</strong>.</p>
+<p><strong>Q35.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> x = <span class="tok-num">3</span>;
+x += <span class="tok-num">5</span>;   <span class="tok-com">/* x = 8  */</span>
+x *= <span class="tok-num">2</span>;   <span class="tok-com">/* x = 16 */</span>
+x -= <span class="tok-num">4</span>;   <span class="tok-com">/* x = 12 */</span></code></pre>
+<p><strong>Q36.</strong> Starting from <code>a = 5</code> each time: (a) <code>b = a++</code> → b = <strong>5</strong>, a = <strong>6</strong>. (b) <code>b = ++a</code> → a = <strong>6</strong>, b = <strong>6</strong>. (c) <code>b = a--</code> → b = <strong>5</strong>, a = <strong>4</strong>. (d) <code>b = --a</code> → a = <strong>4</strong>, b = <strong>4</strong>.</p>
+<p><strong>Q37.</strong> Syntax: <code>condition ? value_if_true : value_if_false</code>.</p>
+<pre class="code" data-lang="c"><code><span class="tok-fn">printf</span>(<span class="tok-str">&quot;%s&quot;</span>, (n % <span class="tok-num">2</span> == <span class="tok-num">0</span>) ? <span class="tok-str">&quot;Even&quot;</span> : <span class="tok-str">&quot;Odd&quot;</span>);</code></pre>
+<p><strong>Q38.</strong> (a) 2 + 12 = <strong>14</strong>. (b) 5 × 4 = <strong>20</strong>. (c) (10 − 4) − 3 = <strong>3</strong> (left-associative). (d) (100 / 10) / 2 = <strong>5</strong>. (e) <code>5 &gt; 3</code> is true (1) and <code>2 &lt; 4</code> is true (1), so <strong>1</strong> (true).</p>
+<p><strong>Q39.</strong></p>
+<pre class="code"><code>x = 10
+x += 5  → 15
+x -= 3  → 12
+x *= 2  → 24
+x /= 4  → 6
+x %= 4  → 2</code></pre>
+<p>Final <strong>x = 2</strong>.</p>
+<p><strong>Q40.</strong> (a) With a temporary:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> temp = a; a = b; b = temp;</code></pre>
+<p>(b) Without a temporary:</p>
+<pre class="code" data-lang="c"><code>a = a + b;
+b = a - b;
+a = a - b;</code></pre>
+<p>Risk: <code>a + b</code> can <strong>overflow</strong> the integer range. (XOR swap avoids overflow but is harder to read.)</p>
+<hr>
+<h2 id="section-e-selection-statements">Section E — Selection statements</h2>
+<p><strong>Q41.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">if</span> (condition)
+{
+    statements;
+}</code></pre>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> n;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter an integer: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+    <span class="tok-kw">if</span> (n % <span class="tok-num">2</span> == <span class="tok-num">0</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Even\n&quot;</span>);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Q42.</strong> <code>if-else</code> handles <strong>two</strong> alternatives (true/false). The <code>else-if</code> ladder handles <strong>many mutually exclusive</strong> alternatives and tests conditions in order; once one is true, the rest are skipped. Use <code>if-else</code> for a simple yes/no; use <code>else-if</code> for grades, categories or ranges.</p>
+<p><strong>Q43.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> mark;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter mark: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;mark);
+
+    <span class="tok-kw">if</span> (mark &gt;= <span class="tok-num">70</span> &amp;&amp; mark &lt;= <span class="tok-num">100</span>)      <span class="tok-fn">printf</span>(<span class="tok-str">&quot;A\n&quot;</span>);
+    <span class="tok-kw">else</span> <span class="tok-kw">if</span> (mark &gt;= <span class="tok-num">60</span>)                <span class="tok-fn">printf</span>(<span class="tok-str">&quot;B\n&quot;</span>);
+    <span class="tok-kw">else</span> <span class="tok-kw">if</span> (mark &gt;= <span class="tok-num">50</span>)                <span class="tok-fn">printf</span>(<span class="tok-str">&quot;C\n&quot;</span>);
+    <span class="tok-kw">else</span> <span class="tok-kw">if</span> (mark &gt;= <span class="tok-num">40</span>)                <span class="tok-fn">printf</span>(<span class="tok-str">&quot;D\n&quot;</span>);
+    <span class="tok-kw">else</span> <span class="tok-kw">if</span> (mark &gt;= <span class="tok-num">0</span>)                 <span class="tok-fn">printf</span>(<span class="tok-str">&quot;E\n&quot;</span>);
+    <span class="tok-kw">else</span>                                <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Invalid mark\n&quot;</span>);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Q44.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> a, b, c;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter three numbers: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d %d %d&quot;</span>, &amp;a, &amp;b, &amp;c);
+
+    <span class="tok-kw">if</span> (a &gt;= b) {
+        <span class="tok-kw">if</span> (a &gt;= c) <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Largest = %d\n&quot;</span>, a);
+        <span class="tok-kw">else</span>        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Largest = %d\n&quot;</span>, c);
+    } <span class="tok-kw">else</span> {
+        <span class="tok-kw">if</span> (b &gt;= c) <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Largest = %d\n&quot;</span>, b);
+        <span class="tok-kw">else</span>        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Largest = %d\n&quot;</span>, c);
+    }
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Q45.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">switch</span> (expression)
+{
+    <span class="tok-kw">case</span> constant1: statements; <span class="tok-kw">break</span>;
+    <span class="tok-kw">case</span> constant2: statements; <span class="tok-kw">break</span>;
+    <span class="tok-kw">default</span>: statements;
+}</code></pre>
+<p>Rules:</p>
+<ul>
+<li>The expression must be an integer or character type (not <code>float</code> or a string).</li>
+<li>Case labels must be <strong>constant</strong> expressions and must be unique.</li>
+<li><code>break</code> is needed to stop fall-through.</li>
+<li><code>default</code> is optional and handles all other values.</li>
+<li>Braces are needed if you declare variables inside a case.</li>
+</ul>
+<p><strong>Q46.</strong> For <code>choice = 2</code>: execution starts at <code>case 2</code>, prints <code>&quot;Two &quot;</code>, then falls through to <code>case 3</code>, prints <code>&quot;Three &quot;</code>, then <code>break</code> exits. Output: <strong><code>Two Three </code></strong>.</p>
+<p>If <code>break</code> is removed from case 3, execution also falls into <code>default</code> and prints <code>&quot;Other&quot;</code>, giving <strong><code>Two Three Other</code></strong>.</p>
+<p><strong>Q47.</strong> <code>=</code> is <strong>assignment</strong>; <code>==</code> is <strong>comparison</strong>. <code>if (x = 5)</code> assigns 5 to <code>x</code>; the value of the assignment is 5, which is non-zero/true, so the program prints <strong><code>Yes</code></strong> (and <code>x</code> becomes 5). Most compilers give a warning.</p>
+<p><strong>Q48.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> year;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter year: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;year);
+
+    <span class="tok-kw">if</span> ((year % <span class="tok-num">4</span> == <span class="tok-num">0</span> &amp;&amp; year % <span class="tok-num">100</span> != <span class="tok-num">0</span>) || year % <span class="tok-num">400</span> == <span class="tok-num">0</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d is a leap year\n&quot;</span>, year);
+    <span class="tok-kw">else</span>
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d is not a leap year\n&quot;</span>, year);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Q49.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-pre">#include &lt;ctype.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">char</span> ch;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter a letter: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot; %c&quot;</span>, &amp;ch);
+    ch = <span class="tok-fn">tolower</span>(ch);
+
+    <span class="tok-kw">switch</span> (ch) {
+        <span class="tok-kw">case</span> <span class="tok-chr">'a'</span>: <span class="tok-kw">case</span> <span class="tok-chr">'e'</span>: <span class="tok-kw">case</span> <span class="tok-chr">'i'</span>: <span class="tok-kw">case</span> <span class="tok-chr">'o'</span>: <span class="tok-kw">case</span> <span class="tok-chr">'u'</span>:
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Vowel\n&quot;</span>); <span class="tok-kw">break</span>;
+        <span class="tok-kw">default</span>:
+            <span class="tok-kw">if</span> (<span class="tok-fn">isalpha</span>(ch)) <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Consonant\n&quot;</span>);
+            <span class="tok-kw">else</span>             <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Not a letter\n&quot;</span>);
+    }
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Q50.</strong> <code>x = 10</code>, so <code>x &gt; 5</code> is true. The inner <code>if (x &gt; 15)</code> is false, so its <code>else</code> prints <code>B</code>. Then <code>printf(&quot;C&quot;)</code> runs. Output: <strong><code>BC</code></strong>.</p>
+<hr>
+<h2 id="section-f-loops">Section F — Loops</h2>
+<p><strong>Q51.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">while</span> (condition)
+{
+    statements;
+}</code></pre>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> i = <span class="tok-num">1</span>;
+    <span class="tok-kw">while</span> (i &lt;= <span class="tok-num">5</span>) {
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i);
+        i++;
+    }
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}
+<span class="tok-com">/* Output: 1 2 3 4 5 */</span></code></pre>
+<p><strong>Q52.</strong> <code>while</code> is <strong>entry-controlled</strong>: the condition is tested before the body, so it may run <strong>zero</strong> times. <code>do-while</code> is <strong>exit-controlled</strong>: the body runs once before the condition is tested, so it runs <strong>at least once</strong>. <code>do-while</code> is better for input validation menus (&quot;repeat until the user enters a valid choice&quot;).</p>
+<p><strong>Q53.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">for</span> (initialise; condition; update)
+{
+    statements;
+}</code></pre>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> n, i, sum = <span class="tok-num">0</span>;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter n: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= n; i++)
+        sum += i;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Sum = %d\n&quot;</span>, sum);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Q54.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> n, i;
+    <span class="tok-kw">long</span> <span class="tok-kw">long</span> fact = <span class="tok-num">1</span>;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter n: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= n; i++)
+        fact *= i;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Factorial = %lld\n&quot;</span>, fact);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Q55.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> n, rev = <span class="tok-num">0</span>, digit;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter number: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+    <span class="tok-kw">while</span> (n != <span class="tok-num">0</span>) {
+        digit = n % <span class="tok-num">10</span>;
+        rev = rev * <span class="tok-num">10</span> + digit;
+        n /= <span class="tok-num">10</span>;
+    }
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Reversed = %d\n&quot;</span>, rev);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Q56.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> n, count = <span class="tok-num">0</span>, sum = <span class="tok-num">0</span>, digit;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter number: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+    <span class="tok-kw">if</span> (n == <span class="tok-num">0</span>) { count = <span class="tok-num">1</span>; sum = <span class="tok-num">0</span>; }
+    <span class="tok-kw">while</span> (n != <span class="tok-num">0</span>) {
+        digit = n % <span class="tok-num">10</span>;
+        sum += digit;
+        count++;
+        n /= <span class="tok-num">10</span>;
+    }
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Digits = %d, Sum = %d\n&quot;</span>, count, sum);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Q57.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> n, i, isPrime = <span class="tok-num">1</span>;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter number: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+
+    <span class="tok-kw">if</span> (n &lt;= <span class="tok-num">1</span>) isPrime = <span class="tok-num">0</span>;
+    <span class="tok-kw">for</span> (i = <span class="tok-num">2</span>; i * i &lt;= n; i++) {
+        <span class="tok-kw">if</span> (n % i == <span class="tok-num">0</span>) { isPrime = <span class="tok-num">0</span>; <span class="tok-kw">break</span>; }
+    }
+    <span class="tok-kw">if</span> (isPrime) <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d is prime\n&quot;</span>, n);
+    <span class="tok-kw">else</span>         <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d is not prime\n&quot;</span>, n);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Q58.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> n, i;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter number: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= <span class="tok-num">10</span>; i++)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d x %d = %d\n&quot;</span>, n, i, n * i);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Q59.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> i, j, n = <span class="tok-num">5</span>;
+    <span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= n; i++) {
+        <span class="tok-kw">for</span> (j = <span class="tok-num">1</span>; j &lt;= i; j++)
+            <span class="tok-fn">printf</span>(<span class="tok-str">&quot;*&quot;</span>);
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n&quot;</span>);
+    }
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Q60.</strong> (a)</p>
+<pre class="code"><code>1
+12
+123</code></pre>
+<p>(b) <code>break</code> exits the loop (or switch) immediately; <code>continue</code> skips the rest of the current iteration and goes to the next iteration (or the loop condition/update). <code>break</code> can also end a <code>switch</code>; <code>continue</code> applies only to loops.</p>
+<hr>
+<h2 id="section-g-functions-and-recursion">Section G — Functions and recursion</h2>
+<p><strong>Q61.</strong> A <strong>function</strong> is a named block of code that performs one specific task and can be called whenever needed. Advantages: reusability; readability; easier testing/debugging; easier maintenance; avoids repetition; supports divide-and-conquer and teamwork.</p>
+<p><strong>Q62.</strong></p>
+<ul>
+<li><strong>Prototype:</strong> declaration of the function's name, return type and parameter types, ending with <code>;</code>, e.g. <code>int max(int a, int b);</code>.</li>
+<li><strong>Definition:</strong> the actual body with the code.</li>
+<li><strong>Call:</strong> using the function, e.g. <code>m = max(3, 7);</code>.</li>
+</ul>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">max</span>(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b);          <span class="tok-com">/* prototype */</span>
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> x = <span class="tok-num">3</span>, y = <span class="tok-num">7</span>;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Max = %d\n&quot;</span>, <span class="tok-fn">max</span>(x, y));   <span class="tok-com">/* call */</span>
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">max</span>(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b)           <span class="tok-com">/* definition */</span>
+{
+    <span class="tok-kw">return</span> (a &gt; b) ? a : b;
+}</code></pre>
+<p><strong>Q63.</strong> <strong>Actual parameters (arguments)</strong> are the values/variables supplied in the function call, e.g. <code>x</code> and <code>y</code> in <code>max(x, y)</code>. <strong>Formal parameters</strong> are the variables declared in the function definition that receive those values, e.g. <code>a</code> and <code>b</code> in <code>int max(int a, int b)</code>. C passes them by value.</p>
+<p><strong>Q64.</strong> Four categories:</p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p><strong>Q65.</strong> <strong>Call by value</strong> passes a copy of the argument; changes inside the function do not affect the caller. <strong>Call by reference</strong> passes the address; changes through the pointer do affect the caller. C uses call by value, but pointers simulate call by reference.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">void</span> <span class="tok-fn">swap</span>(<span class="tok-kw">int</span> *a, <span class="tok-kw">int</span> *b)
+{
+    <span class="tok-kw">int</span> temp = *a;
+    *a = *b;
+    *b = temp;
+}
+<span class="tok-com">/* call: swap(&amp;x, &amp;y); */</span></code></pre>
+<p><strong>Q66.</strong></p>
+<ul>
+<li><strong>Local:</strong> declared inside a function/block; accessible only there; lifetime = while the block runs; <strong>no default value</strong> (garbage unless initialised).</li>
+<li><strong>Global:</strong> declared outside all functions; accessible throughout the file/program; lifetime = whole program; default value <strong>0</strong>.</li>
+<li><strong>Static local:</strong> declared with <code>static</code> inside a function; accessible only there; lifetime = whole program; default value <strong>0</strong>; keeps its value between calls.</li>
+</ul>
+<p><strong>Q67.</strong> <strong>Recursion</strong> is when a function calls itself to solve a smaller version of the same problem. Two parts:</p>
+<ol>
+<li></li>
+<li></li>
+</ol>
+<pre class="code" data-lang="c"><code><span class="tok-kw">long</span> <span class="tok-kw">long</span> <span class="tok-fn">fact</span>(<span class="tok-kw">int</span> n)
+{
+    <span class="tok-kw">if</span> (n &lt;= <span class="tok-num">1</span>) <span class="tok-kw">return</span> <span class="tok-num">1</span>;       <span class="tok-com">/* base case */</span>
+    <span class="tok-kw">return</span> n * <span class="tok-fn">fact</span>(n - <span class="tok-num">1</span>);     <span class="tok-com">/* recursive case */</span>
+}</code></pre>
+<p><strong>Q68.</strong> <code>factorial(4)</code> → <code>4 * factorial(3)</code> → <code>4 * 3 * factorial(2)</code> → <code>4 * 3 * 2 * factorial(1)</code> → <code>4 * 3 * 2 * 1</code> = <strong>24</strong>. Calls: fact(4), fact(3), fact(2), fact(1); then returns 1, 2, 6, 24.</p>
+<p><strong>Q69.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> <span class="tok-fn">fib</span>(<span class="tok-kw">int</span> n)
+{
+    <span class="tok-kw">if</span> (n &lt;= <span class="tok-num">1</span>) <span class="tok-kw">return</span> n;       <span class="tok-com">/* base: fib(0)=0, fib(1)=1 */</span>
+    <span class="tok-kw">return</span> <span class="tok-fn">fib</span>(n - <span class="tok-num">1</span>) + <span class="tok-fn">fib</span>(n - <span class="tok-num">2</span>);
+}</code></pre>
+<p>It is inefficient because the same subproblems are recalculated many times (exponential time, O(2ⁿ)). It can be improved with memoisation or an iterative loop.</p>
+<p><strong>Q70.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> <span class="tok-fn">sumDigits</span>(<span class="tok-kw">int</span> n)
+{
+    <span class="tok-kw">if</span> (n == <span class="tok-num">0</span>) <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+    <span class="tok-kw">return</span> (n % <span class="tok-num">10</span>) + <span class="tok-fn">sumDigits</span>(n / <span class="tok-num">10</span>);
+}
+<span class="tok-com">/* sumDigits(1234) = 4 + 3 + 2 + 1 = 10 */</span></code></pre>
+<hr>
+<h2 id="section-h-arrays-and-strings">Section H — Arrays and strings</h2>
+<p><strong>Q71.</strong> An <strong>array</strong> is a collection of a fixed number of elements of the <strong>same type</strong>, stored in contiguous memory and accessed by index.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">5</span>] = {<span class="tok-num">10</span>, <span class="tok-num">20</span>, <span class="tok-num">30</span>, <span class="tok-num">40</span>, <span class="tok-num">50</span>};</code></pre>
+<p>First index is <strong>0</strong>; last is <strong>4</strong> (size − 1).</p>
+<p><strong>Q72.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> a[<span class="tok-num">10</span>], i;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter 10 integers:\n&quot;</span>);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">10</span>; i++)
+        <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;a[i]);
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;In reverse: &quot;</span>);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">9</span>; i &gt;= <span class="tok-num">0</span>; i--)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, a[i]);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n&quot;</span>);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Q73.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> a[<span class="tok-num">100</span>], n, i, sum = <span class="tok-num">0</span>, max, min;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter number of elements: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter %d integers:\n&quot;</span>, n);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; n; i++)
+        <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;a[i]);
+
+    max = min = a[<span class="tok-num">0</span>];
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; n; i++) {
+        sum += a[i];
+        <span class="tok-kw">if</span> (a[i] &gt; max) max = a[i];
+        <span class="tok-kw">if</span> (a[i] &lt; min) min = a[i];
+    }
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Sum = %d\n&quot;</span>, sum);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Average = %.2f\n&quot;</span>, (<span class="tok-kw">float</span>)sum / n);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Max = %d, Min = %d\n&quot;</span>, max, min);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Q74.</strong> <strong>Linear search</strong> checks each element from the beginning until the target is found or the array ends. It works on unsorted arrays; time is O(n).</p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> a[<span class="tok-num">100</span>], n, i, key, found = -<span class="tok-num">1</span>;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter n: &quot;</span>); <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; n; i++) <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;a[i]);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter value to search: &quot;</span>); <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;key);
+
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; n; i++) {
+        <span class="tok-kw">if</span> (a[i] == key) { found = i; <span class="tok-kw">break</span>; }
+    }
+    <span class="tok-kw">if</span> (found != -<span class="tok-num">1</span>) <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Found at index %d\n&quot;</span>, found);
+    <span class="tok-kw">else</span>             <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Not found\n&quot;</span>);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Q75.</strong> <strong>Bubble sort</strong> repeatedly compares adjacent pairs and swaps them if they are in the wrong order. After each pass, the largest remaining value &quot;bubbles&quot; to the end.</p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> a[<span class="tok-num">100</span>], n, i, j, temp;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter n: &quot;</span>); <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;n);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; n; i++) <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;a[i]);
+
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; n - <span class="tok-num">1</span>; i++) {
+        <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; n - <span class="tok-num">1</span> - i; j++) {
+            <span class="tok-kw">if</span> (a[j] &gt; a[j + <span class="tok-num">1</span>]) {
+                temp = a[j];
+                a[j] = a[j + <span class="tok-num">1</span>];
+                a[j + <span class="tok-num">1</span>] = temp;
+            }
+        }
+    }
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Sorted: &quot;</span>);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; n; i++) <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, a[i]);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p>Trace for <code>{5, 1, 4, 2, 8}</code>:</p>
+<ul>
+<li>Pass 1: {1,5,4,2,8} → {1,4,5,2,8} → {1,4,2,5,8} → {1,4,2,5,8}</li>
+<li>Pass 2: {1,4,2,5,8} → {1,2,4,5,8}</li>
+<li>Pass 3: no swaps → sorted <strong>{1, 2, 4, 5, 8}</strong>.</li>
+</ul>
+<p><strong>Q76.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> m[<span class="tok-num">3</span>][<span class="tok-num">4</span>] = {
+    {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>, <span class="tok-num">4</span>},
+    {<span class="tok-num">5</span>, <span class="tok-num">6</span>, <span class="tok-num">7</span>, <span class="tok-num">8</span>},
+    {<span class="tok-num">9</span>, <span class="tok-num">10</span>, <span class="tok-num">11</span>, <span class="tok-num">12</span>}
+};
+
+<span class="tok-kw">int</span> i, j;
+<span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">3</span>; i++) {
+    <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">4</span>; j++)
+        <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;m[i][j]);
+}
+<span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">3</span>; i++) {
+    <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">4</span>; j++)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%4d&quot;</span>, m[i][j]);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n&quot;</span>);
+}</code></pre>
+<p><strong>Q77.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> a[<span class="tok-num">2</span>][<span class="tok-num">2</span>], b[<span class="tok-num">2</span>][<span class="tok-num">2</span>], c[<span class="tok-num">2</span>][<span class="tok-num">2</span>], i, j;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter matrix A (4 values):\n&quot;</span>);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">2</span>; i++)
+        <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">2</span>; j++) <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;a[i][j]);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter matrix B (4 values):\n&quot;</span>);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">2</span>; i++)
+        <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">2</span>; j++) <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;b[i][j]);
+
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">2</span>; i++)
+        <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">2</span>; j++)
+            c[i][j] = a[i][j] + b[i][j];
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;A + B =\n&quot;</span>);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">2</span>; i++) {
+        <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">2</span>; j++) <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%4d&quot;</span>, c[i][j]);
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n&quot;</span>);
+    }
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Q78.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> a[<span class="tok-num">2</span>][<span class="tok-num">3</span>], t[<span class="tok-num">3</span>][<span class="tok-num">2</span>], i, j;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter a 2x3 matrix:\n&quot;</span>);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">2</span>; i++)
+        <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">3</span>; j++) <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;a[i][j]);
+
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">2</span>; i++)
+        <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">3</span>; j++)
+            t[j][i] = a[i][j];
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Transpose:\n&quot;</span>);
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">3</span>; i++) {
+        <span class="tok-kw">for</span> (j = <span class="tok-num">0</span>; j &lt; <span class="tok-num">2</span>; j++) <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%4d&quot;</span>, t[i][j]);
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n&quot;</span>);
+    }
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Q79.</strong> A string is a <code>char</code> array ending with the <strong>null character</strong> <code>'\0'</code>. <code>&quot;Hello&quot;</code> has 5 visible characters plus the <code>'\0'</code> terminator, so it needs <strong>6 bytes</strong>. The <strong>length</strong> (<code>strlen</code>) counts characters before <code>'\0'</code> and is 5; the <strong>size</strong> of the array is 6.</p>
+<p><strong>Q80.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> <span class="tok-fn">myStrlen</span>(<span class="tok-kw">const</span> <span class="tok-kw">char</span> *s)
+{
+    <span class="tok-kw">int</span> i = <span class="tok-num">0</span>;
+    <span class="tok-kw">while</span> (s[i] != <span class="tok-chr">'\0'</span>) i++;
+    <span class="tok-kw">return</span> i;
+}
+
+<span class="tok-kw">void</span> <span class="tok-fn">myStrcpy</span>(<span class="tok-kw">char</span> *dest, <span class="tok-kw">const</span> <span class="tok-kw">char</span> *src)
+{
+    <span class="tok-kw">int</span> i = <span class="tok-num">0</span>;
+    <span class="tok-kw">while</span> ((dest[i] = src[i]) != <span class="tok-chr">'\0'</span>) i++;
+}
+
+<span class="tok-kw">void</span> <span class="tok-fn">myStrcat</span>(<span class="tok-kw">char</span> *dest, <span class="tok-kw">const</span> <span class="tok-kw">char</span> *src)
+{
+    <span class="tok-kw">int</span> i = <span class="tok-num">0</span>, j = <span class="tok-num">0</span>;
+    <span class="tok-kw">while</span> (dest[i] != <span class="tok-chr">'\0'</span>) i++;
+    <span class="tok-kw">while</span> ((dest[i++] = src[j++]) != <span class="tok-chr">'\0'</span>) ;
+}
+
+<span class="tok-kw">int</span> <span class="tok-fn">myStrcmp</span>(<span class="tok-kw">const</span> <span class="tok-kw">char</span> *a, <span class="tok-kw">const</span> <span class="tok-kw">char</span> *b)
+{
+    <span class="tok-kw">int</span> i = <span class="tok-num">0</span>;
+    <span class="tok-kw">while</span> (a[i] != <span class="tok-chr">'\0'</span> &amp;&amp; a[i] == b[i]) i++;
+    <span class="tok-kw">return</span> (<span class="tok-kw">unsigned</span> <span class="tok-kw">char</span>)a[i] - (<span class="tok-kw">unsigned</span> <span class="tok-kw">char</span>)b[i];
+}</code></pre>
+<p><code>myStrcmp</code> returns 0 if equal, negative if <code>a &lt; b</code>, positive if <code>a &gt; b</code>.</p>
+<hr>
+<h2 id="section-i-pointers">Section I — Pointers</h2>
+<p><strong>Q81.</strong> A <strong>pointer</strong> is a variable that stores the memory address of another variable.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> x = <span class="tok-num">10</span>;
+<span class="tok-kw">int</span> *p = &amp;x;    <span class="tok-com">/* p holds the address of x */</span></code></pre>
+<p><code>&amp;</code> is the <strong>address-of</strong> operator (<code>&amp;x</code> gives x's address). <code>*</code> is the <strong>dereference/indirection</strong> operator (<code>*p</code> gives the value at the address, 10).</p>
+<p><strong>Q82.</strong> Memory:</p>
+<pre class="code"><code>x: [ 10 ]  at address, say, 1000
+p: [1000]  → points to x</code></pre>
+<p>Output: <strong><code>10 10</code></strong>. <code>*p = 10</code> changes <code>x</code> itself to 10.</p>
+<p><strong>Q83.</strong> Pointer arithmetic moves in units of the pointed-to type, not bytes. If <code>int *p = &amp;a[0]</code>, then <code>p + 2</code> points to <code>a[2]</code>. On a machine where <code>int</code> is 4 bytes, <code>p + 1</code> moves <strong>4 bytes</strong> (one integer) forward.</p>
+<p><strong>Q84.</strong> An array name acts like a pointer to its first element. For <code>int a[5]</code>, <code>a</code> is equivalent to <code>&amp;a[0]</code>, and <code>a[i]</code> is defined as <code>*(a + i)</code>. So <code>a[2]</code> and <code>*(a + 2)</code> are the same value, and <code>&amp;a[2]</code> equals <code>a + 2</code>. Arrays are not pointers, but they decay to pointers when passed to functions.</p>
+<p><strong>Q85.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">void</span> <span class="tok-fn">swap</span>(<span class="tok-kw">int</span> *a, <span class="tok-kw">int</span> *b)
+{
+    <span class="tok-kw">int</span> temp = *a;
+    *a = *b;
+    *b = temp;
+}
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> x = <span class="tok-num">3</span>, y = <span class="tok-num">8</span>;
+    <span class="tok-fn">swap</span>(&amp;x, &amp;y);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;x = %d, y = %d\n&quot;</span>, x, y);   <span class="tok-com">/* x = 8, y = 3 */</span>
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p>Call by value alone passes copies, so swapping the copies leaves the originals unchanged. Passing addresses lets the function modify the original variables.</p>
+<p><strong>Q86.</strong></p>
+<ul>
+<li><code>malloc(size)</code> allocates <code>size</code> bytes, uninitialised, returns <code>void *</code> (or <code>NULL</code>).</li>
+<li><code>calloc(n, size)</code> allocates <code>n × size</code> bytes and initialises them to zero.</li>
+<li><code>realloc(ptr, newSize)</code> resizes a previously allocated block.</li>
+<li><code>free(ptr)</code> releases the memory.</li>
+</ul>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-pre">#include &lt;stdlib.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> *a = <span class="tok-fn">malloc</span>(<span class="tok-num">5</span> * <span class="tok-kw">sizeof</span>(<span class="tok-kw">int</span>));
+    <span class="tok-kw">if</span> (a == <span class="tok-kw">NULL</span>) { <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Allocation failed\n&quot;</span>); <span class="tok-kw">return</span> <span class="tok-num">1</span>; }
+
+    <span class="tok-kw">for</span> (<span class="tok-kw">int</span> i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">5</span>; i++) a[i] = i * i;
+    <span class="tok-kw">for</span> (<span class="tok-kw">int</span> i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">5</span>; i++) <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, a[i]);
+
+    <span class="tok-fn">free</span>(a);
+    a = <span class="tok-kw">NULL</span>;
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<hr>
+<h2 id="section-j-structures-unions-files-and-formatting">Section J — Structures, unions, files and formatting</h2>
+<p><strong>Q87.</strong> A <strong>structure</strong> is a user-defined data type that groups variables of <strong>different</strong> types under one name.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">struct</span> Student {
+    <span class="tok-kw">char</span> name[<span class="tok-num">50</span>];
+    <span class="tok-kw">int</span> age;
+    <span class="tok-kw">float</span> marks;
+};
+
+<span class="tok-kw">struct</span> Student s1 = {<span class="tok-str">&quot;Alice&quot;</span>, <span class="tok-num">20</span>, <span class="tok-num">78.5</span>};</code></pre>
+<p><strong>Q88.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">struct</span> Student {
+    <span class="tok-kw">char</span> name[<span class="tok-num">50</span>];
+    <span class="tok-kw">int</span> age;
+    <span class="tok-kw">float</span> marks;
+};
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">struct</span> Student s[<span class="tok-num">3</span>];
+    <span class="tok-kw">int</span> i, best = <span class="tok-num">0</span>;
+
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">3</span>; i++) {
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Student %d name: &quot;</span>, i + <span class="tok-num">1</span>);
+        <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%49s&quot;</span>, s[i].name);
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Age and marks: &quot;</span>);
+        <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d %f&quot;</span>, &amp;s[i].age, &amp;s[i].marks);
+    }
+
+    <span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt; <span class="tok-num">3</span>; i++)
+        <span class="tok-kw">if</span> (s[i].marks &gt; s[best].marks) best = i;
+
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Best: %s (%.2f)\n&quot;</span>, s[best].name, s[best].marks);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Q89.</strong> <code>typedef</code> creates an alias for a type, so you can write <code>Student</code> instead of <code>struct Student</code>.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">typedef</span> <span class="tok-kw">struct</span> { <span class="tok-kw">char</span> name[<span class="tok-num">50</span>]; <span class="tok-kw">int</span> age; } Student;
+Student s1;</code></pre>
+<p>The <code>-&gt;</code> operator accesses a member through a <strong>pointer to a structure</strong>. <code>(*p).name</code> is written as <code>p-&gt;name</code>.</p>
+<p><strong>Q90.</strong> | Structure | Union | |---|---| | Members have separate memory | All members share the same memory | | Size ≥ sum of member sizes (+ padding) | Size = size of the largest member | | All members can be used at once | Only one member is valid at a time | | <code>struct</code> keyword | <code>union</code> keyword |</p>
+<p><strong>Q91.</strong> An <strong>enumeration</strong> is a user-defined type consisting of named integer constants.</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">enum</span> Day { MON, TUE, WED, THU, FRI };
+<span class="tok-kw">enum</span> Day today = WED;   <span class="tok-com">/* WED == 2 */</span></code></pre>
+<p>Advantage: makes code readable and restricts a variable to a set of named values.</p>
+<p><strong>Q92.</strong></p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p>Modes: <code>&quot;r&quot;</code> read, <code>&quot;w&quot;</code> write (creates/erases), <code>&quot;a&quot;</code> append, <code>&quot;r+&quot;</code> read/update, <code>&quot;w+&quot;</code> write/read, <code>&quot;a+&quot;</code> append/read.</p>
+<p><strong>Q93.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">struct</span> Student { <span class="tok-kw">char</span> name[<span class="tok-num">50</span>]; <span class="tok-kw">int</span> age; <span class="tok-kw">float</span> marks; };
+
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">struct</span> Student s[<span class="tok-num">3</span>] = {
+        {<span class="tok-str">&quot;Alice&quot;</span>, <span class="tok-num">20</span>, <span class="tok-num">78.5</span>},
+        {<span class="tok-str">&quot;Brian&quot;</span>, <span class="tok-num">21</span>, <span class="tok-num">65.0</span>},
+        {<span class="tok-str">&quot;Carol&quot;</span>, <span class="tok-num">19</span>, <span class="tok-num">88.0</span>}
+    };
+    <span class="tok-kw">struct</span> Student temp;
+    <span class="tok-kw">FILE</span> *fp;
+    <span class="tok-kw">int</span> i;
+
+    fp = <span class="tok-fn">fopen</span>(<span class="tok-str">&quot;students.txt&quot;</span>, <span class="tok-str">&quot;w&quot;</span>);
+    <span class="tok-kw">if</span> (fp == <span class="tok-kw">NULL</span>) { <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Cannot open file\n&quot;</span>); <span class="tok-kw">return</span> <span class="tok-num">1</span>; }
+    <span class="tok-kw">for</span> (i = <span class="tok-num">0</span>; i &lt; <span class="tok-num">3</span>; i++)
+        <span class="tok-fn">fprintf</span>(fp, <span class="tok-str">&quot;%s %d %.2f\n&quot;</span>, s[i].name, s[i].age, s[i].marks);
+    <span class="tok-fn">fclose</span>(fp);
+
+    fp = <span class="tok-fn">fopen</span>(<span class="tok-str">&quot;students.txt&quot;</span>, <span class="tok-str">&quot;r&quot;</span>);
+    <span class="tok-kw">if</span> (fp == <span class="tok-kw">NULL</span>) { <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Cannot open file\n&quot;</span>); <span class="tok-kw">return</span> <span class="tok-num">1</span>; }
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%-10s %5s %8s\n&quot;</span>, <span class="tok-str">&quot;Name&quot;</span>, <span class="tok-str">&quot;Age&quot;</span>, <span class="tok-str">&quot;Marks&quot;</span>);
+    <span class="tok-kw">while</span> (<span class="tok-fn">fscanf</span>(fp, <span class="tok-str">&quot;%49s %d %f&quot;</span>, temp.name, &amp;temp.age, &amp;temp.marks) == <span class="tok-num">3</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%-10s %5d %8.2f\n&quot;</span>, temp.name, temp.age, temp.marks);
+    <span class="tok-fn">fclose</span>(fp);
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<p><strong>Q94.</strong></p>
+<pre class="code"><code>[   42]
+[42   ]
+[00042]
+[3.14]
+[    3.14]
+[Hel]</code></pre>
+<p>(<code>%5d</code> = width 5; <code>%-5d</code> = left-aligned; <code>%05d</code> = zero-padded; <code>%.2f</code> = 2 decimal places; <code>%8.2f</code> = width 8 with 2 decimals; <code>%.3s</code> = first 3 characters.)</p>
+<p><strong>Q95.</strong> Four common mistakes:</p>
+<ol>
+<li> exception).</li>
+<li></li>
+<li> leading space.</li>
+<li> for a 50-byte array.</li>
+<li> whitespace.</li>
+</ol>
+<p><strong>Q96.</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-fn">printf</span>(<span class="tok-str">&quot;%-15s %5s %12s\n&quot;</span>, <span class="tok-str">&quot;Name&quot;</span>, <span class="tok-str">&quot;Age&quot;</span>, <span class="tok-str">&quot;Fee&quot;</span>);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%-15s %5s %12s\n&quot;</span>, <span class="tok-str">&quot;---------------&quot;</span>, <span class="tok-str">&quot;-----&quot;</span>, <span class="tok-str">&quot;------------&quot;</span>);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%-15s %5d %12.2f\n&quot;</span>, <span class="tok-str">&quot;Alice&quot;</span>, <span class="tok-num">20</span>, <span class="tok-num">45000.50</span>);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%-15s %5d %12.2f\n&quot;</span>, <span class="tok-str">&quot;Brian&quot;</span>, <span class="tok-num">21</span>, <span class="tok-num">52000.00</span>);</code></pre>
+<p>Output:</p>
+<pre class="code"><code>Name              Age          Fee
+--------------- ----- ------------
+Alice              20     45000.50
+Brian              21     52000.00</code></pre>
+<p>Use <code>-</code> for left alignment, a width for each column, and <code>.2f</code> for money.</p>
+<hr>
+<h2 id="scoring-guide">Scoring guide</h2>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Score</th><th style="text-align:left">Meaning</th><th style="text-align:left">What to do</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">80–100%</td><td style="text-align:left">Strong</td><td style="text-align:left">Move to timed mock exams</td></tr>
+<tr><td style="text-align:left">60–79%</td><td style="text-align:left">Pass level</td><td style="text-align:left">Review wrong answers and re-test in 2 days</td></tr>
+<tr><td style="text-align:left">40–59%</td><td style="text-align:left">Fragile</td><td style="text-align:left">Re-read the matching note sections today</td></tr>
+<tr><td style="text-align:left">Below 40%</td><td style="text-align:left">Not yet</td><td style="text-align:left">Do the note's self-test first, then retry</td></tr>
+</tbody></table></div>
+
+  </article>
+<nav class="pager"><a class="prev" href="../practice/QUESTION_BANK.html"><span class="dir">&larr; Previous</span><span class="name">Question bank (96)</span></a><a class="next" href="../practice/LAB_TASKS.html"><span class="dir">Next &rarr;</span><span class="name">Lab tasks (25)</span></a></nav>
+  <footer class="foot">
+    CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
+  </footer>
+</main>
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  <a href="#section-a-programming-fundamentals">Section A — Programming fundamentals</a><a href="#section-b-c-basics-and-compilation">Section B — C basics and compilation</a><a href="#section-c-data-types-and-number-systems">Section C — Data types and number systems</a><a href="#section-d-operators-and-expressions">Section D — Operators and expressions</a><a href="#section-e-selection-statements">Section E — Selection statements</a><a href="#section-f-loops">Section F — Loops</a><a href="#section-g-functions-and-recursion">Section G — Functions and recursion</a><a href="#section-h-arrays-and-strings">Section H — Arrays and strings</a><a href="#section-i-pointers">Section I — Pointers</a><a href="#section-j-structures-unions-files-and-formatting">Section J — Structures, unions, files and formatting</a><a href="#scoring-guide">Scoring guide</a>
+</aside>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('csc112-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '\u2600' : '\u263D';
+    try { localStorage.setItem('csc112-theme', next); } catch (e) {}
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // highlight the current section in the right-hand table of contents
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (links.length) {
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    window.addEventListener('scroll', function () {
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i] && heads[i].getBoundingClientRect().top < 120) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }, { passive: true });
+  }
+
+  // on phones, start with the contents menu collapsed
+  var det = document.querySelector('.nav-details');
+  if (det && window.innerWidth < 1000) det.removeAttribute('open');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Question Bank — CSC 112 / STA 121 · CSC 112 Revision</title>
+<meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
+<link rel="stylesheet" href="../assets/notes.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">C</span>
+    <span class="brand-text"><strong>CSC 112</strong><span>Revision Notes</span></span>
+  </a>
+  <details class="nav-details" open>
+    <summary>Contents</summary>
+    <div class="nav-group"><div class="nav-head"></div><a href="../START_HERE.html">Start here (pack index)</a><a href="../YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="../CHEAT_SHEET.html">Cheat sheet</a><a href="../PROGRESS_TRACKER.html">Progress tracker</a><a href="../SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="../notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="../notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="../notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="../notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="../notes/05_control_statements.html">05 · Control statements</a><a href="../notes/06_loops.html">06 · Loops</a><a href="../notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="../notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="../notes/09_pointers.html">09 · Pointers</a><a href="../notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="../notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="../practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="../practice/QUESTION_BANK.html" class="active">Question bank (96)</a><a href="../practice/ANSWER_KEY.html">Answer key</a><a href="../practice/LAB_TASKS.html">Lab tasks (25)</a><a href="../practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="../practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="../practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="../code/README.html">Program list (22 examples)</a></div>
+  </details>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <span class="crumb">Practice <b>&rsaquo;</b> QUESTION_BANK</span>
+    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+  </div>
+  <article class="content">
+<h1 id="question-bank-csc-112-sta-121">Question Bank — CSC 112 / STA 121</h1>
+<blockquote><p>96 exam-style questions arranged by topic. Answers are in <code>ANSWER_KEY.md</code>. Do <strong>not</strong> read the answer key until you have written an answer.</p><p><strong>Mark guide:</strong> 1 mark ≈ one correct point or one correct line of code. A 6-mark &quot;explain&quot; question needs about 6 distinct points.</p></blockquote>
+<hr>
+<h2 id="section-a-programming-fundamentals-q1q10">Section A — Programming fundamentals (Q1–Q10)</h2>
+<p><strong>Q1.</strong> Define the following terms: (a) program, (b) programming, (c) programming language. Give one example of each where appropriate. <strong>(3 marks)</strong></p>
+<p><strong>Q2.</strong> Classify programming languages into their two main groups. For each group, state two advantages and two disadvantages. <strong>(6 marks)</strong></p>
+<p><strong>Q3.</strong> Differentiate between machine language, assembly language and high-level language. Give one example of each. <strong>(6 marks)</strong></p>
+<p><strong>Q4.</strong> State four differences between a compiler and an interpreter. <strong>(4 marks)</strong></p>
+<p><strong>Q5.</strong> List the eight phases of program development <strong>in the correct order</strong>, and explain any four of them. <strong>(8 marks)</strong></p>
+<p><strong>Q6.</strong> State and explain six characteristics of a good program. <strong>(6 marks)</strong></p>
+<p><strong>Q7.</strong> (a) Define an algorithm. (b) State five features of a good algorithm. <strong>(6 marks)</strong></p>
+<p><strong>Q8.</strong> Write an algorithm <strong>and</strong> pseudocode to find the largest of three numbers A, B and C. <strong>(6 marks)</strong></p>
+<p><strong>Q9.</strong> (a) Name and describe the five main flowchart symbols. (b) Draw a flowchart to read a number and print whether it is even or odd. <strong>(8 marks)</strong></p>
+<p><strong>Q10.</strong> Explain, with one example each, the three types of programming errors: syntax, runtime and logical. <strong>(6 marks)</strong></p>
+<hr>
+<h2 id="section-b-c-basics-and-compilation-q11q20">Section B — C basics and compilation (Q11–Q20)</h2>
+<p><strong>Q11.</strong> Write the general structure of a C program and explain the purpose of each part. <strong>(6 marks)</strong></p>
+<p><strong>Q12.</strong> What is a header file? Name five standard header files and state what each provides. <strong>(5 marks)</strong></p>
+<p><strong>Q13.</strong> State the rules for forming identifiers in C. Which of these are valid: <code>total</code>, <code>2ndNumber</code>, <code>_count</code>, <code>student-name</code>, <code>Sum</code>, <code>float</code>? <strong>(5 marks)</strong></p>
+<p><strong>Q14.</strong> What are keywords? List ten C keywords and explain why they cannot be used as variable names. <strong>(4 marks)</strong></p>
+<p><strong>Q15.</strong> Differentiate between <code>#define</code> and <code>const</code>. <strong>(4 marks)</strong></p>
+<p><strong>Q16.</strong> Explain the two ways of writing comments in C. State three reasons for using comments and whether comments can be nested. <strong>(4 marks)</strong></p>
+<p><strong>Q17.</strong> Explain the stages a C program passes through from source code to execution: preprocessor, compiler, assembler, linker, loader. <strong>(8 marks)</strong></p>
+<p><strong>Q18.</strong> Differentiate between source code, object code and an executable file. <strong>(4 marks)</strong></p>
+<p><strong>Q19.</strong> What is the work of the linker? Why is it needed? <strong>(3 marks)</strong></p>
+<p><strong>Q20.</strong> Identify the errors in the following program and state whether each is a syntax, runtime or logical error. <strong>(5 marks)</strong></p>
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
+{
+    <span class="tok-kw">int</span> a = <span class="tok-num">10</span>, b = <span class="tok-num">0</span>;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, a / b)
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</code></pre>
+<hr>
+<h2 id="section-c-data-types-and-number-systems-q21q30">Section C — Data types and number systems (Q21–Q30)</h2>
+<p><strong>Q21.</strong> Define bit, byte, nibble and word. How many different values can be represented with (a) 4 bits, (b) 8 bits, (c) n bits? <strong>(5 marks)</strong></p>
+<p><strong>Q22.</strong> Convert the following decimal numbers to binary: 13, 45, 100, 255. Show your working. <strong>(4 marks)</strong></p>
+<p><strong>Q23.</strong> Convert the following binary numbers to decimal: 1011, 110010, 11111111. <strong>(3 marks)</strong></p>
+<p><strong>Q24.</strong> Convert: (a) decimal 60 to octal, (b) decimal 60 to hexadecimal, (c) binary 101011 to hexadecimal, (d) hexadecimal 3F to decimal. <strong>(6 marks)</strong></p>
+<p><strong>Q25.</strong> Explain the difference between signed and unsigned integers. State the range of an 8-bit unsigned integer, an 8-bit signed integer and a 16-bit signed integer. <strong>(6 marks)</strong></p>
+<p><strong>Q26.</strong> (a) Represent −12 and −25 in 8-bit two's complement. (b) Why do computers use two's complement instead of sign-and-magnitude? <strong>(6 marks)</strong></p>
+<p><strong>Q27.</strong> Complete the table for <code>int</code>, <code>float</code>, <code>double</code> and <code>char</code>: typical size in bytes, format specifier for <code>printf</code>, one example value, and one use. <strong>(8 marks)</strong></p>
+<p><strong>Q28.</strong> State the ASCII values of <code>'A'</code>, <code>'a'</code>, <code>'0'</code>, space, <code>'\n'</code> and <code>'\0'</code>. What is a character code? <strong>(6 marks)</strong></p>
+<p><strong>Q29.</strong> Differentiate between implicit type conversion and explicit type casting. Evaluate: (a) <code>7 / 2</code>, (b) <code>(float)7 / 2</code>, (c) <code>(int)7.9</code>, (d) <code>'A' + 1</code>. <strong>(5 marks)</strong></p>
+<p><strong>Q30.</strong> What does <code>sizeof</code> do? Predict the output: <code>printf(&quot;%d %d&quot;, sizeof(int), sizeof(char));</code> on a typical 32/64-bit machine. <strong>(4 marks)</strong></p>
+<hr>
+<h2 id="section-d-operators-and-expressions-q31q40">Section D — Operators and expressions (Q31–Q40)</h2>
+<p><strong>Q31.</strong> List five groups of operators in C and give one example operator from each. <strong>(5 marks)</strong></p>
+<p><strong>Q32.</strong> Evaluate: (a) <code>17 / 5</code>, (b) <code>17 % 5</code>, (c) <code>-17 / 5</code>, (d) <code>7 / 2.0</code>. Explain the difference between <code>/</code> and <code>%</code>. <strong>(4 marks)</strong></p>
+<p><strong>Q33.</strong> Differentiate between relational and logical operators. Write the truth tables for <code>&amp;&amp;</code>, <code>||</code> and <code>!</code>. <strong>(5 marks)</strong></p>
+<p><strong>Q34.</strong> Evaluate: (a) <code>12 &amp; 10</code>, (b) <code>12 | 10</code>, (c) <code>12 ^ 10</code>, (d) <code>~12</code>, (e) <code>12 &lt;&lt; 2</code>, (f) <code>12 &gt;&gt; 2</code>. <strong>(6 marks)</strong></p>
+<p><strong>Q35.</strong> Rewrite using compound assignment and evaluate: <code>x = x + 5;</code> then <code>x = x * 2;</code> then <code>x = x - 4;</code> if <code>x</code> starts at 3. <strong>(4 marks)</strong></p>
+<p><strong>Q36.</strong> If <code>a = 5</code>, determine the value of <code>a</code> and <code>b</code> in each case: (a) <code>b = a++;</code>, (b) <code>b = ++a;</code>, (c) <code>b = a--;</code>, (d) <code>b = --a;</code>. Start from <code>a = 5</code> each time. <strong>(6 marks)</strong></p>
+<p><strong>Q37.</strong> Explain the conditional (ternary) operator with its syntax. Rewrite this using <code>?:</code>: <code>if (n % 2 == 0) printf(&quot;Even&quot;); else printf(&quot;Odd&quot;);</code> <strong>(4 marks)</strong></p>
+<p><strong>Q38.</strong> Using precedence and associativity, evaluate: (a) <code>2 + 3 * 4</code>, (b) <code>(2 + 3) * 4</code>, (c) <code>10 - 4 - 3</code>, (d) <code>100 / 10 / 2</code>, (e) <code>5 &gt; 3 &amp;&amp; 2 &lt; 4</code>. <strong>(5 marks)</strong></p>
+<p><strong>Q39.</strong> Evaluate the final value of <code>x</code>:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> x = <span class="tok-num">10</span>;
+x += <span class="tok-num">5</span>;
+x -= <span class="tok-num">3</span>;
+x *= <span class="tok-num">2</span>;
+x /= <span class="tok-num">4</span>;
+x %= <span class="tok-num">4</span>;</code></pre>
+<p>Show each step. <strong>(5 marks)</strong></p>
+<p><strong>Q40.</strong> Write C statements to swap two integers <code>a</code> and <code>b</code> (a) using a temporary variable, (b) without a temporary variable. State one risk of method (b). <strong>(4 marks)</strong></p>
+<hr>
+<h2 id="section-e-selection-statements-q41q50">Section E — Selection statements (Q41–Q50)</h2>
+<p><strong>Q41.</strong> Write the syntax of the <code>if</code> statement and a program that reads an integer and prints &quot;Even&quot; if it is even. <strong>(4 marks)</strong></p>
+<p><strong>Q42.</strong> Differentiate between <code>if-else</code> and the <code>else-if</code> ladder. When would you use each? <strong>(4 marks)</strong></p>
+<p><strong>Q43.</strong> Write a program that reads a mark (0–100) and prints the grade: A (70–100), B (60–69), C (50–59), D (40–49), E (0–39). Use an <code>else-if</code> ladder. <strong>(6 marks)</strong></p>
+<p><strong>Q44.</strong> Write a program using <strong>nested if</strong> to find the largest of three numbers. <strong>(6 marks)</strong></p>
+<p><strong>Q45.</strong> Write the syntax of a <code>switch</code> statement. State three rules/restrictions of <code>switch</code>. <strong>(5 marks)</strong></p>
+<p><strong>Q46.</strong> Trace the output of this code for <code>choice = 2</code>:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">switch</span> (choice) {
+    <span class="tok-kw">case</span> <span class="tok-num">1</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;One &quot;</span>);
+    <span class="tok-kw">case</span> <span class="tok-num">2</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Two &quot;</span>);
+    <span class="tok-kw">case</span> <span class="tok-num">3</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Three &quot;</span>); <span class="tok-kw">break</span>;
+    <span class="tok-kw">default</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Other&quot;</span>);
+}</code></pre>
+<p>Explain what happens if <code>break</code> is removed from case 3. <strong>(5 marks)</strong></p>
+<p><strong>Q47.</strong> Explain the difference between <code>=</code> and <code>==</code>. What is printed by <code>if (x = 5) printf(&quot;Yes&quot;); else printf(&quot;No&quot;);</code> when <code>x</code> is 0? <strong>(4 marks)</strong></p>
+<p><strong>Q48.</strong> Write a program to check whether a year is a leap year. A year is a leap year if it is divisible by 4 but not by 100, or if it is divisible by 400. <strong>(5 marks)</strong></p>
+<p><strong>Q49.</strong> Write a program that reads a character and uses <code>switch</code> to determine whether it is a vowel or a consonant. <strong>(5 marks)</strong></p>
+<p><strong>Q50.</strong> Trace the output:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> x = <span class="tok-num">10</span>;
+<span class="tok-kw">if</span> (x &gt; <span class="tok-num">5</span>)
+    <span class="tok-kw">if</span> (x &gt; <span class="tok-num">15</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;A&quot;</span>);
+    <span class="tok-kw">else</span>
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;B&quot;</span>);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;C&quot;</span>);</code></pre>
+<p><strong>(4 marks)</strong></p>
+<hr>
+<h2 id="section-f-loops-q51q60">Section F — Loops (Q51–Q60)</h2>
+<p><strong>Q51.</strong> Write the syntax of a <code>while</code> loop and a program that prints 1 to 5. <strong>(4 marks)</strong></p>
+<p><strong>Q52.</strong> Differentiate between <code>while</code> and <code>do-while</code>. Give one situation where <code>do-while</code> is the better choice. <strong>(4 marks)</strong></p>
+<p><strong>Q53.</strong> Write the syntax of a <code>for</code> loop and a program that prints the sum of 1 to n, where n is entered by the user. <strong>(5 marks)</strong></p>
+<p><strong>Q54.</strong> Write a program to calculate the factorial of a number n. <strong>(5 marks)</strong></p>
+<p><strong>Q55.</strong> Write a program to reverse the digits of an integer (e.g. 1234 → 4321). <strong>(5 marks)</strong></p>
+<p><strong>Q56.</strong> Write a program to count the digits and find the sum of the digits of an integer. <strong>(6 marks)</strong></p>
+<p><strong>Q57.</strong> Write a program to check whether a number is prime. <strong>(6 marks)</strong></p>
+<p><strong>Q58.</strong> Write a program to print the multiplication table of a number from 1 to 10. <strong>(4 marks)</strong></p>
+<p><strong>Q59.</strong> Write a program using nested loops to print:</p>
+<pre class="code"><code>*
+**
+***
+****
+*****</code></pre>
+<p><strong>(5 marks)</strong></p>
+<p><strong>Q60.</strong> (a) Trace the output:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= <span class="tok-num">3</span>; i++) {
+    <span class="tok-kw">for</span> (j = <span class="tok-num">1</span>; j &lt;= i; j++)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d&quot;</span>, j);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;\n&quot;</span>);
+}</code></pre>
+<p>(b) State two differences between <code>break</code> and <code>continue</code>. <strong>(6 marks)</strong></p>
+<hr>
+<h2 id="section-g-functions-and-recursion-q61q70">Section G — Functions and recursion (Q61–Q70)</h2>
+<p><strong>Q61.</strong> Define a function. State four advantages of using functions. <strong>(5 marks)</strong></p>
+<p><strong>Q62.</strong> Differentiate between a function prototype, a function definition and a function call. Write a complete program using a function <code>max(a, b)</code>. <strong>(6 marks)</strong></p>
+<p><strong>Q63.</strong> Differentiate between actual parameters and formal parameters. <strong>(4 marks)</strong></p>
+<p><strong>Q64.</strong> Describe the four categories of functions, giving one example of each. <strong>(8 marks)</strong></p>
+<p><strong>Q65.</strong> Differentiate between call by value and call by reference. Write a function that swaps two integers using pointers. <strong>(6 marks)</strong></p>
+<p><strong>Q66.</strong> Explain local, global and static variables with respect to scope, lifetime and default value. <strong>(6 marks)</strong></p>
+<p><strong>Q67.</strong> Define recursion. State the two essential parts of a recursive function and write a recursive factorial function. <strong>(6 marks)</strong></p>
+<p><strong>Q68.</strong> Trace the calls made by <code>factorial(4)</code> and state the final value. <strong>(5 marks)</strong></p>
+<p><strong>Q69.</strong> Write a recursive function for the nth Fibonacci number. Explain why the naive recursive version is inefficient. <strong>(6 marks)</strong></p>
+<p><strong>Q70.</strong> Write a recursive function to find the sum of the digits of a number (e.g. 1234 → 10). <strong>(5 marks)</strong></p>
+<hr>
+<h2 id="section-h-arrays-and-strings-q71q80">Section H — Arrays and strings (Q71–Q80)</h2>
+<p><strong>Q71.</strong> Define an array. Write the declaration and initialisation of an array of five integers. What is the index of the first and last element? <strong>(5 marks)</strong></p>
+<p><strong>Q72.</strong> Write a program to read 10 integers into an array and print them in reverse. <strong>(5 marks)</strong></p>
+<p><strong>Q73.</strong> Write a program to find the sum, average, maximum and minimum of an array. <strong>(7 marks)</strong></p>
+<p><strong>Q74.</strong> Explain linear search. Write a program to search for a value in an array and print its position (or &quot;not found&quot;). <strong>(6 marks)</strong></p>
+<p><strong>Q75.</strong> Explain bubble sort. Write a program to sort an array in ascending order and trace it on <code>{5, 1, 4, 2, 8}</code>. <strong>(8 marks)</strong></p>
+<p><strong>Q76.</strong> Write the declaration and initialisation of a 3×4 two-dimensional array. Write nested loops to read and print it. <strong>(5 marks)</strong></p>
+<p><strong>Q77.</strong> Write a program to add two 2×2 matrices. <strong>(6 marks)</strong></p>
+<p><strong>Q78.</strong> Write a program to find the transpose of a 2×3 matrix. <strong>(6 marks)</strong></p>
+<p><strong>Q79.</strong> Explain how a string is stored in C. Why does <code>&quot;Hello&quot;</code> occupy 6 bytes but have length 5? <strong>(5 marks)</strong></p>
+<p><strong>Q80.</strong> Write functions to find string length, copy a string, concatenate two strings and compare two strings <strong>without</strong> using <code>&lt;string.h&gt;</code>. <strong>(8 marks)</strong></p>
+<hr>
+<h2 id="section-i-pointers-q81q86">Section I — Pointers (Q81–Q86)</h2>
+<p><strong>Q81.</strong> Define a pointer. Write the declaration and initialisation of a pointer to an integer, and explain the operators <code>&amp;</code> and <code>*</code>. <strong>(5 marks)</strong></p>
+<p><strong>Q82.</strong> Draw a memory diagram and state the output:</p>
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> x = <span class="tok-num">5</span>;
+<span class="tok-kw">int</span> *p = &amp;x;
+*p = <span class="tok-num">10</span>;
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d %d&quot;</span>, x, *p);</code></pre>
+<p><strong>(5 marks)</strong></p>
+<p><strong>Q83.</strong> Explain pointer arithmetic. If <code>int *p</code> points to <code>a[0]</code>, what is <code>p + 2</code>? How many bytes does <code>p + 1</code> move on a machine where <code>int</code> is 4 bytes? <strong>(5 marks)</strong></p>
+<p><strong>Q84.</strong> Explain the relationship between arrays and pointers. Show that <code>a[i]</code> is equivalent to <code>*(a + i)</code>. <strong>(4 marks)</strong></p>
+<p><strong>Q85.</strong> Write a program that uses a function and pointers to swap two integers. Explain why call by value alone cannot do this. <strong>(6 marks)</strong></p>
+<p><strong>Q86.</strong> Explain <code>malloc</code>, <code>calloc</code>, <code>realloc</code> and <code>free</code>. Write code to allocate an array of 5 integers dynamically and free it. <strong>(6 marks)</strong></p>
+<hr>
+<h2 id="section-j-structures-unions-files-and-formatting-q87q96">Section J — Structures, unions, files and formatting (Q87–Q96)</h2>
+<p><strong>Q87.</strong> Define a structure. Write the declaration of a <code>Student</code> structure with name, age and marks, and initialise one variable. <strong>(5 marks)</strong></p>
+<p><strong>Q88.</strong> Write a program using an array of <code>Student</code> structures to read 3 students and print the student with the highest marks. <strong>(7 marks)</strong></p>
+<p><strong>Q89.</strong> Explain <code>typedef</code> and the <code>-&gt;</code> operator. Rewrite <code>(*p).name</code> using <code>-&gt;</code>. <strong>(4 marks)</strong></p>
+<p><strong>Q90.</strong> Differentiate between a structure and a union. How is the size of each determined? <strong>(5 marks)</strong></p>
+<p><strong>Q91.</strong> What is an enumeration? Give an example and state one advantage. <strong>(4 marks)</strong></p>
+<p><strong>Q92.</strong> Explain the steps of file handling in C: declare a file pointer, open, read/ write, and close. List four file opening modes. <strong>(6 marks)</strong></p>
+<p><strong>Q93.</strong> Write a program to write three student records to a text file and then read them back and display them. <strong>(8 marks)</strong></p>
+<p><strong>Q94.</strong> Predict the output:</p>
+<pre class="code" data-lang="c"><code><span class="tok-fn">printf</span>(<span class="tok-str">&quot;[%5d]\n&quot;</span>, <span class="tok-num">42</span>);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;[%-5d]\n&quot;</span>, <span class="tok-num">42</span>);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;[%05d]\n&quot;</span>, <span class="tok-num">42</span>);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;[%.2f]\n&quot;</span>, <span class="tok-num">3.14159</span>);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;[%8.2f]\n&quot;</span>, <span class="tok-num">3.14159</span>);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;[%.3s]\n&quot;</span>, <span class="tok-str">&quot;Hello&quot;</span>);</code></pre>
+<p><strong>(6 marks)</strong></p>
+<p><strong>Q95.</strong> State four common <code>scanf</code> mistakes and how to fix each. <strong>(4 marks)</strong></p>
+<p><strong>Q96.</strong> Design a formatted report that prints a table with columns <code>Name</code>, <code>Age</code> and <code>Fee</code>, using widths and alignment. Write the <code>printf</code> statements and one sample row. <strong>(5 marks)</strong></p>
+<hr>
+<p><strong>Total: 96 questions.</strong> Aim to answer at least 60 before the exam. The starred high-yield questions are Q1–Q10, Q17, Q25–Q28, Q32–Q38, Q41–Q48, Q51–Q57, Q61–Q68, Q71–Q75 and Q79–Q80.</p>
+
+  </article>
+<nav class="pager"><a class="prev" href="../practice/ACTUAL_QUIZ_ANSWERS.html"><span class="dir">&larr; Previous</span><span class="name">Actual quiz answers (24)</span></a><a class="next" href="../practice/ANSWER_KEY.html"><span class="dir">Next &rarr;</span><span class="name">Answer key</span></a></nav>
+  <footer class="foot">
+    CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
+  </footer>
+</main>
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  <a href="#section-a-programming-fundamentals-q1q10">Section A — Programming fundamentals (Q1–Q10)</a><a href="#section-b-c-basics-and-compilation-q11q20">Section B — C basics and compilation (Q11–Q20)</a><a href="#section-c-data-types-and-number-systems-q21q30">Section C — Data types and number systems (Q21–Q30)</a><a href="#section-d-operators-and-expressions-q31q40">Section D — Operators and expressions (Q31–Q40)</a><a href="#section-e-selection-statements-q41q50">Section E — Selection statements (Q41–Q50)</a><a href="#section-f-loops-q51q60">Section F — Loops (Q51–Q60)</a><a href="#section-g-functions-and-recursion-q61q70">Section G — Functions and recursion (Q61–Q70)</a><a href="#section-h-arrays-and-strings-q71q80">Section H — Arrays and strings (Q71–Q80)</a><a href="#section-i-pointers-q81q86">Section I — Pointers (Q81–Q86)</a><a href="#section-j-structures-unions-files-and-formatting-q87q96">Section J — Structures, unions, files and formatting (Q87–Q96)</a>
+</aside>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('csc112-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '\u2600' : '\u263D';
+    try { localStorage.setItem('csc112-theme', next); } catch (e) {}
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // highlight the current section in the right-hand table of contents
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (links.length) {
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    window.addEventListener('scroll', function () {
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i] && heads[i].getBoundingClientRect().top < 120) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }, { passive: true });
+  }
+
+  // on phones, start with the contents menu collapsed
+  var det = document.querySelector('.nav-details');
+  if (det && window.innerWidth < 1000) det.removeAttribute('open');
+})();
+</script>
+</body>
+</html>
