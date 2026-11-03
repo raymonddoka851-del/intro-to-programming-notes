@@ -1,0 +1,14 @@
+# Compiled programs
+*.exe
+*.o
+*.obj
+*.out
+
+# Files written by the example programs at runtime
+students.txt
+
+# Editor and OS noise
+.vscode/*.log
+Thumbs.db
+desktop.ini
+.DS_Store

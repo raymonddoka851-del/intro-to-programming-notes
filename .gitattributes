@@ -1,0 +1,17 @@
+# Normalise line endings so Windows and GitHub agree.
+* text=auto
+
+*.md    text eol=lf
+*.c     text eol=lf
+*.h     text eol=lf
+*.html  text eol=lf
+*.css   text eol=lf
+*.json  text eol=lf
+*.ps1   text eol=crlf
+*.bat   text eol=crlf
+*.txt   text eol=lf
+
+# Binary
+*.png   binary
+*.jpg   binary
+*.ico   binary
