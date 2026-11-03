@@ -103,6 +103,22 @@ powershell -ExecutionPolicy Bypass -File ".\docs\_build.ps1"
 It reads every `.md` file and rewrites `docs/` in about 15 seconds. No dependencies:
 no Node, no Python, no Pandoc.
 
+### Publishing an update
+
+Edit a `.md` file, rebuild the site, then push. The live site refreshes about a
+minute after the push.
+
+```powershell
+powershell -ExecutionPolicy Bypass -File ".\docs\_build.ps1"
+git add -A
+git commit -m "docs: fix a typo in note 06"
+git push
+```
+
+If `git` is not on your `PATH`, use the full path to `git.exe`, or open the folder
+in VS Code and use the Source Control panel (the branch icon in the sidebar):
+type a message, press **Commit**, then **Sync Changes**.
+
 ## Contributing
 
 Found a mistake? Open an issue or send a pull request — corrections to the notes and
