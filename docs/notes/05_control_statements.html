@@ -7,7 +7,7 @@
 <meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
 <link rel="stylesheet" href="../assets/notes.css">
 </head>
-<body>
+<body data-page="notes/05_control_statements.html" data-pages="[{&quot;label&quot;:&quot;01 · Programming fundamentals&quot;,&quot;href&quot;:&quot;01_programming_fundamentals.html&quot;,&quot;key&quot;:&quot;notes/01_programming_fundamentals.html&quot;},{&quot;label&quot;:&quot;02 · C basics \u0026 compilation&quot;,&quot;href&quot;:&quot;02_c_basics_and_compilation.html&quot;,&quot;key&quot;:&quot;notes/02_c_basics_and_compilation.html&quot;},{&quot;label&quot;:&quot;03 · Data types \u0026 number systems&quot;,&quot;href&quot;:&quot;03_data_types_and_number_systems.html&quot;,&quot;key&quot;:&quot;notes/03_data_types_and_number_systems.html&quot;},{&quot;label&quot;:&quot;04 · Operators \u0026 expressions&quot;,&quot;href&quot;:&quot;04_operators_and_expressions.html&quot;,&quot;key&quot;:&quot;notes/04_operators_and_expressions.html&quot;},{&quot;label&quot;:&quot;05 · Control statements&quot;,&quot;href&quot;:&quot;05_control_statements.html&quot;,&quot;key&quot;:&quot;notes/05_control_statements.html&quot;},{&quot;label&quot;:&quot;06 · Loops&quot;,&quot;href&quot;:&quot;06_loops.html&quot;,&quot;key&quot;:&quot;notes/06_loops.html&quot;},{&quot;label&quot;:&quot;07 · Functions \u0026 recursion&quot;,&quot;href&quot;:&quot;07_functions_and_recursion.html&quot;,&quot;key&quot;:&quot;notes/07_functions_and_recursion.html&quot;},{&quot;label&quot;:&quot;08 · Arrays \u0026 strings&quot;,&quot;href&quot;:&quot;08_arrays_and_strings.html&quot;,&quot;key&quot;:&quot;notes/08_arrays_and_strings.html&quot;},{&quot;label&quot;:&quot;09 · Pointers&quot;,&quot;href&quot;:&quot;09_pointers.html&quot;,&quot;key&quot;:&quot;notes/09_pointers.html&quot;},{&quot;label&quot;:&quot;10 · Structures, unions \u0026 files&quot;,&quot;href&quot;:&quot;10_structures_unions_files.html&quot;,&quot;key&quot;:&quot;notes/10_structures_unions_files.html&quot;},{&quot;label&quot;:&quot;11 · Formatted I/O \u0026 reports&quot;,&quot;href&quot;:&quot;11_formatted_io_and_reports.html&quot;,&quot;key&quot;:&quot;notes/11_formatted_io_and_reports.html&quot;}]">
 <div class="progress" id="progress"></div>
 <div class="layout">
 <aside class="sidebar">
@@ -26,6 +26,7 @@
     <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
   </div>
   <article class="content">
+<div class="page-tools"><button type="button" class="done-btn" id="markDone">Mark as done</button></div>
 <h1 id="note-05-control-statements-selection">Note 05 — Control Statements: Selection</h1>
 <blockquote><p><strong>Covers outline Week 7</strong> (if, if..else, nested if). Also includes <code>switch</code>, because it is in your Week 4/6 notes and is examinable.</p></blockquote>
 <hr>
@@ -63,10 +64,9 @@
     statement;</code></pre>
 <h3 id="22-how-it-works">2.2 How it works</h3>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-</ol>
+<li>Evaluate <code>condition</code>.</li>
+<li>If the result is <strong>non-zero</strong> (true), execute the block.</li>
+<li>If the result is <strong>zero</strong> (false), skip the block.
 <pre class="code"><code>        ┌───────────────┐
         │   condition?  │
         └──┬─────────┬──┘
@@ -79,6 +79,8 @@
          └─────┬─────┘
                ▼
           rest of program</code></pre>
+</li>
+</ol>
 <h3 id="23-example-print-a-message-if-a-number-is-negative">2.3 Example: print a message if a number is negative</h3>
 <pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
 
@@ -178,8 +180,7 @@ Value = 2</code></pre>
 <p>A year is a leap year if:</p>
 <ul>
 <li>it is divisible by 4 <strong>and not</strong> divisible by 100, <strong>or</strong></li>
-<li>it is divisible by 400.</li>
-</ul>
+<li>it is divisible by 400.
 <pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
 
 <span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
@@ -196,6 +197,8 @@ Value = 2</code></pre>
 
     <span class="tok-kw">return</span> <span class="tok-num">0</span>;
 }</code></pre>
+</li>
+</ul>
 <p><strong>Test values:</strong> 1996 (leap), 2000 (leap), 1900 (not leap), 2015 (not leap), 2024 (leap).</p>
 <hr>
 <h2 id="4-the-else-if-ladder">4. The <code>else-if</code> ladder</h2>
@@ -376,11 +379,11 @@ m is greater than n</code></pre>
 }</code></pre>
 <h3 id="62-rules">6.2 Rules</h3>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li><code>expression</code> must have an <strong>integer type</strong> (<code>int</code>, <code>char</code>, <code>long</code>, <code>enum</code>). <strong>Not</strong> <code>float</code>, <code>double</code> or a string.</li>
+<li>Each <code>case</code> label must be a <strong>constant</strong> expression, and all cases must be <strong>unique</strong>.</li>
+<li>Execution starts at the matching case and <strong>continues into the following cases</strong> unless stopped by <code>break</code>. This is called <strong>fall-through</strong>.</li>
+<li><code>default</code> is optional and runs if no case matches. It can appear anywhere, but is usually last.</li>
+<li><code>break</code> exits the <code>switch</code> immediately. Without it, execution &quot;falls through&quot;.</li>
 </ol>
 <h3 id="63-example-grade-remarks">6.3 Example: grade remarks</h3>
 <pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
@@ -564,16 +567,16 @@ I am in default</code></pre>
 <hr>
 <h2 id="9-exam-style-programs-to-practise">9. Exam-style programs to practise</h2>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>Read a number and print whether it is positive, negative or zero.</li>
+<li>Read three numbers and print the largest and smallest.</li>
+<li>Read a mark (0–100) and print the grade (A–F) with validation.</li>
+<li>Read a year and determine whether it is a leap year.</li>
+<li>Read a character and determine whether it is a vowel, consonant, digit or special character.</li>
+<li>Read a month number (1–12) and print the month name and number of days (use <code>switch</code>, handle February).</li>
+<li>Build a menu-driven calculator using <code>switch</code> that repeats until the user chooses &quot;quit&quot; (you will need loops — see Note 06).</li>
+<li>Read a student's score and classify: Distinction (70+), Credit (60–69), Pass (50–59), Fail (&lt;50).</li>
+<li>Read two numbers and print their relation (<code>&lt;</code>, <code>&gt;</code>, <code>=</code>).</li>
+<li>Read a single digit (0–9) and print its English name using <code>switch</code>.</li>
 </ol>
 <hr>
 <h2 id="10-rapid-revision">10. Rapid revision</h2>
@@ -591,38 +594,55 @@ I am in default</code></pre>
 <hr>
 <h2 id="11-self-test-answers-below">11. Self-test (answers below)</h2>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li> ``<code>c int a = 4; if (a &gt; 2) printf(&quot;X&quot;); if (a &gt; 5) printf(&quot;Y&quot;); else printf(&quot;Z&quot;); </code>``</li>
-<li> ``<code>c int x = 7; if (x &gt; 10) printf(&quot;A&quot;); else if (x &gt; 5) printf(&quot;B&quot;); else if (x &gt; 0) printf(&quot;C&quot;); </code>``</li>
-<li> ``<code>c int n = 1; switch (n) { case 1: printf(&quot;One &quot;); case 2: printf(&quot;Two &quot;); default: printf(&quot;Many&quot;); } </code>``</li>
-<li></li>
-<li></li>
+<li>State the three control structures.</li>
+<li>Write the syntax of <code>if-else</code>.</li>
+<li>What is the difference between <code>if</code> and <code>if-else</code>?</li>
+<li>What is an <code>else-if</code> ladder? When is it better than nested <code>if</code>?</li>
+<li>What is the dangling-<code>else</code> problem? How do you avoid it?</li>
+<li>What type must a <code>switch</code> expression be?</li>
+<li>What happens if you omit <code>break</code> in a <code>switch</code>?</li>
+<li>Is <code>default</code> compulsory in a <code>switch</code>? Explain.</li>
+<li>What is printed?
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a = <span class="tok-num">4</span>;
+<span class="tok-kw">if</span> (a &gt; <span class="tok-num">2</span>) <span class="tok-fn">printf</span>(<span class="tok-str">&quot;X&quot;</span>);
+<span class="tok-kw">if</span> (a &gt; <span class="tok-num">5</span>) <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Y&quot;</span>);
+<span class="tok-kw">else</span> <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Z&quot;</span>);</code></pre>
+</li>
+<li>What is printed?
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> x = <span class="tok-num">7</span>;
+<span class="tok-kw">if</span> (x &gt; <span class="tok-num">10</span>) <span class="tok-fn">printf</span>(<span class="tok-str">&quot;A&quot;</span>);
+<span class="tok-kw">else</span> <span class="tok-kw">if</span> (x &gt; <span class="tok-num">5</span>) <span class="tok-fn">printf</span>(<span class="tok-str">&quot;B&quot;</span>);
+<span class="tok-kw">else</span> <span class="tok-kw">if</span> (x &gt; <span class="tok-num">0</span>) <span class="tok-fn">printf</span>(<span class="tok-str">&quot;C&quot;</span>);</code></pre>
+</li>
+<li>What is printed?
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> n = <span class="tok-num">1</span>;
+<span class="tok-kw">switch</span> (n) {
+    <span class="tok-kw">case</span> <span class="tok-num">1</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;One &quot;</span>);
+    <span class="tok-kw">case</span> <span class="tok-num">2</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Two &quot;</span>);
+    <span class="tok-kw">default</span>: <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Many&quot;</span>);
+}</code></pre>
+</li>
+<li>Write a program that reads a number and prints &quot;Positive&quot;, &quot;Negative&quot; or &quot;Zero&quot;.</li>
+<li>Write a program that reads a score and prints A (70+), B (60–69), C (50–59), D (40–49), F (below 40).</li>
 </ol>
 <h3 id="answers">Answers</h3>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>Sequence, selection, repetition.</li>
+<li><code>if (condition) { statements; } else { statements; }</code></li>
+<li><code>if</code> runs a block only when true and does nothing when false; <code>if-else</code> always runs exactly one of two blocks.</li>
+<li>A chain of <code>if ... else if ... else</code>; good when there are multiple mutually exclusive ranges/conditions, because it stops at the first true condition and is clearer than deeply nested <code>if</code>s.</li>
+<li>An <code>else</code> binds to the nearest unmatched <code>if</code>, which may not be the one the indentation suggests. Avoid it by always using braces.</li>
+<li>Integer or character type (<code>int</code>, <code>char</code>, <code>long</code>, <code>enum</code>) — not float or string.</li>
+<li>Execution falls through into the following cases until a <code>break</code> or the end of the <code>switch</code>.</li>
+<li>No; if no case matches and there is no <code>default</code>, the <code>switch</code> does nothing.</li>
+<li><code>XZ</code> — first <code>if</code> true; second false, so its <code>else</code> prints Z.</li>
+<li><code>B</code> — first true condition wins.</li>
+<li><code>One Two Many</code> — fall-through.</li>
+<li>See §2.3/§4 examples; use <code>if (n &gt; 0) ... else if (n &lt; 0) ... else ...</code>.</li>
+<li>See §4.2.</li>
 </ol>
 <hr>
-<p><strong>Next:</strong> <code>06_loops.md</code></p>
+<p><strong>Next:</strong> <a class="file-ref" href="06_loops.html"><code>06_loops.md</code></a></p>
 
   </article>
 <nav class="pager"><a class="prev" href="../notes/04_operators_and_expressions.html"><span class="dir">&larr; Previous</span><span class="name">04 · Operators &amp; expressions</span></a><a class="next" href="../notes/06_loops.html"><span class="dir">Next &rarr;</span><span class="name">06 · Loops</span></a></nav>
@@ -674,6 +694,126 @@ I am in default</code></pre>
   // on phones, start with the contents menu collapsed
   var det = document.querySelector('.nav-details');
   if (det && window.innerWidth < 1000) det.removeAttribute('open');
+
+  // ---- interactive checklist -------------------------------------------
+  var pageId  = document.body.getAttribute('data-page') || location.pathname;
+  var checks  = [].slice.call(document.querySelectorAll('.task-check'));
+  var countEl = document.getElementById('checkCount');
+  var resetBtn = document.getElementById('resetChecks');
+
+  function checkKey(el) { return 'csc112:task:' + pageId + ':' + el.getAttribute('data-task'); }
+  function updateCount() {
+    if (!countEl) return;
+    var done = checks.filter(function (c) { return c.checked; }).length;
+    countEl.textContent = done + ' / ' + checks.length + ' done';
+    countEl.classList.toggle('all', checks.length > 0 && done === checks.length);
+  }
+  checks.forEach(function (c) {
+    try { if (localStorage.getItem(checkKey(c)) === '1') c.checked = true; } catch (e) {}
+    c.addEventListener('change', function () {
+      try { localStorage.setItem(checkKey(c), c.checked ? '1' : '0'); } catch (e) {}
+      updateCount();
+    });
+  });
+  updateCount();
+  if (resetBtn) resetBtn.addEventListener('click', function () {
+    checks.forEach(function (c) {
+      c.checked = false;
+      try { localStorage.removeItem(checkKey(c)); } catch (e) {}
+    });
+    updateCount();
+  });
+
+  // ---- fill-in blanks ---------------------------------------------------
+  var blanks = [].slice.call(document.querySelectorAll('input.blank'));
+  blanks.forEach(function (b) {
+    var k = 'csc112:blank:' + pageId + ':' + b.getAttribute('data-blank');
+    try {
+      var v = localStorage.getItem(k);
+      if (v !== null) b.value = v;
+    } catch (e) {}
+    b.addEventListener('input', function () {
+      try { localStorage.setItem(k, b.value); } catch (e) {}
+      if (b.getAttribute('data-kind') === 'date') updateDays();
+    });
+  });
+
+  function updateDays() {
+    var date = document.querySelector('input.blank[data-kind="date"]');
+    var days = document.querySelector('input.blank[data-kind="days"]');
+    if (!date || !days) return;
+    if (!date.value) { days.value = ''; return; }
+    var d = new Date(date.value + 'T00:00:00');
+    if (isNaN(d.getTime())) { days.value = ''; return; }
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    days.value = String(Math.round((d - today) / 86400000));
+  }
+  updateDays();
+
+  // ---- mark as done + progress panel -----------------------------------
+  var doneBtn = document.getElementById('markDone');
+  var doneKey = 'csc112:done:' + pageId;
+  function isDone() { try { return localStorage.getItem(doneKey) === '1'; } catch (e) { return false; } }
+  function paintDone() {
+    if (!doneBtn) return;
+    doneBtn.textContent = isDone() ? '\u2713 Done' : 'Mark as done';
+    doneBtn.classList.toggle('is-done', isDone());
+  }
+  if (doneBtn) doneBtn.addEventListener('click', function () {
+    try { localStorage.setItem(doneKey, isDone() ? '0' : '1'); } catch (e) {}
+    paintDone();
+    renderPanel();
+  });
+  paintDone();
+
+  var panel = document.getElementById('donePanel');
+  var pages = [];
+  try { pages = JSON.parse(document.body.getAttribute('data-pages') || '[]'); } catch (e) {}
+  function renderPanel() {
+    if (!panel || !pages.length) return;
+    panel.innerHTML = '';
+    var n = 0;
+    pages.forEach(function (p) {
+      try { if (localStorage.getItem('csc112:done:' + p.key) === '1') n++; } catch (e) {}
+    });
+    var head = document.createElement('p');
+    head.className = 'done-summary';
+    head.textContent = n + ' / ' + pages.length + ' pages marked done';
+    panel.appendChild(head);
+
+    var list = document.createElement('ul');
+    list.className = 'done-list';
+    pages.forEach(function (p) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = p.href;
+      a.textContent = p.label;
+      var s = document.createElement('span');
+      var d = false;
+      try { d = localStorage.getItem('csc112:done:' + p.key) === '1'; } catch (e) {}
+      s.className = 'done-flag' + (d ? ' yes' : '');
+      s.textContent = d ? '\u2713 done' : 'not done';
+      li.appendChild(a);
+      li.appendChild(s);
+      list.appendChild(li);
+    });
+    panel.appendChild(list);
+  }
+  renderPanel();
+
+  // print shows the answers so the PDF is a complete revision sheet
+  window.addEventListener('beforeprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      d.setAttribute('data-was-open', d.open ? '1' : '0');
+      d.open = true;
+    });
+  });
+  window.addEventListener('afterprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      if (d.getAttribute('data-was-open') === '0') d.open = false;
+    });
+  });
 })();
 </script>
 </body>

@@ -5,6 +5,14 @@
 
 ---
 
+## 0. My progress
+
+Mark a page as done at the top of that page; it appears here automatically.
+
+:::progress
+
+---
+
 ## 1. Exam details
 
 | Item | Value |

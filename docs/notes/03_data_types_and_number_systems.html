@@ -7,7 +7,7 @@
 <meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
 <link rel="stylesheet" href="../assets/notes.css">
 </head>
-<body>
+<body data-page="notes/03_data_types_and_number_systems.html" data-pages="[{&quot;label&quot;:&quot;01 · Programming fundamentals&quot;,&quot;href&quot;:&quot;01_programming_fundamentals.html&quot;,&quot;key&quot;:&quot;notes/01_programming_fundamentals.html&quot;},{&quot;label&quot;:&quot;02 · C basics \u0026 compilation&quot;,&quot;href&quot;:&quot;02_c_basics_and_compilation.html&quot;,&quot;key&quot;:&quot;notes/02_c_basics_and_compilation.html&quot;},{&quot;label&quot;:&quot;03 · Data types \u0026 number systems&quot;,&quot;href&quot;:&quot;03_data_types_and_number_systems.html&quot;,&quot;key&quot;:&quot;notes/03_data_types_and_number_systems.html&quot;},{&quot;label&quot;:&quot;04 · Operators \u0026 expressions&quot;,&quot;href&quot;:&quot;04_operators_and_expressions.html&quot;,&quot;key&quot;:&quot;notes/04_operators_and_expressions.html&quot;},{&quot;label&quot;:&quot;05 · Control statements&quot;,&quot;href&quot;:&quot;05_control_statements.html&quot;,&quot;key&quot;:&quot;notes/05_control_statements.html&quot;},{&quot;label&quot;:&quot;06 · Loops&quot;,&quot;href&quot;:&quot;06_loops.html&quot;,&quot;key&quot;:&quot;notes/06_loops.html&quot;},{&quot;label&quot;:&quot;07 · Functions \u0026 recursion&quot;,&quot;href&quot;:&quot;07_functions_and_recursion.html&quot;,&quot;key&quot;:&quot;notes/07_functions_and_recursion.html&quot;},{&quot;label&quot;:&quot;08 · Arrays \u0026 strings&quot;,&quot;href&quot;:&quot;08_arrays_and_strings.html&quot;,&quot;key&quot;:&quot;notes/08_arrays_and_strings.html&quot;},{&quot;label&quot;:&quot;09 · Pointers&quot;,&quot;href&quot;:&quot;09_pointers.html&quot;,&quot;key&quot;:&quot;notes/09_pointers.html&quot;},{&quot;label&quot;:&quot;10 · Structures, unions \u0026 files&quot;,&quot;href&quot;:&quot;10_structures_unions_files.html&quot;,&quot;key&quot;:&quot;notes/10_structures_unions_files.html&quot;},{&quot;label&quot;:&quot;11 · Formatted I/O \u0026 reports&quot;,&quot;href&quot;:&quot;11_formatted_io_and_reports.html&quot;,&quot;key&quot;:&quot;notes/11_formatted_io_and_reports.html&quot;}]">
 <div class="progress" id="progress"></div>
 <div class="layout">
 <aside class="sidebar">
@@ -26,6 +26,7 @@
     <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
   </div>
   <article class="content">
+<div class="page-tools"><button type="button" class="done-btn" id="markDone">Mark as done</button></div>
 <h1 id="note-03-data-types-number-systems-information-storage">Note 03 — Data Types, Number Systems &amp; Information Storage</h1>
 <blockquote><p><strong>Covers outline Weeks 3–4</strong> (data types) plus the number-systems and storage part of the course description.</p></blockquote>
 <hr>
@@ -412,18 +413,18 @@ inv  = 1110 1101
 <hr>
 <h2 id="10-common-exam-traps">10. Common exam traps</h2>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li><strong><code>sizeof</code> vs <code>strlen</code>:</strong> <code>sizeof(&quot;Hi&quot;)</code> is 3 (including <code>'\0'</code>); <code>strlen(&quot;Hi&quot;)</code> is 2.</li>
+<li><strong><code>'0'</code> is not <code>0</code>:</strong> <code>'0'</code> has ASCII 48. To convert, subtract <code>'0'</code>.</li>
+<li><strong>Integer division truncates:</strong> <code>7/2 = 3</code>, <code>-7/2 = -3</code> (C99), not <code>-4</code>.</li>
+<li><strong><code>%</code> only works on integers.</strong> <code>7.5 % 2</code> is a compile error.</li>
+<li><strong><code>float</code> is not exact:</strong> never test <code>==</code>; use a tolerance.</li>
+<li><strong><code>int</code> size is not guaranteed</strong> to be 4 bytes; it is platform-dependent.</li>
+<li><strong>Unsigned underflow:</strong> <code>unsigned int x = 0; x--;</code> gives 4,294,967,295, not −1.</li>
+<li><strong>Signed overflow</strong> is undefined behaviour; do not rely on wrap-around.</li>
+<li><strong><code>char</code> may be signed or unsigned</strong> by default — platform-dependent.</li>
+<li><strong>A string needs room for <code>'\0'</code>:</strong> <code>char s[5] = &quot;Hello&quot;;</code> is invalid (needs 6).</li>
+<li><strong><code>%f</code> in <code>scanf</code> for <code>double</code> is wrong</strong> — use <code>%lf</code>.</li>
+<li><strong><code>0x</code> for hex, leading <code>0</code> for octal</strong> — <code>010</code> is 8, not 10.</li>
 </ol>
 <hr>
 <h2 id="11-rapid-revision">11. Rapid revision</h2>
@@ -442,42 +443,48 @@ inv  = 1110 1101
 <hr>
 <h2 id="12-self-test-answers-below">12. Self-test (answers below)</h2>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li> ``<code>c char c = 'a'; printf(&quot;%c %d\n&quot;, c - 32, c - 32); </code>``</li>
-<li> ``<code>c int a = 9, b = 2; printf(&quot;%d %.2f\n&quot;, a / b, (float)a / b); </code>``</li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>Convert 37 to binary, octal and hex.</li>
+<li>Convert <code>11011011₂</code> to decimal and hex.</li>
+<li>Convert <code>0x3F</code> to decimal and binary.</li>
+<li>Represent −25 in 8-bit two's complement.</li>
+<li>What is the range of a signed 16-bit integer?</li>
+<li>State the typical size and precision of <code>float</code> and <code>double</code>.</li>
+<li>What is the ASCII value of <code>'A'</code>, <code>'a'</code>, <code>'0'</code> and space?</li>
+<li>What is the difference between <code>'5'</code> and <code>5</code>?</li>
+<li>What is printed?
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> c = <span class="tok-chr">'a'</span>;
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%c %d\n&quot;</span>, c - <span class="tok-num">32</span>, c - <span class="tok-num">32</span>);</code></pre>
+</li>
+<li>What is printed?
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a = <span class="tok-num">9</span>, b = <span class="tok-num">2</span>;
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d %.2f\n&quot;</span>, a / b, (<span class="tok-kw">float</span>)a / b);</code></pre>
+</li>
+<li>Why is <code>char s[5] = &quot;Hello&quot;;</code> wrong?</li>
+<li>What does <code>sizeof(&quot;Hello&quot;)</code> return?</li>
+<li>Convert 0.375 to binary.</li>
+<li>Explain why <code>0.1 + 0.2 == 0.3</code> is usually false in C.</li>
+<li>What is the difference between a signed and an unsigned integer?</li>
 </ol>
 <h3 id="answers">Answers</h3>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>37 = <strong>100101₂</strong> = <strong>45₈</strong> = <strong>0x25</strong>.</li>
+<li><code>11011011₂</code> = 219 decimal = <strong>0xDB</strong>.</li>
+<li><code>0x3F</code> = 63 decimal = <strong>00111111₂</strong>.</li>
+<li>+25 = <code>0001 1001</code> → invert <code>1110 0110</code> → +1 = <strong>1110 0111</strong>.</li>
+<li><strong>−32,768 to 32,767</strong>.</li>
+<li><code>float</code>: 4 bytes, ~6–7 significant digits; <code>double</code>: 8 bytes, ~15–16 significant digits.</li>
+<li>65, 97, 48, 32.</li>
+<li><code>'5'</code> is a character with ASCII value 53; <code>5</code> is the integer five. <code>'5' - '0' = 5</code>.</li>
+<li><code>A 65</code> (97 − 32 = 65).</li>
+<li><code>4 4.50</code>.</li>
+<li>&quot;Hello&quot; needs 6 bytes including the terminating <code>'\0'</code>; a 5-byte array is too small.</li>
+<li><strong>6</strong> (5 letters + <code>'\0'</code>).</li>
+<li>0.375 × 2 = 0.75 → 0; 0.75 × 2 = 1.5 → 1; 0.5 × 2 = 1.0 → 1 → <strong>0.011₂</strong>.</li>
+<li>Because 0.1 and 0.2 cannot be represented exactly in binary floating-point; their sum is a value very close to but not exactly 0.3.</li>
+<li>Signed can hold negative and positive values (one bit is the sign); unsigned holds only zero and positive values, so it has a larger positive range.</li>
 </ol>
 <hr>
-<p><strong>Next:</strong> <code>04_operators_and_expressions.md</code></p>
+<p><strong>Next:</strong> <a class="file-ref" href="04_operators_and_expressions.html"><code>04_operators_and_expressions.md</code></a></p>
 
   </article>
 <nav class="pager"><a class="prev" href="../notes/02_c_basics_and_compilation.html"><span class="dir">&larr; Previous</span><span class="name">02 · C basics &amp; compilation</span></a><a class="next" href="../notes/04_operators_and_expressions.html"><span class="dir">Next &rarr;</span><span class="name">04 · Operators &amp; expressions</span></a></nav>
@@ -529,6 +536,126 @@ inv  = 1110 1101
   // on phones, start with the contents menu collapsed
   var det = document.querySelector('.nav-details');
   if (det && window.innerWidth < 1000) det.removeAttribute('open');
+
+  // ---- interactive checklist -------------------------------------------
+  var pageId  = document.body.getAttribute('data-page') || location.pathname;
+  var checks  = [].slice.call(document.querySelectorAll('.task-check'));
+  var countEl = document.getElementById('checkCount');
+  var resetBtn = document.getElementById('resetChecks');
+
+  function checkKey(el) { return 'csc112:task:' + pageId + ':' + el.getAttribute('data-task'); }
+  function updateCount() {
+    if (!countEl) return;
+    var done = checks.filter(function (c) { return c.checked; }).length;
+    countEl.textContent = done + ' / ' + checks.length + ' done';
+    countEl.classList.toggle('all', checks.length > 0 && done === checks.length);
+  }
+  checks.forEach(function (c) {
+    try { if (localStorage.getItem(checkKey(c)) === '1') c.checked = true; } catch (e) {}
+    c.addEventListener('change', function () {
+      try { localStorage.setItem(checkKey(c), c.checked ? '1' : '0'); } catch (e) {}
+      updateCount();
+    });
+  });
+  updateCount();
+  if (resetBtn) resetBtn.addEventListener('click', function () {
+    checks.forEach(function (c) {
+      c.checked = false;
+      try { localStorage.removeItem(checkKey(c)); } catch (e) {}
+    });
+    updateCount();
+  });
+
+  // ---- fill-in blanks ---------------------------------------------------
+  var blanks = [].slice.call(document.querySelectorAll('input.blank'));
+  blanks.forEach(function (b) {
+    var k = 'csc112:blank:' + pageId + ':' + b.getAttribute('data-blank');
+    try {
+      var v = localStorage.getItem(k);
+      if (v !== null) b.value = v;
+    } catch (e) {}
+    b.addEventListener('input', function () {
+      try { localStorage.setItem(k, b.value); } catch (e) {}
+      if (b.getAttribute('data-kind') === 'date') updateDays();
+    });
+  });
+
+  function updateDays() {
+    var date = document.querySelector('input.blank[data-kind="date"]');
+    var days = document.querySelector('input.blank[data-kind="days"]');
+    if (!date || !days) return;
+    if (!date.value) { days.value = ''; return; }
+    var d = new Date(date.value + 'T00:00:00');
+    if (isNaN(d.getTime())) { days.value = ''; return; }
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    days.value = String(Math.round((d - today) / 86400000));
+  }
+  updateDays();
+
+  // ---- mark as done + progress panel -----------------------------------
+  var doneBtn = document.getElementById('markDone');
+  var doneKey = 'csc112:done:' + pageId;
+  function isDone() { try { return localStorage.getItem(doneKey) === '1'; } catch (e) { return false; } }
+  function paintDone() {
+    if (!doneBtn) return;
+    doneBtn.textContent = isDone() ? '\u2713 Done' : 'Mark as done';
+    doneBtn.classList.toggle('is-done', isDone());
+  }
+  if (doneBtn) doneBtn.addEventListener('click', function () {
+    try { localStorage.setItem(doneKey, isDone() ? '0' : '1'); } catch (e) {}
+    paintDone();
+    renderPanel();
+  });
+  paintDone();
+
+  var panel = document.getElementById('donePanel');
+  var pages = [];
+  try { pages = JSON.parse(document.body.getAttribute('data-pages') || '[]'); } catch (e) {}
+  function renderPanel() {
+    if (!panel || !pages.length) return;
+    panel.innerHTML = '';
+    var n = 0;
+    pages.forEach(function (p) {
+      try { if (localStorage.getItem('csc112:done:' + p.key) === '1') n++; } catch (e) {}
+    });
+    var head = document.createElement('p');
+    head.className = 'done-summary';
+    head.textContent = n + ' / ' + pages.length + ' pages marked done';
+    panel.appendChild(head);
+
+    var list = document.createElement('ul');
+    list.className = 'done-list';
+    pages.forEach(function (p) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = p.href;
+      a.textContent = p.label;
+      var s = document.createElement('span');
+      var d = false;
+      try { d = localStorage.getItem('csc112:done:' + p.key) === '1'; } catch (e) {}
+      s.className = 'done-flag' + (d ? ' yes' : '');
+      s.textContent = d ? '\u2713 done' : 'not done';
+      li.appendChild(a);
+      li.appendChild(s);
+      list.appendChild(li);
+    });
+    panel.appendChild(list);
+  }
+  renderPanel();
+
+  // print shows the answers so the PDF is a complete revision sheet
+  window.addEventListener('beforeprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      d.setAttribute('data-was-open', d.open ? '1' : '0');
+      d.open = true;
+    });
+  });
+  window.addEventListener('afterprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      if (d.getAttribute('data-was-open') === '0') d.open = false;
+    });
+  });
 })();
 </script>
 </body>

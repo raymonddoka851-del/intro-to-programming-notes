@@ -7,7 +7,7 @@
 <meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
 <link rel="stylesheet" href="../assets/notes.css">
 </head>
-<body>
+<body data-page="notes/02_c_basics_and_compilation.html" data-pages="[{&quot;label&quot;:&quot;01 · Programming fundamentals&quot;,&quot;href&quot;:&quot;01_programming_fundamentals.html&quot;,&quot;key&quot;:&quot;notes/01_programming_fundamentals.html&quot;},{&quot;label&quot;:&quot;02 · C basics \u0026 compilation&quot;,&quot;href&quot;:&quot;02_c_basics_and_compilation.html&quot;,&quot;key&quot;:&quot;notes/02_c_basics_and_compilation.html&quot;},{&quot;label&quot;:&quot;03 · Data types \u0026 number systems&quot;,&quot;href&quot;:&quot;03_data_types_and_number_systems.html&quot;,&quot;key&quot;:&quot;notes/03_data_types_and_number_systems.html&quot;},{&quot;label&quot;:&quot;04 · Operators \u0026 expressions&quot;,&quot;href&quot;:&quot;04_operators_and_expressions.html&quot;,&quot;key&quot;:&quot;notes/04_operators_and_expressions.html&quot;},{&quot;label&quot;:&quot;05 · Control statements&quot;,&quot;href&quot;:&quot;05_control_statements.html&quot;,&quot;key&quot;:&quot;notes/05_control_statements.html&quot;},{&quot;label&quot;:&quot;06 · Loops&quot;,&quot;href&quot;:&quot;06_loops.html&quot;,&quot;key&quot;:&quot;notes/06_loops.html&quot;},{&quot;label&quot;:&quot;07 · Functions \u0026 recursion&quot;,&quot;href&quot;:&quot;07_functions_and_recursion.html&quot;,&quot;key&quot;:&quot;notes/07_functions_and_recursion.html&quot;},{&quot;label&quot;:&quot;08 · Arrays \u0026 strings&quot;,&quot;href&quot;:&quot;08_arrays_and_strings.html&quot;,&quot;key&quot;:&quot;notes/08_arrays_and_strings.html&quot;},{&quot;label&quot;:&quot;09 · Pointers&quot;,&quot;href&quot;:&quot;09_pointers.html&quot;,&quot;key&quot;:&quot;notes/09_pointers.html&quot;},{&quot;label&quot;:&quot;10 · Structures, unions \u0026 files&quot;,&quot;href&quot;:&quot;10_structures_unions_files.html&quot;,&quot;key&quot;:&quot;notes/10_structures_unions_files.html&quot;},{&quot;label&quot;:&quot;11 · Formatted I/O \u0026 reports&quot;,&quot;href&quot;:&quot;11_formatted_io_and_reports.html&quot;,&quot;key&quot;:&quot;notes/11_formatted_io_and_reports.html&quot;}]">
 <div class="progress" id="progress"></div>
 <div class="layout">
 <aside class="sidebar">
@@ -26,6 +26,7 @@
     <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
   </div>
   <article class="content">
+<div class="page-tools"><button type="button" class="done-btn" id="markDone">Mark as done</button></div>
 <h1 id="note-02-c-basics-program-structure-compilation">Note 02 — C Basics, Program Structure &amp; Compilation</h1>
 <blockquote><p><strong>Covers outline Week 2</strong> (compilation; C programming format and structure).</p></blockquote>
 <hr>
@@ -76,14 +77,14 @@
 </tbody></table></div>
 <h3 id="23-rules-of-c-you-must-never-break">2.3 Rules of C you must never break</h3>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li><strong>C is case-sensitive.</strong> <code>main</code>, <code>Main</code> and <code>MAIN</code> are different. All keywords are lowercase.</li>
+<li><strong>Every statement ends with a semicolon</strong> <code>;</code> — except preprocessor directives and block braces.</li>
+<li><strong>Braces <code>{ }</code> group statements</strong> into a block. They must balance.</li>
+<li><strong>C is free-form.</strong> Whitespace and line breaks are ignored (except inside strings), so you can format code neatly.</li>
+<li><strong>Strings use double quotes</strong> <code>&quot;hello&quot;</code>; <strong>single characters use single quotes</strong> <code>'A'</code>.</li>
+<li><strong>Every variable must be declared before use.</strong></li>
+<li><strong><code>main</code> returns <code>int</code></strong> in standard C; use <code>int main(void)</code> or <code>int main(int argc, char *argv[])</code>.</li>
+<li><strong>Comments do not nest</strong> (see §4).</li>
 </ol>
 <h3 id="24-main-signatures">2.4 <code>main</code> signatures</h3>
 <pre class="code" data-lang="c"><code><span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>) { ... }                       <span class="tok-com">/* no command-line arguments */</span>
@@ -122,12 +123,12 @@
 <h3 id="51-rules-for-identifiers-names">5.1 Rules for identifiers (names)</h3>
 <p>An identifier is a name for a variable, function, array, struct, etc.</p>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>Must begin with a <strong>letter</strong> (A–Z, a–z) or an <strong>underscore</strong> <code>_</code>.</li>
+<li>May contain letters, digits and underscores after the first character.</li>
+<li><strong>No spaces</strong>, no special symbols (<code>@</code>, <code>-</code>, <code>%</code>, etc.).</li>
+<li>Cannot be a <strong>keyword</strong> (reserved word).</li>
+<li><strong>Case-sensitive</strong>: <code>Sum</code>, <code>sum</code> and <code>SUM</code> are three different identifiers.</li>
+<li>Should be <strong>meaningful</strong> but not too long: <code>total_marks</code>, not <code>t</code>.</li>
 </ol>
 <p><strong>Valid:</strong> <code>sum</code>, <code>_count</code>, <code>student1</code>, <code>total_marks</code>, <code>x2</code> <strong>Invalid:</strong> <code>2sum</code> (starts with digit), <code>total marks</code> (space), <code>total-marks</code> (hyphen), <code>float</code> (keyword), <code>student@1</code> (symbol)</p>
 <h3 id="52-keywords">5.2 Keywords</h3>
@@ -159,8 +160,7 @@ struct   switch   typedef  union    unsigned void      volatile  while</code></p
 <li>No semicolon at the end.</li>
 <li>The preprocessor performs <strong>text substitution</strong> before compilation.</li>
 <li>Traditionally written in UPPERCASE.</li>
-<li>You cannot assign a new value to it.</li>
-</ul>
+<li>You cannot assign a new value to it.
 <pre class="code" data-lang="c"><code><span class="tok-pre">#define TAXRATE 0.10</span>
 
 <span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>) {
@@ -169,6 +169,8 @@ struct   switch   typedef  union    unsigned void      volatile  while</code></p
     <span class="tok-fn">printf</span>(<span class="tok-str">&quot;The tax on %.2f is %.2f\n&quot;</span>, balance, tax);
     <span class="tok-kw">return</span> <span class="tok-num">0</span>;
 }</code></pre>
+</li>
+</ul>
 <p><strong>Output:</strong> <code>The tax on 72.10 is 7.21</code></p>
 <p>If the tax rate changes, you edit <strong>one line</strong>.</p>
 <h3 id="62-const-compiler-enforced">6.2 <code>const</code> (compiler-enforced)</h3>
@@ -254,10 +256,11 @@ hello.exe                     # run (Windows)</code></pre>
 <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%d&quot;</span>, &amp;age);</code></pre>
 <ul>
 <li>The <strong><code>&amp;</code> (address-of operator)</strong> tells <code>scanf</code> where to store the value.</li>
-<li><strong>Exception:</strong> when reading a string into a <code>char</code> array, the array name is already an address, so no <code>&amp;</code>:</li>
-</ul>
+<li><strong>Exception:</strong> when reading a string into a <code>char</code> array, the array name is already an address, so no <code>&amp;</code>:
 <pre class="code" data-lang="c"><code><span class="tok-kw">char</span> name[<span class="tok-num">20</span>];
 <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%19s&quot;</span>, name);     <span class="tok-com">/* no &amp; */</span></code></pre>
+</li>
+</ul>
 <h3 id="83-first-complete-programs">8.3 First complete programs</h3>
 <p><strong>Add two integers</strong></p>
 <pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
@@ -367,36 +370,48 @@ hello.exe                     # run (Windows)</code></pre>
 <hr>
 <h2 id="12-self-test-answers-below">12. Self-test (answers below)</h2>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li> ``<code>c #include &lt;stdio.h&gt; void main() { int x printf(&quot;Enter x: &quot;); scanf(&quot;%f&quot;, x); printf(&quot;%d\n&quot;, x); } </code>``</li>
-<li> ``<code>c int a = 7, b = 2; printf(&quot;%d %.2f\n&quot;, a / b, (float)a / b); </code>``</li>
+<li>Who developed C, where and when?</li>
+<li>List the six parts of a C program.</li>
+<li>Why does <code>#include &lt;stdio.h&gt;</code> not end with a semicolon?</li>
+<li>State five rules for naming identifiers.</li>
+<li>Differentiate <code>#define</code> and <code>const</code>.</li>
+<li>Describe the five stages from source code to a running program.</li>
+<li>What is the difference between object code and an executable?</li>
+<li>What does the linker do?</li>
+<li>What is the difference between a syntax error and a logical error?</li>
+<li>Write a program to read the radius and print the area and circumference of a circle.</li>
+<li>Identify the errors:
+<pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
+<span class="tok-kw">void</span> <span class="tok-fn">main</span>()
+{
+    <span class="tok-kw">int</span> x
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Enter x: &quot;</span>);
+    <span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%f&quot;</span>, x);
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, x);
+}</code></pre>
+</li>
+<li>What is printed?
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a = <span class="tok-num">7</span>, b = <span class="tok-num">2</span>;
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d %.2f\n&quot;</span>, a / b, (<span class="tok-kw">float</span>)a / b);</code></pre>
+</li>
 </ol>
 <h3 id="answers">Answers</h3>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>Dennis M. Ritchie, Bell Laboratories, 1972.</li>
+<li>Preprocessor directives, global declarations, <code>main()</code>, declarations, statements, return statement.</li>
+<li>It is a preprocessor directive, not a C statement; the preprocessor handles it before compilation.</li>
+<li>Start with a letter or underscore; only letters/digits/underscores afterwards; no spaces/special symbols; not a keyword; case-sensitive; meaningful.</li>
+<li><code>#define</code> is text substitution with no type checking and no semicolon; <code>const</code> is a typed, compiler-checked read-only variable that needs a semicolon.</li>
+<li>Preprocessing → compilation → assembly → linking → loading/execution.</li>
+<li>Object code is machine code with unresolved external references (not runnable); an executable has all library code linked and can be run.</li>
+<li>The linker combines object code with library code and resolves external references to produce an executable.</li>
+<li>A syntax error violates C grammar and prevents compilation; a logical error compiles and runs but produces wrong output.</li>
+<li>See <a class="file-ref" href="https://github.com/raymonddoka851-del/intro-to-programming-notes/blob/main/code/area_circle.c" target="_blank" rel="noopener noreferrer"><code>code/area_circle.c</code></a> (uses <code>2 * PI * r</code> for circumference).</li>
+<li><code>void main</code> should be <code>int main(void)</code>; missing semicolon after <code>int x</code>; <code>scanf(&quot;%f&quot;, x)</code> uses the wrong specifier and missing <code>&amp;</code> (should be <code>%d</code>, <code>&amp;x</code>); missing <code>return 0;</code>.</li>
+<li><code>3 3.50</code> — <code>a / b</code> is integer division (7/2 = 3), while the cast makes the second division floating-point.</li>
 </ol>
 <hr>
-<p><strong>Next:</strong> <code>03_data_types_and_number_systems.md</code></p>
+<p><strong>Next:</strong> <a class="file-ref" href="03_data_types_and_number_systems.html"><code>03_data_types_and_number_systems.md</code></a></p>
 
   </article>
 <nav class="pager"><a class="prev" href="../notes/01_programming_fundamentals.html"><span class="dir">&larr; Previous</span><span class="name">01 · Programming fundamentals</span></a><a class="next" href="../notes/03_data_types_and_number_systems.html"><span class="dir">Next &rarr;</span><span class="name">03 · Data types &amp; number systems</span></a></nav>
@@ -448,6 +463,126 @@ hello.exe                     # run (Windows)</code></pre>
   // on phones, start with the contents menu collapsed
   var det = document.querySelector('.nav-details');
   if (det && window.innerWidth < 1000) det.removeAttribute('open');
+
+  // ---- interactive checklist -------------------------------------------
+  var pageId  = document.body.getAttribute('data-page') || location.pathname;
+  var checks  = [].slice.call(document.querySelectorAll('.task-check'));
+  var countEl = document.getElementById('checkCount');
+  var resetBtn = document.getElementById('resetChecks');
+
+  function checkKey(el) { return 'csc112:task:' + pageId + ':' + el.getAttribute('data-task'); }
+  function updateCount() {
+    if (!countEl) return;
+    var done = checks.filter(function (c) { return c.checked; }).length;
+    countEl.textContent = done + ' / ' + checks.length + ' done';
+    countEl.classList.toggle('all', checks.length > 0 && done === checks.length);
+  }
+  checks.forEach(function (c) {
+    try { if (localStorage.getItem(checkKey(c)) === '1') c.checked = true; } catch (e) {}
+    c.addEventListener('change', function () {
+      try { localStorage.setItem(checkKey(c), c.checked ? '1' : '0'); } catch (e) {}
+      updateCount();
+    });
+  });
+  updateCount();
+  if (resetBtn) resetBtn.addEventListener('click', function () {
+    checks.forEach(function (c) {
+      c.checked = false;
+      try { localStorage.removeItem(checkKey(c)); } catch (e) {}
+    });
+    updateCount();
+  });
+
+  // ---- fill-in blanks ---------------------------------------------------
+  var blanks = [].slice.call(document.querySelectorAll('input.blank'));
+  blanks.forEach(function (b) {
+    var k = 'csc112:blank:' + pageId + ':' + b.getAttribute('data-blank');
+    try {
+      var v = localStorage.getItem(k);
+      if (v !== null) b.value = v;
+    } catch (e) {}
+    b.addEventListener('input', function () {
+      try { localStorage.setItem(k, b.value); } catch (e) {}
+      if (b.getAttribute('data-kind') === 'date') updateDays();
+    });
+  });
+
+  function updateDays() {
+    var date = document.querySelector('input.blank[data-kind="date"]');
+    var days = document.querySelector('input.blank[data-kind="days"]');
+    if (!date || !days) return;
+    if (!date.value) { days.value = ''; return; }
+    var d = new Date(date.value + 'T00:00:00');
+    if (isNaN(d.getTime())) { days.value = ''; return; }
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    days.value = String(Math.round((d - today) / 86400000));
+  }
+  updateDays();
+
+  // ---- mark as done + progress panel -----------------------------------
+  var doneBtn = document.getElementById('markDone');
+  var doneKey = 'csc112:done:' + pageId;
+  function isDone() { try { return localStorage.getItem(doneKey) === '1'; } catch (e) { return false; } }
+  function paintDone() {
+    if (!doneBtn) return;
+    doneBtn.textContent = isDone() ? '\u2713 Done' : 'Mark as done';
+    doneBtn.classList.toggle('is-done', isDone());
+  }
+  if (doneBtn) doneBtn.addEventListener('click', function () {
+    try { localStorage.setItem(doneKey, isDone() ? '0' : '1'); } catch (e) {}
+    paintDone();
+    renderPanel();
+  });
+  paintDone();
+
+  var panel = document.getElementById('donePanel');
+  var pages = [];
+  try { pages = JSON.parse(document.body.getAttribute('data-pages') || '[]'); } catch (e) {}
+  function renderPanel() {
+    if (!panel || !pages.length) return;
+    panel.innerHTML = '';
+    var n = 0;
+    pages.forEach(function (p) {
+      try { if (localStorage.getItem('csc112:done:' + p.key) === '1') n++; } catch (e) {}
+    });
+    var head = document.createElement('p');
+    head.className = 'done-summary';
+    head.textContent = n + ' / ' + pages.length + ' pages marked done';
+    panel.appendChild(head);
+
+    var list = document.createElement('ul');
+    list.className = 'done-list';
+    pages.forEach(function (p) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = p.href;
+      a.textContent = p.label;
+      var s = document.createElement('span');
+      var d = false;
+      try { d = localStorage.getItem('csc112:done:' + p.key) === '1'; } catch (e) {}
+      s.className = 'done-flag' + (d ? ' yes' : '');
+      s.textContent = d ? '\u2713 done' : 'not done';
+      li.appendChild(a);
+      li.appendChild(s);
+      list.appendChild(li);
+    });
+    panel.appendChild(list);
+  }
+  renderPanel();
+
+  // print shows the answers so the PDF is a complete revision sheet
+  window.addEventListener('beforeprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      d.setAttribute('data-was-open', d.open ? '1' : '0');
+      d.open = true;
+    });
+  });
+  window.addEventListener('afterprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      if (d.getAttribute('data-was-open') === '0') d.open = false;
+    });
+  });
 })();
 </script>
 </body>

@@ -7,7 +7,7 @@
 <meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
 <link rel="stylesheet" href="assets/notes.css">
 </head>
-<body>
+<body data-page="CHEAT_SHEET.html" data-pages="[{&quot;label&quot;:&quot;01 · Programming fundamentals&quot;,&quot;href&quot;:&quot;notes/01_programming_fundamentals.html&quot;,&quot;key&quot;:&quot;notes/01_programming_fundamentals.html&quot;},{&quot;label&quot;:&quot;02 · C basics \u0026 compilation&quot;,&quot;href&quot;:&quot;notes/02_c_basics_and_compilation.html&quot;,&quot;key&quot;:&quot;notes/02_c_basics_and_compilation.html&quot;},{&quot;label&quot;:&quot;03 · Data types \u0026 number systems&quot;,&quot;href&quot;:&quot;notes/03_data_types_and_number_systems.html&quot;,&quot;key&quot;:&quot;notes/03_data_types_and_number_systems.html&quot;},{&quot;label&quot;:&quot;04 · Operators \u0026 expressions&quot;,&quot;href&quot;:&quot;notes/04_operators_and_expressions.html&quot;,&quot;key&quot;:&quot;notes/04_operators_and_expressions.html&quot;},{&quot;label&quot;:&quot;05 · Control statements&quot;,&quot;href&quot;:&quot;notes/05_control_statements.html&quot;,&quot;key&quot;:&quot;notes/05_control_statements.html&quot;},{&quot;label&quot;:&quot;06 · Loops&quot;,&quot;href&quot;:&quot;notes/06_loops.html&quot;,&quot;key&quot;:&quot;notes/06_loops.html&quot;},{&quot;label&quot;:&quot;07 · Functions \u0026 recursion&quot;,&quot;href&quot;:&quot;notes/07_functions_and_recursion.html&quot;,&quot;key&quot;:&quot;notes/07_functions_and_recursion.html&quot;},{&quot;label&quot;:&quot;08 · Arrays \u0026 strings&quot;,&quot;href&quot;:&quot;notes/08_arrays_and_strings.html&quot;,&quot;key&quot;:&quot;notes/08_arrays_and_strings.html&quot;},{&quot;label&quot;:&quot;09 · Pointers&quot;,&quot;href&quot;:&quot;notes/09_pointers.html&quot;,&quot;key&quot;:&quot;notes/09_pointers.html&quot;},{&quot;label&quot;:&quot;10 · Structures, unions \u0026 files&quot;,&quot;href&quot;:&quot;notes/10_structures_unions_files.html&quot;,&quot;key&quot;:&quot;notes/10_structures_unions_files.html&quot;},{&quot;label&quot;:&quot;11 · Formatted I/O \u0026 reports&quot;,&quot;href&quot;:&quot;notes/11_formatted_io_and_reports.html&quot;,&quot;key&quot;:&quot;notes/11_formatted_io_and_reports.html&quot;}]">
 <div class="progress" id="progress"></div>
 <div class="layout">
 <aside class="sidebar">
@@ -26,6 +26,7 @@
     <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
   </div>
   <article class="content">
+<div class="page-tools"><span class="check-count" id="checkCount">0 / 20 done</span><button type="button" class="reset-btn" id="resetChecks">Reset checklist</button><button type="button" class="done-btn" id="markDone">Mark as done</button></div>
 <h1 id="csc-112-sta-121-c-cheat-sheet">CSC 112 / STA 121 — C Cheat Sheet</h1>
 <blockquote><p>One-page-ish reference for the last day. If you learn nothing else, learn this.</p></blockquote>
 <hr>
@@ -311,38 +312,38 @@ Student *p = &amp;s;
 <hr>
 <h2 id="12-common-errors-checklist">12. Common errors checklist</h2>
 <ul>
-<li><span class="cb">&#9744;</span> Missing semicolon</li>
-<li><span class="cb">&#9744;</span> Missing <code>&amp;</code> in <code>scanf</code></li>
-<li><span class="cb">&#9744;</span> <code>=</code> instead of <code>==</code></li>
-<li><span class="cb">&#9744;</span> Semicolon after <code>if</code>, <code>for</code>, <code>while</code></li>
-<li><span class="cb">&#9744;</span> Missing braces</li>
-<li><span class="cb">&#9744;</span> Uninitialised variable</li>
-<li><span class="cb">&#9744;</span> Integer division when float needed</li>
-<li><span class="cb">&#9744;</span> <code>%</code> with float</li>
-<li><span class="cb">&#9744;</span> Wrong format specifier</li>
-<li><span class="cb">&#9744;</span> Array index out of bounds</li>
-<li><span class="cb">&#9744;</span> Missing <code>'\0'</code> in a string</li>
-<li><span class="cb">&#9744;</span> Missing <code>break</code> in <code>switch</code></li>
-<li><span class="cb">&#9744;</span> Infinite loop (no update)</li>
-<li><span class="cb">&#9744;</span> Comparing strings with <code>==</code></li>
-<li><span class="cb">&#9744;</span> Missing <code>return 0;</code></li>
-<li><span class="cb">&#9744;</span> Missing <code>;</code> after <code>struct</code>/<code>do-while</code></li>
-<li><span class="cb">&#9744;</span> Not checking <code>fopen</code> for <code>NULL</code></li>
-<li><span class="cb">&#9744;</span> Missing <code>fclose</code></li>
-<li><span class="cb">&#9744;</span> Recursion without a base case</li>
-<li><span class="cb">&#9744;</span> Dereferencing an uninitialised pointer</li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task1" data-task="task1"> <span class="task-text">Missing semicolon</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task2" data-task="task2"> <span class="task-text">Missing <code>&amp;</code> in <code>scanf</code></span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task3" data-task="task3"> <span class="task-text"><code>=</code> instead of <code>==</code></span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task4" data-task="task4"> <span class="task-text">Semicolon after <code>if</code>, <code>for</code>, <code>while</code></span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task5" data-task="task5"> <span class="task-text">Missing braces</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task6" data-task="task6"> <span class="task-text">Uninitialised variable</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task7" data-task="task7"> <span class="task-text">Integer division when float needed</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task8" data-task="task8"> <span class="task-text"><code>%</code> with float</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task9" data-task="task9"> <span class="task-text">Wrong format specifier</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task10" data-task="task10"> <span class="task-text">Array index out of bounds</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task11" data-task="task11"> <span class="task-text">Missing <code>'\0'</code> in a string</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task12" data-task="task12"> <span class="task-text">Missing <code>break</code> in <code>switch</code></span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task13" data-task="task13"> <span class="task-text">Infinite loop (no update)</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task14" data-task="task14"> <span class="task-text">Comparing strings with <code>==</code></span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task15" data-task="task15"> <span class="task-text">Missing <code>return 0;</code></span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task16" data-task="task16"> <span class="task-text">Missing <code>;</code> after <code>struct</code>/<code>do-while</code></span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task17" data-task="task17"> <span class="task-text">Not checking <code>fopen</code> for <code>NULL</code></span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task18" data-task="task18"> <span class="task-text">Missing <code>fclose</code></span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task19" data-task="task19"> <span class="task-text">Recursion without a base case</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task20" data-task="task20"> <span class="task-text">Dereferencing an uninitialised pointer</span></label> </li>
 </ul>
 <hr>
 <h2 id="13-exam-quick-recipe">13. Exam quick recipe</h2>
 <p><strong>Trace code:</strong> draw a table of variables; update row by row; watch <code>++</code>, <code>/</code>, <code>%</code>, loop bounds.</p>
 <p><strong>Write code:</strong></p>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>IPO: input → processing → output.</li>
+<li>Declare variables with sensible types.</li>
+<li>Read input (<code>scanf</code>, <code>&amp;</code>).</li>
+<li>Compute.</li>
+<li>Print (<code>printf</code>, labels, <code>\n</code>).</li>
+<li><code>return 0;</code>.</li>
 </ol>
 <p><strong>If stuck in an exam:</strong> write the structure, declarations, input and output — partial marks are real marks.</p>
 
@@ -396,6 +397,126 @@ Student *p = &amp;s;
   // on phones, start with the contents menu collapsed
   var det = document.querySelector('.nav-details');
   if (det && window.innerWidth < 1000) det.removeAttribute('open');
+
+  // ---- interactive checklist -------------------------------------------
+  var pageId  = document.body.getAttribute('data-page') || location.pathname;
+  var checks  = [].slice.call(document.querySelectorAll('.task-check'));
+  var countEl = document.getElementById('checkCount');
+  var resetBtn = document.getElementById('resetChecks');
+
+  function checkKey(el) { return 'csc112:task:' + pageId + ':' + el.getAttribute('data-task'); }
+  function updateCount() {
+    if (!countEl) return;
+    var done = checks.filter(function (c) { return c.checked; }).length;
+    countEl.textContent = done + ' / ' + checks.length + ' done';
+    countEl.classList.toggle('all', checks.length > 0 && done === checks.length);
+  }
+  checks.forEach(function (c) {
+    try { if (localStorage.getItem(checkKey(c)) === '1') c.checked = true; } catch (e) {}
+    c.addEventListener('change', function () {
+      try { localStorage.setItem(checkKey(c), c.checked ? '1' : '0'); } catch (e) {}
+      updateCount();
+    });
+  });
+  updateCount();
+  if (resetBtn) resetBtn.addEventListener('click', function () {
+    checks.forEach(function (c) {
+      c.checked = false;
+      try { localStorage.removeItem(checkKey(c)); } catch (e) {}
+    });
+    updateCount();
+  });
+
+  // ---- fill-in blanks ---------------------------------------------------
+  var blanks = [].slice.call(document.querySelectorAll('input.blank'));
+  blanks.forEach(function (b) {
+    var k = 'csc112:blank:' + pageId + ':' + b.getAttribute('data-blank');
+    try {
+      var v = localStorage.getItem(k);
+      if (v !== null) b.value = v;
+    } catch (e) {}
+    b.addEventListener('input', function () {
+      try { localStorage.setItem(k, b.value); } catch (e) {}
+      if (b.getAttribute('data-kind') === 'date') updateDays();
+    });
+  });
+
+  function updateDays() {
+    var date = document.querySelector('input.blank[data-kind="date"]');
+    var days = document.querySelector('input.blank[data-kind="days"]');
+    if (!date || !days) return;
+    if (!date.value) { days.value = ''; return; }
+    var d = new Date(date.value + 'T00:00:00');
+    if (isNaN(d.getTime())) { days.value = ''; return; }
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    days.value = String(Math.round((d - today) / 86400000));
+  }
+  updateDays();
+
+  // ---- mark as done + progress panel -----------------------------------
+  var doneBtn = document.getElementById('markDone');
+  var doneKey = 'csc112:done:' + pageId;
+  function isDone() { try { return localStorage.getItem(doneKey) === '1'; } catch (e) { return false; } }
+  function paintDone() {
+    if (!doneBtn) return;
+    doneBtn.textContent = isDone() ? '\u2713 Done' : 'Mark as done';
+    doneBtn.classList.toggle('is-done', isDone());
+  }
+  if (doneBtn) doneBtn.addEventListener('click', function () {
+    try { localStorage.setItem(doneKey, isDone() ? '0' : '1'); } catch (e) {}
+    paintDone();
+    renderPanel();
+  });
+  paintDone();
+
+  var panel = document.getElementById('donePanel');
+  var pages = [];
+  try { pages = JSON.parse(document.body.getAttribute('data-pages') || '[]'); } catch (e) {}
+  function renderPanel() {
+    if (!panel || !pages.length) return;
+    panel.innerHTML = '';
+    var n = 0;
+    pages.forEach(function (p) {
+      try { if (localStorage.getItem('csc112:done:' + p.key) === '1') n++; } catch (e) {}
+    });
+    var head = document.createElement('p');
+    head.className = 'done-summary';
+    head.textContent = n + ' / ' + pages.length + ' pages marked done';
+    panel.appendChild(head);
+
+    var list = document.createElement('ul');
+    list.className = 'done-list';
+    pages.forEach(function (p) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = p.href;
+      a.textContent = p.label;
+      var s = document.createElement('span');
+      var d = false;
+      try { d = localStorage.getItem('csc112:done:' + p.key) === '1'; } catch (e) {}
+      s.className = 'done-flag' + (d ? ' yes' : '');
+      s.textContent = d ? '\u2713 done' : 'not done';
+      li.appendChild(a);
+      li.appendChild(s);
+      list.appendChild(li);
+    });
+    panel.appendChild(list);
+  }
+  renderPanel();
+
+  // print shows the answers so the PDF is a complete revision sheet
+  window.addEventListener('beforeprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      d.setAttribute('data-was-open', d.open ? '1' : '0');
+      d.open = true;
+    });
+  });
+  window.addEventListener('afterprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      if (d.getAttribute('data-was-open') === '0') d.open = false;
+    });
+  });
 })();
 </script>
 </body>

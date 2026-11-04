@@ -7,7 +7,7 @@
 <meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
 <link rel="stylesheet" href="../assets/notes.css">
 </head>
-<body>
+<body data-page="notes/06_loops.html" data-pages="[{&quot;label&quot;:&quot;01 · Programming fundamentals&quot;,&quot;href&quot;:&quot;01_programming_fundamentals.html&quot;,&quot;key&quot;:&quot;notes/01_programming_fundamentals.html&quot;},{&quot;label&quot;:&quot;02 · C basics \u0026 compilation&quot;,&quot;href&quot;:&quot;02_c_basics_and_compilation.html&quot;,&quot;key&quot;:&quot;notes/02_c_basics_and_compilation.html&quot;},{&quot;label&quot;:&quot;03 · Data types \u0026 number systems&quot;,&quot;href&quot;:&quot;03_data_types_and_number_systems.html&quot;,&quot;key&quot;:&quot;notes/03_data_types_and_number_systems.html&quot;},{&quot;label&quot;:&quot;04 · Operators \u0026 expressions&quot;,&quot;href&quot;:&quot;04_operators_and_expressions.html&quot;,&quot;key&quot;:&quot;notes/04_operators_and_expressions.html&quot;},{&quot;label&quot;:&quot;05 · Control statements&quot;,&quot;href&quot;:&quot;05_control_statements.html&quot;,&quot;key&quot;:&quot;notes/05_control_statements.html&quot;},{&quot;label&quot;:&quot;06 · Loops&quot;,&quot;href&quot;:&quot;06_loops.html&quot;,&quot;key&quot;:&quot;notes/06_loops.html&quot;},{&quot;label&quot;:&quot;07 · Functions \u0026 recursion&quot;,&quot;href&quot;:&quot;07_functions_and_recursion.html&quot;,&quot;key&quot;:&quot;notes/07_functions_and_recursion.html&quot;},{&quot;label&quot;:&quot;08 · Arrays \u0026 strings&quot;,&quot;href&quot;:&quot;08_arrays_and_strings.html&quot;,&quot;key&quot;:&quot;notes/08_arrays_and_strings.html&quot;},{&quot;label&quot;:&quot;09 · Pointers&quot;,&quot;href&quot;:&quot;09_pointers.html&quot;,&quot;key&quot;:&quot;notes/09_pointers.html&quot;},{&quot;label&quot;:&quot;10 · Structures, unions \u0026 files&quot;,&quot;href&quot;:&quot;10_structures_unions_files.html&quot;,&quot;key&quot;:&quot;notes/10_structures_unions_files.html&quot;},{&quot;label&quot;:&quot;11 · Formatted I/O \u0026 reports&quot;,&quot;href&quot;:&quot;11_formatted_io_and_reports.html&quot;,&quot;key&quot;:&quot;notes/11_formatted_io_and_reports.html&quot;}]">
 <div class="progress" id="progress"></div>
 <div class="layout">
 <aside class="sidebar">
@@ -26,6 +26,7 @@
     <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
   </div>
   <article class="content">
+<div class="page-tools"><button type="button" class="done-btn" id="markDone">Mark as done</button></div>
 <h1 id="note-06-loops-iteration">Note 06 — Loops (Iteration)</h1>
 <blockquote><p><strong>Covers outline Week 8</strong> (for, do..while, while..do, goto).</p></blockquote>
 <hr>
@@ -51,10 +52,9 @@
 <h2 id="2-the-three-parts-of-every-loop">2. The three parts of every loop</h2>
 <p>Every correct loop has:</p>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-</ol>
+<li><strong>Initialisation</strong> — set the starting value (<code>i = 1</code>).</li>
+<li><strong>Condition</strong> — test whether to continue (<code>i &lt;= n</code>).</li>
+<li><strong>Update</strong> — change something so the loop eventually stops (<code>i++</code>).
 <pre class="code"><code>   initialise
        │
        ▼
@@ -68,6 +68,8 @@
       │
       ▼
    after loop</code></pre>
+</li>
+</ol>
 <p><strong>If any part is missing or wrong, you get an infinite loop.</strong></p>
 <hr>
 <h2 id="3-the-while-loop">3. The <code>while</code> loop</h2>
@@ -78,10 +80,10 @@
 }</code></pre>
 <h3 id="32-how-it-works">3.2 How it works</h3>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>Evaluate the condition.</li>
+<li>If true, run the body.</li>
+<li>Go back to step 1.</li>
+<li>If false, skip the body and continue after the loop.</li>
 </ol>
 <p>Because the condition is tested <strong>before</strong> the body, <code>while</code> is an <strong>entry-controlled</strong> (pre-test) loop. If the condition is false at the start, the body <strong>never runs</strong>.</p>
 <h3 id="33-example-count-from-1-to-5">3.3 Example: count from 1 to 5</h3>
@@ -163,10 +165,10 @@
 <p>Note the <strong>semicolon</strong> after <code>while (condition);</code>.</p>
 <h3 id="42-how-it-works">4.2 How it works</h3>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>Run the body <strong>once</strong>.</li>
+<li>Evaluate the condition.</li>
+<li>If true, go back to step 1.</li>
+<li>If false, exit.</li>
 </ol>
 <p>The condition is tested <strong>after</strong> the body, so <code>do-while</code> is <strong>exit-controlled</strong> (post-test). The body always runs <strong>at least once</strong>, even if the condition is false.</p>
 <h3 id="43-example-menu-that-runs-at-least-once">4.3 Example: menu that runs at least once</h3>
@@ -244,12 +246,11 @@
     <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i);</code></pre>
 <h3 id="52-order-of-execution">5.2 Order of execution</h3>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-</ol>
+<li><strong>Initialisation</strong> — once, before the loop.</li>
+<li><strong>Condition</strong> — before each iteration.</li>
+<li><strong>Body</strong> — if the condition is true.</li>
+<li><strong>Update</strong> — after the body.</li>
+<li>Repeat from step 2.
 <pre class="code"><code>i = 1
   ↓
 i &lt;= 5? ── no ──► exit
@@ -259,6 +260,8 @@ body
   ↓
 i++
   └────────────► back to condition</code></pre>
+</li>
+</ol>
 <h3 id="53-equivalent-loops">5.3 Equivalent loops</h3>
 <p>These three all print 1 to 5:</p>
 <pre class="code" data-lang="c"><code><span class="tok-com">/* for */</span>
@@ -730,48 +733,80 @@ temp = n;
 <hr>
 <h2 id="12-self-test-answers-below">12. Self-test (answers below)</h2>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li> ``<code>c int i = 1; while (i &lt;= 5) { printf(&quot;%d &quot;, i); i += 2; } </code>``</li>
-<li> ``<code>c int i; for (i = 5; i &gt;= 1; i--) printf(&quot;%d &quot;, i); </code>``</li>
-<li> ``<code>c int i, j; for (i = 1; i &lt;= 2; i++) for (j = 1; j &lt;= 3; j++) printf(&quot;%d &quot;, i * j); </code>``</li>
-<li> ``<code>c int i; for (i = 1; i &lt;= 5; i++) { if (i % 2 == 0) continue; printf(&quot;%d &quot;, i); } </code>``</li>
-<li> ``<code>c int i = 10; do { printf(&quot;%d &quot;, i); i++; } while (i &lt; 5); </code>``</li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li> ``<code>c int i = 1; while (i &lt;= 3) printf(&quot;%d &quot;, i); i++; </code>``</li>
+<li>Name the three parts of a loop and explain why each is necessary.</li>
+<li>Differentiate <code>while</code> and <code>do-while</code>.</li>
+<li>Write the general syntax of a <code>for</code> loop.</li>
+<li>What is an infinite loop? Give two ways one can occur.</li>
+<li>What is the difference between <code>break</code> and <code>continue</code>?</li>
+<li>What does <code>goto</code> do? Why should it be used sparingly?</li>
+<li>What is printed?
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> i = <span class="tok-num">1</span>;
+<span class="tok-kw">while</span> (i &lt;= <span class="tok-num">5</span>) {
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i);
+    i += <span class="tok-num">2</span>;
+}</code></pre>
+</li>
+<li>What is printed?
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> i;
+<span class="tok-kw">for</span> (i = <span class="tok-num">5</span>; i &gt;= <span class="tok-num">1</span>; i--)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i);</code></pre>
+</li>
+<li>What is printed?
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> i, j;
+<span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= <span class="tok-num">2</span>; i++)
+    <span class="tok-kw">for</span> (j = <span class="tok-num">1</span>; j &lt;= <span class="tok-num">3</span>; j++)
+        <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i * j);</code></pre>
+</li>
+<li>What is printed?
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> i;
+<span class="tok-kw">for</span> (i = <span class="tok-num">1</span>; i &lt;= <span class="tok-num">5</span>; i++) {
+    <span class="tok-kw">if</span> (i % <span class="tok-num">2</span> == <span class="tok-num">0</span>) <span class="tok-kw">continue</span>;
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i);
+}</code></pre>
+</li>
+<li>What is printed?
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> i = <span class="tok-num">10</span>;
+<span class="tok-kw">do</span> {
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i);
+    i++;
+} <span class="tok-kw">while</span> (i &lt; <span class="tok-num">5</span>);</code></pre>
+</li>
+<li>Write a program to find the sum of the first N natural numbers.</li>
+<li>Write a program to print the factorial of a number.</li>
+<li>Write a program to reverse a number and check whether it is a palindrome.</li>
+<li>Write a program to print a pyramid of stars with N rows.</li>
+<li>Write a program to check whether a number is prime.</li>
+<li>Write a program to print the Fibonacci series up to N terms.</li>
+<li>What is the output of the following? Explain.
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> i = <span class="tok-num">1</span>;
+<span class="tok-kw">while</span> (i &lt;= <span class="tok-num">3</span>)
+    <span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d &quot;</span>, i);
+    i++;</code></pre>
+</li>
 </ol>
 <h3 id="answers">Answers</h3>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>Initialisation, condition, update. Without initialisation the loop starts with garbage; without a condition it never knows when to stop; without an update the condition never changes and the loop may run forever.</li>
+<li><code>while</code> tests before the body and may run 0 times; <code>do-while</code> tests after the body and runs at least once. <code>do-while</code> needs a semicolon after the condition.</li>
+<li><code>for (initialisation; condition; update) { body }</code></li>
+<li>A loop whose condition never becomes false. Examples: forgetting <code>i++</code>; <code>while (1)</code> with no <code>break</code>; a condition that is always true.</li>
+<li><code>break</code> exits the loop; <code>continue</code> skips the rest of the current iteration and goes to the next one.</li>
+<li><code>goto</code> jumps to a labelled statement in the same function. It makes control flow hard to follow and can produce unmaintainable &quot;spaghetti&quot; code.</li>
+<li><code>1 3 5</code></li>
+<li><code>5 4 3 2 1</code></li>
+<li><code>1 2 3 2 4 6</code></li>
+<li><code>1 3 5</code></li>
+<li><code>10</code></li>
+<li>See §3.4.</li>
+<li>See §5.5.</li>
+<li>See §8.3 and §8.4.</li>
+<li>See §6.4.</li>
+<li>See §8.5.</li>
+<li>See §8.6.</li>
+<li>Output is <code>1 1 1 ...</code> forever. The <code>while</code> controls only the <code>printf</code>; <code>i++</code> is <strong>outside</strong> the loop because there are no braces. The condition never changes.</li>
 </ol>
 <hr>
-<p><strong>Next:</strong> <code>07_functions_and_recursion.md</code></p>
+<p><strong>Next:</strong> <a class="file-ref" href="07_functions_and_recursion.html"><code>07_functions_and_recursion.md</code></a></p>
 
   </article>
 <nav class="pager"><a class="prev" href="../notes/05_control_statements.html"><span class="dir">&larr; Previous</span><span class="name">05 · Control statements</span></a><a class="next" href="../notes/07_functions_and_recursion.html"><span class="dir">Next &rarr;</span><span class="name">07 · Functions &amp; recursion</span></a></nav>
@@ -823,6 +858,126 @@ temp = n;
   // on phones, start with the contents menu collapsed
   var det = document.querySelector('.nav-details');
   if (det && window.innerWidth < 1000) det.removeAttribute('open');
+
+  // ---- interactive checklist -------------------------------------------
+  var pageId  = document.body.getAttribute('data-page') || location.pathname;
+  var checks  = [].slice.call(document.querySelectorAll('.task-check'));
+  var countEl = document.getElementById('checkCount');
+  var resetBtn = document.getElementById('resetChecks');
+
+  function checkKey(el) { return 'csc112:task:' + pageId + ':' + el.getAttribute('data-task'); }
+  function updateCount() {
+    if (!countEl) return;
+    var done = checks.filter(function (c) { return c.checked; }).length;
+    countEl.textContent = done + ' / ' + checks.length + ' done';
+    countEl.classList.toggle('all', checks.length > 0 && done === checks.length);
+  }
+  checks.forEach(function (c) {
+    try { if (localStorage.getItem(checkKey(c)) === '1') c.checked = true; } catch (e) {}
+    c.addEventListener('change', function () {
+      try { localStorage.setItem(checkKey(c), c.checked ? '1' : '0'); } catch (e) {}
+      updateCount();
+    });
+  });
+  updateCount();
+  if (resetBtn) resetBtn.addEventListener('click', function () {
+    checks.forEach(function (c) {
+      c.checked = false;
+      try { localStorage.removeItem(checkKey(c)); } catch (e) {}
+    });
+    updateCount();
+  });
+
+  // ---- fill-in blanks ---------------------------------------------------
+  var blanks = [].slice.call(document.querySelectorAll('input.blank'));
+  blanks.forEach(function (b) {
+    var k = 'csc112:blank:' + pageId + ':' + b.getAttribute('data-blank');
+    try {
+      var v = localStorage.getItem(k);
+      if (v !== null) b.value = v;
+    } catch (e) {}
+    b.addEventListener('input', function () {
+      try { localStorage.setItem(k, b.value); } catch (e) {}
+      if (b.getAttribute('data-kind') === 'date') updateDays();
+    });
+  });
+
+  function updateDays() {
+    var date = document.querySelector('input.blank[data-kind="date"]');
+    var days = document.querySelector('input.blank[data-kind="days"]');
+    if (!date || !days) return;
+    if (!date.value) { days.value = ''; return; }
+    var d = new Date(date.value + 'T00:00:00');
+    if (isNaN(d.getTime())) { days.value = ''; return; }
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    days.value = String(Math.round((d - today) / 86400000));
+  }
+  updateDays();
+
+  // ---- mark as done + progress panel -----------------------------------
+  var doneBtn = document.getElementById('markDone');
+  var doneKey = 'csc112:done:' + pageId;
+  function isDone() { try { return localStorage.getItem(doneKey) === '1'; } catch (e) { return false; } }
+  function paintDone() {
+    if (!doneBtn) return;
+    doneBtn.textContent = isDone() ? '\u2713 Done' : 'Mark as done';
+    doneBtn.classList.toggle('is-done', isDone());
+  }
+  if (doneBtn) doneBtn.addEventListener('click', function () {
+    try { localStorage.setItem(doneKey, isDone() ? '0' : '1'); } catch (e) {}
+    paintDone();
+    renderPanel();
+  });
+  paintDone();
+
+  var panel = document.getElementById('donePanel');
+  var pages = [];
+  try { pages = JSON.parse(document.body.getAttribute('data-pages') || '[]'); } catch (e) {}
+  function renderPanel() {
+    if (!panel || !pages.length) return;
+    panel.innerHTML = '';
+    var n = 0;
+    pages.forEach(function (p) {
+      try { if (localStorage.getItem('csc112:done:' + p.key) === '1') n++; } catch (e) {}
+    });
+    var head = document.createElement('p');
+    head.className = 'done-summary';
+    head.textContent = n + ' / ' + pages.length + ' pages marked done';
+    panel.appendChild(head);
+
+    var list = document.createElement('ul');
+    list.className = 'done-list';
+    pages.forEach(function (p) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = p.href;
+      a.textContent = p.label;
+      var s = document.createElement('span');
+      var d = false;
+      try { d = localStorage.getItem('csc112:done:' + p.key) === '1'; } catch (e) {}
+      s.className = 'done-flag' + (d ? ' yes' : '');
+      s.textContent = d ? '\u2713 done' : 'not done';
+      li.appendChild(a);
+      li.appendChild(s);
+      list.appendChild(li);
+    });
+    panel.appendChild(list);
+  }
+  renderPanel();
+
+  // print shows the answers so the PDF is a complete revision sheet
+  window.addEventListener('beforeprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      d.setAttribute('data-was-open', d.open ? '1' : '0');
+      d.open = true;
+    });
+  });
+  window.addEventListener('afterprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      if (d.getAttribute('data-was-open') === '0') d.open = false;
+    });
+  });
 })();
 </script>
 </body>

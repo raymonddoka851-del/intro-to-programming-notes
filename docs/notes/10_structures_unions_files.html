@@ -7,7 +7,7 @@
 <meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
 <link rel="stylesheet" href="../assets/notes.css">
 </head>
-<body>
+<body data-page="notes/10_structures_unions_files.html" data-pages="[{&quot;label&quot;:&quot;01 · Programming fundamentals&quot;,&quot;href&quot;:&quot;01_programming_fundamentals.html&quot;,&quot;key&quot;:&quot;notes/01_programming_fundamentals.html&quot;},{&quot;label&quot;:&quot;02 · C basics \u0026 compilation&quot;,&quot;href&quot;:&quot;02_c_basics_and_compilation.html&quot;,&quot;key&quot;:&quot;notes/02_c_basics_and_compilation.html&quot;},{&quot;label&quot;:&quot;03 · Data types \u0026 number systems&quot;,&quot;href&quot;:&quot;03_data_types_and_number_systems.html&quot;,&quot;key&quot;:&quot;notes/03_data_types_and_number_systems.html&quot;},{&quot;label&quot;:&quot;04 · Operators \u0026 expressions&quot;,&quot;href&quot;:&quot;04_operators_and_expressions.html&quot;,&quot;key&quot;:&quot;notes/04_operators_and_expressions.html&quot;},{&quot;label&quot;:&quot;05 · Control statements&quot;,&quot;href&quot;:&quot;05_control_statements.html&quot;,&quot;key&quot;:&quot;notes/05_control_statements.html&quot;},{&quot;label&quot;:&quot;06 · Loops&quot;,&quot;href&quot;:&quot;06_loops.html&quot;,&quot;key&quot;:&quot;notes/06_loops.html&quot;},{&quot;label&quot;:&quot;07 · Functions \u0026 recursion&quot;,&quot;href&quot;:&quot;07_functions_and_recursion.html&quot;,&quot;key&quot;:&quot;notes/07_functions_and_recursion.html&quot;},{&quot;label&quot;:&quot;08 · Arrays \u0026 strings&quot;,&quot;href&quot;:&quot;08_arrays_and_strings.html&quot;,&quot;key&quot;:&quot;notes/08_arrays_and_strings.html&quot;},{&quot;label&quot;:&quot;09 · Pointers&quot;,&quot;href&quot;:&quot;09_pointers.html&quot;,&quot;key&quot;:&quot;notes/09_pointers.html&quot;},{&quot;label&quot;:&quot;10 · Structures, unions \u0026 files&quot;,&quot;href&quot;:&quot;10_structures_unions_files.html&quot;,&quot;key&quot;:&quot;notes/10_structures_unions_files.html&quot;},{&quot;label&quot;:&quot;11 · Formatted I/O \u0026 reports&quot;,&quot;href&quot;:&quot;11_formatted_io_and_reports.html&quot;,&quot;key&quot;:&quot;notes/11_formatted_io_and_reports.html&quot;}]">
 <div class="progress" id="progress"></div>
 <div class="layout">
 <aside class="sidebar">
@@ -26,6 +26,7 @@
     <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
   </div>
   <article class="content">
+<div class="page-tools"><button type="button" class="done-btn" id="markDone">Mark as done</button></div>
 <h1 id="note-10-structures-unions-enums-and-files">Note 10 — Structures, Unions, Enums and Files</h1>
 <blockquote><p><strong>Covers outline Week 12</strong> (unions and structures) plus file handling from the course description.</p></blockquote>
 <hr>
@@ -248,15 +249,15 @@ s2 = s1;            <span class="tok-com">/* copies all members */</span></code>
 };</code></pre>
 <ul>
 <li><code>MON = 0</code>, <code>TUE = 1</code>, ... by default.</li>
-<li>You can assign explicit values:</li>
-</ul>
+<li>You can assign explicit values:
 <pre class="code" data-lang="c"><code><span class="tok-kw">enum</span> Status { LOW = <span class="tok-num">1</span>, MEDIUM = <span class="tok-num">5</span>, HIGH = <span class="tok-num">10</span> };</code></pre>
-<ul>
-<li>Enums make code readable:</li>
-</ul>
+</li>
+<li>Enums make code readable:
 <pre class="code" data-lang="c"><code><span class="tok-kw">enum</span> Day today = WED;
 <span class="tok-kw">if</span> (today == WED)
     <span class="tok-fn">printf</span>(<span class="tok-str">&quot;Midweek\n&quot;</span>);</code></pre>
+</li>
+</ul>
 <p><code>enum</code> values are integers, so they can be used in <code>switch</code>.</p>
 <hr>
 <h2 id="4-files">4. Files</h2>
@@ -516,48 +517,53 @@ fp = <span class="tok-fn">fopen</span>(<span class="tok-str">&quot;student.dat&q
 <hr>
 <h2 id="8-self-test-answers-below">8. Self-test (answers below)</h2>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li> ``<code>c struct Point { int x, y; }; struct Point p = {3, 4}; struct Point *q = &amp;p; printf(&quot;%d %d\n&quot;, p.x, q-&gt;y); </code>``</li>
-<li></li>
+<li>Define a structure. How is it different from an array?</li>
+<li>Write a struct to store a book's title, author and price.</li>
+<li>What is the difference between <code>.</code> and <code>-&gt;</code>?</li>
+<li>What is <code>typedef</code> used for?</li>
+<li>How do you declare an array of 30 students?</li>
+<li>What is a nested structure? Give an example.</li>
+<li>What is a union? How does its size compare with a struct's?</li>
+<li>State three differences between a struct and a union.</li>
+<li>What is an enum? Give an example.</li>
+<li>What does <code>fopen</code> return if the file cannot be opened?</li>
+<li>List the modes for opening a file and explain each.</li>
+<li>What is the difference between <code>&quot;w&quot;</code> and <code>&quot;a&quot;</code>?</li>
+<li>Why should you check the return value of <code>fopen</code>?</li>
+<li>What is <code>EOF</code>?</li>
+<li>Why is <code>while (!feof(fp))</code> discouraged?</li>
+<li>Write a program to write 5 integers to a file and read them back.</li>
+<li>What is the output?
+<pre class="code" data-lang="c"><code><span class="tok-kw">struct</span> Point { <span class="tok-kw">int</span> x, y; };
+<span class="tok-kw">struct</span> Point p = {<span class="tok-num">3</span>, <span class="tok-num">4</span>};
+<span class="tok-kw">struct</span> Point *q = &amp;p;
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d %d\n&quot;</span>, p.x, q-&gt;y);</code></pre>
+</li>
+<li>What is the size of <code>union U { char c; int i; double d; };</code> typically?</li>
 </ol>
 <h3 id="answers">Answers</h3>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>A user-defined type that groups variables of different types under one name. An array holds many elements of the <strong>same</strong> type; a struct holds <strong>different</strong> types.</li>
+<li><code>struct Book { char title[100]; char author[50]; float price; };</code></li>
+<li><code>.</code> accesses a member of a struct variable; <code>-&gt;</code> accesses a member through a pointer to a struct.</li>
+<li>To create an alias for a type, so you can write <code>Student s;</code> instead of <code>struct Student s;</code>.</li>
+<li><code>Student list[30];</code> (or <code>struct Student list[30];</code>).</li>
+<li>A struct whose member is another struct, e.g. <code>struct Student { struct Date dob; ... };</code>.</li>
+<li>A user-defined type whose members share the same memory. Its size is the size of the largest member (plus alignment), whereas a struct's size is at least the sum of its members.</li>
+<li>Struct: separate memory, all members valid, size ≥ sum. Union: shared memory, one member valid, size = largest member.</li>
+<li>A type with named integer constants: <code>enum Day { MON, TUE, WED };</code>.</li>
+<li><code>NULL</code>.</li>
+<li><code>&quot;r&quot;</code> read; <code>&quot;w&quot;</code> write (erase/create); <code>&quot;a&quot;</code> append (create); <code>&quot;r+&quot;</code> read/write existing; <code>&quot;w+&quot;</code> read/write (erase/create); <code>&quot;a+&quot;</code> read/append. Add <code>b</code> for binary.</li>
+<li><code>&quot;w&quot;</code> erases existing contents and starts from the beginning; <code>&quot;a&quot;</code> keeps existing contents and writes at the end.</li>
+<li>Because <code>fopen</code> returns <code>NULL</code> on failure; using a <code>NULL</code> file pointer causes a crash.</li>
+<li>A special value returned by input functions when the end of the file is reached.</li>
+<li>The EOF indicator is set only <strong>after</strong> a read attempts to go past the end, so the loop body may run once more with stale data.</li>
+<li>See the examples in §4.4 and §4.5.</li>
+<li><code>3 4</code></li>
+<li><strong>8 bytes</strong> (the largest member is <code>double</code>).</li>
 </ol>
 <hr>
-<p><strong>Next:</strong> <code>11_formatted_io_and_reports.md</code></p>
+<p><strong>Next:</strong> <a class="file-ref" href="11_formatted_io_and_reports.html"><code>11_formatted_io_and_reports.md</code></a></p>
 
   </article>
 <nav class="pager"><a class="prev" href="../notes/09_pointers.html"><span class="dir">&larr; Previous</span><span class="name">09 · Pointers</span></a><a class="next" href="../notes/11_formatted_io_and_reports.html"><span class="dir">Next &rarr;</span><span class="name">11 · Formatted I/O &amp; reports</span></a></nav>
@@ -609,6 +615,126 @@ fp = <span class="tok-fn">fopen</span>(<span class="tok-str">&quot;student.dat&q
   // on phones, start with the contents menu collapsed
   var det = document.querySelector('.nav-details');
   if (det && window.innerWidth < 1000) det.removeAttribute('open');
+
+  // ---- interactive checklist -------------------------------------------
+  var pageId  = document.body.getAttribute('data-page') || location.pathname;
+  var checks  = [].slice.call(document.querySelectorAll('.task-check'));
+  var countEl = document.getElementById('checkCount');
+  var resetBtn = document.getElementById('resetChecks');
+
+  function checkKey(el) { return 'csc112:task:' + pageId + ':' + el.getAttribute('data-task'); }
+  function updateCount() {
+    if (!countEl) return;
+    var done = checks.filter(function (c) { return c.checked; }).length;
+    countEl.textContent = done + ' / ' + checks.length + ' done';
+    countEl.classList.toggle('all', checks.length > 0 && done === checks.length);
+  }
+  checks.forEach(function (c) {
+    try { if (localStorage.getItem(checkKey(c)) === '1') c.checked = true; } catch (e) {}
+    c.addEventListener('change', function () {
+      try { localStorage.setItem(checkKey(c), c.checked ? '1' : '0'); } catch (e) {}
+      updateCount();
+    });
+  });
+  updateCount();
+  if (resetBtn) resetBtn.addEventListener('click', function () {
+    checks.forEach(function (c) {
+      c.checked = false;
+      try { localStorage.removeItem(checkKey(c)); } catch (e) {}
+    });
+    updateCount();
+  });
+
+  // ---- fill-in blanks ---------------------------------------------------
+  var blanks = [].slice.call(document.querySelectorAll('input.blank'));
+  blanks.forEach(function (b) {
+    var k = 'csc112:blank:' + pageId + ':' + b.getAttribute('data-blank');
+    try {
+      var v = localStorage.getItem(k);
+      if (v !== null) b.value = v;
+    } catch (e) {}
+    b.addEventListener('input', function () {
+      try { localStorage.setItem(k, b.value); } catch (e) {}
+      if (b.getAttribute('data-kind') === 'date') updateDays();
+    });
+  });
+
+  function updateDays() {
+    var date = document.querySelector('input.blank[data-kind="date"]');
+    var days = document.querySelector('input.blank[data-kind="days"]');
+    if (!date || !days) return;
+    if (!date.value) { days.value = ''; return; }
+    var d = new Date(date.value + 'T00:00:00');
+    if (isNaN(d.getTime())) { days.value = ''; return; }
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    days.value = String(Math.round((d - today) / 86400000));
+  }
+  updateDays();
+
+  // ---- mark as done + progress panel -----------------------------------
+  var doneBtn = document.getElementById('markDone');
+  var doneKey = 'csc112:done:' + pageId;
+  function isDone() { try { return localStorage.getItem(doneKey) === '1'; } catch (e) { return false; } }
+  function paintDone() {
+    if (!doneBtn) return;
+    doneBtn.textContent = isDone() ? '\u2713 Done' : 'Mark as done';
+    doneBtn.classList.toggle('is-done', isDone());
+  }
+  if (doneBtn) doneBtn.addEventListener('click', function () {
+    try { localStorage.setItem(doneKey, isDone() ? '0' : '1'); } catch (e) {}
+    paintDone();
+    renderPanel();
+  });
+  paintDone();
+
+  var panel = document.getElementById('donePanel');
+  var pages = [];
+  try { pages = JSON.parse(document.body.getAttribute('data-pages') || '[]'); } catch (e) {}
+  function renderPanel() {
+    if (!panel || !pages.length) return;
+    panel.innerHTML = '';
+    var n = 0;
+    pages.forEach(function (p) {
+      try { if (localStorage.getItem('csc112:done:' + p.key) === '1') n++; } catch (e) {}
+    });
+    var head = document.createElement('p');
+    head.className = 'done-summary';
+    head.textContent = n + ' / ' + pages.length + ' pages marked done';
+    panel.appendChild(head);
+
+    var list = document.createElement('ul');
+    list.className = 'done-list';
+    pages.forEach(function (p) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = p.href;
+      a.textContent = p.label;
+      var s = document.createElement('span');
+      var d = false;
+      try { d = localStorage.getItem('csc112:done:' + p.key) === '1'; } catch (e) {}
+      s.className = 'done-flag' + (d ? ' yes' : '');
+      s.textContent = d ? '\u2713 done' : 'not done';
+      li.appendChild(a);
+      li.appendChild(s);
+      list.appendChild(li);
+    });
+    panel.appendChild(list);
+  }
+  renderPanel();
+
+  // print shows the answers so the PDF is a complete revision sheet
+  window.addEventListener('beforeprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      d.setAttribute('data-was-open', d.open ? '1' : '0');
+      d.open = true;
+    });
+  });
+  window.addEventListener('afterprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      if (d.getAttribute('data-was-open') === '0') d.open = false;
+    });
+  });
 })();
 </script>
 </body>

@@ -7,7 +7,7 @@
 <meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
 <link rel="stylesheet" href="../assets/notes.css">
 </head>
-<body>
+<body data-page="notes/08_arrays_and_strings.html" data-pages="[{&quot;label&quot;:&quot;01 · Programming fundamentals&quot;,&quot;href&quot;:&quot;01_programming_fundamentals.html&quot;,&quot;key&quot;:&quot;notes/01_programming_fundamentals.html&quot;},{&quot;label&quot;:&quot;02 · C basics \u0026 compilation&quot;,&quot;href&quot;:&quot;02_c_basics_and_compilation.html&quot;,&quot;key&quot;:&quot;notes/02_c_basics_and_compilation.html&quot;},{&quot;label&quot;:&quot;03 · Data types \u0026 number systems&quot;,&quot;href&quot;:&quot;03_data_types_and_number_systems.html&quot;,&quot;key&quot;:&quot;notes/03_data_types_and_number_systems.html&quot;},{&quot;label&quot;:&quot;04 · Operators \u0026 expressions&quot;,&quot;href&quot;:&quot;04_operators_and_expressions.html&quot;,&quot;key&quot;:&quot;notes/04_operators_and_expressions.html&quot;},{&quot;label&quot;:&quot;05 · Control statements&quot;,&quot;href&quot;:&quot;05_control_statements.html&quot;,&quot;key&quot;:&quot;notes/05_control_statements.html&quot;},{&quot;label&quot;:&quot;06 · Loops&quot;,&quot;href&quot;:&quot;06_loops.html&quot;,&quot;key&quot;:&quot;notes/06_loops.html&quot;},{&quot;label&quot;:&quot;07 · Functions \u0026 recursion&quot;,&quot;href&quot;:&quot;07_functions_and_recursion.html&quot;,&quot;key&quot;:&quot;notes/07_functions_and_recursion.html&quot;},{&quot;label&quot;:&quot;08 · Arrays \u0026 strings&quot;,&quot;href&quot;:&quot;08_arrays_and_strings.html&quot;,&quot;key&quot;:&quot;notes/08_arrays_and_strings.html&quot;},{&quot;label&quot;:&quot;09 · Pointers&quot;,&quot;href&quot;:&quot;09_pointers.html&quot;,&quot;key&quot;:&quot;notes/09_pointers.html&quot;},{&quot;label&quot;:&quot;10 · Structures, unions \u0026 files&quot;,&quot;href&quot;:&quot;10_structures_unions_files.html&quot;,&quot;key&quot;:&quot;notes/10_structures_unions_files.html&quot;},{&quot;label&quot;:&quot;11 · Formatted I/O \u0026 reports&quot;,&quot;href&quot;:&quot;11_formatted_io_and_reports.html&quot;,&quot;key&quot;:&quot;notes/11_formatted_io_and_reports.html&quot;}]">
 <div class="progress" id="progress"></div>
 <div class="layout">
 <aside class="sidebar">
@@ -26,6 +26,7 @@
     <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
   </div>
   <article class="content">
+<div class="page-tools"><button type="button" class="done-btn" id="markDone">Mark as done</button></div>
 <h1 id="note-08-arrays-and-strings">Note 08 — Arrays and Strings</h1>
 <blockquote><p><strong>Covers outline Week 9</strong> (one-, two- and multi-dimensional arrays) plus strings from the course description.</p></blockquote>
 <hr>
@@ -616,48 +617,60 @@ dest[i] = <span class="tok-chr">'\0'</span>;                 <span class="tok-co
 <hr>
 <h2 id="11-self-test-answers-below">11. Self-test (answers below)</h2>
 <ol>
-<li></li>
-<li></li>
-<li> ``<code>c int a[5] = {10, 20, 30}; printf(&quot;%d %d %d\n&quot;, a[0], a[2], a[4]); </code>``</li>
-<li> ``<code>c int a[5]; a = {1, 2, 3, 4, 5}; </code>``</li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li> ``<code>c int a[2][2] = {{1,2},{3,4}}; printf(&quot;%d\n&quot;, a[1][0]); </code>``</li>
-<li></li>
-<li></li>
-<li></li>
-<li> ``<code>c char s[] = &quot;abc&quot;; printf(&quot;%c %d\n&quot;, s[1], s[3]); </code>``</li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>Define an array. State three properties.</li>
+<li>What is the index of the first and last element of <code>int a[10]</code>?</li>
+<li>What is printed?
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">5</span>] = {<span class="tok-num">10</span>, <span class="tok-num">20</span>, <span class="tok-num">30</span>};
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d %d %d\n&quot;</span>, a[<span class="tok-num">0</span>], a[<span class="tok-num">2</span>], a[<span class="tok-num">4</span>]);</code></pre>
+</li>
+<li>What is wrong?
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">5</span>];
+a = {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>, <span class="tok-num">4</span>, <span class="tok-num">5</span>};</code></pre>
+</li>
+<li>Write a loop to read 10 integers into an array and print them in reverse.</li>
+<li>Write a program to find the largest element in an array.</li>
+<li>How many elements does <code>int m[3][4]</code> have? How are they stored?</li>
+<li>Write the nested loop to input a 3×3 matrix.</li>
+<li>What is the output?
+<pre class="code" data-lang="c"><code><span class="tok-kw">int</span> a[<span class="tok-num">2</span>][<span class="tok-num">2</span>] = {{<span class="tok-num">1</span>,<span class="tok-num">2</span>},{<span class="tok-num">3</span>,<span class="tok-num">4</span>}};
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d\n&quot;</span>, a[<span class="tok-num">1</span>][<span class="tok-num">0</span>]);</code></pre>
+</li>
+<li>What is a string in C? How is it terminated?</li>
+<li>What is the difference between <code>sizeof(&quot;Hi&quot;)</code> and <code>strlen(&quot;Hi&quot;)</code>?</li>
+<li>Why is <code>char s[5] = &quot;Hello&quot;;</code> wrong?</li>
+<li>What is printed?
+<pre class="code" data-lang="c"><code><span class="tok-kw">char</span> s[] = <span class="tok-str">&quot;abc&quot;</span>;
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%c %d\n&quot;</span>, s[<span class="tok-num">1</span>], s[<span class="tok-num">3</span>]);</code></pre>
+</li>
+<li>Why should you not use <code>==</code> to compare strings?</li>
+<li>Write a program to count the number of vowels in a string.</li>
+<li>Write a program to reverse a string in place.</li>
+<li>Write a program to multiply two 2×2 matrices.</li>
+<li>What is the difference between <code>scanf(&quot;%s&quot;, s)</code> and <code>fgets(s, 100, stdin)</code>?</li>
 </ol>
 <h3 id="answers">Answers</h3>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>A collection of a fixed number of elements of the same type stored contiguously and accessed by index. Properties: fixed size, homogeneous type, contiguous memory, zero-based indexing.</li>
+<li>First index 0; last index <strong>9</strong>.</li>
+<li><code>10 30 0</code> — missing initialisers are zero.</li>
+<li>You cannot assign an initialiser list to an array after declaration; initialise at declaration or assign element by element.</li>
+<li><code>for (i=9; i&gt;=0; i--) printf(&quot;%d &quot;, a[i]);</code></li>
+<li>See §3.2.</li>
+<li><strong>12</strong> elements (3×4); stored <strong>row by row</strong> (row-major).</li>
+<li><code>for (i=0;i&lt;3;i++) for (j=0;j&lt;3;j++) scanf(&quot;%d&quot;, &amp;m[i][j]);</code></li>
+<li><strong>3</strong></li>
+<li>A <code>char</code> array terminated by the null character <code>'\0'</code>.</li>
+<li><code>sizeof(&quot;Hi&quot;)</code> = <strong>3</strong> (H, i, <code>'\0'</code>); <code>strlen(&quot;Hi&quot;)</code> = <strong>2</strong>.</li>
+<li>&quot;Hello&quot; needs 6 bytes including <code>'\0'</code>; a 5-byte array is too small.</li>
+<li><code>b 0</code> — <code>s[1]</code> is <code>'b'</code>; <code>s[3]</code> is the null terminator, ASCII 0.</li>
+<li><code>==</code> compares the addresses of the arrays, not their contents. Use <code>strcmp</code>.</li>
+<li>See §7.9.</li>
+<li>Swap characters from both ends toward the middle.</li>
+<li>See §5.6.</li>
+<li><code>scanf(&quot;%s&quot;)</code> reads one word and stops at whitespace; <code>fgets</code> reads an entire line including spaces (and stores the newline).</li>
 </ol>
 <hr>
-<p><strong>Next:</strong> <code>09_pointers.md</code></p>
+<p><strong>Next:</strong> <a class="file-ref" href="09_pointers.html"><code>09_pointers.md</code></a></p>
 
   </article>
 <nav class="pager"><a class="prev" href="../notes/07_functions_and_recursion.html"><span class="dir">&larr; Previous</span><span class="name">07 · Functions &amp; recursion</span></a><a class="next" href="../notes/09_pointers.html"><span class="dir">Next &rarr;</span><span class="name">09 · Pointers</span></a></nav>
@@ -709,6 +722,126 @@ dest[i] = <span class="tok-chr">'\0'</span>;                 <span class="tok-co
   // on phones, start with the contents menu collapsed
   var det = document.querySelector('.nav-details');
   if (det && window.innerWidth < 1000) det.removeAttribute('open');
+
+  // ---- interactive checklist -------------------------------------------
+  var pageId  = document.body.getAttribute('data-page') || location.pathname;
+  var checks  = [].slice.call(document.querySelectorAll('.task-check'));
+  var countEl = document.getElementById('checkCount');
+  var resetBtn = document.getElementById('resetChecks');
+
+  function checkKey(el) { return 'csc112:task:' + pageId + ':' + el.getAttribute('data-task'); }
+  function updateCount() {
+    if (!countEl) return;
+    var done = checks.filter(function (c) { return c.checked; }).length;
+    countEl.textContent = done + ' / ' + checks.length + ' done';
+    countEl.classList.toggle('all', checks.length > 0 && done === checks.length);
+  }
+  checks.forEach(function (c) {
+    try { if (localStorage.getItem(checkKey(c)) === '1') c.checked = true; } catch (e) {}
+    c.addEventListener('change', function () {
+      try { localStorage.setItem(checkKey(c), c.checked ? '1' : '0'); } catch (e) {}
+      updateCount();
+    });
+  });
+  updateCount();
+  if (resetBtn) resetBtn.addEventListener('click', function () {
+    checks.forEach(function (c) {
+      c.checked = false;
+      try { localStorage.removeItem(checkKey(c)); } catch (e) {}
+    });
+    updateCount();
+  });
+
+  // ---- fill-in blanks ---------------------------------------------------
+  var blanks = [].slice.call(document.querySelectorAll('input.blank'));
+  blanks.forEach(function (b) {
+    var k = 'csc112:blank:' + pageId + ':' + b.getAttribute('data-blank');
+    try {
+      var v = localStorage.getItem(k);
+      if (v !== null) b.value = v;
+    } catch (e) {}
+    b.addEventListener('input', function () {
+      try { localStorage.setItem(k, b.value); } catch (e) {}
+      if (b.getAttribute('data-kind') === 'date') updateDays();
+    });
+  });
+
+  function updateDays() {
+    var date = document.querySelector('input.blank[data-kind="date"]');
+    var days = document.querySelector('input.blank[data-kind="days"]');
+    if (!date || !days) return;
+    if (!date.value) { days.value = ''; return; }
+    var d = new Date(date.value + 'T00:00:00');
+    if (isNaN(d.getTime())) { days.value = ''; return; }
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    days.value = String(Math.round((d - today) / 86400000));
+  }
+  updateDays();
+
+  // ---- mark as done + progress panel -----------------------------------
+  var doneBtn = document.getElementById('markDone');
+  var doneKey = 'csc112:done:' + pageId;
+  function isDone() { try { return localStorage.getItem(doneKey) === '1'; } catch (e) { return false; } }
+  function paintDone() {
+    if (!doneBtn) return;
+    doneBtn.textContent = isDone() ? '\u2713 Done' : 'Mark as done';
+    doneBtn.classList.toggle('is-done', isDone());
+  }
+  if (doneBtn) doneBtn.addEventListener('click', function () {
+    try { localStorage.setItem(doneKey, isDone() ? '0' : '1'); } catch (e) {}
+    paintDone();
+    renderPanel();
+  });
+  paintDone();
+
+  var panel = document.getElementById('donePanel');
+  var pages = [];
+  try { pages = JSON.parse(document.body.getAttribute('data-pages') || '[]'); } catch (e) {}
+  function renderPanel() {
+    if (!panel || !pages.length) return;
+    panel.innerHTML = '';
+    var n = 0;
+    pages.forEach(function (p) {
+      try { if (localStorage.getItem('csc112:done:' + p.key) === '1') n++; } catch (e) {}
+    });
+    var head = document.createElement('p');
+    head.className = 'done-summary';
+    head.textContent = n + ' / ' + pages.length + ' pages marked done';
+    panel.appendChild(head);
+
+    var list = document.createElement('ul');
+    list.className = 'done-list';
+    pages.forEach(function (p) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = p.href;
+      a.textContent = p.label;
+      var s = document.createElement('span');
+      var d = false;
+      try { d = localStorage.getItem('csc112:done:' + p.key) === '1'; } catch (e) {}
+      s.className = 'done-flag' + (d ? ' yes' : '');
+      s.textContent = d ? '\u2713 done' : 'not done';
+      li.appendChild(a);
+      li.appendChild(s);
+      list.appendChild(li);
+    });
+    panel.appendChild(list);
+  }
+  renderPanel();
+
+  // print shows the answers so the PDF is a complete revision sheet
+  window.addEventListener('beforeprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      d.setAttribute('data-was-open', d.open ? '1' : '0');
+      d.open = true;
+    });
+  });
+  window.addEventListener('afterprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      if (d.getAttribute('data-was-open') === '0') d.open = false;
+    });
+  });
 })();
 </script>
 </body>

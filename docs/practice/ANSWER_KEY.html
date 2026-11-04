@@ -7,7 +7,7 @@
 <meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
 <link rel="stylesheet" href="../assets/notes.css">
 </head>
-<body>
+<body data-page="practice/ANSWER_KEY.html" data-pages="[{&quot;label&quot;:&quot;01 · Programming fundamentals&quot;,&quot;href&quot;:&quot;../notes/01_programming_fundamentals.html&quot;,&quot;key&quot;:&quot;notes/01_programming_fundamentals.html&quot;},{&quot;label&quot;:&quot;02 · C basics \u0026 compilation&quot;,&quot;href&quot;:&quot;../notes/02_c_basics_and_compilation.html&quot;,&quot;key&quot;:&quot;notes/02_c_basics_and_compilation.html&quot;},{&quot;label&quot;:&quot;03 · Data types \u0026 number systems&quot;,&quot;href&quot;:&quot;../notes/03_data_types_and_number_systems.html&quot;,&quot;key&quot;:&quot;notes/03_data_types_and_number_systems.html&quot;},{&quot;label&quot;:&quot;04 · Operators \u0026 expressions&quot;,&quot;href&quot;:&quot;../notes/04_operators_and_expressions.html&quot;,&quot;key&quot;:&quot;notes/04_operators_and_expressions.html&quot;},{&quot;label&quot;:&quot;05 · Control statements&quot;,&quot;href&quot;:&quot;../notes/05_control_statements.html&quot;,&quot;key&quot;:&quot;notes/05_control_statements.html&quot;},{&quot;label&quot;:&quot;06 · Loops&quot;,&quot;href&quot;:&quot;../notes/06_loops.html&quot;,&quot;key&quot;:&quot;notes/06_loops.html&quot;},{&quot;label&quot;:&quot;07 · Functions \u0026 recursion&quot;,&quot;href&quot;:&quot;../notes/07_functions_and_recursion.html&quot;,&quot;key&quot;:&quot;notes/07_functions_and_recursion.html&quot;},{&quot;label&quot;:&quot;08 · Arrays \u0026 strings&quot;,&quot;href&quot;:&quot;../notes/08_arrays_and_strings.html&quot;,&quot;key&quot;:&quot;notes/08_arrays_and_strings.html&quot;},{&quot;label&quot;:&quot;09 · Pointers&quot;,&quot;href&quot;:&quot;../notes/09_pointers.html&quot;,&quot;key&quot;:&quot;notes/09_pointers.html&quot;},{&quot;label&quot;:&quot;10 · Structures, unions \u0026 files&quot;,&quot;href&quot;:&quot;../notes/10_structures_unions_files.html&quot;,&quot;key&quot;:&quot;notes/10_structures_unions_files.html&quot;},{&quot;label&quot;:&quot;11 · Formatted I/O \u0026 reports&quot;,&quot;href&quot;:&quot;../notes/11_formatted_io_and_reports.html&quot;,&quot;key&quot;:&quot;notes/11_formatted_io_and_reports.html&quot;}]">
 <div class="progress" id="progress"></div>
 <div class="layout">
 <aside class="sidebar">
@@ -26,6 +26,7 @@
     <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
   </div>
   <article class="content">
+<div class="page-tools"><button type="button" class="done-btn" id="markDone">Mark as done</button></div>
 <h1 id="answer-key-question-bank">Answer Key — Question Bank</h1>
 <blockquote><p>Mark your own work strictly. A wrong answer you understand is worth more than a right answer you guessed. For code questions, any correct program earns the marks — the versions below are model answers, not the only answers.</p></blockquote>
 <hr>
@@ -52,22 +53,22 @@
 </tbody></table></div>
 <p><strong>Q4.</strong></p>
 <ol>
-<li> statement at a time.</li>
-<li></li>
-<li> first error.</li>
-<li> are easier to debug.</li>
-<li></li>
+<li>Compiler translates the whole program at once; interpreter translates one statement at a time.</li>
+<li>Compiler produces object code; interpreter produces no object code.</li>
+<li>Compiler reports errors after scanning the whole program; interpreter stops at the first error.</li>
+<li>Compiled programs generally execute faster; interpreted programs execute slower but are easier to debug.</li>
+<li>C/C++ use compilers; Python/Ruby commonly use interpreters.</li>
 </ol>
 <p><strong>Q5.</strong></p>
 <ol>
-<li> requirements.</li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li><strong>Problem definition/analysis</strong> — understand the problem, inputs, outputs and requirements.</li>
+<li><strong>Algorithm selection/development</strong> — write the steps to solve it.</li>
+<li><strong>Program design</strong> — represent the logic using flowcharts, pseudocode, IPO/HIPO.</li>
+<li><strong>Coding</strong> — write the program in a programming language.</li>
+<li><strong>Compilation</strong> — translate source code to object code; remove syntax errors.</li>
+<li><strong>Testing, running and debugging</strong> — run with test data and fix errors.</li>
+<li><strong>Documentation</strong> — record how the program works and how to use it.</li>
+<li><strong>Maintenance</strong> — correct, modify and improve the program after release.</li>
 </ol>
 <p><strong>Q6.</strong> Any six with a sentence each:</p>
 <ul>
@@ -83,13 +84,13 @@
 <p><strong>Q7.</strong> (a) An <strong>algorithm</strong> is a finite, ordered, unambiguous set of steps that solves a problem. (b) Features: <strong>input</strong>, <strong>output</strong>, <strong>definiteness</strong> (clear steps), <strong>finiteness</strong> (must terminate), <strong>effectiveness</strong> (each step is simple enough to perform), and it should produce a unique solution.</p>
 <p><strong>Q8.</strong> <em>Algorithm:</em></p>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>Start.</li>
+<li>Read A, B, C.</li>
+<li>If A ≥ B and A ≥ C, then Largest = A.</li>
+<li>Else if B ≥ A and B ≥ C, then Largest = B.</li>
+<li>Else Largest = C.</li>
+<li>Print Largest.</li>
+<li>Stop.</li>
 </ol>
 <p><em>Pseudocode:</em></p>
 <pre class="code"><code>BEGIN
@@ -163,7 +164,16 @@ END</code></pre>
 </ul>
 <p>Valid: <code>total</code>, <code>_count</code>, <code>Sum</code>. Invalid: <code>2ndNumber</code> (starts with a digit), <code>student-name</code> (hyphen), <code>float</code> (keyword).</p>
 <p><strong>Q14.</strong> <strong>Keywords</strong> are reserved words with a fixed meaning to the compiler, e.g. <code>int</code>, <code>float</code>, <code>char</code>, <code>if</code>, <code>else</code>, <code>for</code>, <code>while</code>, <code>return</code>, <code>void</code>, <code>switch</code>. They cannot be used as identifiers because the compiler would confuse the user name with its own reserved instruction.</p>
-<p><strong>Q15.</strong> | <code>#define</code> | <code>const</code> | |---|---| | Preprocessor directive | C keyword/qualifier | | No semicolon; no <code>=</code> | Uses <code>=</code> and ends with <code>;</code> | | Textual substitution before compilation | Real typed variable | | No data type; no type checking | Has a type; type-checked | | <code>#define PI 3.14</code> | <code>const float PI = 3.14;</code> |</p>
+<p><strong>Q15.</strong></p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left"><code>#define</code></th><th style="text-align:left"><code>const</code></th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Preprocessor directive</td><td style="text-align:left">C keyword/qualifier</td></tr>
+<tr><td style="text-align:left">No semicolon; no <code>=</code></td><td style="text-align:left">Uses <code>=</code> and ends with <code>;</code></td></tr>
+<tr><td style="text-align:left">Textual substitution before compilation</td><td style="text-align:left">Real typed variable</td></tr>
+<tr><td style="text-align:left">No data type; no type checking</td><td style="text-align:left">Has a type; type-checked</td></tr>
+<tr><td style="text-align:left"><code>#define PI 3.14</code></td><td style="text-align:left"><code>const float PI = 3.14;</code></td></tr>
+</tbody></table></div>
 <p><strong>Q16.</strong></p>
 <ul>
 <li><code>/* ... */</code> — block comment, can span lines.</li>
@@ -172,11 +182,11 @@ END</code></pre>
 <p>Reasons: document the program; explain difficult logic; record author/date/version; temporarily disable code. Comments <strong>cannot be nested</strong> — the first <code>*/</code> closes the comment.</p>
 <p><strong>Q17.</strong></p>
 <ol>
-<li> expanded source code.</li>
-<li> language.</li>
-<li></li>
-<li> produce an executable.</li>
-<li> execution.</li>
+<li><strong>Preprocessor</strong> — handles <code>#include</code>, <code>#define</code>, conditional compilation; produces expanded source code.</li>
+<li><strong>Compiler</strong> — checks syntax and translates the expanded source into assembly language.</li>
+<li><strong>Assembler</strong> — translates assembly into machine/object code (<code>.o</code>/<code>.obj</code>).</li>
+<li><strong>Linker</strong> — combines the object code with library code and other object files to produce an executable.</li>
+<li><strong>Loader</strong> — loads the executable from secondary storage into memory and starts execution.</li>
 </ol>
 <p><strong>Q18.</strong></p>
 <ul>
@@ -187,8 +197,8 @@ END</code></pre>
 <p><strong>Q19.</strong> The <strong>linker</strong> combines object files and library functions (e.g. <code>printf</code>) into one executable program and resolves references between them. Without it, the object code would lack the library code needed to run.</p>
 <p><strong>Q20.</strong> Two errors:</p>
 <ol>
-<li> will not compile.</li>
-<li> <code>b = 0</code>, causing undefined behaviour/a crash.</li>
+<li><strong>Syntax error:</strong> the <code>printf</code> statement is missing its semicolon (<code>;</code>). The program will not compile.</li>
+<li><strong>Runtime error (after fixing the semicolon):</strong> <code>a / b</code> divides by zero because <code>b = 0</code>, causing undefined behaviour/a crash.</li>
 </ol>
 <hr>
 <h2 id="section-c-data-types-and-number-systems">Section C — Data types and number systems</h2>
@@ -515,8 +525,7 @@ a = a - b;</code></pre>
 <ul>
 <li><strong>Prototype:</strong> declaration of the function's name, return type and parameter types, ending with <code>;</code>, e.g. <code>int max(int a, int b);</code>.</li>
 <li><strong>Definition:</strong> the actual body with the code.</li>
-<li><strong>Call:</strong> using the function, e.g. <code>m = max(3, 7);</code>.</li>
-</ul>
+<li><strong>Call:</strong> using the function, e.g. <code>m = max(3, 7);</code>.
 <pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
 <span class="tok-kw">int</span> <span class="tok-fn">max</span>(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b);          <span class="tok-com">/* prototype */</span>
 
@@ -531,13 +540,15 @@ a = a - b;</code></pre>
 {
     <span class="tok-kw">return</span> (a &gt; b) ? a : b;
 }</code></pre>
+</li>
+</ul>
 <p><strong>Q63.</strong> <strong>Actual parameters (arguments)</strong> are the values/variables supplied in the function call, e.g. <code>x</code> and <code>y</code> in <code>max(x, y)</code>. <strong>Formal parameters</strong> are the variables declared in the function definition that receive those values, e.g. <code>a</code> and <code>b</code> in <code>int max(int a, int b)</code>. C passes them by value.</p>
 <p><strong>Q64.</strong> Four categories:</p>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li><strong>No arguments, no return value:</strong> <code>void greet(void) { printf(&quot;Hi&quot;); }</code></li>
+<li><strong>No arguments, with return value:</strong> <code>int readNumber(void) { int n; scanf(&quot;%d&quot;,&amp;n); return n; }</code></li>
+<li><strong>With arguments, no return value:</strong> <code>void printSum(int a, int b) { printf(&quot;%d&quot;, a+b); }</code></li>
+<li><strong>With arguments and return value:</strong> <code>int add(int a, int b) { return a+b; }</code></li>
 </ol>
 <p><strong>Q65.</strong> <strong>Call by value</strong> passes a copy of the argument; changes inside the function do not affect the caller. <strong>Call by reference</strong> passes the address; changes through the pointer do affect the caller. C uses call by value, but pointers simulate call by reference.</p>
 <pre class="code" data-lang="c"><code><span class="tok-kw">void</span> <span class="tok-fn">swap</span>(<span class="tok-kw">int</span> *a, <span class="tok-kw">int</span> *b)
@@ -555,14 +566,15 @@ a = a - b;</code></pre>
 </ul>
 <p><strong>Q67.</strong> <strong>Recursion</strong> is when a function calls itself to solve a smaller version of the same problem. Two parts:</p>
 <ol>
-<li></li>
-<li></li>
-</ol>
+<li><strong>Base case</strong> — the stopping condition.</li>
+<li><strong>Recursive case</strong> — the function calls itself with a smaller input.
 <pre class="code" data-lang="c"><code><span class="tok-kw">long</span> <span class="tok-kw">long</span> <span class="tok-fn">fact</span>(<span class="tok-kw">int</span> n)
 {
     <span class="tok-kw">if</span> (n &lt;= <span class="tok-num">1</span>) <span class="tok-kw">return</span> <span class="tok-num">1</span>;       <span class="tok-com">/* base case */</span>
     <span class="tok-kw">return</span> n * <span class="tok-fn">fact</span>(n - <span class="tok-num">1</span>);     <span class="tok-com">/* recursive case */</span>
 }</code></pre>
+</li>
+</ol>
 <p><strong>Q68.</strong> <code>factorial(4)</code> → <code>4 * factorial(3)</code> → <code>4 * 3 * factorial(2)</code> → <code>4 * 3 * 2 * factorial(1)</code> → <code>4 * 3 * 2 * 1</code> = <strong>24</strong>. Calls: fact(4), fact(3), fact(2), fact(1); then returns 1, 2, 6, 24.</p>
 <p><strong>Q69.</strong></p>
 <pre class="code" data-lang="c"><code><span class="tok-kw">int</span> <span class="tok-fn">fib</span>(<span class="tok-kw">int</span> n)
@@ -785,8 +797,7 @@ p: [1000]  → points to x</code></pre>
 <li><code>malloc(size)</code> allocates <code>size</code> bytes, uninitialised, returns <code>void *</code> (or <code>NULL</code>).</li>
 <li><code>calloc(n, size)</code> allocates <code>n × size</code> bytes and initialises them to zero.</li>
 <li><code>realloc(ptr, newSize)</code> resizes a previously allocated block.</li>
-<li><code>free(ptr)</code> releases the memory.</li>
-</ul>
+<li><code>free(ptr)</code> releases the memory.
 <pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
 <span class="tok-pre">#include &lt;stdlib.h&gt;</span>
 <span class="tok-kw">int</span> <span class="tok-fn">main</span>(<span class="tok-kw">void</span>)
@@ -801,6 +812,8 @@ p: [1000]  → points to x</code></pre>
     a = <span class="tok-kw">NULL</span>;
     <span class="tok-kw">return</span> <span class="tok-num">0</span>;
 }</code></pre>
+</li>
+</ul>
 <hr>
 <h2 id="section-j-structures-unions-files-and-formatting">Section J — Structures, unions, files and formatting</h2>
 <p><strong>Q87.</strong> A <strong>structure</strong> is a user-defined data type that groups variables of <strong>different</strong> types under one name.</p>
@@ -841,17 +854,25 @@ p: [1000]  → points to x</code></pre>
 <pre class="code" data-lang="c"><code><span class="tok-kw">typedef</span> <span class="tok-kw">struct</span> { <span class="tok-kw">char</span> name[<span class="tok-num">50</span>]; <span class="tok-kw">int</span> age; } Student;
 Student s1;</code></pre>
 <p>The <code>-&gt;</code> operator accesses a member through a <strong>pointer to a structure</strong>. <code>(*p).name</code> is written as <code>p-&gt;name</code>.</p>
-<p><strong>Q90.</strong> | Structure | Union | |---|---| | Members have separate memory | All members share the same memory | | Size ≥ sum of member sizes (+ padding) | Size = size of the largest member | | All members can be used at once | Only one member is valid at a time | | <code>struct</code> keyword | <code>union</code> keyword |</p>
+<p><strong>Q90.</strong></p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Structure</th><th style="text-align:left">Union</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left">Members have separate memory</td><td style="text-align:left">All members share the same memory</td></tr>
+<tr><td style="text-align:left">Size ≥ sum of member sizes (+ padding)</td><td style="text-align:left">Size = size of the largest member</td></tr>
+<tr><td style="text-align:left">All members can be used at once</td><td style="text-align:left">Only one member is valid at a time</td></tr>
+<tr><td style="text-align:left"><code>struct</code> keyword</td><td style="text-align:left"><code>union</code> keyword</td></tr>
+</tbody></table></div>
 <p><strong>Q91.</strong> An <strong>enumeration</strong> is a user-defined type consisting of named integer constants.</p>
 <pre class="code" data-lang="c"><code><span class="tok-kw">enum</span> Day { MON, TUE, WED, THU, FRI };
 <span class="tok-kw">enum</span> Day today = WED;   <span class="tok-com">/* WED == 2 */</span></code></pre>
 <p>Advantage: makes code readable and restricts a variable to a set of named values.</p>
 <p><strong>Q92.</strong></p>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>Declare a file pointer: <code>FILE *fp;</code></li>
+<li>Open: <code>fp = fopen(&quot;data.txt&quot;, &quot;w&quot;);</code> and check for <code>NULL</code>.</li>
+<li>Read/write: <code>fprintf</code>, <code>fscanf</code>, <code>fgets</code>, <code>fputc</code>, <code>fgetc</code>.</li>
+<li>Close: <code>fclose(fp);</code>.</li>
 </ol>
 <p>Modes: <code>&quot;r&quot;</code> read, <code>&quot;w&quot;</code> write (creates/erases), <code>&quot;a&quot;</code> append, <code>&quot;r+&quot;</code> read/update, <code>&quot;w+&quot;</code> write/read, <code>&quot;a+&quot;</code> append/read.</p>
 <p><strong>Q93.</strong></p>
@@ -893,11 +914,11 @@ Student s1;</code></pre>
 <p>(<code>%5d</code> = width 5; <code>%-5d</code> = left-aligned; <code>%05d</code> = zero-padded; <code>%.2f</code> = 2 decimal places; <code>%8.2f</code> = width 8 with 2 decimals; <code>%.3s</code> = first 3 characters.)</p>
 <p><strong>Q95.</strong> Four common mistakes:</p>
 <ol>
-<li> exception).</li>
-<li></li>
-<li> leading space.</li>
-<li> for a 50-byte array.</li>
-<li> whitespace.</li>
+<li><strong>Missing <code>&amp;</code></strong> in <code>scanf(&quot;%d&quot;, x);</code> → use <code>scanf(&quot;%d&quot;, &amp;x);</code> (arrays are the exception).</li>
+<li><strong>Using <code>%f</code> for a <code>double</code></strong> in <code>scanf</code> → use <code>%lf</code>.</li>
+<li><strong><code>%c</code> reading leftover whitespace/newline</strong> → write <code>scanf(&quot; %c&quot;, &amp;ch);</code> with a leading space.</li>
+<li><strong>No width limit for <code>%s</code></strong> causing buffer overflow → use <code>scanf(&quot;%49s&quot;, name);</code> for a 50-byte array.</li>
+<li>Also: wrong specifier/type mismatch, and forgetting that <code>scanf</code> stops at whitespace.</li>
 </ol>
 <p><strong>Q96.</strong></p>
 <pre class="code" data-lang="c"><code><span class="tok-fn">printf</span>(<span class="tok-str">&quot;%-15s %5s %12s\n&quot;</span>, <span class="tok-str">&quot;Name&quot;</span>, <span class="tok-str">&quot;Age&quot;</span>, <span class="tok-str">&quot;Fee&quot;</span>);
@@ -971,6 +992,126 @@ Brian              21     52000.00</code></pre>
   // on phones, start with the contents menu collapsed
   var det = document.querySelector('.nav-details');
   if (det && window.innerWidth < 1000) det.removeAttribute('open');
+
+  // ---- interactive checklist -------------------------------------------
+  var pageId  = document.body.getAttribute('data-page') || location.pathname;
+  var checks  = [].slice.call(document.querySelectorAll('.task-check'));
+  var countEl = document.getElementById('checkCount');
+  var resetBtn = document.getElementById('resetChecks');
+
+  function checkKey(el) { return 'csc112:task:' + pageId + ':' + el.getAttribute('data-task'); }
+  function updateCount() {
+    if (!countEl) return;
+    var done = checks.filter(function (c) { return c.checked; }).length;
+    countEl.textContent = done + ' / ' + checks.length + ' done';
+    countEl.classList.toggle('all', checks.length > 0 && done === checks.length);
+  }
+  checks.forEach(function (c) {
+    try { if (localStorage.getItem(checkKey(c)) === '1') c.checked = true; } catch (e) {}
+    c.addEventListener('change', function () {
+      try { localStorage.setItem(checkKey(c), c.checked ? '1' : '0'); } catch (e) {}
+      updateCount();
+    });
+  });
+  updateCount();
+  if (resetBtn) resetBtn.addEventListener('click', function () {
+    checks.forEach(function (c) {
+      c.checked = false;
+      try { localStorage.removeItem(checkKey(c)); } catch (e) {}
+    });
+    updateCount();
+  });
+
+  // ---- fill-in blanks ---------------------------------------------------
+  var blanks = [].slice.call(document.querySelectorAll('input.blank'));
+  blanks.forEach(function (b) {
+    var k = 'csc112:blank:' + pageId + ':' + b.getAttribute('data-blank');
+    try {
+      var v = localStorage.getItem(k);
+      if (v !== null) b.value = v;
+    } catch (e) {}
+    b.addEventListener('input', function () {
+      try { localStorage.setItem(k, b.value); } catch (e) {}
+      if (b.getAttribute('data-kind') === 'date') updateDays();
+    });
+  });
+
+  function updateDays() {
+    var date = document.querySelector('input.blank[data-kind="date"]');
+    var days = document.querySelector('input.blank[data-kind="days"]');
+    if (!date || !days) return;
+    if (!date.value) { days.value = ''; return; }
+    var d = new Date(date.value + 'T00:00:00');
+    if (isNaN(d.getTime())) { days.value = ''; return; }
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    days.value = String(Math.round((d - today) / 86400000));
+  }
+  updateDays();
+
+  // ---- mark as done + progress panel -----------------------------------
+  var doneBtn = document.getElementById('markDone');
+  var doneKey = 'csc112:done:' + pageId;
+  function isDone() { try { return localStorage.getItem(doneKey) === '1'; } catch (e) { return false; } }
+  function paintDone() {
+    if (!doneBtn) return;
+    doneBtn.textContent = isDone() ? '\u2713 Done' : 'Mark as done';
+    doneBtn.classList.toggle('is-done', isDone());
+  }
+  if (doneBtn) doneBtn.addEventListener('click', function () {
+    try { localStorage.setItem(doneKey, isDone() ? '0' : '1'); } catch (e) {}
+    paintDone();
+    renderPanel();
+  });
+  paintDone();
+
+  var panel = document.getElementById('donePanel');
+  var pages = [];
+  try { pages = JSON.parse(document.body.getAttribute('data-pages') || '[]'); } catch (e) {}
+  function renderPanel() {
+    if (!panel || !pages.length) return;
+    panel.innerHTML = '';
+    var n = 0;
+    pages.forEach(function (p) {
+      try { if (localStorage.getItem('csc112:done:' + p.key) === '1') n++; } catch (e) {}
+    });
+    var head = document.createElement('p');
+    head.className = 'done-summary';
+    head.textContent = n + ' / ' + pages.length + ' pages marked done';
+    panel.appendChild(head);
+
+    var list = document.createElement('ul');
+    list.className = 'done-list';
+    pages.forEach(function (p) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = p.href;
+      a.textContent = p.label;
+      var s = document.createElement('span');
+      var d = false;
+      try { d = localStorage.getItem('csc112:done:' + p.key) === '1'; } catch (e) {}
+      s.className = 'done-flag' + (d ? ' yes' : '');
+      s.textContent = d ? '\u2713 done' : 'not done';
+      li.appendChild(a);
+      li.appendChild(s);
+      list.appendChild(li);
+    });
+    panel.appendChild(list);
+  }
+  renderPanel();
+
+  // print shows the answers so the PDF is a complete revision sheet
+  window.addEventListener('beforeprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      d.setAttribute('data-was-open', d.open ? '1' : '0');
+      d.open = true;
+    });
+  });
+  window.addEventListener('afterprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      if (d.getAttribute('data-was-open') === '0') d.open = false;
+    });
+  });
 })();
 </script>
 </body>

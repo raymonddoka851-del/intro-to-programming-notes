@@ -7,7 +7,7 @@
 <meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
 <link rel="stylesheet" href="assets/notes.css">
 </head>
-<body>
+<body data-page="START_HERE.html" data-pages="[{&quot;label&quot;:&quot;01 · Programming fundamentals&quot;,&quot;href&quot;:&quot;notes/01_programming_fundamentals.html&quot;,&quot;key&quot;:&quot;notes/01_programming_fundamentals.html&quot;},{&quot;label&quot;:&quot;02 · C basics \u0026 compilation&quot;,&quot;href&quot;:&quot;notes/02_c_basics_and_compilation.html&quot;,&quot;key&quot;:&quot;notes/02_c_basics_and_compilation.html&quot;},{&quot;label&quot;:&quot;03 · Data types \u0026 number systems&quot;,&quot;href&quot;:&quot;notes/03_data_types_and_number_systems.html&quot;,&quot;key&quot;:&quot;notes/03_data_types_and_number_systems.html&quot;},{&quot;label&quot;:&quot;04 · Operators \u0026 expressions&quot;,&quot;href&quot;:&quot;notes/04_operators_and_expressions.html&quot;,&quot;key&quot;:&quot;notes/04_operators_and_expressions.html&quot;},{&quot;label&quot;:&quot;05 · Control statements&quot;,&quot;href&quot;:&quot;notes/05_control_statements.html&quot;,&quot;key&quot;:&quot;notes/05_control_statements.html&quot;},{&quot;label&quot;:&quot;06 · Loops&quot;,&quot;href&quot;:&quot;notes/06_loops.html&quot;,&quot;key&quot;:&quot;notes/06_loops.html&quot;},{&quot;label&quot;:&quot;07 · Functions \u0026 recursion&quot;,&quot;href&quot;:&quot;notes/07_functions_and_recursion.html&quot;,&quot;key&quot;:&quot;notes/07_functions_and_recursion.html&quot;},{&quot;label&quot;:&quot;08 · Arrays \u0026 strings&quot;,&quot;href&quot;:&quot;notes/08_arrays_and_strings.html&quot;,&quot;key&quot;:&quot;notes/08_arrays_and_strings.html&quot;},{&quot;label&quot;:&quot;09 · Pointers&quot;,&quot;href&quot;:&quot;notes/09_pointers.html&quot;,&quot;key&quot;:&quot;notes/09_pointers.html&quot;},{&quot;label&quot;:&quot;10 · Structures, unions \u0026 files&quot;,&quot;href&quot;:&quot;notes/10_structures_unions_files.html&quot;,&quot;key&quot;:&quot;notes/10_structures_unions_files.html&quot;},{&quot;label&quot;:&quot;11 · Formatted I/O \u0026 reports&quot;,&quot;href&quot;:&quot;notes/11_formatted_io_and_reports.html&quot;,&quot;key&quot;:&quot;notes/11_formatted_io_and_reports.html&quot;}]">
 <div class="progress" id="progress"></div>
 <div class="layout">
 <aside class="sidebar">
@@ -26,6 +26,7 @@
     <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
   </div>
   <article class="content">
+<div class="page-tools"><span class="check-count" id="checkCount">0 / 37 done</span><button type="button" class="reset-btn" id="resetChecks">Reset checklist</button><button type="button" class="done-btn" id="markDone">Mark as done</button></div>
 <h1 id="sta-121-csc-112-introduction-to-programming">STA 121 / CSC 112 — Introduction to Programming</h1>
 <h2 id="complete-exam-revision-pack">Complete Exam Revision Pack</h2>
 <p>This pack was built from:</p>
@@ -44,33 +45,33 @@
 <div class="table-wrap"><table>
 <thead><tr><th style="text-align:left">Folder</th><th style="text-align:left">File</th><th style="text-align:left">Use it for</th></tr></thead>
 <tbody>
-<tr><td style="text-align:left">—</td><td style="text-align:left"><code>OPEN_NOTES.bat</code></td><td style="text-align:left"><strong>Start here:</strong> opens the formatted, clickable version of every note in your browser</td></tr>
+<tr><td style="text-align:left">—</td><td style="text-align:left"><a class="file-ref" href="https://github.com/raymonddoka851-del/intro-to-programming-notes/blob/main/OPEN_NOTES.bat" target="_blank" rel="noopener noreferrer"><code>OPEN_NOTES.bat</code></a></td><td style="text-align:left"><strong>Start here:</strong> opens the formatted, clickable version of every note in your browser</td></tr>
 <tr><td style="text-align:left"><code>docs/</code></td><td style="text-align:left"><code>index.html</code></td><td style="text-align:left">The styled notes site (tables, code colouring, search, print to PDF)</td></tr>
-<tr><td style="text-align:left">—</td><td style="text-align:left"><code>START_HERE.md</code></td><td style="text-align:left">Study plan, exam strategy, checklist</td></tr>
-<tr><td style="text-align:left">—</td><td style="text-align:left"><code>YOUR_14_DAY_PLAN.md</code></td><td style="text-align:left">Detailed day-by-day plan with minimum pass paths</td></tr>
-<tr><td style="text-align:left">—</td><td style="text-align:left"><code>SETUP_AND_RUN.md</code></td><td style="text-align:left">Install or use a C compiler; compile and run programs</td></tr>
-<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>01_programming_fundamentals.md</code></td><td style="text-align:left">Definitions, language levels, program development, algorithms, flowcharts, errors</td></tr>
-<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>02_c_basics_and_compilation.md</code></td><td style="text-align:left">C structure, compilation, identifiers, comments, first programs</td></tr>
-<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>03_data_types_and_number_systems.md</code></td><td style="text-align:left">Bits/bytes, binary/octal/hex, 2's complement, int/float/char, ASCII, casting</td></tr>
-<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>04_operators_and_expressions.md</code></td><td style="text-align:left">All operator types, precedence, prefix/postfix, evaluation</td></tr>
-<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>05_control_statements.md</code></td><td style="text-align:left">if, if-else, else-if, nested if, switch</td></tr>
-<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>06_loops.md</code></td><td style="text-align:left">while, do-while, for, nested loops, break/continue/goto</td></tr>
-<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>07_functions_and_recursion.md</code></td><td style="text-align:left">Prototypes, parameters, call by value/reference, scope, recursion</td></tr>
-<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>08_arrays_and_strings.md</code></td><td style="text-align:left">1D/2D arrays, searching, sorting, strings, <code>string.h</code></td></tr>
-<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>09_pointers.md</code></td><td style="text-align:left">Addresses, dereferencing, pointer arithmetic, pass-by-reference, dynamic memory</td></tr>
-<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>10_structures_unions_files.md</code></td><td style="text-align:left">struct, union, enum, file handling</td></tr>
-<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><code>11_formatted_io_and_reports.md</code></td><td style="text-align:left"><code>printf</code>/<code>scanf</code> formatting, display/report design</td></tr>
-<tr><td style="text-align:left">—</td><td style="text-align:left"><code>CHEAT_SHEET.md</code></td><td style="text-align:left">One-page syntax reference for the last day</td></tr>
+<tr><td style="text-align:left">—</td><td style="text-align:left"><a class="file-ref" href="START_HERE.html"><code>START_HERE.md</code></a></td><td style="text-align:left">Study plan, exam strategy, checklist</td></tr>
+<tr><td style="text-align:left">—</td><td style="text-align:left"><a class="file-ref" href="YOUR_14_DAY_PLAN.html"><code>YOUR_14_DAY_PLAN.md</code></a></td><td style="text-align:left">Detailed day-by-day plan with minimum pass paths</td></tr>
+<tr><td style="text-align:left">—</td><td style="text-align:left"><a class="file-ref" href="SETUP_AND_RUN.html"><code>SETUP_AND_RUN.md</code></a></td><td style="text-align:left">Install or use a C compiler; compile and run programs</td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><a class="file-ref" href="notes/01_programming_fundamentals.html"><code>01_programming_fundamentals.md</code></a></td><td style="text-align:left">Definitions, language levels, program development, algorithms, flowcharts, errors</td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><a class="file-ref" href="notes/02_c_basics_and_compilation.html"><code>02_c_basics_and_compilation.md</code></a></td><td style="text-align:left">C structure, compilation, identifiers, comments, first programs</td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><a class="file-ref" href="notes/03_data_types_and_number_systems.html"><code>03_data_types_and_number_systems.md</code></a></td><td style="text-align:left">Bits/bytes, binary/octal/hex, 2's complement, int/float/char, ASCII, casting</td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><a class="file-ref" href="notes/04_operators_and_expressions.html"><code>04_operators_and_expressions.md</code></a></td><td style="text-align:left">All operator types, precedence, prefix/postfix, evaluation</td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><a class="file-ref" href="notes/05_control_statements.html"><code>05_control_statements.md</code></a></td><td style="text-align:left">if, if-else, else-if, nested if, switch</td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><a class="file-ref" href="notes/06_loops.html"><code>06_loops.md</code></a></td><td style="text-align:left">while, do-while, for, nested loops, break/continue/goto</td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><a class="file-ref" href="notes/07_functions_and_recursion.html"><code>07_functions_and_recursion.md</code></a></td><td style="text-align:left">Prototypes, parameters, call by value/reference, scope, recursion</td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><a class="file-ref" href="notes/08_arrays_and_strings.html"><code>08_arrays_and_strings.md</code></a></td><td style="text-align:left">1D/2D arrays, searching, sorting, strings, <code>string.h</code></td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><a class="file-ref" href="notes/09_pointers.html"><code>09_pointers.md</code></a></td><td style="text-align:left">Addresses, dereferencing, pointer arithmetic, pass-by-reference, dynamic memory</td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><a class="file-ref" href="notes/10_structures_unions_files.html"><code>10_structures_unions_files.md</code></a></td><td style="text-align:left">struct, union, enum, file handling</td></tr>
+<tr><td style="text-align:left"><code>notes/</code></td><td style="text-align:left"><a class="file-ref" href="notes/11_formatted_io_and_reports.html"><code>11_formatted_io_and_reports.md</code></a></td><td style="text-align:left"><code>printf</code>/<code>scanf</code> formatting, display/report design</td></tr>
+<tr><td style="text-align:left">—</td><td style="text-align:left"><a class="file-ref" href="CHEAT_SHEET.html"><code>CHEAT_SHEET.md</code></a></td><td style="text-align:left">One-page syntax reference for the last day</td></tr>
 <tr><td style="text-align:left"><code>code/</code></td><td style="text-align:left"><code>*.c</code></td><td style="text-align:left">Complete, compilable example programs</td></tr>
-<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><code>ACTUAL_QUIZ_ANSWERS.md</code></td><td style="text-align:left">Model answers to the e-learning quiz questions</td></tr>
-<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><code>QUESTION_BANK.md</code></td><td style="text-align:left">96 questions by topic</td></tr>
-<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><code>ANSWER_KEY.md</code></td><td style="text-align:left">Answers and explanations</td></tr>
-<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><code>LAB_TASKS.md</code></td><td style="text-align:left">25 programs to write yourself, easy → hard</td></tr>
-<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><code>MOCK_EXAM_1.md</code></td><td style="text-align:left">Full 70-mark practice paper</td></tr>
-<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><code>MOCK_EXAM_1_MARKING_SCHEME.md</code></td><td style="text-align:left">Marking scheme and model answers</td></tr>
-<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><code>MOCK_EXAM_2.md</code></td><td style="text-align:left">Second full paper</td></tr>
-<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><code>MOCK_EXAM_2_MARKING_SCHEME.md</code></td><td style="text-align:left">Marking scheme and model answers</td></tr>
-<tr><td style="text-align:left">—</td><td style="text-align:left"><code>PROGRESS_TRACKER.md</code></td><td style="text-align:left">Tick off topics as you master them</td></tr>
+<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><a class="file-ref" href="practice/ACTUAL_QUIZ_ANSWERS.html"><code>ACTUAL_QUIZ_ANSWERS.md</code></a></td><td style="text-align:left">Model answers to the e-learning quiz questions</td></tr>
+<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><a class="file-ref" href="practice/QUESTION_BANK.html"><code>QUESTION_BANK.md</code></a></td><td style="text-align:left">96 questions by topic</td></tr>
+<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><a class="file-ref" href="practice/ANSWER_KEY.html"><code>ANSWER_KEY.md</code></a></td><td style="text-align:left">Answers and explanations</td></tr>
+<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><a class="file-ref" href="practice/LAB_TASKS.html"><code>LAB_TASKS.md</code></a></td><td style="text-align:left">25 programs to write yourself, easy → hard</td></tr>
+<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><a class="file-ref" href="practice/MOCK_EXAM_1.html"><code>MOCK_EXAM_1.md</code></a></td><td style="text-align:left">Full 70-mark practice paper</td></tr>
+<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><a class="file-ref" href="practice/MOCK_EXAM_1_MARKING_SCHEME.html"><code>MOCK_EXAM_1_MARKING_SCHEME.md</code></a></td><td style="text-align:left">Marking scheme and model answers</td></tr>
+<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><a class="file-ref" href="practice/MOCK_EXAM_2.html"><code>MOCK_EXAM_2.md</code></a></td><td style="text-align:left">Second full paper</td></tr>
+<tr><td style="text-align:left"><code>practice/</code></td><td style="text-align:left"><a class="file-ref" href="practice/MOCK_EXAM_2_MARKING_SCHEME.html"><code>MOCK_EXAM_2_MARKING_SCHEME.md</code></a></td><td style="text-align:left">Marking scheme and model answers</td></tr>
+<tr><td style="text-align:left">—</td><td style="text-align:left"><a class="file-ref" href="PROGRESS_TRACKER.html"><code>PROGRESS_TRACKER.md</code></a></td><td style="text-align:left">Tick off topics as you master them</td></tr>
 </tbody></table></div>
 <hr>
 <h2 id="2-course-map-outline-week-what-to-master">2. Course map: outline week → what to master</h2>
@@ -102,14 +103,14 @@
 <tr><td style="text-align:left">4</td><td style="text-align:left">Operators</td><td style="text-align:left">Read Note 04. Copy the precedence table from memory. Run <code>operators.c</code>. Do Q31–Q40.</td></tr>
 <tr><td style="text-align:left">5</td><td style="text-align:left">Control statements</td><td style="text-align:left">Read Note 05. Write even/odd, largest of 3, grade program, calculator with <code>switch</code>. Do Q41–Q50.</td></tr>
 <tr><td style="text-align:left">6</td><td style="text-align:left">Loops</td><td style="text-align:left">Read Note 06. Write sum 1..n, factorial, reverse digits, prime check, multiplication table, star triangle. Do Q51–Q60.</td></tr>
-<tr><td style="text-align:left">7</td><td style="text-align:left">Review + mini-test</td><td style="text-align:left">Re-do every wrong question from days 1–6. Do Sections A–F (Q1–Q60) of <code>QUESTION_BANK.md</code> under timed conditions.</td></tr>
+<tr><td style="text-align:left">7</td><td style="text-align:left">Review + mini-test</td><td style="text-align:left">Re-do every wrong question from days 1–6. Do Sections A–F (Q1–Q60) of <a class="file-ref" href="practice/QUESTION_BANK.html"><code>QUESTION_BANK.md</code></a> under timed conditions.</td></tr>
 <tr><td style="text-align:left">8</td><td style="text-align:left">Functions</td><td style="text-align:left">Read Note 07 (first half). Write a function for max of two, factorial, prime check. Learn the four function categories. Do Q61–Q66.</td></tr>
 <tr><td style="text-align:left">9</td><td style="text-align:left">Recursion + parameter passing</td><td style="text-align:left">Read Note 07 (second half). Trace factorial(5) and Fibonacci(5) by hand. Write swap with pointers. Do Q67–Q70.</td></tr>
 <tr><td style="text-align:left">10</td><td style="text-align:left">1D arrays</td><td style="text-align:left">Read Note 08 (first half). Write array input/output, sum/average, max/min, reverse, linear search. Run <code>array_stats.c</code> and <code>bubble_sort.c</code>. Do Q71–Q75.</td></tr>
 <tr><td style="text-align:left">11</td><td style="text-align:left">2D arrays + strings</td><td style="text-align:left">Read Note 08 (second half). Write matrix addition and transpose. Write string length, copy, compare without <code>string.h</code>. Do Q76–Q80.</td></tr>
 <tr><td style="text-align:left">12</td><td style="text-align:left">Pointers</td><td style="text-align:left">Read Note 09. Draw memory diagrams for <code>int x = 5; int *p = &amp;x;</code>. Write swap and array traversal with pointers. Do Q81–Q86.</td></tr>
 <tr><td style="text-align:left">13</td><td style="text-align:left">Structures, unions, files, reports</td><td style="text-align:left">Read Notes 10 and 11. Write a student struct program and a file write/read program. Learn the <code>union</code> vs <code>struct</code> size question and the report-formatting question. Do Q87–Q96.</td></tr>
-<tr><td style="text-align:left">14</td><td style="text-align:left">Full mock + review</td><td style="text-align:left">Sit <code>MOCK_EXAM_1.md</code> in 2 hours without notes. Mark it with the scheme. Re-do every missed question, then re-read the cheat sheet and your weak notes.</td></tr>
+<tr><td style="text-align:left">14</td><td style="text-align:left">Full mock + review</td><td style="text-align:left">Sit <a class="file-ref" href="practice/MOCK_EXAM_1.html"><code>MOCK_EXAM_1.md</code></a> in 2 hours without notes. Mark it with the scheme. Re-do every missed question, then re-read the cheat sheet and your weak notes.</td></tr>
 </tbody></table></div>
 <h3 id="if-you-only-have-5-days">If you only have 5 days</h3>
 <div class="table-wrap"><table>
@@ -123,22 +124,22 @@
 </tbody></table></div>
 <h3 id="if-you-have-48-hours">If you have 48 hours</h3>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>Read <a class="file-ref" href="CHEAT_SHEET.html"><code>CHEAT_SHEET.md</code></a> (30 min).</li>
+<li>Read Notes 01–06 (4 hours).</li>
+<li>Do the first 50 question-bank questions (2 hours).</li>
+<li>Read Notes 07–11 (3 hours).</li>
+<li>Write 8 programs by hand: even/odd, largest of 3, factorial, reverse digits, prime, array average, string length, struct record (3 hours).</li>
+<li>Sit Mock 1 and mark it (2.5 hours).</li>
+<li>Re-read weak sections + sleep.</li>
 </ol>
 <hr>
 <h2 id="4-how-to-study-programming-even-alone">4. How to study programming (even alone)</h2>
 <p>For every example program, use the <strong>P.A.C.E.</strong> method:</p>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li><strong>Predict</strong> — cover the output and predict what the program prints.</li>
+<li><strong>Attempt</strong> — write your version from memory before looking.</li>
+<li><strong>Compile/Run</strong> — type it exactly and run it.</li>
+<li><strong>Explain</strong> — say aloud what every line does. If you cannot explain a line, you do not know it yet.</li>
 </ol>
 <p>When you trace code in the exam, always draw a <strong>variable table</strong>:</p>
 <div class="table-wrap"><table>
@@ -165,15 +166,15 @@
 </tbody></table></div>
 <h3 id="code-writing-recipe-use-every-time">Code-writing recipe (use every time)</h3>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li><strong>I</strong>nput: what data comes in? What types?</li>
+<li><strong>P</strong>rocess: what formula/logic?</li>
+<li><strong>O</strong>utput: exactly what should be printed?</li>
+<li>Write declarations.</li>
+<li>Write input with <code>scanf</code> (remember <code>&amp;</code>).</li>
+<li>Write logic.</li>
+<li>Write output with <code>printf</code>.</li>
+<li>Add <code>return 0;</code>.</li>
+<li>Dry-run with a small example.</li>
 </ol>
 <h3 id="marks-per-minute">Marks per minute</h3>
 <ul>
@@ -184,74 +185,74 @@
 </ul>
 <h3 id="the-10-mistakes-that-cost-the-most-marks">The 10 mistakes that cost the most marks</h3>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li><code>if (x = 5)</code> instead of <code>if (x == 5)</code>.</li>
+<li>Semicolon after <code>if (...)</code>, <code>for (...)</code>, or <code>while (...)</code>.</li>
+<li>Missing <code>&amp;</code> in <code>scanf(&quot;%d&quot;, x);</code>.</li>
+<li><code>5/2</code> when you meant <code>5.0/2</code> (integer division).</li>
+<li>Using <code>%</code> with <code>float</code>/<code>double</code>.</li>
+<li>Forgetting <code>break</code> in <code>switch</code> (fall-through).</li>
+<li>Array index out of bounds; forgetting arrays start at 0.</li>
+<li>Missing <code>'\0'</code> when building a string by hand.</li>
+<li>Uninitialised variable used in a calculation.</li>
+<li>Missing <code>return 0;</code> / unbalanced braces.</li>
 </ol>
 <hr>
 <h2 id="6-must-know-checklist">6. Must-know checklist</h2>
 <p>Tick each only when you can do it <strong>without notes</strong>.</p>
 <h3 id="theory">Theory</h3>
 <ul>
-<li><span class="cb">&#9744;</span> Define program, programming, programming language, algorithm, pseudocode, flowchart</li>
-<li><span class="cb">&#9744;</span> Classify programming languages (machine, assembly, high-level) with 2 advantages and 2 disadvantages each</li>
-<li><span class="cb">&#9744;</span> Explain compiler vs interpreter (4 differences)</li>
-<li><span class="cb">&#9744;</span> List 6 characteristics of a good program</li>
-<li><span class="cb">&#9744;</span> List the 8 phases of program development in order</li>
-<li><span class="cb">&#9744;</span> Explain syntax, runtime and logical errors with examples</li>
-<li><span class="cb">&#9744;</span> Explain sequence, selection and repetition</li>
-<li><span class="cb">&#9744;</span> Describe the 5 flowchart symbols and 5 algorithm representations</li>
-<li><span class="cb">&#9744;</span> Describe the compilation pipeline (preprocessor, compiler, assembler, linker, loader)</li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task1" data-task="task1"> <span class="task-text">Define program, programming, programming language, algorithm, pseudocode, flowchart</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task2" data-task="task2"> <span class="task-text">Classify programming languages (machine, assembly, high-level) with 2 advantages and 2 disadvantages each</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task3" data-task="task3"> <span class="task-text">Explain compiler vs interpreter (4 differences)</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task4" data-task="task4"> <span class="task-text">List 6 characteristics of a good program</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task5" data-task="task5"> <span class="task-text">List the 8 phases of program development in order</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task6" data-task="task6"> <span class="task-text">Explain syntax, runtime and logical errors with examples</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task7" data-task="task7"> <span class="task-text">Explain sequence, selection and repetition</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task8" data-task="task8"> <span class="task-text">Describe the 5 flowchart symbols and 5 algorithm representations</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task9" data-task="task9"> <span class="task-text">Describe the compilation pipeline (preprocessor, compiler, assembler, linker, loader)</span></label> </li>
 </ul>
 <h3 id="c-language">C language</h3>
 <ul>
-<li><span class="cb">&#9744;</span> Write the structure of a C program from memory</li>
-<li><span class="cb">&#9744;</span> List 5 header files and what they provide</li>
-<li><span class="cb">&#9744;</span> State the rules for identifiers and list 10 keywords</li>
-<li><span class="cb">&#9744;</span> Explain <code>#define</code> vs <code>const</code></li>
-<li><span class="cb">&#9744;</span> Convert decimal ↔ binary ↔ octal ↔ hex</li>
-<li><span class="cb">&#9744;</span> Explain signed vs unsigned, 2's complement, range of 8-bit numbers</li>
-<li><span class="cb">&#9744;</span> Explain <code>int</code>, <code>float</code>, <code>double</code>, <code>char</code> (size, format specifier, example)</li>
-<li><span class="cb">&#9744;</span> State key ASCII codes (<code>'A'</code>, <code>'a'</code>, <code>'0'</code>, space, newline)</li>
-<li><span class="cb">&#9744;</span> Explain implicit conversion and casting</li>
-<li><span class="cb">&#9744;</span> Use all operator types; state precedence and associativity</li>
-<li><span class="cb">&#9744;</span> Evaluate prefix vs postfix expressions</li>
-<li><span class="cb">&#9744;</span> Write if, if-else, else-if, nested if, switch</li>
-<li><span class="cb">&#9744;</span> Write while, do-while, for, nested loops</li>
-<li><span class="cb">&#9744;</span> Use <code>break</code>, <code>continue</code>, <code>goto</code> correctly</li>
-<li><span class="cb">&#9744;</span> Define function, prototype, definition, call, return</li>
-<li><span class="cb">&#9744;</span> Explain actual vs formal parameters</li>
-<li><span class="cb">&#9744;</span> Explain call by value vs call by reference</li>
-<li><span class="cb">&#9744;</span> Explain local vs global vs static scope</li>
-<li><span class="cb">&#9744;</span> Write a recursive function with a base case</li>
-<li><span class="cb">&#9744;</span> Declare/initialise 1D and 2D arrays</li>
-<li><span class="cb">&#9744;</span> Search (linear/binary) and sort (bubble) an array</li>
-<li><span class="cb">&#9744;</span> Explain how strings are stored; use <code>strlen</code>, <code>strcpy</code>, <code>strcat</code>, <code>strcmp</code></li>
-<li><span class="cb">&#9744;</span> Declare pointers, use <code>&amp;</code> and <code>*</code>, do pointer arithmetic</li>
-<li><span class="cb">&#9744;</span> Explain the link between arrays and pointers</li>
-<li><span class="cb">&#9744;</span> Define and use a <code>struct</code>, array of structs, <code>typedef</code>, <code>-&gt;</code></li>
-<li><span class="cb">&#9744;</span> Explain <code>struct</code> vs <code>union</code></li>
-<li><span class="cb">&#9744;</span> Open, write, read and close a text file</li>
-<li><span class="cb">&#9744;</span> Format output with width and precision; design a simple report</li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task10" data-task="task10"> <span class="task-text">Write the structure of a C program from memory</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task11" data-task="task11"> <span class="task-text">List 5 header files and what they provide</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task12" data-task="task12"> <span class="task-text">State the rules for identifiers and list 10 keywords</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task13" data-task="task13"> <span class="task-text">Explain <code>#define</code> vs <code>const</code></span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task14" data-task="task14"> <span class="task-text">Convert decimal ↔ binary ↔ octal ↔ hex</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task15" data-task="task15"> <span class="task-text">Explain signed vs unsigned, 2's complement, range of 8-bit numbers</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task16" data-task="task16"> <span class="task-text">Explain <code>int</code>, <code>float</code>, <code>double</code>, <code>char</code> (size, format specifier, example)</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task17" data-task="task17"> <span class="task-text">State key ASCII codes (<code>'A'</code>, <code>'a'</code>, <code>'0'</code>, space, newline)</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task18" data-task="task18"> <span class="task-text">Explain implicit conversion and casting</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task19" data-task="task19"> <span class="task-text">Use all operator types; state precedence and associativity</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task20" data-task="task20"> <span class="task-text">Evaluate prefix vs postfix expressions</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task21" data-task="task21"> <span class="task-text">Write if, if-else, else-if, nested if, switch</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task22" data-task="task22"> <span class="task-text">Write while, do-while, for, nested loops</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task23" data-task="task23"> <span class="task-text">Use <code>break</code>, <code>continue</code>, <code>goto</code> correctly</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task24" data-task="task24"> <span class="task-text">Define function, prototype, definition, call, return</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task25" data-task="task25"> <span class="task-text">Explain actual vs formal parameters</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task26" data-task="task26"> <span class="task-text">Explain call by value vs call by reference</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task27" data-task="task27"> <span class="task-text">Explain local vs global vs static scope</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task28" data-task="task28"> <span class="task-text">Write a recursive function with a base case</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task29" data-task="task29"> <span class="task-text">Declare/initialise 1D and 2D arrays</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task30" data-task="task30"> <span class="task-text">Search (linear/binary) and sort (bubble) an array</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task31" data-task="task31"> <span class="task-text">Explain how strings are stored; use <code>strlen</code>, <code>strcpy</code>, <code>strcat</code>, <code>strcmp</code></span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task32" data-task="task32"> <span class="task-text">Declare pointers, use <code>&amp;</code> and <code>*</code>, do pointer arithmetic</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task33" data-task="task33"> <span class="task-text">Explain the link between arrays and pointers</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task34" data-task="task34"> <span class="task-text">Define and use a <code>struct</code>, array of structs, <code>typedef</code>, <code>-&gt;</code></span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task35" data-task="task35"> <span class="task-text">Explain <code>struct</code> vs <code>union</code></span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task36" data-task="task36"> <span class="task-text">Open, write, read and close a text file</span></label> </li>
+<li><label class="task"><input type="checkbox" class="task-check" id="task37" data-task="task37"> <span class="task-text">Format output with width and precision; design a simple report</span></label> </li>
 </ul>
 <hr>
 <h2 id="7-running-c-code-already-set-up-for-you">7. Running C code (already set up for you)</h2>
 <p>A C compiler (GCC) is <strong>already installed on this computer</strong>. You do not need to install anything.</p>
-<p><strong>The easy way:</strong> double-click <code>RUN_CODE.bat</code> in this folder, type a program name (for example <code>hello.c</code>), and press Enter. You can also drag any <code>.c</code> file from the <code>code/</code> folder onto <code>RUN_CODE.bat</code>.</p>
-<p>Full instructions, terminal commands and fixes for common compiler errors are in <strong><code>SETUP_AND_RUN.md</code></strong>.</p>
-<p><strong>If the local compiler ever fails,</strong> use the online compiler: &lt;https://www.onlinegdb.com/online_c_compiler&gt; — paste the code and press <strong>Run</strong>.</p>
-<blockquote><p>Do not spend study time installing IDEs. A compiler plus <code>RUN_CODE.bat</code> is enough for this exam.</p></blockquote>
+<p><strong>The easy way:</strong> double-click <a class="file-ref" href="https://github.com/raymonddoka851-del/intro-to-programming-notes/blob/main/RUN_CODE.bat" target="_blank" rel="noopener noreferrer"><code>RUN_CODE.bat</code></a> in this folder, type a program name (for example <code>hello.c</code>), and press Enter. You can also drag any <code>.c</code> file from the <code>code/</code> folder onto <a class="file-ref" href="https://github.com/raymonddoka851-del/intro-to-programming-notes/blob/main/RUN_CODE.bat" target="_blank" rel="noopener noreferrer"><code>RUN_CODE.bat</code></a>.</p>
+<p>Full instructions, terminal commands and fixes for common compiler errors are in <strong><a class="file-ref" href="SETUP_AND_RUN.html"><code>SETUP_AND_RUN.md</code></a></strong>.</p>
+<p><strong>If the local compiler ever fails,</strong> use the online compiler: <a href="https://www.onlinegdb.com/online_c_compiler" target="_blank" rel="noopener noreferrer">https://www.onlinegdb.com/online_c_compiler</a> — paste the code and press <strong>Run</strong>.</p>
+<blockquote><p>Do not spend study time installing IDEs. A compiler plus <a class="file-ref" href="https://github.com/raymonddoka851-del/intro-to-programming-notes/blob/main/RUN_CODE.bat" target="_blank" rel="noopener noreferrer"><code>RUN_CODE.bat</code></a> is enough for this exam.</p></blockquote>
 <hr>
 <h2 id="7b-reading-the-notes-nicely-formatted">7b. Reading the notes (nicely formatted)</h2>
 <p>The <code>.md</code> files are <strong>Markdown</strong>. If you double-click one, Word or Notepad opens it as raw text and you see <code>#</code>, <code>**</code> and <code>|</code> symbols — that is normal, but it is not meant to be read that way.</p>
-<p><strong>Double-click <code>OPEN_NOTES.bat</code></strong> to read everything the way it is supposed to look: formatted headings, coloured tables, highlighted C code, a sidebar, search, and a dark mode. Every page can be saved as a PDF with <strong>Ctrl+P</strong>.</p>
+<p><strong>Double-click <a class="file-ref" href="https://github.com/raymonddoka851-del/intro-to-programming-notes/blob/main/OPEN_NOTES.bat" target="_blank" rel="noopener noreferrer"><code>OPEN_NOTES.bat</code></a></strong> to read everything the way it is supposed to look: formatted headings, coloured tables, highlighted C code, a sidebar, search, and a dark mode. Every page can be saved as a PDF with <strong>Ctrl+P</strong>.</p>
 <p>The browser version is generated from the same <code>.md</code> files, so the two always match.</p>
 <hr>
 <h2 id="8-a-note-about-what-is-published">8. A note about what is published</h2>
@@ -268,7 +269,7 @@
 <tr><td style="text-align:left">1:30–2:00</td><td style="text-align:left">Do practice questions; mark yourself</td></tr>
 <tr><td style="text-align:left">2:00–2:10</td><td style="text-align:left">Write 3 things you learned and 1 thing you still do not understand</td></tr>
 </tbody></table></div>
-<p><strong>Start here:</strong> open <code>YOUR_14_DAY_PLAN.md</code> and do Day 1. Before anything else, learn <code>practice/ACTUAL_QUIZ_ANSWERS.md</code> — those are the exact e-learning quiz questions.</p>
+<p><strong>Start here:</strong> open <a class="file-ref" href="YOUR_14_DAY_PLAN.html"><code>YOUR_14_DAY_PLAN.md</code></a> and do Day 1. Before anything else, learn <a class="file-ref" href="practice/ACTUAL_QUIZ_ANSWERS.html"><code>practice/ACTUAL_QUIZ_ANSWERS.md</code></a> — those are the exact e-learning quiz questions.</p>
 
   </article>
 <nav class="pager"><span class="spacer"></span><a class="next" href="YOUR_14_DAY_PLAN.html"><span class="dir">Next &rarr;</span><span class="name">Your 14-day study plan</span></a></nav>
@@ -320,6 +321,126 @@
   // on phones, start with the contents menu collapsed
   var det = document.querySelector('.nav-details');
   if (det && window.innerWidth < 1000) det.removeAttribute('open');
+
+  // ---- interactive checklist -------------------------------------------
+  var pageId  = document.body.getAttribute('data-page') || location.pathname;
+  var checks  = [].slice.call(document.querySelectorAll('.task-check'));
+  var countEl = document.getElementById('checkCount');
+  var resetBtn = document.getElementById('resetChecks');
+
+  function checkKey(el) { return 'csc112:task:' + pageId + ':' + el.getAttribute('data-task'); }
+  function updateCount() {
+    if (!countEl) return;
+    var done = checks.filter(function (c) { return c.checked; }).length;
+    countEl.textContent = done + ' / ' + checks.length + ' done';
+    countEl.classList.toggle('all', checks.length > 0 && done === checks.length);
+  }
+  checks.forEach(function (c) {
+    try { if (localStorage.getItem(checkKey(c)) === '1') c.checked = true; } catch (e) {}
+    c.addEventListener('change', function () {
+      try { localStorage.setItem(checkKey(c), c.checked ? '1' : '0'); } catch (e) {}
+      updateCount();
+    });
+  });
+  updateCount();
+  if (resetBtn) resetBtn.addEventListener('click', function () {
+    checks.forEach(function (c) {
+      c.checked = false;
+      try { localStorage.removeItem(checkKey(c)); } catch (e) {}
+    });
+    updateCount();
+  });
+
+  // ---- fill-in blanks ---------------------------------------------------
+  var blanks = [].slice.call(document.querySelectorAll('input.blank'));
+  blanks.forEach(function (b) {
+    var k = 'csc112:blank:' + pageId + ':' + b.getAttribute('data-blank');
+    try {
+      var v = localStorage.getItem(k);
+      if (v !== null) b.value = v;
+    } catch (e) {}
+    b.addEventListener('input', function () {
+      try { localStorage.setItem(k, b.value); } catch (e) {}
+      if (b.getAttribute('data-kind') === 'date') updateDays();
+    });
+  });
+
+  function updateDays() {
+    var date = document.querySelector('input.blank[data-kind="date"]');
+    var days = document.querySelector('input.blank[data-kind="days"]');
+    if (!date || !days) return;
+    if (!date.value) { days.value = ''; return; }
+    var d = new Date(date.value + 'T00:00:00');
+    if (isNaN(d.getTime())) { days.value = ''; return; }
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    days.value = String(Math.round((d - today) / 86400000));
+  }
+  updateDays();
+
+  // ---- mark as done + progress panel -----------------------------------
+  var doneBtn = document.getElementById('markDone');
+  var doneKey = 'csc112:done:' + pageId;
+  function isDone() { try { return localStorage.getItem(doneKey) === '1'; } catch (e) { return false; } }
+  function paintDone() {
+    if (!doneBtn) return;
+    doneBtn.textContent = isDone() ? '\u2713 Done' : 'Mark as done';
+    doneBtn.classList.toggle('is-done', isDone());
+  }
+  if (doneBtn) doneBtn.addEventListener('click', function () {
+    try { localStorage.setItem(doneKey, isDone() ? '0' : '1'); } catch (e) {}
+    paintDone();
+    renderPanel();
+  });
+  paintDone();
+
+  var panel = document.getElementById('donePanel');
+  var pages = [];
+  try { pages = JSON.parse(document.body.getAttribute('data-pages') || '[]'); } catch (e) {}
+  function renderPanel() {
+    if (!panel || !pages.length) return;
+    panel.innerHTML = '';
+    var n = 0;
+    pages.forEach(function (p) {
+      try { if (localStorage.getItem('csc112:done:' + p.key) === '1') n++; } catch (e) {}
+    });
+    var head = document.createElement('p');
+    head.className = 'done-summary';
+    head.textContent = n + ' / ' + pages.length + ' pages marked done';
+    panel.appendChild(head);
+
+    var list = document.createElement('ul');
+    list.className = 'done-list';
+    pages.forEach(function (p) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = p.href;
+      a.textContent = p.label;
+      var s = document.createElement('span');
+      var d = false;
+      try { d = localStorage.getItem('csc112:done:' + p.key) === '1'; } catch (e) {}
+      s.className = 'done-flag' + (d ? ' yes' : '');
+      s.textContent = d ? '\u2713 done' : 'not done';
+      li.appendChild(a);
+      li.appendChild(s);
+      list.appendChild(li);
+    });
+    panel.appendChild(list);
+  }
+  renderPanel();
+
+  // print shows the answers so the PDF is a complete revision sheet
+  window.addEventListener('beforeprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      d.setAttribute('data-was-open', d.open ? '1' : '0');
+      d.open = true;
+    });
+  });
+  window.addEventListener('afterprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      if (d.getAttribute('data-was-open') === '0') d.open = false;
+    });
+  });
 })();
 </script>
 </body>

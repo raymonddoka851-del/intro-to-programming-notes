@@ -7,7 +7,7 @@
 <meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
 <link rel="stylesheet" href="../assets/notes.css">
 </head>
-<body>
+<body data-page="notes/11_formatted_io_and_reports.html" data-pages="[{&quot;label&quot;:&quot;01 · Programming fundamentals&quot;,&quot;href&quot;:&quot;01_programming_fundamentals.html&quot;,&quot;key&quot;:&quot;notes/01_programming_fundamentals.html&quot;},{&quot;label&quot;:&quot;02 · C basics \u0026 compilation&quot;,&quot;href&quot;:&quot;02_c_basics_and_compilation.html&quot;,&quot;key&quot;:&quot;notes/02_c_basics_and_compilation.html&quot;},{&quot;label&quot;:&quot;03 · Data types \u0026 number systems&quot;,&quot;href&quot;:&quot;03_data_types_and_number_systems.html&quot;,&quot;key&quot;:&quot;notes/03_data_types_and_number_systems.html&quot;},{&quot;label&quot;:&quot;04 · Operators \u0026 expressions&quot;,&quot;href&quot;:&quot;04_operators_and_expressions.html&quot;,&quot;key&quot;:&quot;notes/04_operators_and_expressions.html&quot;},{&quot;label&quot;:&quot;05 · Control statements&quot;,&quot;href&quot;:&quot;05_control_statements.html&quot;,&quot;key&quot;:&quot;notes/05_control_statements.html&quot;},{&quot;label&quot;:&quot;06 · Loops&quot;,&quot;href&quot;:&quot;06_loops.html&quot;,&quot;key&quot;:&quot;notes/06_loops.html&quot;},{&quot;label&quot;:&quot;07 · Functions \u0026 recursion&quot;,&quot;href&quot;:&quot;07_functions_and_recursion.html&quot;,&quot;key&quot;:&quot;notes/07_functions_and_recursion.html&quot;},{&quot;label&quot;:&quot;08 · Arrays \u0026 strings&quot;,&quot;href&quot;:&quot;08_arrays_and_strings.html&quot;,&quot;key&quot;:&quot;notes/08_arrays_and_strings.html&quot;},{&quot;label&quot;:&quot;09 · Pointers&quot;,&quot;href&quot;:&quot;09_pointers.html&quot;,&quot;key&quot;:&quot;notes/09_pointers.html&quot;},{&quot;label&quot;:&quot;10 · Structures, unions \u0026 files&quot;,&quot;href&quot;:&quot;10_structures_unions_files.html&quot;,&quot;key&quot;:&quot;notes/10_structures_unions_files.html&quot;},{&quot;label&quot;:&quot;11 · Formatted I/O \u0026 reports&quot;,&quot;href&quot;:&quot;11_formatted_io_and_reports.html&quot;,&quot;key&quot;:&quot;notes/11_formatted_io_and_reports.html&quot;}]">
 <div class="progress" id="progress"></div>
 <div class="layout">
 <aside class="sidebar">
@@ -26,6 +26,7 @@
     <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
   </div>
   <article class="content">
+<div class="page-tools"><button type="button" class="done-btn" id="markDone">Mark as done</button></div>
 <h1 id="note-11-formatted-inputoutput-and-report-design">Note 11 — Formatted Input/Output and Report Design</h1>
 <blockquote><p><strong>Covers the &quot;report and display design&quot; part of the course description</strong> and the formatted I/O material in your Week 4 notes.</p></blockquote>
 <hr>
@@ -47,9 +48,9 @@
 <pre class="code" data-lang="c"><code><span class="tok-fn">printf</span>(<span class="tok-str">&quot;control string&quot;</span>, argument1, argument2, ...);</code></pre>
 <p>The control string contains:</p>
 <ol>
-<li></li>
-<li></li>
-<li></li>
+<li><strong>Literal text</strong> — printed as-is.</li>
+<li><strong>Format specifiers</strong> — start with <code>%</code>, e.g. <code>%d</code>.</li>
+<li><strong>Escape sequences</strong> — start with <code>\</code>, e.g. <code>\n</code>, <code>\t</code>.</li>
 </ol>
 <h3 id="22-format-specifier-syntax">2.2 Format specifier syntax</h3>
 <pre class="code"><code>%[flags][width][.precision][length]specifier</code></pre>
@@ -201,13 +202,13 @@
 <h2 id="5-report-and-display-design">5. Report and display design</h2>
 <p>A <strong>report</strong> presents information clearly to a user. Good reports are:</p>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li><strong>Accurate</strong> — correct data and calculations.</li>
+<li><strong>Clear</strong> — headings, spacing and alignment.</li>
+<li><strong>Consistent</strong> — same number of decimal places, same date/currency format.</li>
+<li><strong>Complete</strong> — totals, subtotals, titles, date, page numbers.</li>
+<li><strong>Readable</strong> — not overcrowded; use white space and lines.</li>
+<li><strong>Appropriate</strong> — suitable for the audience (management summary vs detailed list).</li>
+<li><strong>Error-aware</strong> — handles missing or invalid data.</li>
 </ol>
 <h3 id="51-a-simple-tabular-report">5.1 A simple tabular report</h3>
 <pre class="code" data-lang="c"><code><span class="tok-pre">#include &lt;stdio.h&gt;</span>
@@ -340,42 +341,48 @@ No.   Name              Age   Fee (KSh)
 <hr>
 <h2 id="9-self-test-answers-below">9. Self-test (answers below)</h2>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li> ``<code>c double d; scanf(&quot;%f&quot;, &amp;d); printf(&quot;%d&quot;, d); </code>``</li>
-<li></li>
-<li> ``<code>c printf(&quot;%5.1f|%-5.1f|&quot;, 2.345, 2.345); </code>``</li>
+<li>What is the general syntax of a format specifier?</li>
+<li>What is the output of <code>printf(&quot;|%7.2f|&quot;, 3.14159);</code>?</li>
+<li>What is the output of <code>printf(&quot;|%-7d|&quot;, 42);</code>?</li>
+<li>What is the output of <code>printf(&quot;|%07d|&quot;, 42);</code>?</li>
+<li>What is the output of <code>printf(&quot;%x %o %c&quot;, 255, 8, 65);</code>?</li>
+<li>What does <code>scanf</code> return?</li>
+<li>Why does <code>scanf(&quot;%d&quot;, x);</code> fail?</li>
+<li>Why is <code>%c</code> different from <code>%d</code> regarding whitespace?</li>
+<li>How do you read a full line containing spaces?</li>
+<li>How do you safely read a name into <code>char name[20]</code>?</li>
+<li>What is the difference between <code>%f</code> and <code>%lf</code> in <code>scanf</code>?</li>
+<li>Design a formatted report for 3 products with price and quantity, including a total.</li>
+<li>What is wrong?
+<pre class="code" data-lang="c"><code><span class="tok-kw">double</span> d;
+<span class="tok-fn">scanf</span>(<span class="tok-str">&quot;%f&quot;</span>, &amp;d);
+<span class="tok-fn">printf</span>(<span class="tok-str">&quot;%d&quot;</span>, d);</code></pre>
+</li>
+<li>Why is <code>gets</code> dangerous?</li>
+<li>What is the output?
+<pre class="code" data-lang="c"><code><span class="tok-fn">printf</span>(<span class="tok-str">&quot;%5.1f|%-5.1f|&quot;</span>, <span class="tok-num">2.345</span>, <span class="tok-num">2.345</span>);</code></pre>
+</li>
 </ol>
 <h3 id="answers">Answers</h3>
 <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li><code>%[flags][width][.precision][length]specifier</code></li>
+<li><code>|   3.14|</code> — width 7, 2 decimals.</li>
+<li><code>|42     |</code> — left-aligned in 7.</li>
+<li><code>|0000042|</code> — zero-padded to 7.</li>
+<li><code>ff 10 A</code>.</li>
+<li>The number of items successfully read (or <code>EOF</code>).</li>
+<li>Missing <code>&amp;</code>; <code>scanf</code> needs the address of <code>x</code>.</li>
+<li><code>%d</code> skips leading whitespace; <code>%c</code> reads the very next character, including a space or newline.</li>
+<li><code>fgets(line, sizeof(line), stdin);</code> (or <code>scanf(&quot; %[^\n]&quot;, line);</code>).</li>
+<li><code>scanf(&quot;%19s&quot;, name);</code> (no <code>&amp;</code>).</li>
+<li><code>%f</code> is for <code>float</code>; <code>%lf</code> is for <code>double</code> in <code>scanf</code>. In <code>printf</code>, <code>%f</code> works for both because <code>float</code> is promoted to <code>double</code>.</li>
+<li>See §5.1/§6.5.</li>
+<li><code>%f</code> should be <code>%lf</code> for a <code>double</code> in <code>scanf</code>; <code>%d</code> should be <code>%f</code> in <code>printf</code>.</li>
+<li>It does not check the buffer size, so long input overflows the array and can crash or be exploited.</li>
+<li><code>  2.3|2.3  |</code> — first is width 5 right-aligned, second is width 5 left-aligned, both rounded to 1 decimal.</li>
 </ol>
 <hr>
-<p><strong>Next:</strong> <code>CHEAT_SHEET.md</code>, then the practice folder.</p>
+<p><strong>Next:</strong> <a class="file-ref" href="../CHEAT_SHEET.html"><code>CHEAT_SHEET.md</code></a>, then the practice folder.</p>
 
   </article>
 <nav class="pager"><a class="prev" href="../notes/10_structures_unions_files.html"><span class="dir">&larr; Previous</span><span class="name">10 · Structures, unions &amp; files</span></a><a class="next" href="../practice/ACTUAL_QUIZ_ANSWERS.html"><span class="dir">Next &rarr;</span><span class="name">Actual quiz answers (24)</span></a></nav>
@@ -427,6 +434,126 @@ No.   Name              Age   Fee (KSh)
   // on phones, start with the contents menu collapsed
   var det = document.querySelector('.nav-details');
   if (det && window.innerWidth < 1000) det.removeAttribute('open');
+
+  // ---- interactive checklist -------------------------------------------
+  var pageId  = document.body.getAttribute('data-page') || location.pathname;
+  var checks  = [].slice.call(document.querySelectorAll('.task-check'));
+  var countEl = document.getElementById('checkCount');
+  var resetBtn = document.getElementById('resetChecks');
+
+  function checkKey(el) { return 'csc112:task:' + pageId + ':' + el.getAttribute('data-task'); }
+  function updateCount() {
+    if (!countEl) return;
+    var done = checks.filter(function (c) { return c.checked; }).length;
+    countEl.textContent = done + ' / ' + checks.length + ' done';
+    countEl.classList.toggle('all', checks.length > 0 && done === checks.length);
+  }
+  checks.forEach(function (c) {
+    try { if (localStorage.getItem(checkKey(c)) === '1') c.checked = true; } catch (e) {}
+    c.addEventListener('change', function () {
+      try { localStorage.setItem(checkKey(c), c.checked ? '1' : '0'); } catch (e) {}
+      updateCount();
+    });
+  });
+  updateCount();
+  if (resetBtn) resetBtn.addEventListener('click', function () {
+    checks.forEach(function (c) {
+      c.checked = false;
+      try { localStorage.removeItem(checkKey(c)); } catch (e) {}
+    });
+    updateCount();
+  });
+
+  // ---- fill-in blanks ---------------------------------------------------
+  var blanks = [].slice.call(document.querySelectorAll('input.blank'));
+  blanks.forEach(function (b) {
+    var k = 'csc112:blank:' + pageId + ':' + b.getAttribute('data-blank');
+    try {
+      var v = localStorage.getItem(k);
+      if (v !== null) b.value = v;
+    } catch (e) {}
+    b.addEventListener('input', function () {
+      try { localStorage.setItem(k, b.value); } catch (e) {}
+      if (b.getAttribute('data-kind') === 'date') updateDays();
+    });
+  });
+
+  function updateDays() {
+    var date = document.querySelector('input.blank[data-kind="date"]');
+    var days = document.querySelector('input.blank[data-kind="days"]');
+    if (!date || !days) return;
+    if (!date.value) { days.value = ''; return; }
+    var d = new Date(date.value + 'T00:00:00');
+    if (isNaN(d.getTime())) { days.value = ''; return; }
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    days.value = String(Math.round((d - today) / 86400000));
+  }
+  updateDays();
+
+  // ---- mark as done + progress panel -----------------------------------
+  var doneBtn = document.getElementById('markDone');
+  var doneKey = 'csc112:done:' + pageId;
+  function isDone() { try { return localStorage.getItem(doneKey) === '1'; } catch (e) { return false; } }
+  function paintDone() {
+    if (!doneBtn) return;
+    doneBtn.textContent = isDone() ? '\u2713 Done' : 'Mark as done';
+    doneBtn.classList.toggle('is-done', isDone());
+  }
+  if (doneBtn) doneBtn.addEventListener('click', function () {
+    try { localStorage.setItem(doneKey, isDone() ? '0' : '1'); } catch (e) {}
+    paintDone();
+    renderPanel();
+  });
+  paintDone();
+
+  var panel = document.getElementById('donePanel');
+  var pages = [];
+  try { pages = JSON.parse(document.body.getAttribute('data-pages') || '[]'); } catch (e) {}
+  function renderPanel() {
+    if (!panel || !pages.length) return;
+    panel.innerHTML = '';
+    var n = 0;
+    pages.forEach(function (p) {
+      try { if (localStorage.getItem('csc112:done:' + p.key) === '1') n++; } catch (e) {}
+    });
+    var head = document.createElement('p');
+    head.className = 'done-summary';
+    head.textContent = n + ' / ' + pages.length + ' pages marked done';
+    panel.appendChild(head);
+
+    var list = document.createElement('ul');
+    list.className = 'done-list';
+    pages.forEach(function (p) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = p.href;
+      a.textContent = p.label;
+      var s = document.createElement('span');
+      var d = false;
+      try { d = localStorage.getItem('csc112:done:' + p.key) === '1'; } catch (e) {}
+      s.className = 'done-flag' + (d ? ' yes' : '');
+      s.textContent = d ? '\u2713 done' : 'not done';
+      li.appendChild(a);
+      li.appendChild(s);
+      list.appendChild(li);
+    });
+    panel.appendChild(list);
+  }
+  renderPanel();
+
+  // print shows the answers so the PDF is a complete revision sheet
+  window.addEventListener('beforeprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      d.setAttribute('data-was-open', d.open ? '1' : '0');
+      d.open = true;
+    });
+  });
+  window.addEventListener('afterprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      if (d.getAttribute('data-was-open') === '0') d.open = false;
+    });
+  });
 })();
 </script>
 </body>
