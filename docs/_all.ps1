@@ -39,15 +39,14 @@ $checkCode = $LASTEXITCODE
 
 if ($Serve) {
     Write-Step 'Local server'
-    $server = Join-Path $env:TEMP 'opencode\_serve.ps1'
-    if (Test-Path -LiteralPath $server) {
-        Start-Process powershell -ArgumentList @(
-            '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', $server, '-Root', $PackRoot, '-Port', $Port
-        )
-        Write-Host ("Started. Open http://127.0.0.1:{0}/docs/index.html" -f $Port) -ForegroundColor Green
-    } else {
-        Write-Host 'No server script found; build and audit still completed.' -ForegroundColor Yellow
-    }
+    $server = Join-Path $DocsRoot '_serve.ps1'
+    Start-Process powershell -ArgumentList @(
+        '-NoProfile', '-ExecutionPolicy', 'Bypass',
+        '-File', ('"{0}"' -f $server),
+        '-Root', ('"{0}"' -f $DocsRoot),
+        '-Port', $Port
+    )
+    Write-Host ("Started. Open http://127.0.0.1:{0}/index.html" -f $Port) -ForegroundColor Green
 }
 
 Write-Step 'Summary'
