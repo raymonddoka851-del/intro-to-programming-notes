@@ -652,6 +652,8 @@ function BuildNav([string]$root, [string]$activeOut) {
         }
         [void]$sb.Append('</div>')
     }
+    [void]$sb.Append('<div class="nav-group"><div class="nav-head">Quiz</div>' +
+                     '<a href="' + $root + 'quiz/index.html">All quizzes (11 × 10)</a></div>')
     return $sb.ToString()
 }
 
@@ -878,6 +880,80 @@ __PAGER__
   }
   renderPanel();
 
+  // ---- multiple-choice quizzes -----------------------------------------
+  var quiz = document.querySelector('.quiz');
+  if (quiz) {
+    var quizId = quiz.getAttribute('data-quiz');
+    var total  = parseInt(quiz.getAttribute('data-total'), 10) || 0;
+    var correct = 0;
+    var answered = 0;
+    var bestKey = 'csc112:quiz:' + quizId;
+    var nowEl = quiz.querySelector('.quiz-now');
+    var bestEl = quiz.querySelector('.quiz-best');
+
+    function readBest() {
+      try { return parseInt(localStorage.getItem(bestKey) || '0', 10) || 0; } catch (e) { return 0; }
+    }
+    function paintBest() {
+      if (bestEl) bestEl.textContent = 'Best: ' + readBest() + ' / ' + total;
+    }
+    paintBest();
+
+    [].slice.call(quiz.querySelectorAll('.quiz-q')).forEach(function (q) {
+      var answer = parseInt(q.getAttribute('data-answer'), 10);
+      var feedback = q.querySelector('.quiz-feedback');
+      var why = q.querySelector('.quiz-why');
+      var opts = [].slice.call(q.querySelectorAll('.quiz-opt'));
+      opts.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (q.classList.contains('answered')) return;
+          q.classList.add('answered');
+          var pick = parseInt(btn.getAttribute('data-i'), 10);
+          opts.forEach(function (b) {
+            b.disabled = true;
+            if (parseInt(b.getAttribute('data-i'), 10) === answer) b.classList.add('correct');
+          });
+          if (pick === answer) {
+            correct++;
+            feedback.className = 'quiz-feedback good';
+          } else {
+            btn.classList.add('wrong');
+            feedback.className = 'quiz-feedback bad';
+          }
+          feedback.textContent = (pick === answer ? 'Correct. ' : 'Not quite. ') + (why ? why.textContent : '');
+          feedback.hidden = false;
+          answered++;
+          if (nowEl) nowEl.textContent = correct + ' / ' + total;
+          if (answered === total) {
+            var best = readBest();
+            if (correct > best) {
+              try { localStorage.setItem(bestKey, String(correct)); } catch (e) {}
+              paintBest();
+            }
+          }
+        });
+      });
+    });
+
+    var retry = quiz.querySelector('.quiz-retry');
+    if (retry) retry.addEventListener('click', function () {
+      correct = 0;
+      answered = 0;
+      if (nowEl) nowEl.textContent = '0 / ' + total;
+      [].slice.call(quiz.querySelectorAll('.quiz-q')).forEach(function (q) {
+        q.classList.remove('answered');
+        var f = q.querySelector('.quiz-feedback');
+        f.hidden = true;
+        f.textContent = '';
+        f.className = 'quiz-feedback';
+        [].slice.call(q.querySelectorAll('.quiz-opt')).forEach(function (b) {
+          b.disabled = false;
+          b.classList.remove('correct', 'wrong');
+        });
+      });
+    });
+  }
+
   // print shows the answers so the PDF is a complete revision sheet
   window.addEventListener('beforeprint', function () {
     [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
@@ -920,6 +996,7 @@ $script:Docs = @(
     # --- practice -----------------------------------------------------------
     @{ Md = 'practice\ACTUAL_QUIZ_ANSWERS.md';        Group = 'Practice'; Label = 'Actual quiz answers (24)';   Out = 'practice/ACTUAL_QUIZ_ANSWERS.html' }
     @{ Md = 'practice\QUESTION_BANK.md';              Group = 'Practice'; Label = 'Question bank (96)';         Out = 'practice/QUESTION_BANK.html' }
+    @{ Md = 'practice\PREDICT_OUTPUT.md';             Group = 'Practice'; Label = 'Predict the output (44)';    Out = 'practice/PREDICT_OUTPUT.html' }
     @{ Md = 'practice\ANSWER_KEY.md';                 Group = 'Practice'; Label = 'Answer key';                  Out = 'practice/ANSWER_KEY.html' }
     @{ Md = 'practice\LAB_TASKS.md';                  Group = 'Practice'; Label = 'Lab tasks (25)';              Out = 'practice/LAB_TASKS.html' }
     @{ Md = 'practice\MOCK_EXAM_1.md';                Group = 'Practice'; Label = 'Mock exam 1';                  Out = 'practice/MOCK_EXAM_1.html' }
@@ -928,6 +1005,7 @@ $script:Docs = @(
     @{ Md = 'practice\MOCK_EXAM_2_MARKING_SCHEME.md'; Group = 'Practice'; Label = 'Mock exam 2 — marking';  Out = 'practice/MOCK_EXAM_2_MARKING_SCHEME.html' }
     # --- code ---------------------------------------------------------------
     @{ Md = 'code\README.md';                         Group = 'Code'; Label = 'Program list (22 examples)';      Out = 'code/README.html' }
+    @{ Md = 'code\VERIFIED_OUTPUT.md';                Group = 'Code'; Label = 'Verified output (22 programs)';    Out = 'code/VERIFIED_OUTPUT.html' }
 )
 
 # ------------------------------------------------------------------ build ---
@@ -955,6 +1033,13 @@ for ($d = 0; $d -lt $script:Docs.Count; $d++) {
 
     $md = Get-Content -LiteralPath $src -Raw -Encoding UTF8
     $res = ConvertMarkdown $md
+
+    if ($doc.Out -match '^notes/(\d{2})_') {
+        $num = $Matches[1]
+        $res.Html += '<div class="practice-links"><span>Practise this topic:</span>' +
+                     '<a href="' + (Get-RelHref 'practice/PREDICT_OUTPUT.html') + '#note-' + $num + '">Predict the output</a>' +
+                     '<a href="' + (Get-RelHref ('quiz/' + $num + '.html')) + '">10-question quiz</a></div>' + "`n"
+    }
 
     $depth = $doc.Out.Split('/').Count - 1
     $root  = if ($depth -gt 0) { '../' } else { '' }
@@ -1008,6 +1093,124 @@ for ($d = 0; $d -lt $script:Docs.Count; $d++) {
     })
 
     Write-Host ("  {0,-52} {1,6} words" -f $doc.Out, $res.Words)
+}
+
+# ------------------------------------------------------------------ quiz ----
+
+$script:QuizSections = New-Object 'System.Collections.Generic.List[object]'
+$quizDataFile = Join-Path $OutRoot '_quiz.txt'
+
+if (Test-Path -LiteralPath $quizDataFile) {
+    $curSection = $null
+    foreach ($line in [System.IO.File]::ReadAllLines($quizDataFile, [System.Text.Encoding]::UTF8)) {
+        if ($line -match '^@(\d{2})\|(.+)$') {
+            $num   = $Matches[1]
+            $qtitle = $Matches[2]
+            $curSection = [pscustomobject]@{
+                Num   = $num
+                Title = $qtitle
+                Items = (New-Object 'System.Collections.Generic.List[object]')
+            }
+            $script:QuizSections.Add($curSection)
+            continue
+        }
+        if ($line -match '^Q\|' -and $curSection) {
+            $parts = $line -split '\|'
+            if ($parts.Count -ge 8) { $curSection.Items.Add($parts) }
+        }
+    }
+
+    $quizDir = Join-Path $OutRoot 'quiz'
+    if (-not (Test-Path $quizDir)) { New-Item -ItemType Directory -Force -Path $quizDir | Out-Null }
+
+    foreach ($s in $script:QuizSections) {
+        $body = New-Object System.Text.StringBuilder
+        [void]$body.Append('<h1>Quiz ' + $s.Num + ': ' + (HtmlEscape $s.Title) + '</h1>' + "`n")
+        [void]$body.Append('<p class="quiz-intro">Ten questions. Pick one answer to get instant feedback. Your best score is saved on this device.</p>' + "`n")
+        [void]$body.Append('<div class="quiz" data-quiz="' + $s.Num + '" data-total="' + $s.Items.Count + '">' + "`n")
+        [void]$body.Append('<div class="quiz-score"><span class="quiz-now">0 / ' + $s.Items.Count + '</span>' +
+                           '<span class="quiz-best">Best: 0 / ' + $s.Items.Count + '</span>' +
+                           '<button type="button" class="quiz-retry">Retry</button></div>' + "`n")
+
+        for ($k = 0; $k -lt $s.Items.Count; $k++) {
+            $parts = $s.Items[$k]
+            $question = $parts[1]
+            $answer   = [int]$parts[6]
+            $why      = $parts[7]
+            [void]$body.Append('<div class="quiz-q" data-answer="' + $answer + '">' + "`n")
+            [void]$body.Append('<p class="quiz-stem"><span class="qnum">' + ($k + 1) + '.</span> ' +
+                               (Inline $question) + '</p>' + "`n")
+            [void]$body.Append('<div class="quiz-opts">')
+            for ($o = 0; $o -lt 4; $o++) {
+                $letter = [char](65 + $o)
+                [void]$body.Append('<button type="button" class="quiz-opt" data-i="' + ($o + 1) + '">' +
+                                   '<span class="opt-letter">' + $letter + '.</span> ' +
+                                   (Inline $parts[2 + $o]) + '</button>')
+            }
+            [void]$body.Append('</div>' + "`n")
+            [void]$body.Append('<div class="quiz-why" hidden>' + (Inline $why) + '</div>' + "`n")
+            [void]$body.Append('<div class="quiz-feedback" hidden></div>' + "`n")
+            [void]$body.Append('</div>' + "`n")
+        }
+        [void]$body.Append('</div>' + "`n")
+        [void]$body.Append('<div class="practice-links"><span>Keep going:</span>' +
+                           '<a href="../practice/PREDICT_OUTPUT.html#note-' + $s.Num + '">Predict the output</a>' +
+                           '<a href="index.html">All quizzes</a>' +
+                           '<a href="../notes/' + $s.Num + '_' + ((Get-ChildItem -LiteralPath (Join-Path $PackRoot 'notes') -Filter ($s.Num + '_*.md') | Select-Object -First 1).BaseName.Substring(3)) + '.html">Back to the note</a></div>' + "`n")
+
+        $qhtml = $script:PageTemplate
+        $qhtml = $qhtml.Replace('__TITLE__', ('Quiz ' + $s.Num + ': ' + (HtmlEscape $s.Title)))
+        $qhtml = $qhtml.Replace('__ROOT__', '../')
+        $qhtml = $qhtml.Replace('__PAGEID__', ('quiz/' + $s.Num + '.html'))
+        $qhtml = $qhtml.Replace('__PAGELIST__', '[]')
+        $qhtml = $qhtml.Replace('__NAV__', (BuildNav '../' ('quiz/' + $s.Num + '.html')))
+        $qhtml = $qhtml.Replace('__CRUMB__', 'Practice <b>&rsaquo;</b> Quiz ' + $s.Num)
+        $qhtml = $qhtml.Replace('__TOOLS__', '')
+        $qhtml = $qhtml.Replace('__BODY__', $body.ToString())
+        $qhtml = $qhtml.Replace('__PAGER__', '')
+        $qhtml = $qhtml.Replace('__TOC__', '')
+
+        [System.IO.File]::WriteAllText((Join-Path $quizDir ($s.Num + '.html')), $qhtml,
+            (New-Object System.Text.UTF8Encoding($false)))
+
+        $indexCards.Add([pscustomobject]@{
+            Group = 'Quiz'
+            Label = ('Quiz ' + $s.Num + ': ' + $s.Title)
+            Out   = ('quiz/' + $s.Num + '.html')
+            Title = ('Quiz ' + $s.Title)
+            Words = 120
+        })
+    }
+
+    # quiz hub
+    $cards = New-Object System.Text.StringBuilder
+    [void]$cards.Append('<h1>Quizzes</h1><p class="quiz-intro">Ten multiple-choice questions for every note. Answers give instant feedback; your best score stays on this device.</p><div class="quiz-cards">')
+    foreach ($s in $script:QuizSections) {
+        [void]$cards.Append('<a class="quiz-card" href="' + $s.Num + '.html"><b>' + $s.Num + '</b><span>' +
+                            (HtmlEscape $s.Title) + '</span><em>' + $s.Items.Count + ' questions</em></a>')
+    }
+    [void]$cards.Append('</div><div class="practice-links"><span>Before the quiz:</span>' +
+                        '<a href="../practice/PREDICT_OUTPUT.html">Predict the output</a>' +
+                        '<a href="../CHEAT_SHEET.html">Cheat sheet</a></div>')
+
+    $ih = $script:PageTemplate
+    $ih = $ih.Replace('__TITLE__', 'Quizzes')
+    $ih = $ih.Replace('__ROOT__', '../')
+    $ih = $ih.Replace('__PAGEID__', 'quiz/index.html')
+    $ih = $ih.Replace('__PAGELIST__', '[]')
+    $ih = $ih.Replace('__NAV__', (BuildNav '../' 'quiz/index.html'))
+    $ih = $ih.Replace('__CRUMB__', 'Practice <b>&rsaquo;</b> Quizzes')
+    $ih = $ih.Replace('__TOOLS__', '')
+    $ih = $ih.Replace('__BODY__', $cards.ToString())
+    $ih = $ih.Replace('__PAGER__', '')
+    $ih = $ih.Replace('__TOC__', '')
+    [System.IO.File]::WriteAllText((Join-Path $quizDir 'index.html'), $ih,
+        (New-Object System.Text.UTF8Encoding($false)))
+
+    $indexCards.Add([pscustomobject]@{
+        Group = 'Quiz'; Label = 'All quizzes (11 × 10 questions)'; Out = 'quiz/index.html'
+        Title = 'Quizzes'; Words = 60
+    })
 }
 
 # ----------------------------------------------------------------- index ----
