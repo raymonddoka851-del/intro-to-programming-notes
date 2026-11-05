@@ -832,6 +832,10 @@ else
 
 ## 9. Loop trace questions (very common)
 
+Use this blank table for every loop question, even when the exam does not ask for one. Fill one row per iteration before you write the final answer.
+
+:::trace Iteration, i, sum, Output
+
 ### Trace A
 
 ```c

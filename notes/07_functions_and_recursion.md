@@ -599,6 +599,10 @@ For `n = 3`, it takes `2³ − 1 = 7` moves.
 
 ## 9. Worked exam traces
 
+Use this blank table for a recursive call: show each call, the argument, the returned value and what (if anything) is printed. Work back up the table to get the final answer.
+
+:::trace Call, n, Returns, Output
+
 ### Trace 1: `factorial_rec(5)`
 
 ```
