@@ -17,7 +17,7 @@
   </a>
   <details class="nav-details" open>
     <summary>Contents</summary>
-    <div class="nav-group"><div class="nav-head"></div><a href="START_HERE.html">Start here (pack index)</a><a href="YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="CHEAT_SHEET.html">Cheat sheet</a><a href="PROGRESS_TRACKER.html" class="active">Progress tracker</a><a href="SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="notes/05_control_statements.html">05 · Control statements</a><a href="notes/06_loops.html">06 · Loops</a><a href="notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="notes/09_pointers.html">09 · Pointers</a><a href="notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="practice/QUESTION_BANK.html">Question bank (96)</a><a href="practice/ANSWER_KEY.html">Answer key</a><a href="practice/LAB_TASKS.html">Lab tasks (25)</a><a href="practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="code/README.html">Program list (22 examples)</a></div>
+    <div class="nav-group"><div class="nav-head"></div><a href="START_HERE.html">Start here (pack index)</a><a href="YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="CHEAT_SHEET.html">Cheat sheet</a><a href="PROGRESS_TRACKER.html" class="active">Progress tracker</a><a href="SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="notes/05_control_statements.html">05 · Control statements</a><a href="notes/06_loops.html">06 · Loops</a><a href="notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="notes/09_pointers.html">09 · Pointers</a><a href="notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="practice/QUESTION_BANK.html">Question bank (96)</a><a href="practice/PREDICT_OUTPUT.html">Predict the output (44)</a><a href="practice/ANSWER_KEY.html">Answer key</a><a href="practice/LAB_TASKS.html">Lab tasks (25)</a><a href="practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="code/README.html">Program list (22 examples)</a><a href="code/VERIFIED_OUTPUT.html">Verified output (22 programs)</a></div><div class="nav-group"><div class="nav-head">Quiz</div><a href="quiz/index.html">All quizzes (11 × 10)</a></div>
   </details>
 </aside>
 <main class="main">
@@ -394,6 +394,80 @@
     panel.appendChild(list);
   }
   renderPanel();
+
+  // ---- multiple-choice quizzes -----------------------------------------
+  var quiz = document.querySelector('.quiz');
+  if (quiz) {
+    var quizId = quiz.getAttribute('data-quiz');
+    var total  = parseInt(quiz.getAttribute('data-total'), 10) || 0;
+    var correct = 0;
+    var answered = 0;
+    var bestKey = 'csc112:quiz:' + quizId;
+    var nowEl = quiz.querySelector('.quiz-now');
+    var bestEl = quiz.querySelector('.quiz-best');
+
+    function readBest() {
+      try { return parseInt(localStorage.getItem(bestKey) || '0', 10) || 0; } catch (e) { return 0; }
+    }
+    function paintBest() {
+      if (bestEl) bestEl.textContent = 'Best: ' + readBest() + ' / ' + total;
+    }
+    paintBest();
+
+    [].slice.call(quiz.querySelectorAll('.quiz-q')).forEach(function (q) {
+      var answer = parseInt(q.getAttribute('data-answer'), 10);
+      var feedback = q.querySelector('.quiz-feedback');
+      var why = q.querySelector('.quiz-why');
+      var opts = [].slice.call(q.querySelectorAll('.quiz-opt'));
+      opts.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (q.classList.contains('answered')) return;
+          q.classList.add('answered');
+          var pick = parseInt(btn.getAttribute('data-i'), 10);
+          opts.forEach(function (b) {
+            b.disabled = true;
+            if (parseInt(b.getAttribute('data-i'), 10) === answer) b.classList.add('correct');
+          });
+          if (pick === answer) {
+            correct++;
+            feedback.className = 'quiz-feedback good';
+          } else {
+            btn.classList.add('wrong');
+            feedback.className = 'quiz-feedback bad';
+          }
+          feedback.textContent = (pick === answer ? 'Correct. ' : 'Not quite. ') + (why ? why.textContent : '');
+          feedback.hidden = false;
+          answered++;
+          if (nowEl) nowEl.textContent = correct + ' / ' + total;
+          if (answered === total) {
+            var best = readBest();
+            if (correct > best) {
+              try { localStorage.setItem(bestKey, String(correct)); } catch (e) {}
+              paintBest();
+            }
+          }
+        });
+      });
+    });
+
+    var retry = quiz.querySelector('.quiz-retry');
+    if (retry) retry.addEventListener('click', function () {
+      correct = 0;
+      answered = 0;
+      if (nowEl) nowEl.textContent = '0 / ' + total;
+      [].slice.call(quiz.querySelectorAll('.quiz-q')).forEach(function (q) {
+        q.classList.remove('answered');
+        var f = q.querySelector('.quiz-feedback');
+        f.hidden = true;
+        f.textContent = '';
+        f.className = 'quiz-feedback';
+        [].slice.call(q.querySelectorAll('.quiz-opt')).forEach(function (b) {
+          b.disabled = false;
+          b.classList.remove('correct', 'wrong');
+        });
+      });
+    });
+  }
 
   // print shows the answers so the PDF is a complete revision sheet
   window.addEventListener('beforeprint', function () {

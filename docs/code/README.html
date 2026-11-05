@@ -17,7 +17,7 @@
   </a>
   <details class="nav-details" open>
     <summary>Contents</summary>
-    <div class="nav-group"><div class="nav-head"></div><a href="../START_HERE.html">Start here (pack index)</a><a href="../YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="../CHEAT_SHEET.html">Cheat sheet</a><a href="../PROGRESS_TRACKER.html">Progress tracker</a><a href="../SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="../notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="../notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="../notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="../notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="../notes/05_control_statements.html">05 · Control statements</a><a href="../notes/06_loops.html">06 · Loops</a><a href="../notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="../notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="../notes/09_pointers.html">09 · Pointers</a><a href="../notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="../notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="../practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="../practice/QUESTION_BANK.html">Question bank (96)</a><a href="../practice/ANSWER_KEY.html">Answer key</a><a href="../practice/LAB_TASKS.html">Lab tasks (25)</a><a href="../practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="../practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="../practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="../code/README.html" class="active">Program list (22 examples)</a></div>
+    <div class="nav-group"><div class="nav-head"></div><a href="../START_HERE.html">Start here (pack index)</a><a href="../YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="../CHEAT_SHEET.html">Cheat sheet</a><a href="../PROGRESS_TRACKER.html">Progress tracker</a><a href="../SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="../notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="../notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="../notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="../notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="../notes/05_control_statements.html">05 · Control statements</a><a href="../notes/06_loops.html">06 · Loops</a><a href="../notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="../notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="../notes/09_pointers.html">09 · Pointers</a><a href="../notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="../notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="../practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="../practice/QUESTION_BANK.html">Question bank (96)</a><a href="../practice/PREDICT_OUTPUT.html">Predict the output (44)</a><a href="../practice/ANSWER_KEY.html">Answer key</a><a href="../practice/LAB_TASKS.html">Lab tasks (25)</a><a href="../practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="../practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="../practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="../code/README.html" class="active">Program list (22 examples)</a><a href="../code/VERIFIED_OUTPUT.html">Verified output (22 programs)</a></div><div class="nav-group"><div class="nav-head">Quiz</div><a href="../quiz/index.html">All quizzes (11 × 10)</a></div>
   </details>
 </aside>
 <main class="main">
@@ -34,6 +34,7 @@
 <pre class="code" data-lang="bash"><code>./program          # Linux / macOS
 program.exe        # Windows</code></pre>
 <p>Or paste any file into <a href="https://www.onlinegdb.com/online_c_compiler" target="_blank" rel="noopener noreferrer">https://www.onlinegdb.com/online_c_compiler</a> and press <strong>Run</strong>.</p>
+<p>Every program was compiled with <code>gcc -std=c11 -Wall -Wextra -Werror</code> and run with a fixed input. The real output of all 22 programs is in <a href="VERIFIED_OUTPUT.html">VERIFIED_OUTPUT.md</a> so you can compare it with what you see on your own machine.</p>
 <h2 id="index">Index</h2>
 <div class="table-wrap"><table>
 <thead><tr><th style="text-align:left">File</th><th style="text-align:left">Topic</th><th style="text-align:left">What it demonstrates</th></tr></thead>
@@ -61,6 +62,139 @@ program.exe        # Windows</code></pre>
 <tr><td style="text-align:left"><code>file_records.c</code></td><td style="text-align:left">Files</td><td style="text-align:left"><code>fopen</code>, <code>fprintf</code>, <code>fscanf</code>, <code>fclose</code></td></tr>
 <tr><td style="text-align:left"><code>report_table.c</code></td><td style="text-align:left">Formatting</td><td style="text-align:left">Width, precision, aligned report, totals</td></tr>
 </tbody></table></div>
+<h2 id="common-mistakes-by-program">Common mistakes by program</h2>
+<p>Read the box before you run the program. Each one is a mark you can lose in the exam.</p>
+<div class="mistakes"><div class="box-title">hello.c</div><ul>
+<li>Missing semicolon after <code>printf(...)</code>.</li>
+<li>Writing <code>Printf</code> or <code>PRINTF</code> — C is case-sensitive.</li>
+<li>Forgetting <code>#include &lt;stdio.h&gt;</code> or spelling the header wrong.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">add_two.c</div><ul>
+<li><code>scanf(&quot;%d&quot;, x);</code> — the missing <code>&amp;</code> is the most common exam error.</li>
+<li>Using <code>%f</code> to read an <code>int</code>.</li>
+<li>Printing an uninitialised total instead of the sum of the two inputs.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">area_circle.c</div><ul>
+<li><code>22 / 7 * r * r</code> uses integer division; write <code>22.0 / 7.0</code>.</li>
+<li>Using <code>%d</code> for a <code>double</code>; use <code>%f</code> or <code>%.2f</code>.</li>
+<li>Forgetting that <code>#define PI 3.14159</code> has no semicolon and no <code>=</code>.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">data_types.c</div><ul>
+<li>Printing <code>sizeof</code> with <code>%d</code>; the correct portable specifier is <code>%zu</code>.</li>
+<li>Assuming <code>int</code> is always 4 bytes on every machine.</li>
+<li>Overflowing a signed type, which is undefined behaviour.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">operators.c</div><ul>
+<li><code>if (x = 5)</code> instead of <code>if (x == 5)</code>.</li>
+<li>Expecting <code>5 / 2</code> to be <code>2.5</code> when both operands are integers.</li>
+<li>Assuming <code>a++</code> and <code>++a</code> give the same value in the same expression.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">largest3.c</div><ul>
+<li>Writing <code>if (a &gt; b &gt; c)</code>, which compares a boolean with <code>c</code>.</li>
+<li>Omitting braces and letting only the first statement belong to the <code>if</code>.</li>
+<li>Using <code>=</code> inside the condition.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">grade_switch.c</div><ul>
+<li>Omitting <code>break</code>, so every later case also runs.</li>
+<li>Switching on a <code>float</code> or a string, which C does not allow.</li>
+<li>Forgetting <code>default</code>, so unexpected marks produce no output.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">sum_n.c</div><ul>
+<li>Using <code>i &lt;= n</code> when the loop should stop at <code>n - 1</code>.</li>
+<li>Forgetting to initialise <code>sum</code> to 0.</li>
+<li>Changing the loop counter inside the body as well as in the <code>for</code> header.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">factorial.c</div><ul>
+<li>Using <code>int</code> for factorials above 12; use <code>long long</code>.</li>
+<li>Starting the loop at 0, which makes every answer 0.</li>
+<li>Forgetting that <code>0!</code> is 1.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">reverse_number.c</div><ul>
+<li>Stopping before the last digit, or looping while <code>n &gt; 0</code> after <code>n</code> becomes 0.</li>
+<li>Forgetting to multiply the reversed value by 10 before adding the digit.</li>
+<li>Ignoring negative input.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">prime_check.c</div><ul>
+<li>Testing divisors up to <code>n</code> instead of <code>n / 2</code> or <code>sqrt(n)</code>.</li>
+<li>Treating 0 and 1 as prime.</li>
+<li>Using <code>break</code> without a flag, then reporting the wrong conclusion.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">star_pyramid.c</div><ul>
+<li>Printing one space too many or too few per row.</li>
+<li>Forgetting the newline at the end of each row.</li>
+<li>Using the row number where the reverse count is needed.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">functions.c</div><ul>
+<li>Calling a function before declaring or defining it.</li>
+<li>Using the return value of a <code>void</code> function.</li>
+<li>Swapping the argument order at the call site.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">recursion.c</div><ul>
+<li>No base case, so the recursion never stops.</li>
+<li>Forgetting <code>return</code> on the recursive branch.</li>
+<li>Using naive Fibonacci recursion for large <code>n</code>, which explodes exponentially.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">array_stats.c</div><ul>
+<li>Looping <code>i &lt;= n</code> on an array of <code>n</code> elements; the last index is <code>n - 1</code>.</li>
+<li>Initialising <code>max</code> to 0 when all values can be negative.</li>
+<li>Computing an average with integer division.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">bubble_sort.c</div><ul>
+<li>Using <code>j &lt; n</code> instead of <code>j &lt; n - i - 1</code>, which reads past the end.</li>
+<li>Swapping without a temporary variable.</li>
+<li>Sorting in the wrong direction because the comparison is reversed.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">matrix_ops.c</div><ul>
+<li>Multiplying matrices whose inner dimensions do not match.</li>
+<li>Forgetting to reset the accumulator for each output cell.</li>
+<li>Writing <code>a[j][i]</code> when the algorithm needs <code>a[i][j]</code>.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">string_demo.c</div><ul>
+<li>Writing past the null terminator or beyond the array size.</li>
+<li>Comparing strings with <code>==</code> instead of <code>strcmp</code>.</li>
+<li>Forgetting <code>#include &lt;ctype.h&gt;</code> before <code>toupper</code> or <code>isalpha</code>.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">pointer_swap.c</div><ul>
+<li>Swapping the pointer variables instead of the values they point to.</li>
+<li>Dereferencing an uninitialised or NULL pointer.</li>
+<li>Forgetting <code>&amp;</code> when passing the addresses of the two integers.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">struct_student.c</div><ul>
+<li>Missing the semicolon after the closing brace of a <code>struct</code>.</li>
+<li>Using <code>.</code> on a pointer instead of <code>-&gt;</code>.</li>
+<li>Copying a name with <code>strcpy</code> without checking the destination size.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">file_records.c</div><ul>
+<li>Using the file pointer without checking whether <code>fopen</code> returned <code>NULL</code>.</li>
+<li>Forgetting <code>fclose</code>, so buffered data is not written.</li>
+<li>Opening with <code>&quot;w&quot;</code> when you meant to append with <code>&quot;a&quot;</code>; <code>&quot;w&quot;</code> erases the file.</li>
+</ul>
+</div>
+<div class="mistakes"><div class="box-title">report_table.c</div><ul>
+<li>Using <code>%d</code> for a <code>double</code>; use <code>%f</code> with a width and precision.</li>
+<li>Forgetting <code>\n</code> between rows.</li>
+<li>Lining up headers by eye instead of using field widths.</li>
+</ul>
 <h2 id="suggested-order">Suggested order</h2>
 <ol>
 <li><code>hello.c</code> → <code>add_two.c</code> → <code>area_circle.c</code></li>
@@ -73,16 +207,17 @@ program.exe        # Windows</code></pre>
 <li><code>file_records.c</code> → <code>report_table.c</code></li>
 </ol>
 <p>For every program: <strong>predict the output first</strong>, then run it, then change one thing and predict again.</p>
+</div>
 
   </article>
-<nav class="pager"><a class="prev" href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html"><span class="dir">&larr; Previous</span><span class="name">Mock exam 2 — marking</span></a><span class="spacer"></span></nav>
+<nav class="pager"><a class="prev" href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html"><span class="dir">&larr; Previous</span><span class="name">Mock exam 2 — marking</span></a><a class="next" href="../code/VERIFIED_OUTPUT.html"><span class="dir">Next &rarr;</span><span class="name">Verified output (22 programs)</span></a></nav>
   <footer class="foot">
     CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
   </footer>
 </main>
 <aside class="toc">
   <div class="toc-title">On this page</div>
-  <a href="#index">Index</a><a href="#suggested-order">Suggested order</a>
+  <a href="#index">Index</a><a href="#common-mistakes-by-program">Common mistakes by program</a>
 </aside>
 </div>
 <script>
@@ -231,6 +366,80 @@ program.exe        # Windows</code></pre>
     panel.appendChild(list);
   }
   renderPanel();
+
+  // ---- multiple-choice quizzes -----------------------------------------
+  var quiz = document.querySelector('.quiz');
+  if (quiz) {
+    var quizId = quiz.getAttribute('data-quiz');
+    var total  = parseInt(quiz.getAttribute('data-total'), 10) || 0;
+    var correct = 0;
+    var answered = 0;
+    var bestKey = 'csc112:quiz:' + quizId;
+    var nowEl = quiz.querySelector('.quiz-now');
+    var bestEl = quiz.querySelector('.quiz-best');
+
+    function readBest() {
+      try { return parseInt(localStorage.getItem(bestKey) || '0', 10) || 0; } catch (e) { return 0; }
+    }
+    function paintBest() {
+      if (bestEl) bestEl.textContent = 'Best: ' + readBest() + ' / ' + total;
+    }
+    paintBest();
+
+    [].slice.call(quiz.querySelectorAll('.quiz-q')).forEach(function (q) {
+      var answer = parseInt(q.getAttribute('data-answer'), 10);
+      var feedback = q.querySelector('.quiz-feedback');
+      var why = q.querySelector('.quiz-why');
+      var opts = [].slice.call(q.querySelectorAll('.quiz-opt'));
+      opts.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (q.classList.contains('answered')) return;
+          q.classList.add('answered');
+          var pick = parseInt(btn.getAttribute('data-i'), 10);
+          opts.forEach(function (b) {
+            b.disabled = true;
+            if (parseInt(b.getAttribute('data-i'), 10) === answer) b.classList.add('correct');
+          });
+          if (pick === answer) {
+            correct++;
+            feedback.className = 'quiz-feedback good';
+          } else {
+            btn.classList.add('wrong');
+            feedback.className = 'quiz-feedback bad';
+          }
+          feedback.textContent = (pick === answer ? 'Correct. ' : 'Not quite. ') + (why ? why.textContent : '');
+          feedback.hidden = false;
+          answered++;
+          if (nowEl) nowEl.textContent = correct + ' / ' + total;
+          if (answered === total) {
+            var best = readBest();
+            if (correct > best) {
+              try { localStorage.setItem(bestKey, String(correct)); } catch (e) {}
+              paintBest();
+            }
+          }
+        });
+      });
+    });
+
+    var retry = quiz.querySelector('.quiz-retry');
+    if (retry) retry.addEventListener('click', function () {
+      correct = 0;
+      answered = 0;
+      if (nowEl) nowEl.textContent = '0 / ' + total;
+      [].slice.call(quiz.querySelectorAll('.quiz-q')).forEach(function (q) {
+        q.classList.remove('answered');
+        var f = q.querySelector('.quiz-feedback');
+        f.hidden = true;
+        f.textContent = '';
+        f.className = 'quiz-feedback';
+        [].slice.call(q.querySelectorAll('.quiz-opt')).forEach(function (b) {
+          b.disabled = false;
+          b.classList.remove('correct', 'wrong');
+        });
+      });
+    });
+  }
 
   // print shows the answers so the PDF is a complete revision sheet
   window.addEventListener('beforeprint', function () {

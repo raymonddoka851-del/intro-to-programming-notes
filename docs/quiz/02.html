@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quiz 02: C basics and compilation · CSC 112 Revision</title>
+<meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
+<link rel="stylesheet" href="../assets/notes.css">
+</head>
+<body data-page="quiz/02.html" data-pages="[]">
+<div class="progress" id="progress"></div>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">C</span>
+    <span class="brand-text"><strong>CSC 112</strong><span>Revision Notes</span></span>
+  </a>
+  <details class="nav-details" open>
+    <summary>Contents</summary>
+    <div class="nav-group"><div class="nav-head"></div><a href="../START_HERE.html">Start here (pack index)</a><a href="../YOUR_14_DAY_PLAN.html">Your 14-day study plan</a><a href="../CHEAT_SHEET.html">Cheat sheet</a><a href="../PROGRESS_TRACKER.html">Progress tracker</a><a href="../SETUP_AND_RUN.html">Setup: run C on this PC</a><a href="../notes/01_programming_fundamentals.html">01 · Programming fundamentals</a><a href="../notes/02_c_basics_and_compilation.html">02 · C basics &amp; compilation</a><a href="../notes/03_data_types_and_number_systems.html">03 · Data types &amp; number systems</a><a href="../notes/04_operators_and_expressions.html">04 · Operators &amp; expressions</a><a href="../notes/05_control_statements.html">05 · Control statements</a><a href="../notes/06_loops.html">06 · Loops</a><a href="../notes/07_functions_and_recursion.html">07 · Functions &amp; recursion</a><a href="../notes/08_arrays_and_strings.html">08 · Arrays &amp; strings</a><a href="../notes/09_pointers.html">09 · Pointers</a><a href="../notes/10_structures_unions_files.html">10 · Structures, unions &amp; files</a><a href="../notes/11_formatted_io_and_reports.html">11 · Formatted I/O &amp; reports</a><a href="../practice/ACTUAL_QUIZ_ANSWERS.html">Actual quiz answers (24)</a><a href="../practice/QUESTION_BANK.html">Question bank (96)</a><a href="../practice/PREDICT_OUTPUT.html">Predict the output (44)</a><a href="../practice/ANSWER_KEY.html">Answer key</a><a href="../practice/LAB_TASKS.html">Lab tasks (25)</a><a href="../practice/MOCK_EXAM_1.html">Mock exam 1</a><a href="../practice/MOCK_EXAM_1_MARKING_SCHEME.html">Mock exam 1 — marking</a><a href="../practice/MOCK_EXAM_2.html">Mock exam 2</a><a href="../practice/MOCK_EXAM_2_MARKING_SCHEME.html">Mock exam 2 — marking</a><a href="../code/README.html">Program list (22 examples)</a><a href="../code/VERIFIED_OUTPUT.html">Verified output (22 programs)</a></div><div class="nav-group"><div class="nav-head">Quiz</div><a href="../quiz/index.html">All quizzes (11 × 10)</a></div>
+  </details>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <span class="crumb">Practice <b>&rsaquo;</b> Quiz 02</span>
+    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+  </div>
+  <article class="content">
+
+<h1>Quiz 02: C basics and compilation</h1>
+<p class="quiz-intro">Ten questions. Pick one answer to get instant feedback. Your best score is saved on this device.</p>
+<div class="quiz" data-quiz="02" data-total="10">
+<div class="quiz-score"><span class="quiz-now">0 / 10</span><span class="quiz-best">Best: 0 / 10</span><button type="button" class="quiz-retry">Retry</button></div>
+<div class="quiz-q" data-answer="2">
+<p class="quiz-stem"><span class="qnum">1.</span> Which header declares printf?</p>
+<div class="quiz-opts"><button type="button" class="quiz-opt" data-i="1"><span class="opt-letter">A.</span> stdlib.h</button><button type="button" class="quiz-opt" data-i="2"><span class="opt-letter">B.</span> stdio.h</button><button type="button" class="quiz-opt" data-i="3"><span class="opt-letter">C.</span> string.h</button><button type="button" class="quiz-opt" data-i="4"><span class="opt-letter">D.</span> math.h</button></div>
+<div class="quiz-why" hidden>Standard input/output functions live in stdio.h.</div>
+<div class="quiz-feedback" hidden></div>
+</div>
+<div class="quiz-q" data-answer="2">
+<p class="quiz-stem"><span class="qnum">2.</span> Where does execution of a C program begin?</p>
+<div class="quiz-opts"><button type="button" class="quiz-opt" data-i="1"><span class="opt-letter">A.</span> The first function in the file</button><button type="button" class="quiz-opt" data-i="2"><span class="opt-letter">B.</span> main</button><button type="button" class="quiz-opt" data-i="3"><span class="opt-letter">C.</span> printf</button><button type="button" class="quiz-opt" data-i="4"><span class="opt-letter">D.</span> The last include</button></div>
+<div class="quiz-why" hidden>main is the entry point.</div>
+<div class="quiz-feedback" hidden></div>
+</div>
+<div class="quiz-q" data-answer="3">
+<p class="quiz-stem"><span class="qnum">3.</span> What is the standard return type of main?</p>
+<div class="quiz-opts"><button type="button" class="quiz-opt" data-i="1"><span class="opt-letter">A.</span> void</button><button type="button" class="quiz-opt" data-i="2"><span class="opt-letter">B.</span> float</button><button type="button" class="quiz-opt" data-i="3"><span class="opt-letter">C.</span> int</button><button type="button" class="quiz-opt" data-i="4"><span class="opt-letter">D.</span> char</button></div>
+<div class="quiz-why" hidden>main returns int to the operating system.</div>
+<div class="quiz-feedback" hidden></div>
+</div>
+<div class="quiz-q" data-answer="2">
+<p class="quiz-stem"><span class="qnum">4.</span> Who processes #define before compilation?</p>
+<div class="quiz-opts"><button type="button" class="quiz-opt" data-i="1"><span class="opt-letter">A.</span> The linker</button><button type="button" class="quiz-opt" data-i="2"><span class="opt-letter">B.</span> The preprocessor</button><button type="button" class="quiz-opt" data-i="3"><span class="opt-letter">C.</span> The CPU</button><button type="button" class="quiz-opt" data-i="4"><span class="opt-letter">D.</span> The debugger</button></div>
+<div class="quiz-why" hidden>Macros are expanded by the preprocessor.</div>
+<div class="quiz-feedback" hidden></div>
+</div>
+<div class="quiz-q" data-answer="2">
+<p class="quiz-stem"><span class="qnum">5.</span> Which character ends a C statement?</p>
+<div class="quiz-opts"><button type="button" class="quiz-opt" data-i="1"><span class="opt-letter">A.</span> :</button><button type="button" class="quiz-opt" data-i="2"><span class="opt-letter">B.</span> ;</button><button type="button" class="quiz-opt" data-i="3"><span class="opt-letter">C.</span> ,</button><button type="button" class="quiz-opt" data-i="4"><span class="opt-letter">D.</span> .</button></div>
+<div class="quiz-why" hidden>A semicolon terminates an expression statement.</div>
+<div class="quiz-feedback" hidden></div>
+</div>
+<div class="quiz-q" data-answer="3">
+<p class="quiz-stem"><span class="qnum">6.</span> Which is a valid C identifier?</p>
+<div class="quiz-opts"><button type="button" class="quiz-opt" data-i="1"><span class="opt-letter">A.</span> 2total</button><button type="button" class="quiz-opt" data-i="2"><span class="opt-letter">B.</span> total score</button><button type="button" class="quiz-opt" data-i="3"><span class="opt-letter">C.</span> total_1</button><button type="button" class="quiz-opt" data-i="4"><span class="opt-letter">D.</span> int</button></div>
+<div class="quiz-why" hidden>It starts with a letter and contains only letters, digits or underscore.</div>
+<div class="quiz-feedback" hidden></div>
+</div>
+<div class="quiz-q" data-answer="3">
+<p class="quiz-stem"><span class="qnum">7.</span> Which printf specifier prints an int?</p>
+<div class="quiz-opts"><button type="button" class="quiz-opt" data-i="1"><span class="opt-letter">A.</span> %f</button><button type="button" class="quiz-opt" data-i="2"><span class="opt-letter">B.</span> %c</button><button type="button" class="quiz-opt" data-i="3"><span class="opt-letter">C.</span> %d</button><button type="button" class="quiz-opt" data-i="4"><span class="opt-letter">D.</span> %s</button></div>
+<div class="quiz-why" hidden>%d prints a signed decimal integer.</div>
+<div class="quiz-feedback" hidden></div>
+</div>
+<div class="quiz-q" data-answer="2">
+<p class="quiz-stem"><span class="qnum">8.</span> What does return 0 from main usually mean?</p>
+<div class="quiz-opts"><button type="button" class="quiz-opt" data-i="1"><span class="opt-letter">A.</span> An error occurred</button><button type="button" class="quiz-opt" data-i="2"><span class="opt-letter">B.</span> Success</button><button type="button" class="quiz-opt" data-i="3"><span class="opt-letter">C.</span> The program is still running</button><button type="button" class="quiz-opt" data-i="4"><span class="opt-letter">D.</span> The output is zero</button></div>
+<div class="quiz-why" hidden>Zero signals successful termination.</div>
+<div class="quiz-feedback" hidden></div>
+</div>
+<div class="quiz-q" data-answer="3">
+<p class="quiz-stem"><span class="qnum">9.</span> Which is a valid block comment?</p>
+<div class="quiz-opts"><button type="button" class="quiz-opt" data-i="1"><span class="opt-letter">A.</span> // comment</button><button type="button" class="quiz-opt" data-i="2"><span class="opt-letter">B.</span> # comment</button><button type="button" class="quiz-opt" data-i="3"><span class="opt-letter">C.</span> /* comment */</button><button type="button" class="quiz-opt" data-i="4"><span class="opt-letter">D.</span> &lt;!-- comment --&gt;</button></div>
+<div class="quiz-why" hidden>C block comments start with slash-star.</div>
+<div class="quiz-feedback" hidden></div>
+</div>
+<div class="quiz-q" data-answer="2">
+<p class="quiz-stem"><span class="qnum">10.</span> Which file extension is used for C source code?</p>
+<div class="quiz-opts"><button type="button" class="quiz-opt" data-i="1"><span class="opt-letter">A.</span> .cpp</button><button type="button" class="quiz-opt" data-i="2"><span class="opt-letter">B.</span> .c</button><button type="button" class="quiz-opt" data-i="3"><span class="opt-letter">C.</span> .exe</button><button type="button" class="quiz-opt" data-i="4"><span class="opt-letter">D.</span> .h</button></div>
+<div class="quiz-why" hidden>C source files use .c; headers use .h.</div>
+<div class="quiz-feedback" hidden></div>
+</div>
+</div>
+<div class="practice-links"><span>Keep going:</span><a href="../practice/PREDICT_OUTPUT.html#note-02">Predict the output</a><a href="index.html">All quizzes</a><a href="../notes/02_c_basics_and_compilation.html">Back to the note</a></div>
+
+  </article>
+
+  <footer class="foot">
+    CSC 112 / STA 121 — Introduction to Programming. Built from the official course outline and lecture notes.
+  </footer>
+</main>
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  
+</aside>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('csc112-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '\u2600' : '\u263D';
+    try { localStorage.setItem('csc112-theme', next); } catch (e) {}
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // highlight the current section in the right-hand table of contents
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (links.length) {
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    window.addEventListener('scroll', function () {
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i] && heads[i].getBoundingClientRect().top < 120) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+    }, { passive: true });
+  }
+
+  // on phones, start with the contents menu collapsed
+  var det = document.querySelector('.nav-details');
+  if (det && window.innerWidth < 1000) det.removeAttribute('open');
+
+  // ---- interactive checklist -------------------------------------------
+  var pageId  = document.body.getAttribute('data-page') || location.pathname;
+  var checks  = [].slice.call(document.querySelectorAll('.task-check'));
+  var countEl = document.getElementById('checkCount');
+  var resetBtn = document.getElementById('resetChecks');
+
+  function checkKey(el) { return 'csc112:task:' + pageId + ':' + el.getAttribute('data-task'); }
+  function updateCount() {
+    if (!countEl) return;
+    var done = checks.filter(function (c) { return c.checked; }).length;
+    countEl.textContent = done + ' / ' + checks.length + ' done';
+    countEl.classList.toggle('all', checks.length > 0 && done === checks.length);
+  }
+  checks.forEach(function (c) {
+    try { if (localStorage.getItem(checkKey(c)) === '1') c.checked = true; } catch (e) {}
+    c.addEventListener('change', function () {
+      try { localStorage.setItem(checkKey(c), c.checked ? '1' : '0'); } catch (e) {}
+      updateCount();
+    });
+  });
+  updateCount();
+  if (resetBtn) resetBtn.addEventListener('click', function () {
+    checks.forEach(function (c) {
+      c.checked = false;
+      try { localStorage.removeItem(checkKey(c)); } catch (e) {}
+    });
+    updateCount();
+  });
+
+  // ---- fill-in blanks ---------------------------------------------------
+  var blanks = [].slice.call(document.querySelectorAll('input.blank'));
+  blanks.forEach(function (b) {
+    var k = 'csc112:blank:' + pageId + ':' + b.getAttribute('data-blank');
+    try {
+      var v = localStorage.getItem(k);
+      if (v !== null) b.value = v;
+    } catch (e) {}
+    b.addEventListener('input', function () {
+      try { localStorage.setItem(k, b.value); } catch (e) {}
+      if (b.getAttribute('data-kind') === 'date') updateDays();
+    });
+  });
+
+  function updateDays() {
+    var date = document.querySelector('input.blank[data-kind="date"]');
+    var days = document.querySelector('input.blank[data-kind="days"]');
+    if (!date || !days) return;
+    if (!date.value) { days.value = ''; return; }
+    var d = new Date(date.value + 'T00:00:00');
+    if (isNaN(d.getTime())) { days.value = ''; return; }
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    days.value = String(Math.round((d - today) / 86400000));
+  }
+  updateDays();
+
+  // ---- mark as done + progress panel -----------------------------------
+  var doneBtn = document.getElementById('markDone');
+  var doneKey = 'csc112:done:' + pageId;
+  function isDone() { try { return localStorage.getItem(doneKey) === '1'; } catch (e) { return false; } }
+  function paintDone() {
+    if (!doneBtn) return;
+    doneBtn.textContent = isDone() ? '\u2713 Done' : 'Mark as done';
+    doneBtn.classList.toggle('is-done', isDone());
+  }
+  if (doneBtn) doneBtn.addEventListener('click', function () {
+    try { localStorage.setItem(doneKey, isDone() ? '0' : '1'); } catch (e) {}
+    paintDone();
+    renderPanel();
+  });
+  paintDone();
+
+  var panel = document.getElementById('donePanel');
+  var pages = [];
+  try { pages = JSON.parse(document.body.getAttribute('data-pages') || '[]'); } catch (e) {}
+  function renderPanel() {
+    if (!panel || !pages.length) return;
+    panel.innerHTML = '';
+    var n = 0;
+    pages.forEach(function (p) {
+      try { if (localStorage.getItem('csc112:done:' + p.key) === '1') n++; } catch (e) {}
+    });
+    var head = document.createElement('p');
+    head.className = 'done-summary';
+    head.textContent = n + ' / ' + pages.length + ' pages marked done';
+    panel.appendChild(head);
+
+    var list = document.createElement('ul');
+    list.className = 'done-list';
+    pages.forEach(function (p) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = p.href;
+      a.textContent = p.label;
+      var s = document.createElement('span');
+      var d = false;
+      try { d = localStorage.getItem('csc112:done:' + p.key) === '1'; } catch (e) {}
+      s.className = 'done-flag' + (d ? ' yes' : '');
+      s.textContent = d ? '\u2713 done' : 'not done';
+      li.appendChild(a);
+      li.appendChild(s);
+      list.appendChild(li);
+    });
+    panel.appendChild(list);
+  }
+  renderPanel();
+
+  // ---- multiple-choice quizzes -----------------------------------------
+  var quiz = document.querySelector('.quiz');
+  if (quiz) {
+    var quizId = quiz.getAttribute('data-quiz');
+    var total  = parseInt(quiz.getAttribute('data-total'), 10) || 0;
+    var correct = 0;
+    var answered = 0;
+    var bestKey = 'csc112:quiz:' + quizId;
+    var nowEl = quiz.querySelector('.quiz-now');
+    var bestEl = quiz.querySelector('.quiz-best');
+
+    function readBest() {
+      try { return parseInt(localStorage.getItem(bestKey) || '0', 10) || 0; } catch (e) { return 0; }
+    }
+    function paintBest() {
+      if (bestEl) bestEl.textContent = 'Best: ' + readBest() + ' / ' + total;
+    }
+    paintBest();
+
+    [].slice.call(quiz.querySelectorAll('.quiz-q')).forEach(function (q) {
+      var answer = parseInt(q.getAttribute('data-answer'), 10);
+      var feedback = q.querySelector('.quiz-feedback');
+      var why = q.querySelector('.quiz-why');
+      var opts = [].slice.call(q.querySelectorAll('.quiz-opt'));
+      opts.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (q.classList.contains('answered')) return;
+          q.classList.add('answered');
+          var pick = parseInt(btn.getAttribute('data-i'), 10);
+          opts.forEach(function (b) {
+            b.disabled = true;
+            if (parseInt(b.getAttribute('data-i'), 10) === answer) b.classList.add('correct');
+          });
+          if (pick === answer) {
+            correct++;
+            feedback.className = 'quiz-feedback good';
+          } else {
+            btn.classList.add('wrong');
+            feedback.className = 'quiz-feedback bad';
+          }
+          feedback.textContent = (pick === answer ? 'Correct. ' : 'Not quite. ') + (why ? why.textContent : '');
+          feedback.hidden = false;
+          answered++;
+          if (nowEl) nowEl.textContent = correct + ' / ' + total;
+          if (answered === total) {
+            var best = readBest();
+            if (correct > best) {
+              try { localStorage.setItem(bestKey, String(correct)); } catch (e) {}
+              paintBest();
+            }
+          }
+        });
+      });
+    });
+
+    var retry = quiz.querySelector('.quiz-retry');
+    if (retry) retry.addEventListener('click', function () {
+      correct = 0;
+      answered = 0;
+      if (nowEl) nowEl.textContent = '0 / ' + total;
+      [].slice.call(quiz.querySelectorAll('.quiz-q')).forEach(function (q) {
+        q.classList.remove('answered');
+        var f = q.querySelector('.quiz-feedback');
+        f.hidden = true;
+        f.textContent = '';
+        f.className = 'quiz-feedback';
+        [].slice.call(q.querySelectorAll('.quiz-opt')).forEach(function (b) {
+          b.disabled = false;
+          b.classList.remove('correct', 'wrong');
+        });
+      });
+    });
+  }
+
+  // print shows the answers so the PDF is a complete revision sheet
+  window.addEventListener('beforeprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      d.setAttribute('data-was-open', d.open ? '1' : '0');
+      d.open = true;
+    });
+  });
+  window.addEventListener('afterprint', function () {
+    [].slice.call(document.querySelectorAll('details.reveal')).forEach(function (d) {
+      if (d.getAttribute('data-was-open') === '0') d.open = false;
+    });
+  });
+})();
+</script>
+</body>
+</html>
