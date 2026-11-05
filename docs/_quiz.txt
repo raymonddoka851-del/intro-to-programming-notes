@@ -1,0 +1,134 @@
+# Quiz data: one question per line.
+# Format: Q|question|option1|option2|option3|option4|correctIndex(1-4)|explanation
+# Sections start with @01|Title
+@01|Programming fundamentals
+Q|What is an algorithm?|A programming language|A finite sequence of steps that solves a problem|A type of compiler|A computer screen|2|An algorithm is the ordered logic, independent of any language.
+Q|Which is NOT a characteristic of a good program?|Correctness|Readability|Infinite loops|Efficiency|3|A good program terminates and is easy to maintain.
+Q|What does a compiler do?|Runs the source code directly|Translates the whole program before execution|Edits the source code|Finds only runtime errors|2|Compilation happens before the program runs.
+Q|Which phase of program development comes first?|Coding|Testing|Problem definition and analysis|Documentation|3|You must understand inputs, outputs and requirements first.
+Q|A missing semicolon is which kind of error?|Syntax|Runtime|Logical|Linking|1|The compiler rejects invalid syntax before execution.
+Q|Machine language instructions are written as|English sentences|Binary codes|Flowchart symbols|Pseudocode|2|The CPU executes binary machine instructions.
+Q|Which flowchart symbol represents a decision?|Oval|Rectangle|Diamond|Parallelogram|3|A diamond has Yes/No branches.
+Q|Pseudocode is|Executable machine code|A structured English-like description of an algorithm|A C header file|A compiler warning|2|Pseudocode expresses logic without language syntax.
+Q|Which is a runtime error?|Missing semicolon|Undefined variable name|Division by zero during execution|Misspelled keyword|3|The program compiles but fails while running.
+Q|Which of these is a high-level language?|Machine code|Assembly|C|Microcode|3|C is high-level compared with machine and assembly language.
+
+@02|C basics and compilation
+Q|Which header declares printf?|stdlib.h|stdio.h|string.h|math.h|2|Standard input/output functions live in stdio.h.
+Q|Where does execution of a C program begin?|The first function in the file|main|printf|The last include|2|main is the entry point.
+Q|What is the standard return type of main?|void|float|int|char|3|main returns int to the operating system.
+Q|Who processes #define before compilation?|The linker|The preprocessor|The CPU|The debugger|2|Macros are expanded by the preprocessor.
+Q|Which character ends a C statement?|:|;|,|.|2|A semicolon terminates an expression statement.
+Q|Which is a valid C identifier?|2total|total score|total_1|int|3|It starts with a letter and contains only letters, digits or underscore.
+Q|Which printf specifier prints an int?|%f|%c|%d|%s|3|%d prints a signed decimal integer.
+Q|What does return 0 from main usually mean?|An error occurred|Success|The program is still running|The output is zero|2|Zero signals successful termination.
+Q|Which is a valid block comment?|// comment|# comment|/* comment */|<!-- comment -->|3|C block comments start with slash-star.
+Q|Which file extension is used for C source code?|.cpp|.c|.exe|.h|2|C source files use .c; headers use .h.
+
+@03|Data types and number systems
+Q|On this course, an int is normally how many bytes?|1|2|4|8|3|A 32-bit int is 4 bytes.
+Q|Which type stores a single character?|int|char|float|double|2|char stores one character code.
+Q|Which format specifier prints a double with printf?|%d|%c|%f|%s|3|%f prints floating-point values.
+Q|Which of these is an integer type?|float|double|long|char pointer|3|long is an integer type.
+Q|The binary value 1010 equals which decimal number?|8|10|12|16|2|8 + 2 = 10.
+Q|The 4-bit two's complement of 5 (that is, -5) is|0101|1010|1011|1101|3|Invert 0101 to 1010 and add 1.
+Q|What does sizeof return?|A string|A size in bytes|A memory address|A floating-point value|2|sizeof gives the storage size in bytes.
+Q|The range of a signed 8-bit integer is|-127 to 127|-128 to 127|0 to 255|-255 to 255|2|One bit is the sign, leaving 7 magnitude bits.
+Q|Which specifier prints an unsigned int?|%d|%u|%f|%ld|2|%u prints an unsigned decimal value.
+Q|Implicit conversion from double to int|rounds to nearest|truncates the fraction|always fails to compile|causes a runtime error|2|The fractional part is discarded.
+
+@04|Operators and expressions
+Q|The % operator works with|floats|integers|strings|pointers only|2|Modulus needs integer operands.
+Q|What is the value of 5 / 2 in C when both are int?|2|2.5|3|0|1|Integer division discards the remainder.
+Q|What does && mean?|Bitwise AND|Logical AND|Logical OR|Assignment|2|&& is the short-circuit logical AND.
+Q|What is the value of !0?|0|1|-1|undefined|2|Zero is false, so its negation is true (1).
+Q|Which operator has higher precedence?|+ (addition)|* (multiplication)|= (assignment)|, (comma)|2|Multiplication binds tighter than addition.
+Q|x += 3 is equivalent to|x = 3|x = x + 3|x = 3 + 3|x++|2|Compound assignment adds to the current value.
+Q|Which symbol is bitwise AND?|&&|&|pipe|^|2|A single ampersand is bitwise AND.
+Q|What is 10 % 3?|1|3|0|3.33|1|10 divided by 3 leaves remainder 1.
+Q|sizeof is|a function|an operator|a header|a macro|2|It is a compile-time operator.
+Q|A relational expression evaluates to|a pointer|0 or 1|a string|the larger operand|2|False is 0 and true is 1.
+
+@05|Control statements
+Q|The switch expression must be|a string|an integer or character type|a float|an array|2|Cases must be integer constant expressions.
+Q|What does break do inside a switch?|Restarts the switch|Exits the switch|Skips one case only|Ends the program|2|Without it, execution falls through.
+Q|An else belongs to|the first if in the file|the nearest unmatched if|the nearest loop|the function|2|This is the dangling-else rule.
+Q|The conditional operator is written|if ? then : else|cond ? a : b|cond : a ? b|a ? b|2|It chooses one of two expressions.
+Q|if (x = 5) usually causes a bug because|it compares x with 5|it assigns 5 and the result is true|it is a syntax error|it skips the body|2|Assignment returns the assigned value; use == to compare.
+Q|default in a switch runs when|every case matches|no case matches|break is missing|the switch is empty|2|It is the fallback label.
+Q|An if-else if chain tests conditions|all at once|in order until one is true|only the last one|randomly|2|The first true branch wins.
+Q|What does the extra semicolon in if (x > 2); do?|Ends the program|Makes the if body empty|Is a syntax error|Repeats the condition|2|The printf after it always runs.
+Q|For A && B to be true|A must be true|both A and B must be true|either may be true|both must be false|2|Logical AND requires both operands true.
+Q|Which statement is a selection statement?|for|while|if|return|3|if chooses between paths.
+
+@06|Loops
+Q|for (;;) creates|a syntax error|an infinite loop|a loop that never starts|a function|2|There is no terminating condition.
+Q|A while loop checks its condition|after the body|before the body|only once|never|2|If false at the start, the body never runs.
+Q|A do-while loop checks its condition|before the body|after the body|only on the first pass|never|2|The body always runs at least once.
+Q|break inside a loop|skips one iteration|exits the loop|restarts the loop|exits the program|2|Control continues after the loop.
+Q|continue inside a loop|exits the loop|jumps to the next iteration|restarts the program|does nothing|2|The rest of the body is skipped.
+Q|How many times does for (i = 0; i < 5; i++) run?|4|5|6|forever|2|i takes the values 0 to 4.
+Q|A loop inside another loop is called|recursive|nested|infinite|conditional|2|The inner loop completes for each outer iteration.
+Q|Using i <= 5 instead of i < 5 when you want 5 iterations causes|a syntax error|an off-by-one error|a runtime crash|no output|2|You get one extra iteration.
+Q|What is 1 + 2 + ... + 10?|45|50|55|60|3|The sum is 55.
+Q|In for (i = 0; i < 3; i++), when does i++ run?|Before the loop starts|After each body execution|Only at the end of the program|Inside the body|2|It runs after the body, before the next condition check.
+
+@07|Functions and recursion
+Q|A function prototype ends with|a comma|a semicolon|a brace|a colon|2|It is a declaration, not a definition.
+Q|C passes arguments by default|by reference|by value|by pointer|by name|2|The function receives copies.
+Q|A function with return type void|returns 0|returns no value|returns a pointer|must be main|2|void means no value is returned.
+Q|Every recursive function needs|a loop|a base case|a global variable|a pointer|2|The base case stops the recursion.
+Q|A local variable is visible|everywhere in the program|only in its block or function|only in main|in all files|2|Scope is limited to the enclosing block.
+Q|A static local variable|is destroyed after each call|keeps its value between calls|is global|is read-only|2|It has static storage duration.
+Q|Which correctly declares a function taking no arguments?|int f()|int f(void)|both int f() and int f(void)|void f|2|In C, (void) explicitly means no parameters; () is unspecified.
+Q|Call by reference in C is simulated with|arrays only|pointers|macros|global variables|2|Pass an address and dereference it.
+Q|A recursive factorial usually stops when|n == 10|n <= 1|n > 1|n is odd|2|fact(1) returns 1.
+Q|A function's signature is its|return type only|name and parameter types|body|comments|2|The compiler uses it to check calls.
+
+@08|Arrays and strings
+Q|The first index of an array is|1|0|-1|the array size|2|C arrays are zero-based.
+Q|An array's size is fixed|at runtime|when it is declared|after the first loop|by printf|2|Standard C arrays cannot grow.
+Q|A C string ends with|a space|the null character|a newline|EOF|2|The terminator is '\0'.
+Q|strlen counts|the null terminator too|characters before the null terminator|bytes only|words|2|The terminator is not counted.
+Q|How many elements are in int a[2][3]?|5|6|8|2|2|2 rows times 3 columns.
+Q|Accessing a[10] in an int a[5] is|safe|undefined behaviour|a compile error|zero|2|There is no bounds checking in C.
+Q|char s[5] can hold a string of at most|5 characters|4 characters plus the terminator|6 characters|unlimited|2|One byte is reserved for '\0'.
+Q|To total an array you normally use|one printf|a loop|a pointer only|recursion only|2|Visit each element in turn.
+Q|The name of an int array in an expression acts as|its first element's value|a pointer to its first element|its length|a string|2|It decays to a pointer.
+Q|Which header declares strcpy?|stdio.h|stdlib.h|string.h|math.h|3|String functions are in string.h.
+
+@09|Pointers
+Q|&x gives|the value of x|the address of x|the size of x|the type of x|2|The address-of operator produces a pointer.
+Q|*p gives|the address in p|the value stored at that address|the size of p|a new pointer|2|Dereferencing reads the pointed-to object.
+Q|A NULL pointer|points to address 0 or nowhere|points to main|is uninitialised|is an integer|1|It deliberately points to no object.
+Q|A pointer to an int has type|int|int *|int &|`int []`|2|The star is part of the type.
+Q|For int *p, p + 1 moves forward by|1 byte|one int|two ints|the whole array|2|Pointer arithmetic uses the pointed-to type size.
+Q|To swap two ints in the caller you pass|the values|their addresses|their names|a copy|2|The function needs access to the originals.
+Q|On a 64-bit machine, sizeof(int *) is usually|2|4|8|the size of int|3|A pointer holds a 64-bit address.
+Q|An uninitialised pointer is dangerous because|it is always NULL|it may point anywhere|it cannot be printed|it is read-only|2|Dereferencing it is undefined behaviour.
+Q|`**pp` means|a pointer to int|a pointer to a pointer, dereferenced twice|an array|a function|2|The first star reaches the pointer, the second the int.
+Q|Passing an array name to a function passes|a copy of the array|a pointer to its first element|its length|a string|2|Arrays decay to pointers in calls.
+
+@10|Structures, unions and files
+Q|Members of a struct have|shared memory|separate memory|no types|automatic alignment only|2|Each member has its own storage.
+Q|Members of a union have|separate memory|shared memory|no names|read-only storage|2|Only one member is valid at a time.
+Q|You access a struct member through a pointer with|.|->|::|&|2|The arrow combines dereference and member access.
+Q|You access a struct member through a value with|->|.|*|&|2|The dot accesses a member of a struct object.
+Q|fopen mode "r" opens a file for|reading|writing|appending|deleting|1|The file must already exist.
+Q|fclose is used to|open a file|close a file|delete a file|print a file|2|It flushes buffers and releases the handle.
+Q|fprintf writes formatted data to|the screen only|a file stream|memory only|the keyboard|2|It takes a FILE pointer as its first argument.
+Q|typedef creates|a new variable|an alias for a type|a function|a file|2|It gives an existing type another name.
+Q|The size of a struct is at least|the largest member|the sum of its members|one byte|zero|2|Padding can make it larger.
+Q|EOF stands for|End of file|Error on format|Entry of file|Exit of function|1|It marks the end of a stream.
+
+@11|Formatted I/O and reports
+Q|In printf, %5d means|five decimal places|a field at least five characters wide|five values|a pointer|2|The field is right-aligned by default.
+Q|In printf, %-5d means|left-aligned in a field of five|negative numbers only|five decimals|truncate to five|1|The minus sign left-aligns.
+Q|%.2f prints|two values|two digits after the decimal point|two characters|a percentage|2|The number after the dot is the precision.
+Q|%04d prints 7 as|7|007|0007|7000|3|Zero-pad to a width of four.
+Q|%s prints|a single character|a string|a signed integer|a float|2|It expects a null-terminated string.
+Q|%c prints|a string|a single character|a float|a pointer|2|It prints one character.
+Q|The escape sequence for a newline is|\t|\n|\r|\\|2|\n moves to the next line.
+Q|scanf normally needs|the value|the address of the variable|a FILE pointer|a format width|2|It stores through a pointer, so use &x.
+Q|For scanf, a double uses|%f|%lf|%d|%s|2|The l modifier means long for floating point input.
+Q|The field width in printf specifies|the exact number of characters|a minimum width|the number of arguments|the precision|2|The value may be wider than the field.
