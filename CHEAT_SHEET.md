@@ -360,8 +360,8 @@ fclose(fp);
 
 ## 12. Common errors checklist
 
-- [ ] Missing semicolon
-- [ ] Missing `&` in `scanf`
+- [x] Missing semicolon
+- [x] Missing `&` in `scanf`
 - [ ] `=` instead of `==`
 - [ ] Semicolon after `if`, `for`, `while`
 - [ ] Missing braces
