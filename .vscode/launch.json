@@ -2,6 +2,15 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Open notes in Brave",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "runtimeExecutable": "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe",
+      "url": "http://127.0.0.1:8765/notes/01_programming_fundamentals.html",
+      "webRoot": "${workspaceFolder}\\docs",
+      "preLaunchTask": "Site: serve HTML"
+    },
+    {
       "name": "C: debug current file (gdb)",
       "type": "cppdbg",
       "request": "launch",

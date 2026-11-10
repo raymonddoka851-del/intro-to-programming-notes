@@ -1,0 +1,73 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Site: serve HTML",
+            "type": "process",
+            "command": "powershell.exe",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}\\..\\docs\\_serve.ps1"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "owner": "custom",
+                "pattern": {
+                    "regexp": "^$"
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "^Serving .+$",
+                    "endsPattern": "^Open http://127\\.0\\.0\\.1:8765/$"
+                }
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": false
+            }
+        },
+        {
+            "label": "C: build current file",
+            "type": "shell",
+            "command": "${env:LOCALAPPDATA}/mingw64/mingw64/bin/gcc.exe",
+            "args": [
+                "-std=c11",
+                "-Wall",
+                "-Wextra",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true
+            }
+        },
+        {
+            "label": "C: build and run current file",
+            "type": "shell",
+            "command": "${fileDirname}/${fileBasenameNoExtension}.exe",
+            "dependsOn": "C: build current file",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "focus": true
+            }
+        }
+    ]
+}

@@ -1,0 +1,35 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
+            "name": "Open notes in Brave",
+            "runtimeExecutable": "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe",
+            "url": "http://127.0.0.1:8765/notes/01_programming_fundamentals.html",
+            "webRoot": "${workspaceFolder}\\..\\docs",
+            "preLaunchTask": "Site: serve HTML"
+        },
+        {
+            "type": "cppdbg",
+            "request": "launch",
+            "name": "C: debug current file (gdb)",
+            "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "${env:LOCALAPPDATA}/mingw64/mingw64/bin/gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "C: build current file"
+        }
+    ]
+}
