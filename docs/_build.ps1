@@ -717,7 +717,11 @@ $script:PageTemplate = @'
 <main class="main">
   <div class="topbar">
     <span class="crumb">__CRUMB__</span>
-    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+    <div class="topbar-actions">
+      <button class="search-action" id="searchBtn" type="button" aria-label="Search every note">Search</button>
+      <button class="search-action" id="findBtn" type="button" aria-label="Find within this note">Find in note</button>
+      <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+    </div>
   </div>
   <article class="content">
 __TOOLS__
@@ -1250,19 +1254,21 @@ $indexTemplate = @'
   <p class="lede">Revision notes, 22 runnable C programs, 96 practice questions and two mock exams — everything in one place, from zero to exam-ready.</p>
   <div class="search">
     <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></line></svg>
-    <input id="q" type="search" placeholder="Search the notes&hellip;" autocomplete="off" aria-label="Search">
+    <input id="q" type="search" placeholder="Search every note, topic and example&hellip;" autocomplete="off" aria-label="Search every note">
   </div>
+  <p class="search-hint">Search inside the notes, not just their titles. On a note page use <strong>Ctrl+Alt+F</strong> to find specific content.</p>
 </header>
 <main class="groups" id="groups">
 __CARDS__
-<div class="no-results" id="noResults">Nothing matches that search.</div>
+<div class="no-results" id="noResults" hidden>Nothing matches that search.</div>
+<div class="search-hits" id="searchHits" hidden></div>
 <div class="group-title">Print</div>
 <p style="color:var(--muted);font-size:13.5px;margin:0">
   Any page can be saved as a PDF: open it and press <strong>Ctrl+P</strong> &rarr; <em>Destination: Save as PDF</em>.
 </p>
 </main>
 <footer class="foot" style="padding-top:10px">
-  __COUNT__ pages · __WORDS__ words · built from the official course outline and lecture notes.
+  __COUNT__ pages · __WORDS__ words · an independent study resource built from available course materials.
 </footer>
 <script>
 (function () {
@@ -1312,6 +1318,89 @@ $index = $index.Replace('__WORDS__', ('{0:N0}' -f $totalWords))
 
 [System.IO.File]::WriteAllText((Join-Path $OutRoot 'index.html'), $index,
     (New-Object System.Text.UTF8Encoding($false)))
+
+# Build a complete, heading-addressable index from the rendered note content.
+$script:SearchEntries = New-Object 'System.Collections.Generic.List[object]'
+function Add-IntroSearchEntry([string]$url, [string]$group, [string]$title,
+                              [string]$heading, [string]$headingId, [string]$html) {
+    $text = [regex]::Replace($html, '(?is)<(script|style)\b.*?</\1>', ' ')
+    $text = [regex]::Replace($text, '(?s)<[^>]+>', ' ')
+    $text = [System.Net.WebUtility]::HtmlDecode($text) -replace '\s+', ' '
+    $text = $text.Trim()
+    if (-not $text) { return }
+    $start = 0
+    while ($start -lt $text.Length) {
+        $length = [math]::Min(1200, $text.Length - $start)
+        if (($start + $length) -lt $text.Length) {
+            $candidate = $text.Substring($start, $length)
+            $space = $candidate.LastIndexOf(' ')
+            if ($space -gt 600) { $length = $space }
+        }
+        $chunk = $text.Substring($start, $length).Trim()
+        if ($chunk) {
+            $script:SearchEntries.Add([pscustomobject]@{
+                u = $url; g = $group; t = $title; h = $heading; i = $headingId; x = $chunk
+            })
+        }
+        if (($start + $length) -ge $text.Length) { break }
+        $start += [math]::Max(1, $length - 160)
+    }
+}
+
+$htmlPages = Get-ChildItem -LiteralPath $OutRoot -Recurse -Filter '*.html' -File |
+             Where-Object { $_.Name -ne 'index.html' }
+foreach ($page in $htmlPages) {
+    $pageHtml = [System.IO.File]::ReadAllText($page.FullName, [System.Text.Encoding]::UTF8)
+    $articleMatch = [regex]::Match($pageHtml, '(?is)<article\b[^>]*>(.*?)</article>')
+    if (-not $articleMatch.Success) { continue }
+    $relativeUrl = $page.FullName.Substring($OutRoot.Length).TrimStart('\') -replace '\\', '/'
+    $heads = [regex]::Matches($articleMatch.Groups[1].Value, '(?is)<h([1-6])\b[^>]*\bid="([^"]+)"[^>]*>(.*?)</h\1>')
+    $pageTitle = [regex]::Match($articleMatch.Groups[1].Value, '(?is)<h1\b[^>]*>(.*?)</h1>')
+    $titleText = if ($pageTitle.Success) {
+        [System.Net.WebUtility]::HtmlDecode(([regex]::Replace($pageTitle.Groups[1].Value, '(?s)<[^>]+>', ' '))).Trim()
+    } else { [IO.Path]::GetFileNameWithoutExtension($page.Name) }
+    $group = Split-Path -Leaf (Split-Path -Parent $page.FullName)
+    if ($group -eq 'docs') { $group = 'Notes' }
+    if ($heads.Count -eq 0) {
+        Add-IntroSearchEntry $relativeUrl $group $titleText '' '' $articleMatch.Groups[1].Value
+        continue
+    }
+    for ($h = 0; $h -lt $heads.Count; $h++) {
+        $head = $heads[$h]
+        $end = if ($h + 1 -lt $heads.Count) { $heads[$h + 1].Index } else { $articleMatch.Groups[1].Value.Length }
+        $section = $articleMatch.Groups[1].Value.Substring($head.Index, $end - $head.Index)
+        $headingText = [System.Net.WebUtility]::HtmlDecode(([regex]::Replace($head.Groups[3].Value, '(?s)<[^>]+>', ' '))).Trim()
+        Add-IntroSearchEntry $relativeUrl $group $titleText $headingText $head.Groups[2].Value $section
+    }
+}
+$searchJson = ConvertTo-Json -InputObject @($script:SearchEntries.ToArray()) -Depth 4 -Compress
+$assetsDir = Join-Path $OutRoot 'assets'
+if (-not (Test-Path -LiteralPath $assetsDir)) { New-Item -ItemType Directory -Force -Path $assetsDir | Out-Null }
+[System.IO.File]::WriteAllText((Join-Path $assetsDir 'search-index.js'),
+    ('window.SEARCH_INDEX=' + $searchJson + ';'), (New-Object System.Text.UTF8Encoding($false)))
+
+# Wire the same full-text and in-note search controls into every generated page.
+$searchMarkup = @'
+<div class="search-overlay" id="searchOverlay" hidden>
+  <div class="search-modal" role="dialog" aria-modal="true" aria-label="Search all notes">
+    <div class="search-modal-bar"><input id="searchInput" type="search" placeholder="Search every note, example and quiz&hellip;" autocomplete="off" aria-label="Search all notes"><button id="searchClose" type="button" aria-label="Close search">&times;</button></div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+<div class="findbar" id="findBar" hidden>
+  <input id="findInput" type="search" placeholder="Find within this note&hellip;" autocomplete="off" aria-label="Find within this note">
+  <span id="findCount" class="find-count"></span>
+  <button id="findPrev" type="button" aria-label="Previous match">&uarr;</button><button id="findNext" type="button" aria-label="Next match">&darr;</button><button id="findClose" type="button" aria-label="Close find">&times;</button>
+</div>
+'@
+foreach ($page in (Get-ChildItem -LiteralPath $OutRoot -Recurse -Filter '*.html' -File)) {
+    $pageHtml = [System.IO.File]::ReadAllText($page.FullName, [System.Text.Encoding]::UTF8)
+    $root = if ($page.FullName.Substring($OutRoot.Length).TrimStart('\').Contains('\')) { '../' } else { '' }
+    $pageHtml = [regex]::Replace($pageHtml, '<body\b([^>]*)>', '<body$1 data-search-root="' + $root + '">', 1)
+    $searchScripts = '<script src="' + $root + 'assets/search-index.js"></script><script src="' + $root + 'assets/search.js"></script>'
+    $pageHtml = $pageHtml.Replace('</body>', $searchMarkup + $searchScripts + '</body>')
+    [System.IO.File]::WriteAllText($page.FullName, $pageHtml, (New-Object System.Text.UTF8Encoding($false)))
+}
 
 $sw.Stop()
 Write-Host ''

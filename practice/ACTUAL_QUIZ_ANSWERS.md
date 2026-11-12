@@ -1,7 +1,7 @@
 # Actual E-Learning Quiz — Model Answers
 
-> These are the questions visible in your CSC 112 e-learning quiz screenshots
-> (University of Embu, Semester 1 2026/2027). The quiz uses **highest grade**, so you
+> These are the questions visible in the CSC 112 course e-learning quiz material
+> shared for this study pack. The quiz uses **highest grade**, so you
 > can retry it. Learn these answers word-for-word first — they are the cheapest marks
 > in the whole unit.
 

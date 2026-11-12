@@ -3,7 +3,7 @@
 
 This pack was built from:
 
-- `STA 121 COURSE OUTLINE.odt` (the official course map)
+- `STA 121 COURSE OUTLINE.odt` (the course map)
 - `csc 112 week 1.docx` — programming languages, program development, algorithms
 - `csc 112 week 2.docx` — algorithms, flowcharts, pseudocode, decision tables, DFDs
 - `WEEK 3 NOTES.docx` — C program structure, variables, data types, operators, I/O

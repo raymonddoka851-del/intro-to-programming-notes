@@ -7,7 +7,7 @@
 <meta name="description" content="CSC 112 / STA 121 Introduction to Programming revision notes.">
 <link rel="stylesheet" href="../assets/notes.css">
 </head>
-<body data-page="quiz/07.html" data-pages="[]">
+<body data-page="quiz/07.html" data-pages="[]" data-search-root="../">
 <div class="progress" id="progress"></div>
 <div class="layout">
 <aside class="sidebar">
@@ -23,7 +23,11 @@
 <main class="main">
   <div class="topbar">
     <span class="crumb">Practice <b>&rsaquo;</b> Quiz 07</span>
-    <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+    <div class="topbar-actions">
+      <button class="search-action" id="searchBtn" type="button" aria-label="Search every note">Search</button>
+      <button class="search-action" id="findBtn" type="button" aria-label="Find within this note">Find in note</button>
+      <button class="theme-btn" id="themeBtn" title="Switch light / dark" aria-label="Switch theme">&#9789;</button>
+    </div>
   </div>
   <article class="content">
 
@@ -340,5 +344,15 @@
   });
 })();
 </script>
-</body>
+<div class="search-overlay" id="searchOverlay" hidden>
+  <div class="search-modal" role="dialog" aria-modal="true" aria-label="Search all notes">
+    <div class="search-modal-bar"><input id="searchInput" type="search" placeholder="Search every note, example and quiz&hellip;" autocomplete="off" aria-label="Search all notes"><button id="searchClose" type="button" aria-label="Close search">&times;</button></div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+<div class="findbar" id="findBar" hidden>
+  <input id="findInput" type="search" placeholder="Find within this note&hellip;" autocomplete="off" aria-label="Find within this note">
+  <span id="findCount" class="find-count"></span>
+  <button id="findPrev" type="button" aria-label="Previous match">&uarr;</button><button id="findNext" type="button" aria-label="Next match">&darr;</button><button id="findClose" type="button" aria-label="Close find">&times;</button>
+</div><script src="../assets/search-index.js"></script><script src="../assets/search.js"></script></body>
 </html>
